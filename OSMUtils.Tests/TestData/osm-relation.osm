@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<osm>
+	<relation id="1254">
+		<member ref="3" type="node" role="test" />
+		<member ref="4" type="way" role="test" />
+		<member ref="5" type="relation" role="test" />
+	</relation>
+</osm>

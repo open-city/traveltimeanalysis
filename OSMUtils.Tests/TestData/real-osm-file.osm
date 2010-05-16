@@ -1,0 +1,1338 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <bounds minlat='50.4135976' minlon='16.1660707' maxlat='50.415881' maxlon='16.1715102' origin='CGImap 0.0.2' />
+  <node id='355924824' timestamp='2009-03-05T17:38:38Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3514585' lon='16.1257724' />
+  <node id='355924825' timestamp='2009-07-14T23:19:51Z' uid='3516' user='BiIbo' visible='true' version='2' lat='50.3514666' lon='16.1262801' />
+  <node id='355924822' timestamp='2009-03-05T17:38:37Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3518155' lon='16.1231156' />
+  <node id='355924823' timestamp='2009-03-05T17:38:37Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3517033' lon='16.1242578' />
+  <node id='355924820' timestamp='2009-03-05T17:38:37Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3510506' lon='16.1211268' />
+  <node id='355924821' timestamp='2009-03-05T17:38:37Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3513463' lon='16.1217081' />
+  <node id='441959114' timestamp='2009-07-14T23:19:40Z' uid='3516' user='BiIbo' visible='true' version='1' lat='50.3518156' lon='16.1236737' />
+  <node id='355924831' timestamp='2009-03-05T17:38:39Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3496023' lon='16.1371389' />
+  <node id='355924832' timestamp='2009-03-05T17:38:39Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3492148' lon='16.1378222' />
+  <node id='355924833' timestamp='2009-03-05T17:38:39Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3492148' lon='16.1386687' />
+  <node id='355924830' timestamp='2009-03-05T17:38:38Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3501021' lon='16.1365066' />
+  <node id='355924857' timestamp='2009-03-05T17:38:43Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3447171' lon='16.1467819' />
+  <node id='355924858' timestamp='2009-03-05T17:38:43Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3443908' lon='16.147047' />
+  <node id='355924859' timestamp='2009-03-05T17:38:43Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3442684' lon='16.1474652' />
+  <node id='355924861' timestamp='2009-03-05T17:38:44Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3435952' lon='16.1475774' />
+  <node id='355924860' timestamp='2009-03-05T17:38:43Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3440848' lon='16.1475672' />
+  <node id='355924863' timestamp='2009-03-05T17:38:44Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3432587' lon='16.1481893' />
+  <node id='355924862' timestamp='2009-03-05T17:38:44Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3433709' lon='16.1477406' />
+  <node id='355924864' timestamp='2009-03-05T17:38:44Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3431975' lon='16.1496222' />
+  <node id='355924835' timestamp='2009-03-05T17:38:39Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3499593' lon='16.139964' />
+  <node id='355924834' timestamp='2009-03-05T17:38:39Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3495615' lon='16.1392501' />
+  <node id='355924853' timestamp='2009-03-05T17:38:42Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3452271' lon='16.1453336' />
+  <node id='355924854' timestamp='2009-03-05T17:38:42Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3451047' lon='16.1459252' />
+  <node id='355924855' timestamp='2009-03-05T17:38:43Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3451149' lon='16.1461087' />
+  <node id='355924856' timestamp='2009-03-05T17:38:43Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3449721' lon='16.1464249' />
+  <node id='355924844' timestamp='2009-03-05T17:38:41Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3491842' lon='16.1471235' />
+  <node id='355924845' timestamp='2009-03-05T17:38:41Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3480929' lon='16.146328' />
+  <node id='355924843' timestamp='2009-03-05T17:38:41Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3501225' lon='16.1478986' />
+  <node id='355924848' timestamp='2009-03-05T17:38:41Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3469506' lon='16.1447013' />
+  <node id='355924849' timestamp='2009-03-05T17:38:42Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3465121' lon='16.1446401' />
+  <node id='355924846' timestamp='2009-03-05T17:38:41Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3475728' lon='16.1458487' />
+  <node id='355924847' timestamp='2009-03-05T17:38:41Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3474504' lon='16.1453387' />
+  <node id='355924852' timestamp='2009-03-05T17:38:42Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.345329' lon='16.1452418' />
+  <node id='355924851' timestamp='2009-03-05T17:38:42Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3457166' lon='16.1447829' />
+  <node id='355924850' timestamp='2009-03-05T17:38:42Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3461551' lon='16.1446401' />
+  <node id='355924836' timestamp='2009-03-05T17:38:39Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3512239' lon='16.141453' />
+  <node id='355924837' timestamp='2009-03-05T17:38:40Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3514177' lon='16.1425035' />
+  <node id='355924838' timestamp='2009-03-05T17:38:40Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3511729' lon='16.1431256' />
+  <node id='355924839' timestamp='2009-03-05T17:38:40Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3509792' lon='16.1451093' />
+  <node id='355924841' timestamp='2009-03-05T17:38:40Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3512035' lon='16.1474601' />
+  <node id='355924840' timestamp='2009-03-05T17:38:40Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3509894' lon='16.1466799' />
+  <node id='355924826' timestamp='2009-03-05T17:38:38Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3516421' lon='16.129087' />
+  <node id='355924827' timestamp='2009-03-05T17:38:38Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3515707' lon='16.1299845' />
+  <node id='355924828' timestamp='2009-03-05T17:38:38Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3507548' lon='16.1332838' />
+  <node id='355924829' timestamp='2009-03-05T17:38:38Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3504284' lon='16.1345382' />
+  <node id='355924842' timestamp='2009-03-05T17:38:40Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3507854' lon='16.1478578' />
+  <node id='355924870' timestamp='2009-03-05T17:38:45Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.342096' lon='16.1502953' />
+  <node id='355924871' timestamp='2009-03-05T17:38:46Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3418207' lon='16.1505707' />
+  <node id='355924872' timestamp='2009-03-05T17:38:46Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3418105' lon='16.1510195' />
+  <node id='355924873' timestamp='2009-03-05T17:38:46Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3418819' lon='16.1521719' />
+  <node id='355924874' timestamp='2009-03-05T17:38:46Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3415861' lon='16.1525391' />
+  <node id='355924883' timestamp='2009-03-05T17:38:47Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3405662' lon='16.1542831' />
+  <node id='355924878' timestamp='2009-03-05T17:38:47Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3409946' lon='16.1546094' />
+  <node id='355924877' timestamp='2009-03-05T17:38:47Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3411067' lon='16.1540995' />
+  <node id='355924876' timestamp='2009-03-05T17:38:46Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3411985' lon='16.1535794' />
+  <node id='355924875' timestamp='2009-03-05T17:38:46Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3413311' lon='16.1529878' />
+  <node id='355924893' timestamp='2009-03-05T17:38:47Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3399237' lon='16.1537731' />
+  <node id='355924894' timestamp='2009-03-05T17:38:48Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3397707' lon='16.1545176' />
+  <node id='355924891' timestamp='2009-03-05T17:38:47Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3404132' lon='16.1538343' />
+  <node id='355924892' timestamp='2009-03-05T17:38:47Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3401277' lon='16.1535692' />
+  <node id='355924937' timestamp='2009-03-05T17:38:49Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3435952' lon='16.1553947' />
+  <node id='355924938' timestamp='2009-03-05T17:38:50Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3442888' lon='16.1553488' />
+  <node id='355924865' timestamp='2009-03-05T17:38:44Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3428711' lon='16.1499792' />
+  <node id='355924867' timestamp='2009-03-05T17:38:45Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3427385' lon='16.1506625' />
+  <node id='355924866' timestamp='2009-03-05T17:38:45Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3428201' lon='16.1504177' />
+  <node id='355924869' timestamp='2009-03-05T17:38:45Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3423204' lon='16.1502342' />
+  <node id='355924868' timestamp='2009-03-05T17:38:45Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.342504' lon='16.1504891' />
+  <node id='355924912' timestamp='2009-03-05T17:38:49Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3419022' lon='16.1570571' />
+  <node id='355924902' timestamp='2009-03-05T17:38:49Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3416167' lon='16.1570673' />
+  <node id='355924895' timestamp='2009-03-05T17:38:48Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3399441' lon='16.1554763' />
+  <node id='355924896' timestamp='2009-03-05T17:38:48Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3403724' lon='16.156282' />
+  <node id='355924899' timestamp='2009-03-05T17:38:48Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3412087' lon='16.1574651' />
+  <node id='355924898' timestamp='2009-03-05T17:38:48Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.340913' lon='16.1575467' />
+  <node id='355924897' timestamp='2009-03-05T17:38:48Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3407294' lon='16.1571999' />
+  <node id='355924933' timestamp='2009-03-05T17:38:49Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3425754' lon='16.1562208' />
+  <node id='355924927' timestamp='2009-03-05T17:38:49Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.342249' lon='16.156588' />
+  <node id='355924919' timestamp='2009-03-05T17:38:49Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3421878' lon='16.156843' />
+  <node id='355924965' timestamp='2009-03-05T17:38:55Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3470934' lon='16.1527278' />
+  <node id='355924966' timestamp='2009-03-05T17:38:55Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3473076' lon='16.1531663' />
+  <node id='355924963' timestamp='2009-03-05T17:38:54Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3465325' lon='16.1522178' />
+  <node id='355924964' timestamp='2009-03-05T17:38:54Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3468181' lon='16.1526666' />
+  <node id='355924967' timestamp='2009-03-05T17:38:55Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3473484' lon='16.1538496' />
+  <node id='355924968' timestamp='2009-03-05T17:38:55Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3475218' lon='16.1545125' />
+  <node id='355924962' timestamp='2009-03-05T17:38:54Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3462775' lon='16.1516161' />
+  <node id='355924961' timestamp='2009-03-05T17:38:54Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3460124' lon='16.1514733' />
+  <node id='355924950' timestamp='2009-03-05T17:38:51Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.345686' lon='16.1515141' />
+  <node id='355924948' timestamp='2009-03-05T17:38:51Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.345329' lon='16.1518099' />
+  <node id='355924946' timestamp='2009-03-05T17:38:50Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3454004' lon='16.1522178' />
+  <node id='355924941' timestamp='2009-03-05T17:38:50Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3453188' lon='16.1531765' />
+  <node id='355924942' timestamp='2009-03-05T17:38:50Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3454718' lon='16.1525748' />
+  <node id='355924940' timestamp='2009-03-05T17:38:50Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3451149' lon='16.153921' />
+  <node id='355924939' timestamp='2009-03-05T17:38:50Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3449109' lon='16.1546145' />
+  <node id='355924972' timestamp='2009-03-05T17:38:56Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3483989' lon='16.1551143' />
+  <node id='355924971' timestamp='2009-03-05T17:38:56Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3483071' lon='16.1547777' />
+  <node id='355924970' timestamp='2009-03-05T17:38:55Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3480113' lon='16.1546655' />
+  <node id='355924969' timestamp='2009-03-05T17:38:55Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3477156' lon='16.1546961' />
+  <node id='355924980' timestamp='2009-03-05T17:38:57Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3495819' lon='16.1595711' />
+  <node id='355924981' timestamp='2009-03-05T17:38:57Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3495615' lon='16.1605094' />
+  <node id='355924974' timestamp='2009-03-05T17:38:56Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3480113' lon='16.1560526' />
+  <node id='355924975' timestamp='2009-03-05T17:38:56Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3479603' lon='16.1565115' />
+  <node id='355924976' timestamp='2009-03-05T17:38:56Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3484193' lon='16.1566645' />
+  <node id='355924977' timestamp='2009-03-05T17:38:56Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3486538' lon='16.1570418' />
+  <node id='355924978' timestamp='2009-03-05T17:38:57Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3489904' lon='16.1580821' />
+  <node id='355924979' timestamp='2009-03-05T17:38:57Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3490924' lon='16.1586941' />
+  <node id='355924973' timestamp='2009-03-05T17:38:56Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3481745' lon='16.1555018' />
+  <node id='355924982' timestamp='2009-03-05T17:38:57Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3495003' lon='16.1614069' />
+  <node id='355924984' timestamp='2009-03-05T17:38:58Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3497655' lon='16.1621106' />
+  <node id='355924983' timestamp='2009-03-05T17:38:58Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3495615' lon='16.1617435' />
+  <node id='355924986' timestamp='2009-03-05T17:38:58Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3512647' lon='16.1622432' />
+  <node id='355924985' timestamp='2009-03-05T17:38:58Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3505304' lon='16.1622126' />
+  <node id='355924988' timestamp='2009-03-05T17:38:58Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3530495' lon='16.1631203' />
+  <node id='355924987' timestamp='2009-03-05T17:38:58Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3517951' lon='16.1623962' />
+  <node id='355924989' timestamp='2009-03-05T17:38:59Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3536818' lon='16.1635589' />
+  <node id='355924990' timestamp='2009-03-05T17:38:59Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3540796' lon='16.1640178' />
+  <node id='355924991' timestamp='2009-03-05T17:38:59Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3544672' lon='16.1644258' />
+  <node id='355924992' timestamp='2009-03-05T17:38:59Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3548955' lon='16.1645278' />
+  <node id='355924993' timestamp='2009-03-05T17:38:59Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.355793' lon='16.1643544' />
+  <node id='355925010' timestamp='2009-03-05T17:39:02Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3605558' lon='16.1692855' />
+  <node id='355925008' timestamp='2009-03-05T17:39:02Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3601887' lon='16.1691631' />
+  <node id='355925007' timestamp='2009-03-05T17:39:01Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3599337' lon='16.1688673' />
+  <node id='355925003' timestamp='2009-03-05T17:39:01Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.359536' lon='16.1662819' />
+  <node id='355925005' timestamp='2009-03-05T17:39:01Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3595971' lon='16.1682248' />
+  <node id='355925000' timestamp='2009-03-05T17:39:01Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3584651' lon='16.1642014' />
+  <node id='355925001' timestamp='2009-03-05T17:39:01Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.359077' lon='16.1650989' />
+  <node id='355925002' timestamp='2009-03-05T17:39:01Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3593932' lon='16.165823' />
+  <node id='355924994' timestamp='2009-03-05T17:38:59Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3560582' lon='16.1640484' />
+  <node id='355924995' timestamp='2009-03-05T17:39:00Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3562723' lon='16.1635181' />
+  <node id='355924999' timestamp='2009-03-05T17:39:00Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3579551' lon='16.1634671' />
+  <node id='355924998' timestamp='2009-03-05T17:39:00Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3574962' lon='16.1627634' />
+  <node id='355924997' timestamp='2009-03-05T17:39:00Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3571698' lon='16.162692' />
+  <node id='355924996' timestamp='2009-03-05T17:39:00Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3566497' lon='16.162896' />
+  <node id='355925115' timestamp='2009-03-05T17:39:11Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3805251' lon='16.1713151' />
+  <node id='355925016' timestamp='2009-03-05T17:39:02Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3627384' lon='16.1693467' />
+  <node id='355925014' timestamp='2009-03-05T17:39:02Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3620245' lon='16.1692957' />
+  <node id='355925012' timestamp='2009-03-05T17:39:02Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3614635' lon='16.1691631' />
+  <node id='355925143' timestamp='2009-03-05T17:39:12Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3830952' lon='16.1654202' />
+  <node id='355925134' timestamp='2009-03-05T17:39:12Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3821977' lon='16.1687654' />
+  <node id='355925021' timestamp='2009-03-05T17:39:03Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3641152' lon='16.1697495' />
+  <node id='355925023' timestamp='2009-03-05T17:39:03Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3651249' lon='16.1712386' />
+  <node id='355925125' timestamp='2009-03-05T17:39:11Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3809126' lon='16.170336' />
+  <node id='355925020' timestamp='2009-03-05T17:39:03Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.36385' lon='16.1695507' />
+  <node id='355925018' timestamp='2009-03-05T17:39:02Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3634625' lon='16.1694997' />
+  <node id='355925205' timestamp='2009-03-05T17:39:13Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3879906' lon='16.159408' />
+  <node id='355925214' timestamp='2009-03-05T17:39:13Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3883169' lon='16.1583371' />
+  <node id='355925194' timestamp='2009-03-05T17:39:13Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.38745' lon='16.1608766' />
+  <node id='355925246' timestamp='2009-03-05T17:39:14Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3896326' lon='16.1599791' />
+  <node id='355925252' timestamp='2009-03-05T17:39:14Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3896122' lon='16.1601933' />
+  <node id='355925224' timestamp='2009-03-05T17:39:13Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3889697' lon='16.1582555' />
+  <node id='355925335' timestamp='2009-03-05T17:39:57Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3935183' lon='16.1564401' />
+  <node id='355925336' timestamp='2009-03-05T17:39:58Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3938141' lon='16.1554304' />
+  <node id='355925333' timestamp='2009-03-05T17:39:57Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3938447' lon='16.1594998' />
+  <node id='355925334' timestamp='2009-03-05T17:39:57Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3937733' lon='16.1584493' />
+  <node id='355925332' timestamp='2009-03-05T17:39:57Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3932124' lon='16.1604482' />
+  <node id='355925235' timestamp='2009-03-05T17:39:14Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3892042' lon='16.1586125' />
+  <node id='441975771' timestamp='2009-07-14T23:38:59Z' uid='3516' user='BiIbo' visible='true' version='1' lat='50.3935486' lon='16.1558545' />
+  <node id='355925152' timestamp='2009-03-05T17:39:12Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3836663' lon='16.1631713' />
+  <node id='355925159' timestamp='2009-03-05T17:39:12Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3844924' lon='16.1627226' />
+  <node id='355925170' timestamp='2009-03-05T17:39:13Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3851247' lon='16.1626512' />
+  <node id='355925184' timestamp='2009-03-05T17:39:13Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3866851' lon='16.1619577' />
+  <node id='355925254' timestamp='2009-03-05T17:39:14Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3906627' lon='16.1632529' />
+  <node id='355925253' timestamp='2009-03-05T17:39:14Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3902649' lon='16.16259' />
+  <node id='355925279' timestamp='2009-03-05T17:39:36Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.391091' lon='16.1633039' />
+  <node id='355925331' timestamp='2009-03-05T17:39:57Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3919375' lon='16.16259' />
+  <node id='355925338' timestamp='2009-03-05T17:39:58Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3957111' lon='16.1546349' />
+  <node id='355925337' timestamp='2009-03-05T17:39:58Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3948544' lon='16.1550531' />
+  <node id='355925339' timestamp='2009-07-14T23:39:00Z' uid='3516' user='BiIbo' visible='true' version='2' lat='50.3962853' lon='16.1546288' />
+  <node id='356281506' timestamp='2009-03-06T15:05:07Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3967481' lon='16.1559975' />
+  <node id='356281530' timestamp='2009-03-06T15:05:10Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3973763' lon='16.1571867' />
+  <node id='356281529' timestamp='2009-03-06T15:05:10Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3970846' lon='16.1565023' />
+  <node id='441975772' timestamp='2009-07-14T23:38:59Z' uid='3516' user='BiIbo' visible='true' version='1' lat='50.3960146' lon='16.1545318' />
+  <node id='356281541' timestamp='2009-03-06T15:05:12Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4017067' lon='16.1580729' />
+  <node id='356281540' timestamp='2009-03-06T15:05:12Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4016057' lon='16.1598231' />
+  <node id='356281543' timestamp='2009-03-06T15:05:12Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4022676' lon='16.1574447' />
+  <node id='356281544' timestamp='2009-03-06T15:05:13Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4032325' lon='16.1570745' />
+  <node id='356281546' timestamp='2009-03-06T15:05:13Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4047806' lon='16.1574559' />
+  <node id='356281532' timestamp='2009-03-06T15:05:11Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3988123' lon='16.1610571' />
+  <node id='356281533' timestamp='2009-03-06T15:05:11Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3994966' lon='16.1623977' />
+  <node id='356281535' timestamp='2009-03-06T15:05:11Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4001024' lon='16.1625324' />
+  <node id='356281536' timestamp='2009-03-06T15:05:11Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4006297' lon='16.1620387' />
+  <node id='356281538' timestamp='2009-03-06T15:05:12Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4013926' lon='16.1609505' />
+  <node id='356281555' timestamp='2009-03-06T15:05:16Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4054762' lon='16.157871' />
+  <node id='356281560' timestamp='2009-03-06T15:05:16Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4060371' lon='16.1580842' />
+  <node id='356281561' timestamp='2009-03-06T15:05:16Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4066205' lon='16.1590938' />
+  <node id='356281562' timestamp='2009-03-06T15:05:17Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4072936' lon='16.1606869' />
+  <node id='356281564' timestamp='2009-03-06T15:05:17Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4092232' lon='16.1633008' />
+  <node id='356281565' timestamp='2009-03-06T15:05:17Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4099412' lon='16.1639515' />
+  <node id='74286572' timestamp='2007-10-16T01:04:12Z' uid='1066' user='pavel' visible='true' version='1' lat='50.41322' lon='16.165143'>
+    <tag k='source' v='HELP SERVICE - REMOTE SENSING spol. s r.o. http://www.bnhelp.cz' />
+  </node>
+  <node id='291416460' timestamp='2008-12-14T19:52:40Z' uid='72020' user='Petr1868' visible='true' version='2' lat='50.410848' lon='16.1653839'>
+  </node>
+  <node id='318736977' timestamp='2009-02-19T18:38:27Z' uid='3516' user='BiIbo' visible='true' version='2' lat='50.4109196' lon='16.1660978' />
+  <node id='319058281' timestamp='2009-01-12T16:13:48Z' uid='17615' user='Petr Dlouhý' visible='true' version='2' lat='50.4123065' lon='16.1638562' />
+  <node id='318736774' timestamp='2008-12-14T20:24:42Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4114306' lon='16.1647332' />
+  <node id='318736771' timestamp='2008-12-14T20:24:42Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4110822' lon='16.1650468' />
+  <node id='319058446' timestamp='2008-12-15T19:56:23Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4128125' lon='16.1660978' />
+  <node id='356281567' timestamp='2009-03-06T15:05:17Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4108275' lon='16.164333' />
+  <node id='356281568' timestamp='2009-03-06T15:05:17Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4118484' lon='16.1654885' />
+  <node id='318726737' timestamp='2008-12-14T19:51:07Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4149401' lon='16.1641194' />
+  <node id='318726739' timestamp='2008-12-14T19:51:08Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4154366' lon='16.1655535' />
+  <node id='25284339' timestamp='2007-01-17T23:14:15Z' uid='1066' user='pavel' visible='true' version='1' lat='50.4156357' lon='16.1661572'>
+  </node>
+  <node id='618937503' timestamp='2010-01-23T22:00:26Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4136413' lon='16.1660738'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='260' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Pražská' />
+    <tag k='addr:housenumber' v='260' />
+  </node>
+  <node id='618937507' timestamp='2010-01-23T22:00:27Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4137725' lon='16.1662513'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='259' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Pražská' />
+    <tag k='addr:housenumber' v='259' />
+  </node>
+  <node id='74119244' timestamp='2007-10-15T23:36:24Z' uid='1066' user='pavel' visible='true' version='1' lat='50.41401' lon='16.166237'>
+    <tag k='source' v='HELP SERVICE - REMOTE SENSING spol. s r.o. http://www.bnhelp.cz' />
+  </node>
+  <node id='319058358' timestamp='2008-12-15T19:56:12Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4147752' lon='16.1651339' />
+  <node id='319058351' timestamp='2008-12-15T19:56:11Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4148913' lon='16.1654242' />
+  <node id='74361069' timestamp='2007-10-16T01:46:25Z' uid='1066' user='pavel' visible='true' version='1' lat='50.413543' lon='16.165606'>
+    <tag k='source' v='HELP SERVICE - REMOTE SENSING spol. s r.o. http://www.bnhelp.cz' />
+  </node>
+  <node id='319058348' timestamp='2008-12-15T19:56:10Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4143281' lon='16.1659352' />
+  <node id='319058305' timestamp='2008-12-15T19:56:01Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4144152' lon='16.1641729' />
+  <node id='318737106' timestamp='2008-12-14T20:25:19Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4133816' lon='16.171196' />
+  <node id='318737108' timestamp='2008-12-14T20:25:19Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4129519' lon='16.1688501' />
+  <node id='318737118' timestamp='2008-12-14T20:25:21Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4131377' lon='16.1717883' />
+  <node id='318737112' timestamp='2008-12-14T20:25:19Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4126848' lon='16.1694888' />
+  <node id='318737069' timestamp='2008-12-14T20:25:15Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4119415' lon='16.1678398' />
+  <node id='318736990' timestamp='2008-12-14T20:25:08Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4115583' lon='16.1673869' />
+  <node id='318736994' timestamp='2008-12-14T20:25:08Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4126732' lon='16.1685482' />
+  <node id='318736981' timestamp='2009-02-19T18:38:27Z' uid='3516' user='BiIbo' visible='true' version='2' lat='50.4111402' lon='16.1667017' />
+  <node id='618937758' timestamp='2010-01-23T22:00:40Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4139575' lon='16.1664713'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='271' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Bartoňova' />
+    <tag k='addr:housenumber' v='271' />
+  </node>
+  <node id='618937761' timestamp='2010-01-23T22:00:40Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.41379' lon='16.1668'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='840' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Denisovo nábřeží' />
+    <tag k='addr:housenumber' v='840' />
+  </node>
+  <node id='618937762' timestamp='2010-01-23T22:00:40Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4140988' lon='16.16672'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='257' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Pražská' />
+    <tag k='addr:housenumber' v='257' />
+  </node>
+  <node id='74335025' timestamp='2007-10-16T01:31:48Z' uid='1066' user='pavel' visible='true' version='1' lat='50.414862' lon='16.167388'>
+    <tag k='source' v='HELP SERVICE - REMOTE SENSING spol. s r.o. http://www.bnhelp.cz' />
+  </node>
+  <node id='74207863' timestamp='2007-10-16T00:24:10Z' uid='1066' user='pavel' visible='true' version='1' lat='50.414618' lon='16.167058'>
+    <tag k='source' v='HELP SERVICE - REMOTE SENSING spol. s r.o. http://www.bnhelp.cz' />
+  </node>
+  <node id='319058373' timestamp='2008-12-15T19:56:14Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4143455' lon='16.1676656' />
+  <node id='618937749' timestamp='2010-01-23T22:00:39Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4138438' lon='16.1680825'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='657' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Krásnohorské' />
+    <tag k='addr:housenumber' v='657' />
+  </node>
+  <node id='618937748' timestamp='2010-01-23T22:00:39Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4136963' lon='16.1679263'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='658' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Krásnohorské' />
+    <tag k='addr:housenumber' v='658' />
+  </node>
+  <node id='319058396' timestamp='2008-12-15T19:56:17Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4140203' lon='16.1680604' />
+  <node id='618937756' timestamp='2010-01-23T22:00:39Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.414185' lon='16.168475'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='addr:provisionalnumber' v='91' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Krásnohorské' />
+    <tag k='addr:housenumber' v='ev.91' />
+  </node>
+  <node id='618937754' timestamp='2010-01-23T22:00:39Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4140013' lon='16.1688013'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='275' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Krásnohorské' />
+    <tag k='addr:housenumber' v='275' />
+  </node>
+  <node id='618937755' timestamp='2010-01-23T22:00:39Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.41381' lon='16.16864'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='875' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Krásnohorské' />
+    <tag k='addr:housenumber' v='875' />
+  </node>
+  <node id='618937750' timestamp='2010-01-23T22:00:39Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4140025' lon='16.168245'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='988' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Krásnohorské' />
+    <tag k='addr:housenumber' v='988' />
+  </node>
+  <node id='319058403' timestamp='2008-12-15T19:56:18Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.414151' lon='16.1680851' />
+  <node id='319058400' timestamp='2008-12-15T19:56:18Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4141132' lon='16.1681722' />
+  <node id='319058393' timestamp='2008-12-15T19:56:17Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4142526' lon='16.1683275' />
+  <node id='319058390' timestamp='2008-12-15T19:56:17Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4145081' lon='16.1686295' />
+  <node id='618937753' timestamp='2010-01-23T22:00:39Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4142188' lon='16.1688863'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='551' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Krásnohorské' />
+    <tag k='addr:housenumber' v='551' />
+  </node>
+  <node id='618937763' timestamp='2010-01-23T22:00:40Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4144138' lon='16.1689263'>
+    <tag k='source' v='cuzk:km' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='FIXME' v='Map x DB inconsistency' />
+    <tag k='addr:provisional' v='435' />
+    <tag k='addr:housenumber' v='ev.435' />
+  </node>
+  <node id='319058386' timestamp='2008-12-15T19:56:16Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4147171' lon='16.1690243' />
+  <node id='319058407' timestamp='2008-12-15T19:56:19Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4142787' lon='16.1677919' />
+  <node id='356281570' timestamp='2009-03-06T15:05:17Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4147652' lon='16.1685624' />
+  <node id='319058440' timestamp='2008-12-15T19:56:23Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4148565' lon='16.1679907' />
+  <node id='319058434' timestamp='2008-12-15T19:56:23Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.41481' lon='16.1678165' />
+  <node id='74094348' timestamp='2007-10-15T23:24:44Z' uid='1066' user='pavel' visible='true' version='1' lat='50.415388' lon='16.168031'>
+    <tag k='source' v='HELP SERVICE - REMOTE SENSING spol. s r.o. http://www.bnhelp.cz' />
+  </node>
+  <node id='618937765' timestamp='2010-01-23T22:00:40Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4156101' lon='16.1676225'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='678' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Raisova' />
+    <tag k='addr:housenumber' v='678' />
+  </node>
+  <node id='618937767' timestamp='2010-01-23T22:00:40Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4154351' lon='16.1672825'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='1816' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Raisova' />
+    <tag k='addr:housenumber' v='1816' />
+  </node>
+  <node id='618937768' timestamp='2010-01-23T22:00:40Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4157363' lon='16.1679975'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='677' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Raisova' />
+    <tag k='addr:housenumber' v='677' />
+  </node>
+  <node id='319058352' timestamp='2008-12-15T19:56:11Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4154023' lon='16.1668178' />
+  <node id='618937776' timestamp='2010-01-23T22:00:41Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4155351' lon='16.1687213'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='625' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Husovo náměstí' />
+    <tag k='addr:housenumber' v='625' />
+  </node>
+  <node id='618937777' timestamp='2010-01-23T22:00:41Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4153288' lon='16.1684913'>
+    <tag k='source' v='cuzk:km' />
+    <tag k='addr:conscriptionnumber' v='603' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='FIXME' v='Map x DB inconsistency' />
+    <tag k='addr:housenumber' v='603' />
+  </node>
+  <node id='618937774' timestamp='2010-01-23T22:00:41Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4158588' lon='16.1682625'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='676' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Raisova' />
+    <tag k='addr:housenumber' v='676' />
+  </node>
+  <node id='618937773' timestamp='2010-01-23T22:00:41Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.415135' lon='16.16728'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='1817' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Raisova' />
+    <tag k='addr:housenumber' v='1817' />
+  </node>
+  <node id='618937770' timestamp='2010-01-23T22:00:41Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4149713' lon='16.1666'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='806' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Raisova' />
+    <tag k='addr:housenumber' v='806' />
+  </node>
+  <node id='618937771' timestamp='2010-01-23T22:00:41Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4156251' lon='16.1665963'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='85' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Karlovo náměstí' />
+    <tag k='addr:housenumber' v='85' />
+  </node>
+  <node id='74193639' timestamp='2007-10-16T00:17:20Z' uid='1066' user='pavel' visible='true' version='1' lat='50.416027' lon='16.16878'>
+    <tag k='source' v='HELP SERVICE - REMOTE SENSING spol. s r.o. http://www.bnhelp.cz' />
+  </node>
+  <node id='319058410' timestamp='2008-12-15T19:56:19Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4150074' lon='16.1683972' />
+  <node id='319058460' timestamp='2008-12-15T19:56:25Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4160846' lon='16.1688632' />
+  <node id='319058562' timestamp='2008-12-15T19:56:36Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4162094' lon='16.1688574' />
+  <node id='319058449' timestamp='2008-12-15T19:56:23Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4161223' lon='16.1686062' />
+  <node id='318737116' timestamp='2008-12-14T20:25:20Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4139971' lon='16.1698489' />
+  <node id='618937778' timestamp='2010-01-23T22:00:41Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4136275' lon='16.1692563'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='464' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Purkyňova' />
+    <tag k='addr:housenumber' v='464' />
+  </node>
+  <node id='618937779' timestamp='2010-01-23T22:00:41Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4138288' lon='16.16929'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='1787' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Purkyňova' />
+    <tag k='addr:housenumber' v='1787' />
+  </node>
+  <node id='618937787' timestamp='2010-01-23T22:00:42Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4140325' lon='16.169445'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='611' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Purkyňova' />
+    <tag k='addr:housenumber' v='611' />
+  </node>
+  <node id='618937783' timestamp='2010-01-23T22:00:41Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4138125' lon='16.1698575'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='584' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Purkyňova' />
+    <tag k='addr:housenumber' v='584' />
+  </node>
+  <node id='618937784' timestamp='2010-01-23T22:00:42Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4136688' lon='16.1697075'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='497' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Purkyňova' />
+    <tag k='addr:housenumber' v='497' />
+  </node>
+  <node id='618937782' timestamp='2010-01-23T22:00:41Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4140213' lon='16.17007'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='460' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Březinova' />
+    <tag k='addr:housenumber' v='460' />
+  </node>
+  <node id='318737003' timestamp='2008-12-14T20:25:09Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4146706' lon='16.1704527' />
+  <node id='318736998' timestamp='2008-12-14T20:25:09Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4143803' lon='16.1702321' />
+  <node id='319058380' timestamp='2008-12-15T19:56:15Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4147868' lon='16.1693611' />
+  <node id='319058378' timestamp='2008-12-15T19:56:15Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4147984' lon='16.1695817' />
+  <node id='618937788' timestamp='2010-01-23T22:00:42Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4145175' lon='16.1691425'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='631' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Krásnohorské' />
+    <tag k='addr:housenumber' v='631' />
+  </node>
+  <node id='618937789' timestamp='2010-01-23T22:00:42Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4148513' lon='16.1701925'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='360' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Dobrošovská' />
+    <tag k='addr:housenumber' v='360' />
+  </node>
+  <node id='319058376' timestamp='2008-12-15T19:56:15Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4147636' lon='16.1698605' />
+  <node id='618937785' timestamp='2010-01-23T22:00:42Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.41423' lon='16.1696813'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='1217' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Purkyňova' />
+    <tag k='addr:housenumber' v='1217' />
+  </node>
+  <node id='618937786' timestamp='2010-01-23T22:00:42Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4144575' lon='16.1696075'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='443' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Purkyňova' />
+    <tag k='addr:housenumber' v='443' />
+  </node>
+  <node id='618937780' timestamp='2010-01-23T22:00:41Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4142225' lon='16.1702938'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='436' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Purkyňova' />
+    <tag k='addr:housenumber' v='436' />
+  </node>
+  <node id='318737114' timestamp='2008-12-14T20:25:20Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4136835' lon='16.1705573' />
+  <node id='318737139' timestamp='2008-12-14T20:25:24Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4139274' lon='16.1711728' />
+  <node id='618937792' timestamp='2010-01-23T22:00:42Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4138675' lon='16.1705388'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='454' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Březinova' />
+    <tag k='addr:housenumber' v='454' />
+  </node>
+  <node id='618937790' timestamp='2010-01-23T22:00:42Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4137125' lon='16.1709063'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='669' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Březinova' />
+    <tag k='addr:housenumber' v='669' />
+  </node>
+  <node id='318737136' timestamp='2008-12-14T20:25:24Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4153791' lon='16.1702205' />
+  <node id='318737138' timestamp='2008-12-14T20:25:24Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4149378' lon='16.1703598' />
+  <node id='618937811' timestamp='2010-01-23T22:00:44Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4157926' lon='16.17146'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='873' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Žižkova' />
+    <tag k='addr:housenumber' v='873' />
+  </node>
+  <node id='618937805' timestamp='2010-01-23T22:00:43Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.41497' lon='16.1713738'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='130' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Dobrošovská' />
+    <tag k='addr:housenumber' v='130' />
+  </node>
+  <node id='618937800' timestamp='2010-01-23T22:00:43Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4158488' lon='16.1692863'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='624' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Husovo náměstí' />
+    <tag k='addr:housenumber' v='624' />
+  </node>
+  <node id='618937806' timestamp='2010-01-23T22:00:44Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4158151' lon='16.171025'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='639' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Prokopa Velikého' />
+    <tag k='addr:housenumber' v='639' />
+  </node>
+  <node id='618937796' timestamp='2010-01-23T22:00:43Z' uid='127998' user='Luk@s' visible='true' version='1' lat='50.4156951' lon='16.1703688'>
+    <tag k='source:addr' v='mvcr:adresa' />
+    <tag k='addr:conscriptionnumber' v='698' />
+    <tag k='addr:country' v='CZ' />
+    <tag k='is_in' v='Náchod, Královéhradecký  kraj, CZ' />
+    <tag k='source:loc' v='cuzk:km' />
+    <tag k='addr:street' v='Husovo náměstí' />
+    <tag k='addr:housenumber' v='698' />
+  </node>
+  <node id='319071244' timestamp='2008-12-15T20:34:44Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4159713' lon='16.1700463' />
+  <node id='319071248' timestamp='2008-12-15T20:34:45Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4160875' lon='16.1712308' />
+  <node id='493580431' timestamp='2009-09-11T17:09:03Z' uid='62278' user='gathol' visible='true' version='1' lat='50.4153075' lon='16.1702431' />
+  <node id='318737229' timestamp='2008-12-14T20:25:31Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4155881' lon='16.1714166' />
+  <node id='356281571' timestamp='2009-03-06T15:05:18Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4150681' lon='16.1698413' />
+  <node id='356281573' timestamp='2009-03-06T15:05:18Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4153374' lon='16.1715914' />
+  <node id='356281574' timestamp='2009-03-06T15:05:18Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4155842' lon='16.1718382' />
+  <node id='331486124' timestamp='2009-01-12T16:17:26Z' uid='17615' user='Petr Dlouhý' visible='true' version='1' lat='50.4172911' lon='16.1693405' />
+  <node id='74289025' timestamp='2007-10-16T01:05:39Z' uid='1066' user='pavel' visible='true' version='1' lat='50.416615' lon='16.169799'>
+    <tag k='source' v='HELP SERVICE - REMOTE SENSING spol. s r.o. http://www.bnhelp.cz' />
+  </node>
+  <node id='318737132' timestamp='2008-12-14T20:25:23Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4172488' lon='16.1694424' />
+  <node id='318737134' timestamp='2009-09-19T21:30:17Z' uid='62278' user='gathol' visible='true' version='2' lat='50.4168888' lon='16.1696863'>
+    <tag k='railway' v='level_crossing' />
+  </node>
+  <node id='303663011' timestamp='2009-01-12T16:17:28Z' uid='17615' user='Petr Dlouhý' visible='true' version='2' lat='50.417286' lon='16.1692342' />
+  <node id='319058565' timestamp='2008-12-15T19:56:37Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4166449' lon='16.1688545' />
+  <node id='74340972' timestamp='2007-10-16T01:35:22Z' uid='1066' user='pavel' visible='true' version='1' lat='50.416739' lon='16.170987'>
+    <tag k='source' v='HELP SERVICE - REMOTE SENSING spol. s r.o. http://www.bnhelp.cz' />
+  </node>
+  <node id='355925029' timestamp='2009-03-05T17:39:03Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3667465' lon='16.1735945' />
+  <node id='355925025' timestamp='2009-03-05T17:39:03Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3657164' lon='16.1730233' />
+  <node id='355925027' timestamp='2009-03-05T17:39:03Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3661754' lon='16.1732885' />
+  <node id='355925035' timestamp='2009-03-05T17:39:04Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3670219' lon='16.17593' />
+  <node id='355925033' timestamp='2009-03-05T17:39:04Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3671239' lon='16.1751855' />
+  <node id='355925038' timestamp='2009-03-05T17:39:04Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3672564' lon='16.1777352' />
+  <node id='355925036' timestamp='2009-03-05T17:39:04Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3669709' lon='16.1770009' />
+  <node id='355925031' timestamp='2009-03-05T17:39:03Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3668893' lon='16.1740126' />
+  <node id='355925044' timestamp='2009-03-05T17:39:05Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3693676' lon='16.1815291' />
+  <node id='355925042' timestamp='2009-03-05T17:39:04Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3691228' lon='16.1803665' />
+  <node id='355925040' timestamp='2009-03-05T17:39:04Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3682559' lon='16.1794078' />
+  <node id='355925046' timestamp='2009-03-05T17:39:05Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3692044' lon='16.1830437' />
+  <node id='355925048' timestamp='2009-03-05T17:39:05Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3689494' lon='16.1846959' />
+  <node id='355925055' timestamp='2009-03-05T17:39:05Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3711218' lon='16.1902848' />
+  <node id='355925057' timestamp='2009-03-05T17:39:06Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3718051' lon='16.1907335' />
+  <node id='355925051' timestamp='2009-03-05T17:39:05Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3693472' lon='16.1871844' />
+  <node id='355925050' timestamp='2009-03-05T17:39:05Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3688474' lon='16.1858585' />
+  <node id='355925053' timestamp='2009-03-05T17:39:05Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3704793' lon='16.1895199' />
+  <node id='355925101' timestamp='2009-03-05T17:39:11Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3812186' lon='16.1738545' />
+  <node id='355925100' timestamp='2009-03-05T17:39:11Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3820651' lon='16.1750784' />
+  <node id='355925103' timestamp='2009-03-05T17:39:11Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3805557' lon='16.1719474' />
+  <node id='355925102' timestamp='2009-03-05T17:39:11Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.38078' lon='16.1729061' />
+  <node id='355925095' timestamp='2009-03-05T17:39:09Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.379138' lon='16.1818963' />
+  <node id='355925096' timestamp='2009-03-05T17:39:10Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.379699' lon='16.1799279' />
+  <node id='355925097' timestamp='2009-03-05T17:39:10Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3807494' lon='16.1786021' />
+  <node id='355925098' timestamp='2009-03-05T17:39:10Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3820243' lon='16.1764858' />
+  <node id='355925099' timestamp='2009-03-05T17:39:10Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3822283' lon='16.1755577' />
+  <node id='355925067' timestamp='2009-03-05T17:39:07Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3753951' lon='16.1877657' />
+  <node id='355925065' timestamp='2009-03-05T17:39:06Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3746506' lon='16.1877861' />
+  <node id='355925063' timestamp='2009-03-05T17:39:06Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.374059' lon='16.1885612' />
+  <node id='355925061' timestamp='2009-03-05T17:39:06Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3733859' lon='16.1896219' />
+  <node id='355925077' timestamp='2009-03-05T17:39:07Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3772105' lon='16.1876127' />
+  <node id='355925079' timestamp='2009-03-05T17:39:08Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3772614' lon='16.1868784' />
+  <node id='355925072' timestamp='2009-03-05T17:39:07Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3765373' lon='16.1881431' />
+  <node id='355925075' timestamp='2009-03-05T17:39:07Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3769759' lon='16.1878779' />
+  <node id='355925070' timestamp='2009-03-05T17:39:07Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3760376' lon='16.1880819' />
+  <node id='355925059' timestamp='2009-03-05T17:39:06Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3725904' lon='16.1904378' />
+  <node id='355925082' timestamp='2009-03-05T17:39:08Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3770065' lon='16.1859911' />
+  <node id='355925089' timestamp='2009-03-05T17:39:08Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3772207' lon='16.1853588' />
+  <node id='355925093' timestamp='2009-03-05T17:39:09Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3781079' lon='16.1848539' />
+  <node id='355925094' timestamp='2009-03-05T17:39:09Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.3785465' lon='16.1842216' />
+  <node id='319008728' timestamp='2008-12-15T18:13:40Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4107454' lon='16.1777342' />
+  <node id='319008731' timestamp='2008-12-15T18:13:40Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4100718' lon='16.1783381' />
+  <node id='319008733' timestamp='2008-12-15T18:13:41Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4094447' lon='16.1788375' />
+  <node id='319008695' timestamp='2009-02-19T18:38:23Z' uid='3516' user='BiIbo' visible='true' version='2' lat='50.4124641' lon='16.1763406' />
+  <node id='318737120' timestamp='2008-12-14T20:25:22Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4129054' lon='16.1723109' />
+  <node id='318737123' timestamp='2008-12-14T20:25:22Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4124525' lon='16.1740528' />
+  <node id='318737122' timestamp='2008-12-14T20:25:22Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4127429' lon='16.1731935' />
+  <node id='318737124' timestamp='2008-12-14T20:25:22Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4122086' lon='16.1744593' />
+  <node id='319008726' timestamp='2009-02-19T18:38:22Z' uid='3516' user='BiIbo' visible='true' version='2' lat='50.4119299' lon='16.1772581' />
+  <node id='318737197' timestamp='2008-12-14T20:25:29Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4126383' lon='16.1755161' />
+  <node id='318737141' timestamp='2008-12-14T20:25:24Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4126035' lon='16.1751677' />
+  <node id='318737140' timestamp='2008-12-14T20:25:24Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4128009' lon='16.1748309' />
+  <node id='318737144' timestamp='2008-12-14T20:25:25Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4125687' lon='16.1735999' />
+  <node id='318737142' timestamp='2008-12-14T20:25:24Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4127545' lon='16.1728567' />
+  <node id='318737224' timestamp='2008-12-14T20:25:31Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4132655' lon='16.1735419' />
+  <node id='318737126' timestamp='2008-12-14T20:25:23Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4136371' lon='16.1722179' />
+  <node id='319071246' timestamp='2008-12-15T20:34:44Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4159017' lon='16.1721599' />
+  <node id='319071247' timestamp='2008-12-15T20:34:45Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4159133' lon='16.1724154' />
+  <node id='356281576' timestamp='2009-03-06T15:05:18Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4159993' lon='16.1733528' />
+  <node id='291407684' timestamp='2008-08-26T20:33:27Z' uid='62278' user='gathol' visible='true' version='1' lat='50.4111982' lon='16.1775464'>
+  </node>
+  <node id='356281628' timestamp='2009-03-06T15:05:30Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4230558' lon='16.1936754' />
+  <node id='356281595' timestamp='2009-03-06T15:05:21Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4210365' lon='16.1919141' />
+  <node id='356281596' timestamp='2009-03-06T15:05:21Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4222705' lon='16.193092' />
+  <node id='356281594' timestamp='2009-03-06T15:05:21Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4194098' lon='16.1896815' />
+  <node id='356281591' timestamp='2009-03-06T15:05:20Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4190508' lon='16.1876173' />
+  <node id='356281592' timestamp='2009-03-06T15:05:20Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4189161' lon='16.188728' />
+  <node id='356281585' timestamp='2009-03-06T15:05:20Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4175475' lon='16.1855026' />
+  <node id='356281586' timestamp='2009-03-06T15:05:20Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4178504' lon='16.1858279' />
+  <node id='356281580' timestamp='2009-03-06T15:05:19Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4167061' lon='16.1804542' />
+  <node id='356281582' timestamp='2009-03-06T15:05:19Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4173231' lon='16.1822604' />
+  <node id='356281583' timestamp='2009-03-06T15:05:19Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4173343' lon='16.1845041' />
+  <node id='356281589' timestamp='2009-03-06T15:05:20Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4189274' lon='16.1866637' />
+  <node id='356281588' timestamp='2009-03-06T15:05:20Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.418445' lon='16.1860579' />
+  <node id='356281579' timestamp='2009-03-06T15:05:19Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.41665' lon='16.1787994' />
+  <node id='356281577' timestamp='2009-03-06T15:05:19Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4166724' lon='16.1765445' />
+  <node id='356281636' timestamp='2009-03-06T15:05:31Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4241328' lon='16.1945841' />
+  <node id='356281635' timestamp='2009-03-06T15:05:30Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4237514' lon='16.1942251' />
+  <node id='356281634' timestamp='2009-03-06T15:05:30Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.423269' lon='16.1940119' />
+  <node id='356281653' timestamp='2009-03-06T15:05:35Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4240767' lon='16.1954367' />
+  <node id='356281651' timestamp='2009-03-06T15:05:34Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4242114' lon='16.1950441' />
+  <node id='356281656' timestamp='2009-03-06T15:05:35Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4238075' lon='16.1964801' />
+  <node id='356281657' timestamp='2009-03-06T15:05:35Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4239085' lon='16.196839' />
+  <node id='356281654' timestamp='2009-03-06T15:05:35Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4237963' lon='16.1960313' />
+  <node id='356281659' timestamp='2009-03-06T15:05:36Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.424245' lon='16.1971868' />
+  <node id='356281673' timestamp='2009-03-06T15:05:40Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4268926' lon='16.1969737' />
+  <node id='356281672' timestamp='2009-03-06T15:05:39Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4266907' lon='16.1970859' />
+  <node id='356281671' timestamp='2009-03-06T15:05:39Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4261971' lon='16.198118' />
+  <node id='356281670' timestamp='2009-03-06T15:05:39Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4258717' lon='16.1984882' />
+  <node id='356281662' timestamp='2009-03-06T15:05:36Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4250191' lon='16.1984658' />
+  <node id='356281663' timestamp='2009-03-06T15:05:36Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4254791' lon='16.1986004' />
+  <node id='356281660' timestamp='2009-03-06T15:05:36Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4246938' lon='16.1981629' />
+  <node id='356281685' timestamp='2009-03-06T15:05:45Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4335902' lon='16.1937932' />
+  <node id='356281686' timestamp='2009-03-06T15:05:45Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4351159' lon='16.1930079' />
+  <node id='356281687' timestamp='2009-03-06T15:05:45Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4376289' lon='16.1932996' />
+  <node id='356281701' timestamp='2009-03-06T15:05:46Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4407028' lon='16.1934791' />
+  <node id='356281688' timestamp='2009-03-06T15:05:45Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4382684' lon='16.1937147' />
+  <node id='356281675' timestamp='2009-03-06T15:05:40Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4274087' lon='16.1971195' />
+  <node id='356281678' timestamp='2009-03-06T15:05:40Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4290017' lon='16.1978151' />
+  <node id='356281679' timestamp='2009-03-06T15:05:43Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4293832' lon='16.1967717' />
+  <node id='356281676' timestamp='2009-03-06T15:05:40Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4280481' lon='16.1977141' />
+  <node id='356281677' timestamp='2009-03-06T15:05:40Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4286652' lon='16.1980282' />
+  <node id='356286097' timestamp='2009-03-06T15:35:34Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4318067' lon='16.194897' />
+  <node id='356281680' timestamp='2009-03-06T15:05:44Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4299217' lon='16.1960481' />
+  <node id='356281681' timestamp='2009-03-06T15:05:44Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4305275' lon='16.195835' />
+  <node id='356281682' timestamp='2009-03-06T15:05:44Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4313128' lon='16.1955657' />
+  <node id='356281683' timestamp='2009-03-06T15:05:44Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4318401' lon='16.1947916' />
+  <node id='356281684' timestamp='2009-03-06T15:05:44Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4326702' lon='16.1939727' />
+  <node id='356281693' timestamp='2009-03-06T15:05:46Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4398726' lon='16.194399' />
+  <node id='356281690' timestamp='2009-03-06T15:05:46Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4388629' lon='16.1948702' />
+  <node id='356281691' timestamp='2009-03-06T15:05:46Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4392668' lon='16.194915' />
+  <node id='356281689' timestamp='2009-03-06T15:05:45Z' uid='72020' user='Petr1868' visible='true' version='1' lat='50.4386273' lon='16.194399' />
+  <way id='31822362' timestamp='2009-07-14T23:39:00Z' uid='3516' user='BiIbo' visible='true' version='3'>
+    <nd ref='356281701' />
+    <nd ref='356281693' />
+    <nd ref='356281691' />
+    <nd ref='356281690' />
+    <nd ref='356281689' />
+    <nd ref='356281688' />
+    <nd ref='356281687' />
+    <nd ref='356281686' />
+    <nd ref='356281685' />
+    <nd ref='356281684' />
+    <nd ref='356281683' />
+    <nd ref='356286097' />
+    <nd ref='356281682' />
+    <nd ref='356281681' />
+    <nd ref='356281680' />
+    <nd ref='356281679' />
+    <nd ref='356281678' />
+    <nd ref='356281677' />
+    <nd ref='356281676' />
+    <nd ref='356281675' />
+    <nd ref='356281673' />
+    <nd ref='356281672' />
+    <nd ref='356281671' />
+    <nd ref='356281670' />
+    <nd ref='356281663' />
+    <nd ref='356281662' />
+    <nd ref='356281660' />
+    <nd ref='356281659' />
+    <nd ref='356281657' />
+    <nd ref='356281656' />
+    <nd ref='356281654' />
+    <nd ref='356281653' />
+    <nd ref='356281651' />
+    <nd ref='356281636' />
+    <nd ref='356281635' />
+    <nd ref='356281634' />
+    <nd ref='356281628' />
+    <nd ref='356281596' />
+    <nd ref='356281595' />
+    <nd ref='356281594' />
+    <nd ref='356281592' />
+    <nd ref='356281591' />
+    <nd ref='356281589' />
+    <nd ref='356281588' />
+    <nd ref='356281586' />
+    <nd ref='356281585' />
+    <nd ref='356281583' />
+    <nd ref='356281582' />
+    <nd ref='356281580' />
+    <nd ref='356281579' />
+    <nd ref='356281577' />
+    <nd ref='356281576' />
+    <nd ref='356281574' />
+    <nd ref='356281573' />
+    <nd ref='356281571' />
+    <nd ref='356281570' />
+    <nd ref='356281568' />
+    <nd ref='356281567' />
+    <nd ref='356281565' />
+    <nd ref='356281564' />
+    <nd ref='356281562' />
+    <nd ref='356281561' />
+    <nd ref='356281560' />
+    <nd ref='356281555' />
+    <nd ref='356281546' />
+    <nd ref='356281544' />
+    <nd ref='356281543' />
+    <nd ref='356281541' />
+    <nd ref='356281540' />
+    <nd ref='356281538' />
+    <nd ref='356281536' />
+    <nd ref='356281535' />
+    <nd ref='356281533' />
+    <nd ref='356281532' />
+    <nd ref='356281530' />
+    <nd ref='356281529' />
+    <nd ref='356281506' />
+    <nd ref='355925339' />
+    <nd ref='441975772' />
+    <nd ref='355925338' />
+    <nd ref='355925337' />
+    <nd ref='355925336' />
+    <nd ref='441975771' />
+    <nd ref='355925335' />
+    <nd ref='355925334' />
+    <nd ref='355925333' />
+    <nd ref='355925332' />
+    <nd ref='355925331' />
+    <nd ref='355925279' />
+    <nd ref='355925254' />
+    <nd ref='355925253' />
+    <nd ref='355925252' />
+    <nd ref='355925246' />
+    <nd ref='355925235' />
+    <nd ref='355925224' />
+    <nd ref='355925214' />
+    <nd ref='355925205' />
+    <nd ref='355925194' />
+    <nd ref='355925184' />
+    <nd ref='355925170' />
+    <nd ref='355925159' />
+    <nd ref='355925152' />
+    <nd ref='355925143' />
+    <nd ref='355925134' />
+    <nd ref='355925125' />
+    <nd ref='355925115' />
+    <nd ref='355925103' />
+    <nd ref='355925102' />
+    <nd ref='355925101' />
+    <nd ref='355925100' />
+    <nd ref='355925099' />
+    <nd ref='355925098' />
+    <nd ref='355925097' />
+    <nd ref='355925096' />
+    <nd ref='355925095' />
+    <nd ref='355925094' />
+    <nd ref='355925093' />
+    <nd ref='355925089' />
+    <nd ref='355925082' />
+    <nd ref='355925079' />
+    <nd ref='355925077' />
+    <nd ref='355925075' />
+    <nd ref='355925072' />
+    <nd ref='355925070' />
+    <nd ref='355925067' />
+    <nd ref='355925065' />
+    <nd ref='355925063' />
+    <nd ref='355925061' />
+    <nd ref='355925059' />
+    <nd ref='355925057' />
+    <nd ref='355925055' />
+    <nd ref='355925053' />
+    <nd ref='355925051' />
+    <nd ref='355925050' />
+    <nd ref='355925048' />
+    <nd ref='355925046' />
+    <nd ref='355925044' />
+    <nd ref='355925042' />
+    <nd ref='355925040' />
+    <nd ref='355925038' />
+    <nd ref='355925036' />
+    <nd ref='355925035' />
+    <nd ref='355925033' />
+    <nd ref='355925031' />
+    <nd ref='355925029' />
+    <nd ref='355925027' />
+    <nd ref='355925025' />
+    <nd ref='355925023' />
+    <nd ref='355925021' />
+    <nd ref='355925020' />
+    <nd ref='355925018' />
+    <nd ref='355925016' />
+    <nd ref='355925014' />
+    <nd ref='355925012' />
+    <nd ref='355925010' />
+    <nd ref='355925008' />
+    <nd ref='355925007' />
+    <nd ref='355925005' />
+    <nd ref='355925003' />
+    <nd ref='355925002' />
+    <nd ref='355925001' />
+    <nd ref='355925000' />
+    <nd ref='355924999' />
+    <nd ref='355924998' />
+    <nd ref='355924997' />
+    <nd ref='355924996' />
+    <nd ref='355924995' />
+    <nd ref='355924994' />
+    <nd ref='355924993' />
+    <nd ref='355924992' />
+    <nd ref='355924991' />
+    <nd ref='355924990' />
+    <nd ref='355924989' />
+    <nd ref='355924988' />
+    <nd ref='355924987' />
+    <nd ref='355924986' />
+    <nd ref='355924985' />
+    <nd ref='355924984' />
+    <nd ref='355924983' />
+    <nd ref='355924982' />
+    <nd ref='355924981' />
+    <nd ref='355924980' />
+    <nd ref='355924979' />
+    <nd ref='355924978' />
+    <nd ref='355924977' />
+    <nd ref='355924976' />
+    <nd ref='355924975' />
+    <nd ref='355924974' />
+    <nd ref='355924973' />
+    <nd ref='355924972' />
+    <nd ref='355924971' />
+    <nd ref='355924970' />
+    <nd ref='355924969' />
+    <nd ref='355924968' />
+    <nd ref='355924967' />
+    <nd ref='355924966' />
+    <nd ref='355924965' />
+    <nd ref='355924964' />
+    <nd ref='355924963' />
+    <nd ref='355924962' />
+    <nd ref='355924961' />
+    <nd ref='355924950' />
+    <nd ref='355924948' />
+    <nd ref='355924946' />
+    <nd ref='355924942' />
+    <nd ref='355924941' />
+    <nd ref='355924940' />
+    <nd ref='355924939' />
+    <nd ref='355924938' />
+    <nd ref='355924937' />
+    <nd ref='355924933' />
+    <nd ref='355924927' />
+    <nd ref='355924919' />
+    <nd ref='355924912' />
+    <nd ref='355924902' />
+    <nd ref='355924899' />
+    <nd ref='355924898' />
+    <nd ref='355924897' />
+    <nd ref='355924896' />
+    <nd ref='355924895' />
+    <nd ref='355924894' />
+    <nd ref='355924893' />
+    <nd ref='355924892' />
+    <nd ref='355924891' />
+    <nd ref='355924883' />
+    <nd ref='355924878' />
+    <nd ref='355924877' />
+    <nd ref='355924876' />
+    <nd ref='355924875' />
+    <nd ref='355924874' />
+    <nd ref='355924873' />
+    <nd ref='355924872' />
+    <nd ref='355924871' />
+    <nd ref='355924870' />
+    <nd ref='355924869' />
+    <nd ref='355924868' />
+    <nd ref='355924867' />
+    <nd ref='355924866' />
+    <nd ref='355924865' />
+    <nd ref='355924864' />
+    <nd ref='355924863' />
+    <nd ref='355924862' />
+    <nd ref='355924861' />
+    <nd ref='355924860' />
+    <nd ref='355924859' />
+    <nd ref='355924858' />
+    <nd ref='355924857' />
+    <nd ref='355924856' />
+    <nd ref='355924855' />
+    <nd ref='355924854' />
+    <nd ref='355924853' />
+    <nd ref='355924852' />
+    <nd ref='355924851' />
+    <nd ref='355924850' />
+    <nd ref='355924849' />
+    <nd ref='355924848' />
+    <nd ref='355924847' />
+    <nd ref='355924846' />
+    <nd ref='355924845' />
+    <nd ref='355924844' />
+    <nd ref='355924843' />
+    <nd ref='355924842' />
+    <nd ref='355924841' />
+    <nd ref='355924840' />
+    <nd ref='355924839' />
+    <nd ref='355924838' />
+    <nd ref='355924837' />
+    <nd ref='355924836' />
+    <nd ref='355924835' />
+    <nd ref='355924834' />
+    <nd ref='355924833' />
+    <nd ref='355924832' />
+    <nd ref='355924831' />
+    <nd ref='355924830' />
+    <nd ref='355924829' />
+    <nd ref='355924828' />
+    <nd ref='355924827' />
+    <nd ref='355924826' />
+    <nd ref='355924825' />
+    <nd ref='355924824' />
+    <nd ref='355924823' />
+    <nd ref='441959114' />
+    <nd ref='355924822' />
+    <nd ref='355924821' />
+    <nd ref='355924820' />
+    <tag k='name' v='Metuje' />
+    <tag k='waterway' v='river' />
+  </way>
+  <way id='28986434' timestamp='2008-12-14T20:25:57Z' uid='72020' user='Petr1868' visible='true' version='1'>
+    <nd ref='318737116' />
+    <nd ref='318737114' />
+    <nd ref='318737106' />
+    <nd ref='318737118' />
+    <nd ref='318737120' />
+    <nd ref='318737142' />
+    <nd ref='318737122' />
+    <nd ref='318737144' />
+    <nd ref='318737123' />
+    <nd ref='318737124' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='Březinova' />
+  </way>
+  <way id='40636220' timestamp='2009-09-11T17:09:03Z' uid='62278' user='gathol' visible='true' version='1'>
+    <nd ref='318737138' />
+    <nd ref='318737003' />
+    <nd ref='318737139' />
+    <nd ref='318737126' />
+    <nd ref='318737224' />
+    <nd ref='318737140' />
+    <nd ref='318737141' />
+    <nd ref='318737197' />
+    <nd ref='319008695' />
+    <nd ref='319008726' />
+    <nd ref='291407684' />
+    <nd ref='319008728' />
+    <nd ref='319008731' />
+    <nd ref='319008733' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='Dobrošovská' />
+  </way>
+  <way id='28986457' timestamp='2008-12-15T20:35:07Z' uid='72020' user='Petr1868' visible='true' version='2'>
+    <nd ref='318737136' />
+    <nd ref='318737229' />
+    <nd ref='319071246' />
+    <nd ref='319071247' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='Mánesovo nábřeží' />
+    <tag k='oneway' v='yes' />
+  </way>
+  <way id='28986437' timestamp='2009-09-11T17:09:04Z' uid='62278' user='gathol' visible='true' version='6'>
+    <nd ref='303663011' />
+    <nd ref='331486124' />
+    <nd ref='318737132' />
+    <nd ref='318737134' />
+    <nd ref='74289025' />
+    <nd ref='319071244' />
+    <nd ref='318737136' />
+    <nd ref='493580431' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='Dobrošovská' />
+  </way>
+  <way id='29012498' timestamp='2008-12-15T20:35:00Z' uid='72020' user='Petr1868' visible='true' version='1'>
+    <nd ref='74340972' />
+    <nd ref='319071248' />
+    <nd ref='318737229' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='Žižkova' />
+  </way>
+  <way id='29011374' timestamp='2008-12-15T19:56:54Z' uid='72020' user='Petr1868' visible='true' version='1'>
+    <nd ref='318726737' />
+    <nd ref='318726739' />
+    <nd ref='25284339' />
+    <nd ref='319058565' />
+    <tag k='railway' v='rail' />
+  </way>
+  <way id='29011385' timestamp='2008-12-19T09:21:15Z' uid='7037' user='Gregory Williams' visible='true' version='2'>
+    <nd ref='74207863' />
+    <nd ref='319058373' />
+    <tag k='highway' v='footway' />
+    <tag k='bicycle' v='yes' />
+  </way>
+  <way id='29011386' timestamp='2008-12-15T19:56:57Z' uid='72020' user='Petr1868' visible='true' version='1'>
+    <nd ref='319058562' />
+    <nd ref='319058449' />
+    <nd ref='319058352' />
+    <nd ref='319058351' />
+    <nd ref='319058358' />
+    <nd ref='319058305' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='Raisova' />
+  </way>
+  <way id='29011381' timestamp='2008-12-19T09:21:19Z' uid='7037' user='Gregory Williams' visible='true' version='2'>
+    <nd ref='319058403' />
+    <nd ref='319058407' />
+    <tag k='highway' v='footway' />
+    <tag k='bridge' v='yes' />
+    <tag k='bicycle' v='yes' />
+  </way>
+  <way id='29011380' timestamp='2008-12-19T09:21:19Z' uid='7037' user='Gregory Williams' visible='true' version='2'>
+    <nd ref='319058407' />
+    <nd ref='319058373' />
+    <tag k='highway' v='footway' />
+    <tag k='bicycle' v='yes' />
+  </way>
+  <way id='29011383' timestamp='2008-12-19T09:21:20Z' uid='7037' user='Gregory Williams' visible='true' version='2'>
+    <nd ref='319058440' />
+    <nd ref='319058373' />
+    <tag k='highway' v='footway' />
+    <tag k='bicycle' v='yes' />
+  </way>
+  <way id='29011382' timestamp='2008-12-15T19:56:56Z' uid='72020' user='Petr1868' visible='true' version='1'>
+    <nd ref='318737136' />
+    <nd ref='319058410' />
+    <nd ref='319058440' />
+    <nd ref='319058434' />
+    <nd ref='74335025' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='Palachova' />
+  </way>
+  <way id='29011377' timestamp='2008-12-15T19:56:54Z' uid='72020' user='Petr1868' visible='true' version='1'>
+    <nd ref='319058373' />
+    <nd ref='319058446' />
+    <nd ref='318736774' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='Denisovo nábřeží' />
+  </way>
+  <way id='29011379' timestamp='2008-12-19T09:21:23Z' uid='7037' user='Gregory Williams' visible='true' version='2'>
+    <nd ref='319058400' />
+    <nd ref='319058403' />
+    <tag k='highway' v='footway' />
+    <tag k='bicycle' v='yes' />
+  </way>
+  <way id='28986432' timestamp='2008-12-14T20:25:57Z' uid='72020' user='Petr1868' visible='true' version='1'>
+    <nd ref='318737112' />
+    <nd ref='318737114' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='Šaldova' />
+  </way>
+  <way id='29011378' timestamp='2008-12-15T19:56:55Z' uid='72020' user='Petr1868' visible='true' version='1'>
+    <nd ref='318736771' />
+    <nd ref='319058396' />
+    <nd ref='319058400' />
+    <nd ref='319058393' />
+    <nd ref='319058390' />
+    <nd ref='319058386' />
+    <nd ref='319058380' />
+    <nd ref='319058378' />
+    <nd ref='319058376' />
+    <nd ref='318737003' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='Krásnohorské' />
+  </way>
+  <way id='40636219' timestamp='2009-09-11T17:09:03Z' uid='62278' user='gathol' visible='true' version='1'>
+    <nd ref='493580431' />
+    <nd ref='318737138' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='Dobrošovská' />
+    <tag k='bridge' v='yes' />
+  </way>
+  <way id='29011370' timestamp='2008-12-15T19:56:53Z' uid='72020' user='Petr1868' visible='true' version='1'>
+    <nd ref='319058351' />
+    <nd ref='319058348' />
+    <nd ref='74119244' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='Janáčkova' />
+  </way>
+  <way id='29011371' timestamp='2008-12-15T19:56:53Z' uid='72020' user='Petr1868' visible='true' version='1'>
+    <nd ref='319058352' />
+    <nd ref='74335025' />
+    <tag k='highway' v='residential' />
+  </way>
+  <way id='29011360' timestamp='2009-01-12T16:13:49Z' uid='17615' user='Petr Dlouhý' visible='true' version='2'>
+    <nd ref='319058281' />
+    <nd ref='74286572' />
+    <nd ref='74361069' />
+    <nd ref='74119244' />
+    <nd ref='74207863' />
+    <nd ref='74335025' />
+    <nd ref='74094348' />
+    <nd ref='74193639' />
+    <nd ref='319058460' />
+    <tag k='ref' v='33' />
+    <tag k='source' v='HELP SERVICE - REMOTE SENSING spol. s r.o. http://www.bnhelp.cz' />
+    <tag k='highway' v='primary' />
+  </way>
+  <way id='28986421' timestamp='2009-02-19T18:44:28Z' uid='3516' user='BiIbo' visible='true' version='2'>
+    <nd ref='291416460' />
+    <nd ref='318736977' />
+    <nd ref='318736981' />
+    <nd ref='318736990' />
+    <nd ref='318737069' />
+    <nd ref='318736994' />
+    <nd ref='318737108' />
+    <nd ref='318737116' />
+    <nd ref='318736998' />
+    <nd ref='318737003' />
+    <tag k='highway' v='residential' />
+    <tag k='name' v='Purkyňova' />
+  </way>
+  <relation id='49033' timestamp='2008-12-15T19:57:24Z' uid='72020' user='Petr1868' visible='true' version='7'>
+    <member type='way' ref='4235351' role='' />
+    <member type='way' ref='21112592' role='' />
+    <member type='way' ref='28164563' role='' />
+    <member type='way' ref='28164671' role='' />
+    <member type='way' ref='28784972' role='' />
+    <member type='way' ref='28784973' role='' />
+    <member type='way' ref='28784974' role='' />
+    <member type='way' ref='28784975' role='' />
+    <member type='way' ref='28785022' role='' />
+    <member type='way' ref='28785025' role='' />
+    <member type='way' ref='28937554' role='' />
+    <member type='way' ref='28937555' role='' />
+    <member type='way' ref='28985424' role='' />
+    <member type='way' ref='28985425' role='' />
+    <member type='way' ref='28985426' role='' />
+    <member type='way' ref='28985427' role='' />
+    <member type='way' ref='28985439' role='' />
+    <member type='way' ref='28985441' role='' />
+    <member type='way' ref='28985453' role='' />
+    <member type='way' ref='28985455' role='' />
+    <member type='way' ref='28985461' role='' />
+    <member type='way' ref='28985462' role='' />
+    <member type='way' ref='29011372' role='' />
+    <member type='way' ref='29011374' role='' />
+    <member type='way' ref='29011394' role='' />
+    <member type='way' ref='29011396' role='' />
+    <tag k='ref' v='033' />
+    <tag k='route' v='railway' />
+    <tag k='type' v='route' />
+  </relation>
+  <relation id='49029' timestamp='2009-02-10T14:48:20Z' uid='98336' user='decomposed06' visible='true' version='19'>
+    <member type='way' ref='4235351' role='' />
+    <member type='way' ref='23333985' role='' />
+    <member type='way' ref='23333988' role='' />
+    <member type='way' ref='24828063' role='' />
+    <member type='way' ref='24828064' role='' />
+    <member type='way' ref='25707111' role='' />
+    <member type='way' ref='25707699' role='' />
+    <member type='way' ref='25707700' role='' />
+    <member type='way' ref='25707701' role='' />
+    <member type='way' ref='25707718' role='' />
+    <member type='way' ref='25707719' role='' />
+    <member type='way' ref='25707720' role='' />
+    <member type='way' ref='25707722' role='' />
+    <member type='way' ref='25707723' role='' />
+    <member type='way' ref='25707810' role='' />
+    <member type='way' ref='25707813' role='' />
+    <member type='way' ref='25707814' role='' />
+    <member type='way' ref='25707815' role='' />
+    <member type='way' ref='25707866' role='' />
+    <member type='way' ref='25710270' role='' />
+    <member type='way' ref='25710271' role='' />
+    <member type='way' ref='25710272' role='' />
+    <member type='way' ref='25710274' role='' />
+    <member type='way' ref='25710276' role='' />
+    <member type='way' ref='25710304' role='' />
+    <member type='way' ref='28164562' role='' />
+    <member type='way' ref='28164563' role='' />
+    <member type='way' ref='28164564' role='' />
+    <member type='way' ref='28164691' role='' />
+    <member type='way' ref='28165313' role='' />
+    <member type='way' ref='28784974' role='' />
+    <member type='way' ref='28784975' role='' />
+    <member type='way' ref='28785022' role='' />
+    <member type='way' ref='28785025' role='' />
+    <member type='way' ref='28799716' role='' />
+    <member type='way' ref='28799717' role='' />
+    <member type='way' ref='28799718' role='' />
+    <member type='way' ref='28799719' role='' />
+    <member type='way' ref='28802163' role='' />
+    <member type='way' ref='28802164' role='' />
+    <member type='way' ref='28985424' role='' />
+    <member type='way' ref='28985425' role='' />
+    <member type='way' ref='28985426' role='' />
+    <member type='way' ref='28985427' role='' />
+    <member type='way' ref='28985439' role='' />
+    <member type='way' ref='28985441' role='' />
+    <member type='way' ref='28985453' role='' />
+    <member type='way' ref='28985455' role='' />
+    <member type='way' ref='28985461' role='' />
+    <member type='way' ref='28985462' role='' />
+    <member type='way' ref='29011372' role='' />
+    <member type='way' ref='29011374' role='' />
+    <member type='way' ref='29011394' role='' />
+    <member type='way' ref='29011396' role='' />
+    <member type='way' ref='29211066' role='' />
+    <member type='way' ref='29211067' role='' />
+    <member type='way' ref='29405728' role='' />
+    <member type='way' ref='29405731' role='' />
+    <member type='way' ref='29405738' role='' />
+    <member type='way' ref='29405740' role='' />
+    <member type='way' ref='29425635' role='' />
+    <member type='way' ref='29425636' role='' />
+    <member type='way' ref='29433933' role='' />
+    <member type='way' ref='29445540' role='' />
+    <member type='way' ref='29445541' role='' />
+    <member type='way' ref='29445543' role='' />
+    <member type='way' ref='29478531' role='' />
+    <member type='way' ref='29478534' role='' />
+    <member type='way' ref='29478535' role='' />
+    <member type='way' ref='29594494' role='' />
+    <member type='way' ref='29594499' role='' />
+    <tag k='ref' v='026' />
+    <tag k='route' v='railway' />
+    <tag k='type' v='route' />
+  </relation>
+</osm>

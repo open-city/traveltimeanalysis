@@ -24,6 +24,19 @@ namespace OSMUtils.OSMDataSource {
 			WriteOsmNode();
 		}
 
+        /// <summary>
+        /// Creates a new OXMXmlDataWriter, which writes OSM entities into the specific stream.
+        /// </summary>
+        /// <param name="stream"></param>
+        public OSMXmlDataWriter(Stream stream) {
+            XmlWriterSettings writerSetting = new XmlWriterSettings();
+            writerSetting.Indent = true;
+
+            _xmlWriter = XmlTextWriter.Create(new StreamWriter(stream, new UTF8Encoding(false)), writerSetting);
+
+            WriteOsmNode();
+        }
+
 		/// <summary>
 		/// Closes OSMXmlDataWrites, no more elements can be written after calling this method.
 		/// </summary>
@@ -39,7 +52,7 @@ namespace OSMUtils.OSMDataSource {
 		protected void WriteOsmNode() {
 			_xmlWriter.WriteStartElement("osm");
 			_xmlWriter.WriteAttributeString("version", "0.5");
-			_xmlWriter.WriteAttributeString("generator", "");
+			_xmlWriter.WriteAttributeString("generator", "OSMUtils");
 		}
 
 		/// <summary>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<osm>
+	<way id="1254">
+		<nd ref="3" />
+		<nd ref="4" />
+
+		<tag k="name" v="test" />
+		<tag k="name-2" v="test-2" />
+	</way>
+</osm>

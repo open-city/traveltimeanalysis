@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <StartArguments>D:\Projects\GSoC\src\OSMUtils.Tests.xunit</StartArguments>
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\dev\net\xunit\xunit.console.exe</StartProgram>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <StartArguments>xunit.console.exe D:\Projects\GSoC\src\OSMUtils.Tests.xunit</StartArguments>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<osm>
+	<relation id="1254">
+		<member ref="3" type="node" role="test" />
+		<tag k="name" v="test-relation" />
+	</relation>
+</osm>
