@@ -6,25 +6,24 @@ using System.Xml.Linq;
 
 using LK.OSMUtils.OSMDatabase;
 
-namespace OSMUtils.Tests
-{
-  /// <summary>
-  ///This is a test class for OSMXmlDataWriterTest and is intended
-  ///to contain all OSMXmlDataWriterTest Unit Tests
-  ///</summary>
-	
+namespace OSMUtils.Tests {
+	/// <summary>
+	///This is a test class for OSMXmlDataWriterTest and is intended
+	///to contain all OSMXmlDataWriterTest Unit Tests
+	///</summary>
+
 	public class OSMXmlDataWriterTest {
-        string _outputPath = "";
+		string _outputPath = "";
 
 		[Fact()]
 		public void OSMXmlDataWriterConstructorCreatesEmptyOSMFile() {
-            MemoryStream ms = new MemoryStream();
+			MemoryStream ms = new MemoryStream();
 
 			using (OSMXmlDataWriter target = new OSMXmlDataWriter(ms)) {
 			}
 
-            ms.Seek(0, 0);
-            XElement osmRoot = XDocument.Load(new StreamReader(ms)).Root;
+			ms.Seek(0, 0);
+			XElement osmRoot = XDocument.Load(new StreamReader(ms)).Root;
 
 			Assert.Equal("osm", osmRoot.Name);
 			Assert.False(osmRoot.HasElements);
@@ -32,24 +31,25 @@ namespace OSMUtils.Tests
 
 		[Fact()]
 		public void OSMXmlDataWriterCloseClosesWriterAndDoesNotAllowFutherWriting() {
-			string filename = _outputPath + "close-test.osm";
-			using (OSMXmlDataWriter target = new OSMXmlDataWriter(filename)) {
+			MemoryStream ms = new MemoryStream();
+
+			using (OSMXmlDataWriter target = new OSMXmlDataWriter(ms)) {
 				target.Close();
-				
-                Assert.Throws<InvalidOperationException>(delegate {target.WriteNode(new OSMNode(1, 0.1, 0.2));});
+
+				Assert.Throws<InvalidOperationException>(delegate { target.WriteNode(new OSMNode(1, 0.1, 0.2)); });
 			}
 		}
 
 		[Fact()]
 		public void OSMXmlDataWriterWriteOSMObjectAttributesWritesAllCommonAttributes() {
-            MemoryStream ms = new MemoryStream();
+			MemoryStream ms = new MemoryStream();
 
 			using (OSMXmlDataWriter target = new OSMXmlDataWriter(ms)) {
 				OSMNode node = new OSMNode(1254, 12.4, 15.9);
 				target.WriteNode(node);
 			}
 
-            ms.Seek(0, 0);
+			ms.Seek(0, 0);
 			XElement osmRoot = XDocument.Load(new StreamReader(ms)).Root;
 			XElement nodeElement = osmRoot.Element("node");
 
@@ -60,25 +60,25 @@ namespace OSMUtils.Tests
 
 		[Fact()]
 		public void OSMXmlDataWriterWriteNodeCanWriteNodeToOutput() {
-            MemoryStream ms = new MemoryStream();
+			MemoryStream ms = new MemoryStream();
 
 			using (OSMXmlDataWriter target = new OSMXmlDataWriter(ms)) {
 				OSMNode node = new OSMNode(1254, 12.4, 15.9);
 				target.WriteNode(node);
 			}
 
-            ms.Seek(0, 0);
-            XElement osmRoot = XDocument.Load(new StreamReader(ms)).Root;
+			ms.Seek(0, 0);
+			XElement osmRoot = XDocument.Load(new StreamReader(ms)).Root;
 			XElement nodeElement = osmRoot.Element("node");
 
 			Assert.NotNull(nodeElement);
 			Assert.Equal(12.4, Double.Parse(nodeElement.Attribute("lat").Value, System.Globalization.NumberFormatInfo.InvariantInfo));
-			Assert.Equal(15.9, Double.Parse(nodeElement.Attribute("lon").Value, System.Globalization.NumberFormatInfo.InvariantInfo));			
+			Assert.Equal(15.9, Double.Parse(nodeElement.Attribute("lon").Value, System.Globalization.NumberFormatInfo.InvariantInfo));
 		}
 
 		[Fact()]
 		public void OSMXmlDataWriterWriteTags() {
-            MemoryStream ms = new MemoryStream();
+			MemoryStream ms = new MemoryStream();
 
 			using (OSMXmlDataWriter target = new OSMXmlDataWriter(ms)) {
 				OSMNode node = new OSMNode(1254, 12.4, 15.9);
@@ -87,8 +87,8 @@ namespace OSMUtils.Tests
 				target.WriteNode(node);
 			}
 
-            ms.Seek(0, 0);
-            XElement osmRoot = XDocument.Load(new StreamReader(ms)).Root;
+			ms.Seek(0, 0);
+			XElement osmRoot = XDocument.Load(new StreamReader(ms)).Root;
 			XElement tagElement = osmRoot.Element("node").Element("tag");
 
 			Assert.NotNull(tagElement);
@@ -98,7 +98,7 @@ namespace OSMUtils.Tests
 
 		[Fact()]
 		public void OSMXmlDataWriteWayCanWriteWay() {
-            MemoryStream ms = new MemoryStream();
+			MemoryStream ms = new MemoryStream();
 
 			using (OSMXmlDataWriter target = new OSMXmlDataWriter(ms)) {
 				OSMWay way = new OSMWay(1232);
@@ -107,8 +107,8 @@ namespace OSMUtils.Tests
 				target.WriteWay(way);
 			}
 
-            ms.Seek(0, 0);
-            XElement osmRoot = XDocument.Load(new StreamReader(ms)).Root;
+			ms.Seek(0, 0);
+			XElement osmRoot = XDocument.Load(new StreamReader(ms)).Root;
 			XElement wayElement = osmRoot.Element("way");
 
 			Assert.NotNull(wayElement);
@@ -119,7 +119,7 @@ namespace OSMUtils.Tests
 
 		[Fact()]
 		public void OSMXmlDataWriteWayCanWriteWayWithTags() {
-            MemoryStream ms = new MemoryStream();
+			MemoryStream ms = new MemoryStream();
 
 			using (OSMXmlDataWriter target = new OSMXmlDataWriter(ms)) {
 				OSMWay way = new OSMWay(1232);
@@ -129,8 +129,8 @@ namespace OSMUtils.Tests
 				target.WriteWay(way);
 			}
 
-            ms.Seek(0, 0);
-            XElement osmRoot = XDocument.Load(new StreamReader(ms)).Root;
+			ms.Seek(0, 0);
+			XElement osmRoot = XDocument.Load(new StreamReader(ms)).Root;
 			XElement wayElement = osmRoot.Element("way");
 
 			Assert.NotNull(wayElement);
@@ -144,7 +144,7 @@ namespace OSMUtils.Tests
 
 		[Fact()]
 		public void OSMXmlDataWriteRelationCanWriteSimpleRelation() {
-            MemoryStream ms = new MemoryStream();
+			MemoryStream ms = new MemoryStream();
 
 			using (OSMXmlDataWriter target = new OSMXmlDataWriter(ms)) {
 				OSMRelation relation = new OSMRelation(1232);
@@ -153,8 +153,8 @@ namespace OSMUtils.Tests
 				target.WriteRelation(relation);
 			}
 
-            ms.Seek(0, 0);
-            XElement osmRoot = XDocument.Load(new StreamReader(ms)).Root;
+			ms.Seek(0, 0);
+			XElement osmRoot = XDocument.Load(new StreamReader(ms)).Root;
 			XElement relationElement = osmRoot.Element("relation");
 
 			Assert.NotNull(relationElement);
@@ -168,7 +168,7 @@ namespace OSMUtils.Tests
 
 		[Fact()]
 		public void OSMXmlDataWriteRelationCanWriteRelationWithTags() {
-            MemoryStream ms = new MemoryStream();
+			MemoryStream ms = new MemoryStream();
 
 			using (OSMXmlDataWriter target = new OSMXmlDataWriter(ms)) {
 				OSMRelation relation = new OSMRelation(1232);
@@ -178,8 +178,8 @@ namespace OSMUtils.Tests
 				target.WriteRelation(relation);
 			}
 
-            ms.Seek(0, 0);
-            XElement osmRoot = XDocument.Load(new StreamReader(ms)).Root;
+			ms.Seek(0, 0);
+			XElement osmRoot = XDocument.Load(new StreamReader(ms)).Root;
 			XElement relationElement = osmRoot.Element("relation");
 
 			Assert.NotNull(relationElement);

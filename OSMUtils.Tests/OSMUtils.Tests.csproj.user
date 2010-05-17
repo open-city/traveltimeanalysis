@@ -6,6 +6,7 @@
     <StartProgram>C:\dev\net\xunit\xunit.console.exe</StartProgram>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <StartArguments>xunit.console.exe D:\Projects\GSoC\src\OSMUtils.Tests.xunit</StartArguments>
+    <StartArguments>
+    </StartArguments>
   </PropertyGroup>
 </Project>

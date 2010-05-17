@@ -6,11 +6,10 @@ namespace LK.OSMUtils.OSMDatabase {
 	public class OSMTag {
 		private string _key;
 		/// <summary>
-		/// Gets or sets the key of the tag
+		/// Gets the key of the tag
 		/// </summary>
 		public string Key {
 			get { return _key; }
-			//set { _key = value; }
 		}
 
 		private string _value;
