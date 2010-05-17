@@ -2,7 +2,7 @@
 using Xunit;
 using System;
 using LK.GeoUtils.Geometry;
-using OSMUtils.OSMDatabase;
+using LK.OSMUtils.OSMDatabase;
 using System.Collections.Generic;
 
 namespace OSMUtils.Tests

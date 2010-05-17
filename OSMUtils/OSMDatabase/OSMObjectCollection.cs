@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OSMUtils.OSMDatabase {
+namespace LK.OSMUtils.OSMDatabase {
 	public class OSMObjectCollection<T> : IEnumerable<T>  where T : OSMObject {
 		protected Dictionary<int, T> _storage;
 

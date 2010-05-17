@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OSMUtils.OSMDatabase {
+namespace LK.OSMUtils.OSMDatabase {
 	/// <summary>
 	/// Represents a member of the OSM relation
 	/// </summary>

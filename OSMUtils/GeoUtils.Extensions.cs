@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 using LK.GeoUtils.Geometry;
-using OSMUtils.OSMDatabase;
+using LK.OSMUtils.OSMDatabase;
 
 namespace LK.GeoUtils {
 	public static class Extensions {

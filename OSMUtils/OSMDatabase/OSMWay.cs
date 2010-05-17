@@ -5,7 +5,7 @@ using System.Text;
 
 using LK.GeoUtils.Geometry;
 
-namespace OSMUtils.OSMDatabase {
+namespace LK.OSMUtils.OSMDatabase {
 	/// <summary>
 	/// Represents way in the OSM database.
 	/// </summary>

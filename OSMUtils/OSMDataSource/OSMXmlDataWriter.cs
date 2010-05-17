@@ -4,9 +4,9 @@ using System.Text;
 using System.Xml;
 using System.IO;
 
-using OSMUtils.OSMDatabase;
+using LK.OSMUtils.OSMDatabase;
 
-namespace OSMUtils.OSMDataSource {
+namespace LK.OSMUtils.OSMDataSource {
 	public class OSMXmlDataWriter : IOSMDataWriter, IDisposable {
 		private bool _closed;
 		protected XmlWriter _xmlWriter;

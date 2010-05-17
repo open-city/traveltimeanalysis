@@ -1,4 +1,4 @@
-﻿using OSMUtils.OSMDatabase;
+﻿using LK.OSMUtils.OSMDatabase;
 using Xunit;
 using System;
 using System.IO;
@@ -15,7 +15,7 @@ namespace OSMUtils.Tests
 	public class OSMDatabaseTest {
 		[Fact()]
 		public void OSMDatabaseConstructorInitializesInternalFields() {
-			OSMDatabase.OSMDB target = new OSMDatabase.OSMDB();
+			OSMDB target = new OSMDB();
 
 			Assert.Equal(0, target.Nodes.Count);
 			Assert.Equal(0, target.Ways.Count);
@@ -24,7 +24,7 @@ namespace OSMUtils.Tests
 
 		[Fact()]
 		public void OSMDatabaseNodesAcceptsAndReturnsNodes() {
-			OSMDatabase.OSMDB target = new OSMDatabase.OSMDB();
+			OSMDB target = new OSMDB();
 			OSMNode node = new OSMNode(1254, 1.0, 2.0);
 
 			target.Nodes.Add(node);
@@ -34,7 +34,7 @@ namespace OSMUtils.Tests
 
 		[Fact()]
 		public void OSMDatabaseWaysAcceptsAndReturnsWays() {
-			OSMDatabase.OSMDB target = new OSMDatabase.OSMDB();
+			OSMDB target = new OSMDB();
 			OSMWay way = new OSMWay(1354);
 
 			target.Ways.Add(way);
@@ -44,7 +44,7 @@ namespace OSMUtils.Tests
 
 		[Fact()]
 		public void OSMDatabaseNodesAcceptsAndReturnsRelations() {
-			OSMDatabase.OSMDB target = new OSMDatabase.OSMDB();
+			OSMDB target = new OSMDB();
 			OSMRelation relation = new OSMRelation(1454);
 
 			target.Relations.Add(relation);
@@ -54,7 +54,7 @@ namespace OSMUtils.Tests
 
 		[Fact()]
 		public void OSMDatabaseLoadCanLoadDataFromOSMFile() {
-			OSMDatabase.OSMDB target = new OSMDatabase.OSMDB();
+			OSMDB target = new OSMDB();
             target.Load(new MemoryStream(OSMUtils.Tests.TestData.real_osm_file));
 
 			Assert.Equal(408,  target.Nodes.Count);
@@ -64,7 +64,7 @@ namespace OSMUtils.Tests
 
 		[Fact()]
 		public void OSMDatabaseSaveCanSaveDataToOSMFile() {
-			OSMDatabase.OSMDB target = new OSMDatabase.OSMDB();
+			OSMDB target = new OSMDB();
 
             target.Load(new MemoryStream(OSMUtils.Tests.TestData.real_osm_file));
 

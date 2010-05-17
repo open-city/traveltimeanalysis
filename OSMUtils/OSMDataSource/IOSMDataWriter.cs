@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-using OSMUtils.OSMDatabase;
+using LK.OSMUtils.OSMDatabase;
 
-namespace OSMUtils.OSMDataSource {
+namespace LK.OSMUtils.OSMDataSource {
 	public interface IOSMDataWriter {
 		/// <summary>
 		/// Writes the specific OSMNode to the data source

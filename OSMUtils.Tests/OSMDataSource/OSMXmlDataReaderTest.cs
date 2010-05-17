@@ -1,10 +1,10 @@
-﻿using OSMUtils.OSMDataSource;
+﻿using LK.OSMUtils.OSMDataSource;
 using Xunit;
 using System;
 using System.IO;
 using System.Xml;
 
-using OSMUtils.OSMDatabase;
+using LK.OSMUtils.OSMDatabase;
 using System.Collections.Generic;
 
 namespace OSMUtils.Tests {

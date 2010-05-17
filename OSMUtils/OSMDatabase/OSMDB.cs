@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-using OSMUtils.OSMDataSource;
+using LK.OSMUtils.OSMDataSource;
 using System.IO;
 
-namespace OSMUtils.OSMDatabase {
+namespace LK.OSMUtils.OSMDatabase {
 	/// <summary>
 	/// Represents an OSM database
 	/// </summary>

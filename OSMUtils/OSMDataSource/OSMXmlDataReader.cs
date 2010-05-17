@@ -4,10 +4,10 @@ using System.Text;
 using System.Xml;
 using System.IO;
 
-using OSMUtils.OSMDatabase;
+using LK.OSMUtils.OSMDatabase;
 using System.Globalization;
 
-namespace OSMUtils.OSMDataSource {
+namespace LK.OSMUtils.OSMDataSource {
 	public class OSMXmlDataReader : IOSMDataReader {
 
 		protected XmlReader _xmlReader;

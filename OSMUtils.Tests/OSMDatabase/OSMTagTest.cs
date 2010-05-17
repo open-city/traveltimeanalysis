@@ -1,4 +1,4 @@
-﻿using OSMUtils.OSMDatabase;
+﻿using LK.OSMUtils.OSMDatabase;
 using Xunit;
 using System;
 

@@ -4,7 +4,7 @@ using System.Text;
 
 using LK.GeoUtils.Geometry;
 
-namespace OSMUtils.OSMDatabase {
+namespace LK.OSMUtils.OSMDatabase {
 	/// <summary>
 	/// Represents node in the OSM database.
 	/// </summary>

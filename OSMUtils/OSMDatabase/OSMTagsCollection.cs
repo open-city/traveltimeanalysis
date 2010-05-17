@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OSMUtils.OSMDatabase {
+namespace LK.OSMUtils.OSMDatabase {
 	public class OSMTagsCollection : IEnumerable<OSMTag> {
 		protected IList<OSMTag> _tags;
 
