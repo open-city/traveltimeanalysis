@@ -35,13 +35,13 @@ namespace OSMUtils.Tests {
 		[Fact()]
 		public void OSMXmlDataReaderReadThrowsExceptionReadingInvalidRootElement() {
 			OSMXmlDataReader target = new OSMXmlDataReader();
-			Assert.Throws<XmlException>(delegate { target.Read(new StreamReader(new MemoryStream(OSMUtils.Tests.TestData.osm_invalid_root_element)));});
+			Assert.Throws<XmlException>(delegate { target.Read(new MemoryStream(OSMUtils.Tests.TestData.osm_invalid_root_element));});
 		}
 
 		[Fact()]
 		public void OSMXmlDataReaderReadSkipsUnknownElements() {
 			OSMXmlDataReader target = new OSMXmlDataReader();
-			target.Read(new StreamReader(new MemoryStream(OSMUtils.Tests.TestData.osm_unknown_inner_element)));
+			target.Read(new MemoryStream(OSMUtils.Tests.TestData.osm_unknown_inner_element));
 		}
 
 		[Fact()]
@@ -50,7 +50,7 @@ namespace OSMUtils.Tests {
 			target.NodeRead += new OSMNodeReadHandler(ProcessNode);
 
 			// <node id="1254" lat="50.4" lon="16.2" />
-            target.Read(new StreamReader(new MemoryStream(OSMUtils.Tests.TestData.osm_simple_node)));
+            target.Read(new MemoryStream(OSMUtils.Tests.TestData.osm_simple_node));
 
 			Assert.Equal(1, _readNodes.Count);
 
@@ -68,7 +68,7 @@ namespace OSMUtils.Tests {
 			//  <node id="1254" lat="50.4" lon="16.2">
 			//  	<tag k="name" v="test" />
 			//	</node>
-            target.Read(new StreamReader(new MemoryStream(OSMUtils.Tests.TestData.osm_node_with_tag)));
+            target.Read(new MemoryStream(OSMUtils.Tests.TestData.osm_node_with_tag));
 
 			OSMNode readNode = _readNodes[0];
 			Assert.Equal(1, readNode.Tags.Count);
@@ -84,7 +84,7 @@ namespace OSMUtils.Tests {
 			//  	<tag k="name" v="test" />
 			//  	<tag k="name-2" v="test-2" />
 			//	</node>
-            target.Read(new StreamReader(new MemoryStream(OSMUtils.Tests.TestData.osm_node_with_tags)));
+            target.Read(new MemoryStream(OSMUtils.Tests.TestData.osm_node_with_tags));
 
 			OSMNode readNode = _readNodes[0];
 			Assert.Equal(2, readNode.Tags.Count);
@@ -105,7 +105,7 @@ namespace OSMUtils.Tests {
 			//  	<tag k="name" v="test" />
 			// 	  <unknown-element parameter="aaa" />
 			//	</node>
-            target.Read(new StreamReader(new MemoryStream(OSMUtils.Tests.TestData.osm_node_with_tag_and_unknown_element)));
+            target.Read(new MemoryStream(OSMUtils.Tests.TestData.osm_node_with_tag_and_unknown_element));
 
 			OSMNode readNode = _readNodes[0];
 			Assert.Equal(1, readNode.Tags.Count);
@@ -122,7 +122,7 @@ namespace OSMUtils.Tests {
 			//  	<nd ref="3" />
 			//  	<nd ref="4" />
 			//	</way>
-            target.Read(new StreamReader(new MemoryStream(OSMUtils.Tests.TestData.osm_simple_way)));
+            target.Read(new MemoryStream(OSMUtils.Tests.TestData.osm_simple_way));
 
 			Assert.Equal(1, _readWays.Count);
 
@@ -146,7 +146,7 @@ namespace OSMUtils.Tests {
 			//  	<tag k="name" v="test" />
 			//  	<tag k="name-2" v="test-2" />
 			//	</way>
-            target.Read(new StreamReader(new MemoryStream(OSMUtils.Tests.TestData.osm_way_with_tags)));
+            target.Read(new MemoryStream(OSMUtils.Tests.TestData.osm_way_with_tags));
 
 			Assert.Equal(1, _readWays.Count);
 
@@ -164,7 +164,7 @@ namespace OSMUtils.Tests {
 			//  <relation id="1254">
 			//  	<member ref="3" type="node" role="test" />
 			//	</relation>
-            target.Read(new StreamReader(new MemoryStream(OSMUtils.Tests.TestData.osm_simple_relation)));
+            target.Read(new MemoryStream(OSMUtils.Tests.TestData.osm_simple_relation));
 
 			Assert.Equal(1, _readRelations.Count);
 			Assert.Equal(1254, _readRelations[0].ID);
@@ -182,7 +182,7 @@ namespace OSMUtils.Tests {
 			//		<member ref="4" type="way" role="test" />
 			//		<member ref="5" type="relation" role="test" />
 			//	</relation>
-			target.Read(new StreamReader(new MemoryStream(OSMUtils.Tests.TestData.osm_relation)));
+			target.Read(new MemoryStream(OSMUtils.Tests.TestData.osm_relation));
 
 			Assert.Equal(1, _readRelations.Count);
 
@@ -210,7 +210,7 @@ namespace OSMUtils.Tests {
 			//		<member ref="3" type="node" role="test" />
 			//		<tag k="name" v="test-relation" />
 			//	</relation>
-            target.Read(new StreamReader(new MemoryStream(OSMUtils.Tests.TestData.osm_relation_with_tag)));
+            target.Read(new MemoryStream(OSMUtils.Tests.TestData.osm_relation_with_tag));
 
 			Assert.Equal(1, _readRelations.Count);
 			Assert.Equal(1, _readRelations[0].Tags.Count);
@@ -223,7 +223,7 @@ namespace OSMUtils.Tests {
 			target.WayRead += new OSMWayReadHandler(ProcessWay);
 			target.RelationRead += new OSMRelationReadHandler(ProcessRelation);
 
-            target.Read(new StreamReader(new MemoryStream(OSMUtils.Tests.TestData.real_osm_file)));
+            target.Read(new MemoryStream(OSMUtils.Tests.TestData.real_osm_file));
 
 			Assert.Equal(408, _readNodes.Count);
 			Assert.Equal(22, _readWays.Count);

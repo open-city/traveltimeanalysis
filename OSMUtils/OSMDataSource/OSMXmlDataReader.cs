@@ -17,16 +17,16 @@ namespace OSMUtils.OSMDataSource {
 		/// </summary>
 		/// <param name="osmFile">Path to the osm file.</param>
 		public void Read(string osmFile) {
-			using (TextReader tr = new StreamReader(osmFile)) {
-				Read(tr);
+			using (FileStream fs = new FileStream(osmFile, FileMode.Open)) {
+				this.Read(fs);
 			}
 		}
 
 		/// <summary>
-		/// Reads data from the TextReader
+		/// Reads data from a stream
 		/// </summary>
-		/// <param name="textReader">The textReader to read data from</param>
-		public void Read(TextReader textReader) {
+		/// <param name="stream">The stram to read data from</param>
+		public void Read(Stream stream) {
 
 			XmlReaderSettings xmlReaderSettings = new XmlReaderSettings();
 			xmlReaderSettings.IgnoreComments = true;
@@ -34,7 +34,7 @@ namespace OSMUtils.OSMDataSource {
 			xmlReaderSettings.IgnoreWhitespace = true;
 
 			try {
-				_xmlReader = XmlTextReader.Create(textReader, xmlReaderSettings);
+				_xmlReader = XmlTextReader.Create(stream, xmlReaderSettings);
 
 				_xmlReader.Read();
 				while (false == _xmlReader.EOF) {
