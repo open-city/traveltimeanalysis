@@ -196,8 +196,116 @@ namespace GPXUtils.Tests {
 			Assert.Equal(16.1117968, _waypoints[0].Longitude);
 			Assert.Equal("COMMENT", _waypoints[0].Commenet);
 		}
+
+		[Fact()]
+		public void GPXXmlDataReaderCanComplexPoint() {
+			Clear();
+			GPXXmlDataReader target = new GPXXmlDataReader();
+			target.WaypointRead += new GPXWaypointReadHandler(ProcessWaypoint);
+
+			// <wpt lat="50.4522196" lon="16.1117968">
+			//   <cmt>COMMENT</cmt>
+			//   <desc>DESCRIPTION</desc>
+			//   <ele>433.4368896</ele>
+			//   <name>POINT 001</name>
+			//   <time>2009-06-18T08:03:26Z</time>
+			// </wpt>
+			// <wpt lat="50.4522196" lon="16.1117968">
+			//   <name>POINT 002</name>
+			// </wpt>
+
+			target.Read(new MemoryStream(GPXUtils.Tests.TestData.gpx_complex_waypoint));
+
+			Assert.Equal(2, _waypoints.Count);
+
+			Assert.Equal(50.4522196, _waypoints[0].Latitude);
+			Assert.Equal(16.1117968, _waypoints[0].Longitude);
+			Assert.Equal(433.4368896, _waypoints[0].Elevation);
+			Assert.Equal("DESCRIPTION", _waypoints[0].Description);
+			Assert.Equal("COMMENT", _waypoints[0].Commenet);
+			Assert.Equal("POINT 001", _waypoints[0].Name);
+			Assert.Equal(new DateTime(2009, 6, 18, 8, 3, 26, DateTimeKind.Utc), _waypoints[0].Time);
+
+			Assert.Equal("POINT 002", _waypoints[1].Name);
+		}
+
+		[Fact()]
+		public void GPXXmlDataReaderCanReadSimpleTrack() {
+			Clear();
+			GPXXmlDataReader target = new GPXXmlDataReader();
+			target.TrackRead +=new GPXTrackReadHandler(ProcessTrack);
+
+			// <trk>
+			//   <trkseg>
+			//     <trkpt lat="50.4950254" lon="16.1050424" />
+			//     <trkpt lat="50.49503" lon="16.10503" />
+			//   </trkseg>
+			// </trk>
+
+			target.Read(new MemoryStream(GPXUtils.Tests.TestData.gpx_simple_track));
+
+			Assert.Equal(1, _tracks.Count);
+			Assert.Equal(1, _tracks[0].Segments.Count);
+			Assert.Equal(2, _tracks[0].Segments[0].NodesCount);
+		}
+
+		[Fact()]
+		public void GPXXmlDataReaderCanReadTrackWithName() {
+			Clear();
+			GPXXmlDataReader target = new GPXXmlDataReader();
+			target.TrackRead += new GPXTrackReadHandler(ProcessTrack);
+
+			// <trk>
+			//   <name>TRACK NAME</name>
+			//   <trkseg>
+			//     <trkpt lat="50.4950254" lon="16.1050424" />
+			//     <trkpt lat="50.49503" lon="16.10503" />
+			//   </trkseg>
+			// </trk>
+
+			target.Read(new MemoryStream(GPXUtils.Tests.TestData.gpx_simple_named_track));
+
+			Assert.Equal(1, _tracks.Count);
+
+			Assert.Equal("TRACK NAME", _tracks[0].Name);
+			Assert.Equal(1, _tracks[0].Segments.Count);
+			Assert.Equal(2, _tracks[0].Segments[0].NodesCount);
+		}
+
+		[Fact()]
+		public void GPXXmlDataReaderCanReadTrackWithMultipleSegments() {
+			Clear();
+			GPXXmlDataReader target = new GPXXmlDataReader();
+			target.TrackRead += new GPXTrackReadHandler(ProcessTrack);
+
+			// <trk>
+			//   <trkseg>
+			//     <trkpt lat="50.4950254" lon="16.1050424" />
+			//     <trkpt lat="50.4950254" lon="16.1050424" />
+			//   </trkseg>
+			//   <trkseg>
+			//     <trkpt lat="50.4950254" lon="16.1050424" />
+			//     <trkpt lat="50.4950254" lon="16.1050424" />
+			//     <trkpt lat="50.4950254" lon="16.1050424" />
+			//   </trkseg>
+			// </trk>
+
+			target.Read(new MemoryStream(GPXUtils.Tests.TestData.gpx_track_multiple_segments));
+
+			Assert.Equal(1, _tracks.Count);
+
+			Assert.Equal(2, _tracks[0].Segments.Count);
+
+			Assert.Equal(2, _tracks[0].Segments[0].NodesCount);
+			Assert.Equal(3, _tracks[0].Segments[1].NodesCount);
+		}
+
 		void ProcessWaypoint(GPXPoint waypoint) {
 			_waypoints.Add(waypoint);
+		}
+
+		void ProcessTrack(GPXTrack track) {
+			_tracks.Add(track);
 		}
 	}
 }

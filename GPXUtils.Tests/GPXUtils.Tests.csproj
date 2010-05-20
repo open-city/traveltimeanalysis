@@ -71,12 +71,16 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="TestData\gpx-complex_waypoint.gpx" />
     <None Include="TestData\gpx-invalid_root_element.gpx" />
+    <None Include="TestData\gpx-simple-track.gpx" />
     <None Include="TestData\gpx-simple-waypoints.gpx" />
+    <None Include="TestData\gpx-simple_named_track.gpx" />
     <None Include="TestData\gpx-simple_waypoint_incorrect_lat.gpx" />
     <None Include="TestData\gpx-simple_waypoint_incorrect_lon.gpx" />
     <None Include="TestData\gpx-simple_waypoint_missing_lat.gpx" />
     <None Include="TestData\gpx-simple_waypoint_missing_lon.gpx" />
+    <None Include="TestData\gpx-track_multiple_segments.gpx" />
     <None Include="TestData\gpx-waypoint_with_comment.gpx" />
     <None Include="TestData\gpx-waypoint_with_desc.gpx" />
     <None Include="TestData\gpx-waypoint_with_elevation.gpx" />

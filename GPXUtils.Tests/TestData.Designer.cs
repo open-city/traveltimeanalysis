@@ -60,9 +60,30 @@ namespace GPXUtils.Tests {
             }
         }
         
+        internal static byte[] gpx_complex_waypoint {
+            get {
+                object obj = ResourceManager.GetObject("gpx_complex_waypoint", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         internal static byte[] gpx_invalid_root_element {
             get {
                 object obj = ResourceManager.GetObject("gpx_invalid_root_element", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] gpx_simple_named_track {
+            get {
+                object obj = ResourceManager.GetObject("gpx_simple_named_track", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] gpx_simple_track {
+            get {
+                object obj = ResourceManager.GetObject("gpx_simple_track", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -98,6 +119,13 @@ namespace GPXUtils.Tests {
         internal static byte[] gpx_simple_waypoints {
             get {
                 object obj = ResourceManager.GetObject("gpx_simple_waypoints", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] gpx_track_multiple_segments {
+            get {
+                object obj = ResourceManager.GetObject("gpx_track_multiple_segments", resourceCulture);
                 return ((byte[])(obj));
             }
         }

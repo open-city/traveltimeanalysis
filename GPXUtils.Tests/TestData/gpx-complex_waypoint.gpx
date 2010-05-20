@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" version="1.1">
+	<wpt lat="50.4522196" lon="16.1117968">
+		<cmt>COMMENT</cmt>
+		<desc>DESCRIPTION</desc>
+		<ele>433.4368896</ele>
+		<name>POINT 001</name>
+		<time>2009-06-18T08:03:26Z</time>
+	</wpt>
+	<wpt lat="50.4522196" lon="16.1117968">
+		<name>POINT 002</name>
+	</wpt>
+</gpx>

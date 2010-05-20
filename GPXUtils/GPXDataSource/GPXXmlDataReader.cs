@@ -75,11 +75,11 @@ namespace LK.GPXUtils.GPXDataSource {
 			while (_xmlReader.NodeType != XmlNodeType.EndElement) {
 				switch (_xmlReader.Name) {
 					case "wpt":
-						ReadPoint();
+						ReadWaypoint();
 						break;
-					//case "relation":
-					//  ReadRelation();
-					//  break;
+					case "trk":
+					  ReadTrack();
+					  break;
 					//case "way":
 					//  ReadWay();
 					//  break;
@@ -93,7 +93,7 @@ namespace LK.GPXUtils.GPXDataSource {
 		/// <summary>
 		/// Reads a point from gpx document
 		/// </summary>
-		private void ReadPoint() {
+		private GPXPoint ReadPoint() {
 			// latitude attribute
 			string lat = _xmlReader.GetAttribute("lat");
 			
@@ -121,19 +121,24 @@ namespace LK.GPXUtils.GPXDataSource {
 							case "ele":
 								string ele = _xmlReader.ReadString();
 								parsedPoint.Elevation = double.Parse(ele, System.Globalization.CultureInfo.InvariantCulture);
+								_xmlReader.Skip();
 								break;
 							case "time":
 								string time = _xmlReader.ReadString();
 								parsedPoint.Time = DateTime.Parse(time, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal);
+								_xmlReader.Skip();								
 								break;
 							case "name":
 								parsedPoint.Name = _xmlReader.ReadString();
+								_xmlReader.Skip();
 								break;
 							case "desc":
 								parsedPoint.Description = _xmlReader.ReadString();
+								_xmlReader.Skip();
 								break;
 							case "cmt":
 								parsedPoint.Commenet = _xmlReader.ReadString();
+								_xmlReader.Skip();
 								break;
 							default:
 								_xmlReader.Skip();
@@ -146,10 +151,75 @@ namespace LK.GPXUtils.GPXDataSource {
 				}
 			}
 
-			OnWaypointRead(parsedPoint);
 			_xmlReader.Skip();
+			return parsedPoint;
 		}
-		
+
+		private void ReadWaypoint() {
+			OnWaypointRead(ReadPoint());
+		}
+
+		/// <summary>
+		/// Reads track from the gpx
+		/// </summary>
+		private void ReadTrack() {
+			GPXTrack parsedTrack = new GPXTrack();
+
+			if (_xmlReader.IsEmptyElement == false) {
+				_xmlReader.Read();
+
+				while (_xmlReader.NodeType != XmlNodeType.EndElement) {
+					if (_xmlReader.NodeType == XmlNodeType.Element) {
+						switch (_xmlReader.Name) {
+							case "trkseg":
+								parsedTrack.Segments.Add(ReadTrackSegment());
+								break;
+							case "name":
+								parsedTrack.Name = _xmlReader.ReadString();
+								_xmlReader.Skip();
+								break;
+							default:
+								_xmlReader.Skip();
+								break;
+						}
+					}
+					else {
+						_xmlReader.Skip();
+					}
+				}
+			}
+
+			_xmlReader.Skip();
+			OnTrackRead(parsedTrack);
+		}
+
+		private GPXTrackSegment ReadTrackSegment() {
+			GPXTrackSegment parsedSegment = new GPXTrackSegment();
+
+			if (_xmlReader.IsEmptyElement == false) {
+				_xmlReader.Read();
+
+				while (_xmlReader.NodeType != XmlNodeType.EndElement) {
+					if (_xmlReader.NodeType == XmlNodeType.Element) {
+						switch (_xmlReader.Name) {
+							case "trkpt":
+								parsedSegment.Nodes.Add(ReadPoint());
+								break;
+							default:
+								_xmlReader.Skip();
+								break;
+						}
+					}
+					else {
+						_xmlReader.Skip();
+					}
+				}
+			}
+
+			_xmlReader.Skip();
+			return parsedSegment;
+		}
+
 		#region event handling
 
 		/// <summary>

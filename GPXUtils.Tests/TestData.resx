@@ -118,8 +118,17 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="gpx_complex_waypoint" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\gpx-complex_waypoint.gpx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="gpx_invalid_root_element" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>TestData\gpx-invalid_root_element.gpx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="gpx_simple_named_track" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\gpx-simple_named_track.gpx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="gpx_simple_track" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\gpx-simple-track.gpx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="gpx_simple_waypoints" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>TestData\gpx-simple-waypoints.gpx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -135,6 +144,9 @@
   </data>
   <data name="gpx_simple_waypoint_missing_lon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>TestData\gpx-simple_waypoint_missing_lon.gpx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="gpx_track_multiple_segments" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\gpx-track_multiple_segments.gpx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="gpx_waypoint_with_comment" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>TestData\gpx-waypoint_with_comment.gpx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
