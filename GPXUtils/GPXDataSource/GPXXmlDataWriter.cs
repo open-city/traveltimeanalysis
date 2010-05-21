@@ -46,19 +46,35 @@ namespace LK.GPXUtils.GPXDataSource {
 			_closed = true;
 		}
 
+		/// <summary>
+		/// Writes the root element to the output
+		/// </summary>
 		private void WriteGPXElement() {
 			_xmlWriter.WriteStartElement("gpx");
 			_xmlWriter.WriteAttributeString("version", "1.1");
 			_xmlWriter.WriteAttributeString("creator", "GPXUtils");
 		}
 
+		/// <summary>
+		/// Writes the specific waypoint to the output
+		/// </summary>
+		/// <param name="waypoint">The waypoint to be written</param>
 		public void WriteWaypoint(GPXPoint waypoint) {
-			_xmlWriter.WriteStartElement("wpt");
-			WritePointData(waypoint);
-			_xmlWriter.WriteEndElement();
+			WritePointData(waypoint, "wpt");
 		}
 
-		protected void WritePointData(GPXPoint point) {
+		/// <summary>
+		/// Writes point data to the specific tag to the output
+		/// </summary>
+		/// <param name="point">The point that's data should be written</param>
+		/// <param name="tag">The name of the output tag</param>
+		/// <example>
+		///   //writes waypoint
+		///		WritePointData(waypoint, "wpt");
+		/// </example>
+		protected void WritePointData(GPXPoint point, string tag) {
+			_xmlWriter.WriteStartElement(tag);
+
 			_xmlWriter.WriteAttributeString("lat", point.Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture));
 			_xmlWriter.WriteAttributeString("lon", point.Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture));
 
@@ -81,8 +97,14 @@ namespace LK.GPXUtils.GPXDataSource {
 			if (string.IsNullOrEmpty(point.Commenet) == false) {
 				_xmlWriter.WriteElementString("cmt", point.Commenet);
 			}
+
+			_xmlWriter.WriteEndElement();
 		}
 
+		/// <summary>
+		/// Writes the specific route to the output
+		/// </summary>
+		/// <param name="route">The route to be written</param>
 		public void WriteRoute(GPXRoute route) {
 			_xmlWriter.WriteStartElement("rte");
 
@@ -91,15 +113,34 @@ namespace LK.GPXUtils.GPXDataSource {
 			}
 
 			foreach (GPXPoint point in route.Nodes) {
-				_xmlWriter.WriteStartElement("rtept");
-				WritePointData(point);
-				_xmlWriter.WriteEndElement();
+				WritePointData(point, "rtept");
 			}
+
 			_xmlWriter.WriteEndElement();
 		}
 
+		/// <summary>
+		/// Writes the specific track to the output
+		/// </summary>
+		/// <param name="track">The track to be written</param>
 		public void WriteTrack(GPXTrack track) {
-			throw new NotImplementedException();
+			_xmlWriter.WriteStartElement("trk");
+
+			if (string.IsNullOrEmpty(track.Name) == false) {
+				_xmlWriter.WriteElementString("name", track.Name);
+			}
+
+			foreach (GPXTrackSegment segment in track.Segments) {
+				_xmlWriter.WriteStartElement("trkseg");
+
+				foreach (GPXPoint point in segment.Nodes) {
+					WritePointData(point, "trkpt");
+				}
+
+				_xmlWriter.WriteEndElement();
+			}
+
+			_xmlWriter.WriteEndElement();
 		}
 
 		#region IDisposable Members

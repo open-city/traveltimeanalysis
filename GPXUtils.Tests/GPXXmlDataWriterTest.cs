@@ -127,5 +127,89 @@ namespace GPXUtils.Tests {
 			Assert.Equal(point2.Latitude, double.Parse(points[1].Attribute("lat").Value, System.Globalization.CultureInfo.InvariantCulture));
 			Assert.Equal(point2.Longitude, double.Parse(points[1].Attribute("lon").Value, System.Globalization.CultureInfo.InvariantCulture));
 		}
+
+		[Fact()]
+		public void GPXXmlDataWriterWriteSimpleTrack() {
+			MemoryStream ms = new MemoryStream();
+
+			GPXTrack track = new GPXTrack();
+			track.Name = "TRACK NAME";
+
+			GPXPoint point1 = new GPXPoint(18.5, 50.1);
+			GPXPoint point2 = new GPXPoint(10.3, 20.5);
+
+			GPXTrackSegment segment = new GPXTrackSegment();
+			segment.Nodes.Add(point1);
+			segment.Nodes.Add(point2);
+
+			track.Segments.Add(segment);
+
+
+			using (GPXXmlDataWriter target = new GPXXmlDataWriter(ms)) {
+				target.WriteTrack(track);
+			}
+
+			ms.Seek(0, 0);
+
+			XElement gpxRoot = XDocument.Load(new StreamReader(ms)).Root;
+			
+			XElement trackElement = gpxRoot.Element("trk");
+			Assert.NotNull(trackElement);
+			Assert.Equal(track.Name, trackElement.Element("name").Value);
+
+			XElement trackSegmentElement = trackElement.Element("trkseg");
+			Assert.NotNull(trackSegmentElement);
+
+			var points = trackSegmentElement.Elements("trkpt").ToList();
+			Assert.Equal(2, points.Count);
+			Assert.Equal(point1.Latitude, double.Parse(points[0].Attribute("lat").Value, System.Globalization.CultureInfo.InvariantCulture));
+			Assert.Equal(point1.Longitude, double.Parse(points[0].Attribute("lon").Value, System.Globalization.CultureInfo.InvariantCulture));
+			Assert.Equal(point2.Latitude, double.Parse(points[1].Attribute("lat").Value, System.Globalization.CultureInfo.InvariantCulture));
+			Assert.Equal(point2.Longitude, double.Parse(points[1].Attribute("lon").Value, System.Globalization.CultureInfo.InvariantCulture));
+		}
+
+		[Fact()]
+		public void GPXXmlDataWriterWriteTrackWithMultipleSegments() {
+			MemoryStream ms = new MemoryStream();
+
+			GPXTrack track = new GPXTrack();
+			track.Name = "TRACK NAME";
+
+			GPXPoint point1 = new GPXPoint(18.5, 50.1);
+			GPXPoint point2 = new GPXPoint(10.3, 20.5);
+			GPXPoint point3 = new GPXPoint(8.2, 28.8);
+
+			GPXTrackSegment segment1 = new GPXTrackSegment();
+			segment1.Nodes.Add(point1);
+			segment1.Nodes.Add(point2);
+			segment1.Nodes.Add(point3);
+			track.Segments.Add(segment1);
+
+			GPXTrackSegment segment2 = new GPXTrackSegment();
+			segment2.Nodes.Add(point1);
+			segment2.Nodes.Add(point2);
+			track.Segments.Add(segment2);
+
+			using (GPXXmlDataWriter target = new GPXXmlDataWriter(ms)) {
+				target.WriteTrack(track);
+			}
+
+			ms.Seek(0, 0);
+
+			XElement gpxRoot = XDocument.Load(new StreamReader(ms)).Root;
+
+			XElement trackElement = gpxRoot.Element("trk");
+			Assert.NotNull(trackElement);
+			Assert.Equal(track.Name, trackElement.Element("name").Value);
+
+			var trackSegments = trackElement.Elements("trkseg").ToList();
+			Assert.Equal(track.Segments.Count, trackSegments.Count);
+
+			var points = trackSegments[0].Elements("trkpt").ToList();
+			Assert.Equal(track.Segments[0].NodesCount, points.Count);
+
+			points = trackSegments[1].Elements("trkpt").ToList();
+			Assert.Equal(track.Segments[1].NodesCount, points.Count);
+		}
 	}
 }
