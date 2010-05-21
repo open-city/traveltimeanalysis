@@ -83,7 +83,7 @@ namespace LK.GPXUtils.GPXDataSource {
 			}
 
 			if (point.Time != DateTime.MinValue) {
-				_xmlWriter.WriteElementString("time", point.Time.ToString(System.Globalization.CultureInfo.InvariantCulture));			
+				_xmlWriter.WriteElementString("time", point.Time.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"));			
 			}
 
 			if (string.IsNullOrEmpty(point.Name) == false) {

@@ -14,7 +14,7 @@ namespace LK.GPXUtils.GPXDataSource {
 	/// <remarks>GPXXmlDataReader can process only tracks</remarks>
 	public class GPXXmlDataReader : IGPXDataReader {
 		XmlReader _xmlReader;
-
+		
 		/// <summary>
 		/// Reads data from the gpx file
 		/// </summary>
@@ -125,7 +125,7 @@ namespace LK.GPXUtils.GPXDataSource {
 								break;
 							case "time":
 								string time = _xmlReader.ReadString();
-								parsedPoint.Time = DateTime.Parse(time, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal);
+								parsedPoint.Time = DateTime.ParseExact(time, "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal | System.Globalization.DateTimeStyles.AssumeUniversal);
 								_xmlReader.Skip();								
 								break;
 							case "name":
