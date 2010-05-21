@@ -88,6 +88,13 @@ namespace GPXUtils.Tests {
             }
         }
         
+        internal static byte[] gpx_real {
+            get {
+                object obj = ResourceManager.GetObject("gpx_real", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         internal static byte[] gpx_simple_named_track {
             get {
                 object obj = ResourceManager.GetObject("gpx_simple_named_track", resourceCulture);

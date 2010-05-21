@@ -130,6 +130,9 @@
   <data name="gpx_named_route" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>TestData\gpx-named_route.gpx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="gpx_real" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\gpx-real.gpx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="gpx_simple_named_track" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>TestData\gpx-simple_named_track.gpx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

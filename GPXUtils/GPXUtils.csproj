@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GPXDataSource\GPXXmlDataReader.cs" />
+    <Compile Include="GPXDataSource\GPXXmlDataWriter.cs" />
     <Compile Include="GPXDataSource\IGPXDataReader.cs" />
+    <Compile Include="GPXDataSource\IGPXDataWriter.cs" />
     <Compile Include="GPXPoint.cs" />
     <Compile Include="GPXRoute.cs" />
     <Compile Include="GPXTrack.cs" />

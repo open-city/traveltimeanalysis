@@ -381,6 +381,38 @@ namespace GPXUtils.Tests {
 			Assert.Equal(2, _routes[1].NodesCount);
 		}
 
+		[Fact()]
+		public void GPXXmlDataReaderCanReadRealGPXFile() {
+			Clear();
+
+			GPXXmlDataReader target = new GPXXmlDataReader();
+			target.WaypointRead += new GPXWaypointReadHandler(ProcessWaypoint);
+			target.TrackRead += new GPXTrackReadHandler(ProcessTrack);
+			target.RouteRead += new GPXRouteReadHandler(ProcessRoute);
+
+			// 3 waypoints
+			// 2 routes (3 and 1) points
+			// 2 tracks
+			//  1 segment, 2 points
+			//  2 segments, 998 points and 10 points
+			target.Read(new MemoryStream(GPXUtils.Tests.TestData.gpx_real));
+
+			Assert.Equal(3, _waypoints.Count);
+
+			Assert.Equal(2, _routes.Count);
+			Assert.Equal(3, _routes[0].NodesCount);
+			Assert.Equal(1, _routes[1].NodesCount);
+
+			Assert.Equal(2, _tracks.Count);
+			
+			Assert.Equal(1, _tracks[0].Segments.Count);
+			Assert.Equal(2, _tracks[0].Segments[0].NodesCount);
+
+			Assert.Equal(2, _tracks[1].Segments.Count);
+			Assert.Equal(998, _tracks[1].Segments[0].NodesCount);
+			Assert.Equal(10, _tracks[1].Segments[1].NodesCount);
+		}
+
 		void ProcessWaypoint(GPXPoint waypoint) {
 			_waypoints.Add(waypoint);
 		}
