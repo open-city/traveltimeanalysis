@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GPXPointTest.cs" />
+    <Compile Include="GPXRouteTest.cs" />
     <Compile Include="GPXTrackTest.cs" />
     <Compile Include="GPXTrackSegmentTest.cs" />
     <Compile Include="GPXXmlDataReaderTest.cs" />
@@ -73,9 +74,12 @@
   <ItemGroup>
     <None Include="TestData\gpx-complex_waypoint.gpx" />
     <None Include="TestData\gpx-invalid_root_element.gpx" />
+    <None Include="TestData\gpx-multiple_routes.gpx" />
+    <None Include="TestData\gpx-named_route.gpx" />
     <None Include="TestData\gpx-simple-track.gpx" />
     <None Include="TestData\gpx-simple-waypoints.gpx" />
     <None Include="TestData\gpx-simple_named_track.gpx" />
+    <None Include="TestData\gpx-simple_route.gpx" />
     <None Include="TestData\gpx-simple_waypoint_incorrect_lat.gpx" />
     <None Include="TestData\gpx-simple_waypoint_incorrect_lon.gpx" />
     <None Include="TestData\gpx-simple_waypoint_missing_lat.gpx" />

@@ -7,6 +7,7 @@ using LK.GPXUtils;
 
 namespace LK.GPXUtils.GPXDataSource {
 	public delegate void GPXTrackReadHandler(GPXTrack track);
+	public delegate void GPXRouteReadHandler(GPXRoute route);
 	public delegate void GPXWaypointReadHandler(GPXPoint waypoint);
 
 	public interface IGPXDataReader {
@@ -18,7 +19,7 @@ namespace LK.GPXUtils.GPXDataSource {
 		/// <summary>
 		/// Occurs when a route is read from the datasource
 		/// </summary>
-		event GPXTrackReadHandler RouteRead;
+		event GPXRouteReadHandler RouteRead;
 
 		/// <summary>
 		/// Occurs when a waypoint is read from the datasource

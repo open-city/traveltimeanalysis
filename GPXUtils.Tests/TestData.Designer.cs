@@ -74,9 +74,30 @@ namespace GPXUtils.Tests {
             }
         }
         
+        internal static byte[] gpx_multiple_routes {
+            get {
+                object obj = ResourceManager.GetObject("gpx_multiple_routes", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] gpx_named_route {
+            get {
+                object obj = ResourceManager.GetObject("gpx_named_route", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         internal static byte[] gpx_simple_named_track {
             get {
                 object obj = ResourceManager.GetObject("gpx_simple_named_track", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] gpx_simple_route {
+            get {
+                object obj = ResourceManager.GetObject("gpx_simple_route", resourceCulture);
                 return ((byte[])(obj));
             }
         }

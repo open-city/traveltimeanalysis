@@ -13,15 +13,18 @@ namespace GPXUtils.Tests {
 	public class GPXXmlDataReaderTest {
 		List<GPXTrack> _tracks;
 		List<GPXPoint> _waypoints;
+		List<GPXRoute> _routes;
 
 		public GPXXmlDataReaderTest() {
 			_tracks = new List<GPXTrack>();
 			_waypoints = new List<GPXPoint>();
+			_routes = new List<GPXRoute>();
 		}
 
 		void Clear() {
 			_tracks.Clear();
 			_waypoints.Clear();
+			_routes.Clear();
 		}
 
 		[Fact()]
@@ -300,12 +303,94 @@ namespace GPXUtils.Tests {
 			Assert.Equal(3, _tracks[0].Segments[1].NodesCount);
 		}
 
+		[Fact()]
+		public void GPXXmlDataReaderCanReadSimpleRoute() {
+			Clear();
+
+			GPXXmlDataReader target = new GPXXmlDataReader();
+			target.RouteRead +=new GPXRouteReadHandler(ProcessRoute);
+
+			// <rte>
+			//   <rtept lat="50.0405788" lon="14.4694233" />
+			//   <rtept lat="49.9116083" lon="14.7193313">
+			//   </rtept>
+			// </rte>
+
+			target.Read(new MemoryStream(GPXUtils.Tests.TestData.gpx_simple_route));
+
+			Assert.Equal(1, _routes.Count);
+			Assert.Equal(2, _routes[0].NodesCount);
+		}
+
+		[Fact()]
+		public void GPXXmlDataReaderCanReadNamedRoute() {
+			Clear();
+
+			GPXXmlDataReader target = new GPXXmlDataReader();
+			target.RouteRead += new GPXRouteReadHandler(ProcessRoute);
+
+			// <rte>
+			//   <name>ROUTE NAME</name>
+			//   <rtept lat="50.0405788" lon="14.4694233">
+			//   </rtept>
+			//   <rtept lat="49.9116083" lon="14.7193313">
+			//   </rtept>
+			//   <rtept lat="49.8448186" lon="14.7991063">
+			//   </rtept>
+			// </rte>
+
+			target.Read(new MemoryStream(GPXUtils.Tests.TestData.gpx_named_route));
+
+			Assert.Equal(1, _routes.Count);
+			Assert.Equal("ROUTE NAME", _routes[0].Name);
+			Assert.Equal(3, _routes[0].NodesCount);
+		}
+
+		public void GPXXmlDataReaderCanMultipleRoutes() {
+			Clear();
+
+			GPXXmlDataReader target = new GPXXmlDataReader();
+			target.RouteRead += new GPXRouteReadHandler(ProcessRoute);
+
+			//<rte>
+			//  <name>TRACK 001</name>
+			//  <rtept lat="50.0405788" lon="14.4694233">
+			//  </rtept>
+			//  <rtept lat="49.9116083" lon="14.7193313">
+			//  </rtept>
+			//  <rtept lat="49.8448186" lon="14.7991063">
+			//  </rtept>
+			//</rte>
+  
+			//<rte>
+			//  <name>TRACK 002</name>
+			//  <rtept lat="50.0405788" lon="14.4694233">
+			//  </rtept>
+			//  <rtept lat="49.9116083" lon="14.7193313">
+			//  </rtept>
+			//</rte>
+
+			target.Read(new MemoryStream(GPXUtils.Tests.TestData.gpx_multiple_routes));
+
+			Assert.Equal(2, _routes.Count);
+
+			Assert.Equal("TRACK 001", _routes[0].Name);
+			Assert.Equal(3, _routes[0].NodesCount);
+
+			Assert.Equal("TRACK 002", _routes[1].Name);
+			Assert.Equal(2, _routes[1].NodesCount);
+		}
+
 		void ProcessWaypoint(GPXPoint waypoint) {
 			_waypoints.Add(waypoint);
 		}
 
 		void ProcessTrack(GPXTrack track) {
 			_tracks.Add(track);
+		}
+
+		void ProcessRoute(GPXRoute route) {
+			_routes.Add(route);
 		}
 	}
 }

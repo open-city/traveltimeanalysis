@@ -43,6 +43,7 @@
     <Compile Include="GPXDataSource\GPXXmlDataReader.cs" />
     <Compile Include="GPXDataSource\IGPXDataReader.cs" />
     <Compile Include="GPXPoint.cs" />
+    <Compile Include="GPXRoute.cs" />
     <Compile Include="GPXTrack.cs" />
     <Compile Include="GPXTrackSegment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

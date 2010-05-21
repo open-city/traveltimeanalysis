@@ -80,9 +80,9 @@ namespace LK.GPXUtils.GPXDataSource {
 					case "trk":
 					  ReadTrack();
 					  break;
-					//case "way":
-					//  ReadWay();
-					//  break;
+					case "rte":
+						ReadRoute();
+						break;
 					default:
 						_xmlReader.Skip();
 						break;
@@ -193,6 +193,40 @@ namespace LK.GPXUtils.GPXDataSource {
 			OnTrackRead(parsedTrack);
 		}
 
+		/// <summary>
+		/// Reads route from the gpx
+		/// </summary>
+		private void ReadRoute() {
+			GPXRoute parsedRoute = new GPXRoute();
+
+			if (_xmlReader.IsEmptyElement == false) {
+				_xmlReader.Read();
+
+				while (_xmlReader.NodeType != XmlNodeType.EndElement) {
+					if (_xmlReader.NodeType == XmlNodeType.Element) {
+						switch (_xmlReader.Name) {
+							case "rtept":
+								parsedRoute.Nodes.Add(ReadPoint());
+								break;
+							case "name":
+								parsedRoute.Name = _xmlReader.ReadString();
+								_xmlReader.Skip();
+								break;
+							default:
+								_xmlReader.Skip();
+								break;
+						}
+					}
+					else {
+						_xmlReader.Skip();
+					}
+				}
+			}
+
+			_xmlReader.Skip();
+			OnRouteRead(parsedRoute);
+		}
+
 		private GPXTrackSegment ReadTrackSegment() {
 			GPXTrackSegment parsedSegment = new GPXTrackSegment();
 
@@ -241,14 +275,14 @@ namespace LK.GPXUtils.GPXDataSource {
 		/// <summary>
 		/// Occurs when a route is read from xml
 		/// </summary>
-		public event GPXTrackReadHandler RouteRead;
+		public event GPXRouteReadHandler RouteRead;
 
 		/// <summary>
 		/// Raises the RouteRead event
 		/// </summary>
 		/// <param name="node">The route read from the xml</param>
-		protected void OnRouteRead(GPXTrack route) {
-			GPXTrackReadHandler temp = RouteRead;
+		protected void OnRouteRead(GPXRoute route) {
+			GPXRouteReadHandler temp = RouteRead;
 			if (temp != null) {
 				temp(route);
 			}
