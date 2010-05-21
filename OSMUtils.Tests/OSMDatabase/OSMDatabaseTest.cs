@@ -3,15 +3,7 @@ using Xunit;
 using System;
 using System.IO;
 
-namespace OSMUtils.Tests
-{
-    
-    
-    /// <summary>
-    ///This is a test class for OSMDatabaseTest and is intended
-    ///to contain all OSMDatabaseTest Unit Tests
-    ///</summary>
-	
+namespace OSMUtils.Tests {
 	public class OSMDatabaseTest {
 		[Fact()]
 		public void OSMDatabaseConstructorInitializesInternalFields() {
@@ -55,9 +47,9 @@ namespace OSMUtils.Tests
 		[Fact()]
 		public void OSMDatabaseLoadCanLoadDataFromOSMFile() {
 			OSMDB target = new OSMDB();
-            target.Load(new MemoryStream(OSMUtils.Tests.TestData.real_osm_file));
+			target.Load(new MemoryStream(OSMUtils.Tests.TestData.real_osm_file));
 
-			Assert.Equal(408,  target.Nodes.Count);
+			Assert.Equal(408, target.Nodes.Count);
 			Assert.Equal(22, target.Ways.Count);
 			Assert.Equal(2, target.Relations.Count);
 		}
@@ -66,12 +58,12 @@ namespace OSMUtils.Tests
 		public void OSMDatabaseSaveCanSaveDataToOSMFile() {
 			OSMDB target = new OSMDB();
 
-            target.Load(new MemoryStream(OSMUtils.Tests.TestData.real_osm_file));
+			target.Load(new MemoryStream(OSMUtils.Tests.TestData.real_osm_file));
 
-            MemoryStream writtenDb = new MemoryStream();
+			MemoryStream writtenDb = new MemoryStream();
 			target.Save(writtenDb);
 
-            writtenDb.Seek(0, 0);
+			writtenDb.Seek(0, 0);
 			OSMDB readDB = new OSMDB();
 			readDB.Load(writtenDb);
 
