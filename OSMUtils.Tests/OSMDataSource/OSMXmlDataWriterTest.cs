@@ -13,8 +13,6 @@ namespace OSMUtils.Tests {
 	///</summary>
 
 	public class OSMXmlDataWriterTest {
-		string _outputPath = "";
-
 		[Fact()]
 		public void OSMXmlDataWriterConstructorCreatesEmptyOSMFile() {
 			MemoryStream ms = new MemoryStream();

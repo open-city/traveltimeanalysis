@@ -43,6 +43,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GPXDocumentTest.cs" />
     <Compile Include="GPXPointTest.cs" />
     <Compile Include="GPXRouteTest.cs" />
     <Compile Include="GPXTrackTest.cs" />
