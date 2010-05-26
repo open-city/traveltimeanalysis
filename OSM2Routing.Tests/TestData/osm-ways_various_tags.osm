@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<osm>
+	<way id="101">
+		<nd ref="1" />
+		<nd ref="2" />
+		<tag k="highway" v="residental" />
+	</way>
+
+	<way id="102">
+		<nd ref="3" />
+		<nd ref="4" />
+		<tag k="highway" v="primary" />
+	</way>
+
+	<way id="103">
+		<nd ref="5" />
+		<nd ref="6" />
+		<tag k="builing" v="yes" />
+	</way>
+
+	<way id="104">
+		<nd ref="7" />
+		<nd ref="8" />
+		<tag k="highway" v="track" />
+		<tag k="grade" v="1"/>
+	</way>
+</osm>

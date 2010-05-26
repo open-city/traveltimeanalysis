@@ -43,13 +43,38 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OSMFiltredDBTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoadTypeTest.cs" />
+    <Compile Include="TestData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestData.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GeoUtils\GeoUtils.csproj">
+      <Project>{BD5FFBEC-D5F0-4168-9976-258ADDB39AE9}</Project>
+      <Name>GeoUtils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OSM2Routing\OSM2Routing.csproj">
       <Project>{BA78D994-2B26-4207-AE4F-22E381986B32}</Project>
       <Name>OSM2Routing</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OSMUtils\OSMUtils.csproj">
+      <Project>{1DD2BDF4-8D35-42B6-9426-EED5CD098058}</Project>
+      <Name>OSMUtils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestData.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>TestData.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="TestData\osm-ways_various_tags.osm" />
+    <None Include="TestData\osm-ways_with_nodes.osm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
