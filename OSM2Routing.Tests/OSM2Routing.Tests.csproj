@@ -43,7 +43,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OSMFiltredDBTest.cs" />
+    <Compile Include="OSMRouteTest.cs" />
+    <Compile Include="OSMRoutingDBTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoadTypeTest.cs" />
     <Compile Include="TestData.Designer.cs">
@@ -73,6 +74,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="TestData\osm-simple-crossing.osm" />
     <None Include="TestData\osm-ways_various_tags.osm" />
     <None Include="TestData\osm-ways_with_nodes.osm" />
   </ItemGroup>

@@ -11,16 +11,25 @@ namespace LK.OSM2Routing {
 	/// <summary>
 	/// Represents a OSMDB, that's can load only ways matching specific RoadTypes
 	/// </summary>
-	public class OSMFilteredDB : OSMDB  {
-		Dictionary<int, int> _usedNodes;
+	public class OSMRoutingDB : OSMDB  {
+		Dictionary<int, List<int>> _usedNodes;
+		/// <summary>
+		/// Gets the used nodes and ways that contains them
+		/// </summary>
+		public Dictionary<int, List<int>> UsedNodes {
+			get {
+				return _usedNodes;
+			}
+		}
+
 		IEnumerable<RoadType> _acceptedRoads;
 
 		/// <summary>
 		/// Creates a new instance of the OSMFIlteredDB
 		/// </summary>
-		public OSMFilteredDB()
+		public OSMRoutingDB()
 			: base() {
-				_usedNodes = new Dictionary<int, int>();
+				_usedNodes = new Dictionary<int, List<int>>();
 		}
 
 		/// <summary>
@@ -61,7 +70,7 @@ namespace LK.OSM2Routing {
 			foreach (RoadType road in _acceptedRoads) {
 				if (road.Match(way)) {
 					ExtractUsedNodes(way);
-					Ways.Add(way);
+					Ways.Add(new OSMRoute(way, road));
 				}
 			}
 		}
@@ -83,9 +92,42 @@ namespace LK.OSM2Routing {
 		void ExtractUsedNodes(OSMWay way) {
 			foreach (int nodeID in way.Nodes) {
 				if (_usedNodes.ContainsKey(nodeID) == false) {
-					_usedNodes.Add(nodeID, nodeID);
+					_usedNodes.Add(nodeID, new List<int>());
 				}
+
+				_usedNodes[nodeID].Add(way.ID);
 			}
+		}
+
+		public OSMDB BuildRoutableOSM() {
+			OSMDB result = new OSMDB();
+			int counter = -1;
+
+			foreach (OSMRoute route in Ways) {
+				OSMWay segment = new OSMWay(counter--);
+				OSMTag wayIDTag = new OSMTag("way-id", route.ID.ToString());
+
+				for (int i = 0; i < route.Nodes.Count; i++) {
+					segment.Nodes.Add(route.Nodes[i]);
+
+					if ((UsedNodes[route.Nodes[i]].Count > 1) && (i > 0) && (i < (route.Nodes.Count -1))) {
+						segment.Tags.Add(wayIDTag);
+						result.Ways.Add(segment);
+
+						segment = new OSMWay(counter--);
+						segment.Nodes.Add(route.Nodes[i]);
+					}
+				}
+
+				segment.Tags.Add(wayIDTag);
+				result.Ways.Add(segment);
+			}
+
+			foreach (OSMNode node in Nodes) {
+				result.Nodes.Add(node);
+			}
+
+			return result;
 		}
 	}
 }
