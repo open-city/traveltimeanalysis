@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NDesk.Options.cs" />
-    <Compile Include="OSMRoute.cs" />
+    <Compile Include="OSMRoad.cs" />
     <Compile Include="OSMRoutingDB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

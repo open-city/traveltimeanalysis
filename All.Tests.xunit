@@ -4,5 +4,6 @@
     <assembly filename="bin\GPXUtils.Tests.dll" shadow-copy="true" />
     <assembly filename="bin\OSMUtils.Tests.dll" shadow-copy="true" />
     <assembly filename="bin\GeoUtils.Tests.dll" shadow-copy="true" />
+    <assembly filename="bin\OSM2Routing.Tests.dll" shadow-copy="true" />
   </assemblies>
 </xunit>

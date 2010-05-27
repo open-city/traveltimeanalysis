@@ -70,7 +70,7 @@ namespace LK.OSM2Routing {
 			foreach (RoadType road in _acceptedRoads) {
 				if (road.Match(way)) {
 					ExtractUsedNodes(way);
-					Ways.Add(new OSMRoute(way, road));
+					Ways.Add(new OSMRoad(way, road));
 				}
 			}
 		}
@@ -103,7 +103,7 @@ namespace LK.OSM2Routing {
 			OSMDB result = new OSMDB();
 			int counter = -1;
 
-			foreach (OSMRoute route in Ways) {
+			foreach (OSMRoad route in Ways) {
 				OSMWay segment = new OSMWay(counter--);
 				OSMTag wayIDTag = new OSMTag("way-id", route.ID.ToString());
 

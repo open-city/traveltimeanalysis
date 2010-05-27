@@ -12,7 +12,7 @@ namespace OSM2Routing.Tests {
 	public class OSMRouteTest {
 		[Fact()]
 		public void OSMRouteConstructorSetsId() {
-			OSMRoute target = new OSMRoute(11);
+			OSMRoad target = new OSMRoad(11);
 
 			Assert.Equal(11, target.ID);
 		}
@@ -27,7 +27,7 @@ namespace OSM2Routing.Tests {
 			RoadType sourceType = new RoadType();
 			sourceType.RequiredTags.Add(new OSMTag("highway", "track"));
 
-			OSMRoute target = new OSMRoute(source, sourceType);
+			OSMRoad target = new OSMRoad(source, sourceType);
 
 			Assert.Equal(source.Nodes.Count, target.Nodes.Count);
 			Assert.Equal(source.Tags.First(), target.Tags.First());

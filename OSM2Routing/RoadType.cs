@@ -7,7 +7,14 @@ using LK.OSMUtils.OSMDatabase;
 
 namespace LK.OSM2Routing {
 	public class RoadType {
+		/// <summary>
+		/// Gets or sets the name of this RoadType
+		/// </summary>
 		public string Name { get; set; }
+
+		/// <summary>
+		/// Gets the list of required tags
+		/// </summary>
 		public List<OSMTag> RequiredTags { get; protected set; }
 
 		/// <summary>
