@@ -9,14 +9,14 @@ using LK.OSMUtils.OSMDatabase;
 namespace LK.OSM2Routing {
 	class Program {
 		static void Main(string[] args) {
-			RoadType accepted = new RoadType();
-			accepted.RequiredTags.Add(new OSMTag("highway", "*"));
+			RoadType acceptedRoad = new RoadType();
+			acceptedRoad.RequiredTags.Add(new OSMTag("highway", "*"));
 
-			OSMRoutingDB osm = new OSMRoutingDB();
-			osm.Load(new RoadType[] {accepted},  "C:\\temp\\map.xml");
+			OSMRoutingDB target = new OSMRoutingDB();
+			target.Load(new RoadType[] { acceptedRoad }, "C:\\temp\\test-orig.osm");
 
-			osm.BuildRoutableOSM().Save("C:\\temp\\map-segment.xml");
-
+			OSMDB routable = target.BuildRoutableOSM();
+			routable.Save("C:\\temp\\test-segments.osm");
 			Console.WriteLine("Done.");
 		}
 	}

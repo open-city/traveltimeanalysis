@@ -262,6 +262,7 @@ namespace OSM2Routing.Tests {
 		[Fact()]
 		public void OsmRoutingDBBuildRoutableOSMAddsAccessibleTags() {
 			RoadType acceptedRoad = new RoadType();
+			acceptedRoad.Speed = 50;
 			acceptedRoad.RequiredTags.Add(new OSMTag("highway", "*"));
 
 			//  <way id="101">
@@ -280,6 +281,29 @@ namespace OSM2Routing.Tests {
 			Assert.Equal(1, routable.Ways.Count);
 			Assert.Equal("yes", routable.Ways.Single().Tags["accessible"].Value);
 			Assert.Equal("no", routable.Ways.Single().Tags["accessible-reverse"].Value);
+		}
+
+		[Fact()]
+		public void OsmRoutingDBBuildRoutableOSMAddsSpeedTag() {
+			RoadType acceptedRoad = new RoadType();
+			acceptedRoad.Speed = 50;
+			acceptedRoad.RequiredTags.Add(new OSMTag("highway", "*"));
+
+			//  <way id="101">
+			//    <nd ref="1" />
+			//    <nd ref="2" />
+			//    <nd ref="3" />
+			//    <tag k="highway" v="residental" />
+			//		<tag k="oneway" v="yes" />
+			//  </way>
+
+			OSMRoutingDB target = new OSMRoutingDB();
+			target.Load(new RoadType[] { acceptedRoad }, new MemoryStream(TestData.osm_simple_way));
+
+			OSMDB routable = target.BuildRoutableOSM();
+
+			Assert.Equal(1, routable.Ways.Count);
+			Assert.Equal("50", routable.Ways.Single().Tags["speed"].Value);
 		}
 
 		class WayNodesComparer : IEqualityComparer<OSMWay> {

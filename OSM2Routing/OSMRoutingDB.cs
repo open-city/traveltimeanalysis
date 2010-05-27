@@ -110,6 +110,7 @@ namespace LK.OSM2Routing {
 			foreach (OSMRoad route in Ways) {
 				OSMWay segment = new OSMWay(counter--);
 				OSMTag wayIDTag = new OSMTag("way-id", route.ID.ToString());
+				OSMTag speedTag = new OSMTag("speed", route.RoadType.Speed.ToString());
 
 				string wayAccessibility = route.IsAccessible() ? "yes" : "no";
 				OSMTag wayAccessibilityTag = new OSMTag("accessible", wayAccessibility);
@@ -122,6 +123,7 @@ namespace LK.OSM2Routing {
 
 					if ((UsedNodes[route.Nodes[i]].Count > 1) && (i > 0) && (i < (route.Nodes.Count -1))) {
 						segment.Tags.Add(wayIDTag);
+						segment.Tags.Add(speedTag);
 						segment.Tags.Add(wayAccessibilityTag);
 						segment.Tags.Add(wayAccessibilityReverseTag);
 
@@ -133,6 +135,7 @@ namespace LK.OSM2Routing {
 				}
 
 				segment.Tags.Add(wayIDTag);
+				segment.Tags.Add(speedTag);
 				segment.Tags.Add(wayAccessibilityTag);
 				segment.Tags.Add(wayAccessibilityReverseTag);
 				result.Ways.Add(segment);
