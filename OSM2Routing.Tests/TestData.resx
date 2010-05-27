@@ -130,6 +130,9 @@
   <data name="osm_circular_with_other" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>TestData\osm-circular_with_other.osm;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="osm_simple_way" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\osm-simple_way.osm;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="osm_T_crossing" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>TestData\osm-T-crossing.osm;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>

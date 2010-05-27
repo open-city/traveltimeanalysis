@@ -48,6 +48,7 @@ namespace LK.OSM2Routing {
 			foreach (var roadTypeElement in root.Elements("route-type")) {
 				RoadType parsedType = new RoadType();
 				parsedType.Name = roadTypeElement.Attribute("name").Value;
+				parsedType.Speed = double.Parse(roadTypeElement.Attribute("speed").Value, System.Globalization.CultureInfo.InvariantCulture);
 
 				foreach (var tagElement in roadTypeElement.Elements("required-tag")) {
 					parsedType.RequiredTags.Add(new OSMTag(tagElement.Attribute("key").Value, tagElement.Attribute("value").Value));

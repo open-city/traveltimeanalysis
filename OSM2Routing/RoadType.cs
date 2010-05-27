@@ -13,6 +13,11 @@ namespace LK.OSM2Routing {
 		public string Name { get; set; }
 
 		/// <summary>
+		/// Gets or sets typical speed for this RoadType
+		/// </summary>
+		public double Speed { get; set; }
+
+		/// <summary>
 		/// Gets the list of required tags
 		/// </summary>
 		public List<OSMTag> RequiredTags { get; protected set; }

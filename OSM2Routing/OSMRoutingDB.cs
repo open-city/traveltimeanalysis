@@ -9,7 +9,7 @@ using System.IO;
 
 namespace LK.OSM2Routing {
 	/// <summary>
-	/// Represents a OSMDB, that's can load only ways matching specific RoadTypes
+	/// Represents a OSMDB that can save it's content id routing-friendly form
 	/// </summary>
 	public class OSMRoutingDB : OSMDB  {
 		Dictionary<int, List<int>> _usedNodes;
@@ -99,6 +99,10 @@ namespace LK.OSM2Routing {
 			}
 		}
 
+		/// <summary>
+		/// Splits ways at road crossings, check for oneway roads and save results in OSMDB
+		/// </summary>
+		/// <returns>OSMDB object with road segments and used nodes</returns>
 		public OSMDB BuildRoutableOSM() {
 			OSMDB result = new OSMDB();
 			int counter = -1;
@@ -107,11 +111,20 @@ namespace LK.OSM2Routing {
 				OSMWay segment = new OSMWay(counter--);
 				OSMTag wayIDTag = new OSMTag("way-id", route.ID.ToString());
 
+				string wayAccessibility = route.IsAccessible() ? "yes" : "no";
+				OSMTag wayAccessibilityTag = new OSMTag("accessible", wayAccessibility);
+
+				string wayAccessibilityReverse = route.IsAccessibleReverse() ? "yes" : "no";
+				OSMTag wayAccessibilityReverseTag = new OSMTag("accessible-reverse", wayAccessibilityReverse);
+
 				for (int i = 0; i < route.Nodes.Count; i++) {
 					segment.Nodes.Add(route.Nodes[i]);
 
 					if ((UsedNodes[route.Nodes[i]].Count > 1) && (i > 0) && (i < (route.Nodes.Count -1))) {
 						segment.Tags.Add(wayIDTag);
+						segment.Tags.Add(wayAccessibilityTag);
+						segment.Tags.Add(wayAccessibilityReverseTag);
+
 						result.Ways.Add(segment);
 
 						segment = new OSMWay(counter--);
@@ -120,6 +133,8 @@ namespace LK.OSM2Routing {
 				}
 
 				segment.Tags.Add(wayIDTag);
+				segment.Tags.Add(wayAccessibilityTag);
+				segment.Tags.Add(wayAccessibilityReverseTag);
 				result.Ways.Add(segment);
 			}
 

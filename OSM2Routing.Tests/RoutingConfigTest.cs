@@ -31,10 +31,10 @@ namespace OSM2Routing.Tests {
 		public void RoutingConfigLoadReadsRoadTypes() {
 			RoutingConfig target = new RoutingConfig();
 
-			//  <route-type name="residental>
+			//  <route-type name="residental"  speed="50">
 			//    <required-tag key="highway" value="residental" />
 			//  </route-type>
-			//  <route-type name="bad-track>
+			//  <route-type name="bad-track"  speed="20">
 			//    <required-tag key="highway" value="track" />
 			//    <required-tag key="grade" value="5" />
 			//  </route-type>
@@ -44,9 +44,11 @@ namespace OSM2Routing.Tests {
 			Assert.Equal(2, target.RoadTypes.Count);
 
 			Assert.Equal("residental", target.RoadTypes[0].Name);
+			Assert.Equal(50, target.RoadTypes[0].Speed);
 			Assert.Contains(new OSMTag("highway", "residental"), target.RoadTypes[0].RequiredTags);
 
 			Assert.Equal("bad-track", target.RoadTypes[1].Name);
+			Assert.Equal(20, target.RoadTypes[1].Speed);
 			Assert.Contains(new OSMTag("highway", "track"), target.RoadTypes[1].RequiredTags);
 			Assert.Contains(new OSMTag("grade", "5"), target.RoadTypes[1].RequiredTags);
 		}

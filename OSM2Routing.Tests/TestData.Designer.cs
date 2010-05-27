@@ -88,6 +88,13 @@ namespace OSM2Routing.Tests {
             }
         }
         
+        internal static byte[] osm_simple_way {
+            get {
+                object obj = ResourceManager.GetObject("osm_simple_way", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         internal static byte[] osm_T_crossing {
             get {
                 object obj = ResourceManager.GetObject("osm_T_crossing", resourceCulture);

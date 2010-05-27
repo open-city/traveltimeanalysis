@@ -80,6 +80,7 @@
     <None Include="TestData\config-wrong_root_element.config" />
     <None Include="TestData\osm-circular.osm" />
     <None Include="TestData\osm-circular_with_other.osm" />
+    <None Include="TestData\osm-simple_way.osm" />
     <None Include="TestData\osm-T-crossing.osm" />
     <None Include="TestData\osm-ways_various_tags.osm" />
     <None Include="TestData\osm-ways_with_nodes.osm" />
