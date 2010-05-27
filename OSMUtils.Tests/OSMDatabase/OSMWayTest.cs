@@ -11,12 +11,24 @@ namespace OSMUtils.Tests
 	
 	public class OSMWayTest {
 		[Fact()]
-		public void OSMWayConstructorInitializesProperties() {
+		public void OSMWayConstructorInitializesID() {
 			int id = 1374;
 			OSMWay target = new OSMWay(id);
 
 			Assert.Equal(id, target.ID);
 			Assert.NotNull(target.Nodes);
+		}
+
+		[Fact()]
+		public void OSMWayConstructorInitializesIDAndNodes() {
+			int id = 1374;
+			int[] nodes = new int[] { 1, 2, 3 };
+			OSMWay target = new OSMWay(id, nodes);
+
+			Assert.Equal(id, target.ID);
+			Assert.Equal(nodes[0], target.Nodes[0]);
+			Assert.Equal(nodes[1], target.Nodes[1]);
+			Assert.Equal(nodes[2], target.Nodes[2]);
 		}
 
 		[Fact()]

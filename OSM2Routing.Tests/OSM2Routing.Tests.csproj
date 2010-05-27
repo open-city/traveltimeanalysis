@@ -77,9 +77,12 @@
   <ItemGroup>
     <None Include="TestData\config-road_types.config" />
     <None Include="TestData\config-wrong_root_element.config" />
-    <None Include="TestData\osm-simple-crossing.osm" />
+    <None Include="TestData\osm-circular.osm" />
+    <None Include="TestData\osm-circular_with_other.osm" />
+    <None Include="TestData\osm-T-crossing.osm" />
     <None Include="TestData\osm-ways_various_tags.osm" />
     <None Include="TestData\osm-ways_with_nodes.osm" />
+    <None Include="TestData\osm-X-crossing.osm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

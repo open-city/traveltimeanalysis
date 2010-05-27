@@ -124,38 +124,137 @@ namespace OSM2Routing.Tests {
 
 
 		[Fact()]
-		public void OsmRoutingDBBuildRoutableOSMSplitsWaysAtCrossings() {
+		public void OsmRoutingDBBuildRoutableOSMSplitsWaysAtTCrossing() {
 			RoadType acceptedRoad = new RoadType();
 			acceptedRoad.RequiredTags.Add(new OSMTag("highway", "*"));
 
-			//<way id="101">
-			//  <nd ref="1" />
-			//  <nd ref="2" />
-			//  <nd ref="3" />
-			//  <tag k="highway" v="residental" />
-			//</way>
+			//  <way id="101">
+			//    <nd ref="1" />
+			//    <nd ref="2" />
+			//    <nd ref="3" />
+			//    <tag k="highway" v="residental" />
+			//  </way>
 
-			//<way id="102">
-			//  <nd ref="2" />
-			//  <nd ref="4" />
-			//  <tag k="highway" v="primary" />
-			//</way>
+			//  <way id="102">
+			//    <nd ref="2" />
+			//    <nd ref="4" />
+			//    <tag k="highway" v="primary" />
+			//  </way>
 
 			OSMRoutingDB target = new OSMRoutingDB();
-			target.Load(new RoadType[] { acceptedRoad }, new MemoryStream(TestData.osm_simple_crossing));
+			target.Load(new RoadType[] { acceptedRoad }, new MemoryStream(TestData.osm_T_crossing));
 
 			OSMDB routable = target.BuildRoutableOSM();
 
 			Assert.Equal(3, routable.Ways.Count);
-			Assert.True((routable.Ways[-1].Nodes[0] == 1 && routable.Ways[-1].Nodes[1] == 2) ||
-									(routable.Ways[-2].Nodes[0] == 1 && routable.Ways[-2].Nodes[1] == 2) ||
-									(routable.Ways[-3].Nodes[0] == 1 && routable.Ways[-3].Nodes[1] == 2));
-			Assert.True((routable.Ways[-1].Nodes[0] == 2 && routable.Ways[-1].Nodes[1] == 3) ||
-						      (routable.Ways[-2].Nodes[0] == 2 && routable.Ways[-2].Nodes[1] == 3) ||
-						      (routable.Ways[-3].Nodes[0] == 2 && routable.Ways[-3].Nodes[1] == 3));
-			Assert.True((routable.Ways[-1].Nodes[0] == 2 && routable.Ways[-1].Nodes[1] == 4) ||
-						      (routable.Ways[-2].Nodes[0] == 2 && routable.Ways[-2].Nodes[1] == 4) ||
-						      (routable.Ways[-3].Nodes[0] == 2 && routable.Ways[-3].Nodes[1] == 4));
+			Assert.Contains(new OSMWay(0, new int[] { 1, 2 }), routable.Ways, new WayNodesComparer());
+			Assert.Contains(new OSMWay(0, new int[] { 2, 3 }), routable.Ways, new WayNodesComparer());
+			Assert.Contains(new OSMWay(0, new int[] { 2, 4 }), routable.Ways, new WayNodesComparer());
+		}
+
+		[Fact()]
+		public void OsmRoutingDBBuildRoutableOSMSplitsWaysAtXCrossing() {
+			RoadType acceptedRoad = new RoadType();
+			acceptedRoad.RequiredTags.Add(new OSMTag("highway", "*"));
+
+			//  <way id="101">
+			//    <nd ref="1" />
+			//    <nd ref="2" />
+			//    <nd ref="3" />
+			//    <tag k="highway" v="residental" />
+			//  </way>
+
+			//  <way id="102">
+			//    <nd ref="5" />
+			//    <nd ref="2" />
+			//    <nd ref="4" />
+			//    <tag k="highway" v="primary" />
+			//  </way>
+
+			OSMRoutingDB target = new OSMRoutingDB();
+			target.Load(new RoadType[] { acceptedRoad }, new MemoryStream(TestData.osm_X_crossing));
+
+			OSMDB routable = target.BuildRoutableOSM();
+
+			Assert.Equal(4, routable.Ways.Count);
+			Assert.Contains(new OSMWay(0, new int[] { 1, 2 }), routable.Ways, new WayNodesComparer());
+			Assert.Contains(new OSMWay(0, new int[] { 2, 3 }), routable.Ways, new WayNodesComparer());
+			Assert.Contains(new OSMWay(0, new int[] { 5, 2 }), routable.Ways, new WayNodesComparer());
+			Assert.Contains(new OSMWay(0, new int[] { 2, 4 }), routable.Ways, new WayNodesComparer());
+		}
+
+		[Fact()]
+		public void OsmRoutingDBBuildRoutableOSMHandlesCircularWays() {
+			RoadType acceptedRoad = new RoadType();
+			acceptedRoad.RequiredTags.Add(new OSMTag("highway", "*"));
+
+			//  <way id="101">
+			//    <nd ref="1" />
+			//    <nd ref="2" />
+			//    <nd ref="3" />
+			//    <nd ref="4" />
+			//    <nd ref="1" />
+			//    <tag k="highway" v="residental" />
+			//  </way>
+
+			OSMRoutingDB target = new OSMRoutingDB();
+			target.Load(new RoadType[] { acceptedRoad }, new MemoryStream(TestData.osm_circular));
+
+			OSMDB routable = target.BuildRoutableOSM();
+
+			Assert.Equal(1, routable.Ways.Count);
+			Assert.Contains(new OSMWay(0, new int[] { 1, 2, 3, 4, 1 }), routable.Ways, new WayNodesComparer());
+		}
+
+		[Fact()]
+		public void OsmRoutingDBBuildRoutableOSMSplitCircularWays() {
+			RoadType acceptedRoad = new RoadType();
+			acceptedRoad.RequiredTags.Add(new OSMTag("highway", "*"));
+
+			//  <way id="101">
+			//    <nd ref="1" />
+			//    <nd ref="2" />
+			//    <nd ref="3" />
+			//    <nd ref="4" />
+			//    <nd ref="1" />
+			//    <tag k="highway" v="residental" />
+			//  </way>
+
+			//  <way id="102">
+			//    <nd ref="3" />
+			//    <nd ref="5" />
+			//    <tag k="highway" v="residental" />
+			//  </way>
+
+			OSMRoutingDB target = new OSMRoutingDB();
+			target.Load(new RoadType[] { acceptedRoad }, new MemoryStream(TestData.osm_circular_with_other));
+
+			OSMDB routable = target.BuildRoutableOSM();
+
+			Assert.Equal(3, routable.Ways.Count);
+			Assert.Contains(new OSMWay(0, new int[] { 1, 2, 3 }), routable.Ways, new WayNodesComparer());
+			Assert.Contains(new OSMWay(0, new int[] { 3, 4, 1 }), routable.Ways, new WayNodesComparer());
+			Assert.Contains(new OSMWay(0, new int[] { 3, 5 }), routable.Ways, new WayNodesComparer());
+		}
+
+		class WayNodesComparer : IEqualityComparer<OSMWay> {
+			public bool Equals(OSMWay x, OSMWay y) {
+				if (x.Nodes.Count == y.Nodes.Count) {
+					for (int i = 0; i < x.Nodes.Count; i++) {
+						if (x.Nodes[i] != y.Nodes[i]) {
+							return false;
+						}
+					}
+
+					return true;
+				}
+
+				return false;
+			}
+
+			public int GetHashCode(OSMWay obj) {
+				throw new NotImplementedException();
+			}
 		}
 	}
 }

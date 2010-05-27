@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<osm>
+	<node id="1" lat="0" lon="0" />
+	<node id="2" lat="0" lon="0" />
+	<node id="3" lat="0" lon="0" />
+	<node id="4" lat="0" lon="0" />
+	<node id="5" lat="0" lon="0" />
+
+	<way id="101">
+		<nd ref="1" />
+		<nd ref="2" />
+		<nd ref="3" />
+		<nd ref="4" />
+		<nd ref="1" />
+		<tag k="highway" v="residental" />
+	</way>
+
+	<way id="102">
+		<nd ref="3" />
+		<nd ref="5" />
+		<tag k="highway" v="residental" />
+	</way>
+</osm>

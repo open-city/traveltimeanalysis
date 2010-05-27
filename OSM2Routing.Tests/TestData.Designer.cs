@@ -74,9 +74,23 @@ namespace OSM2Routing.Tests {
             }
         }
         
-        internal static byte[] osm_simple_crossing {
+        internal static byte[] osm_circular {
             get {
-                object obj = ResourceManager.GetObject("osm_simple_crossing", resourceCulture);
+                object obj = ResourceManager.GetObject("osm_circular", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] osm_circular_with_other {
+            get {
+                object obj = ResourceManager.GetObject("osm_circular_with_other", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] osm_T_crossing {
+            get {
+                object obj = ResourceManager.GetObject("osm_T_crossing", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -91,6 +105,13 @@ namespace OSM2Routing.Tests {
         internal static byte[] osm_ways_with_nodes {
             get {
                 object obj = ResourceManager.GetObject("osm_ways_with_nodes", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] osm_X_crossing {
+            get {
+                object obj = ResourceManager.GetObject("osm_X_crossing", resourceCulture);
                 return ((byte[])(obj));
             }
         }

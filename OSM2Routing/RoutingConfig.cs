@@ -44,6 +44,7 @@ namespace LK.OSM2Routing {
 				throw new XmlException("Wrong root element, expected <routng-config>");
 			}
 
+			// Parses route-type element
 			foreach (var roadTypeElement in root.Elements("route-type")) {
 				RoadType parsedType = new RoadType();
 				parsedType.Name = roadTypeElement.Attribute("name").Value;

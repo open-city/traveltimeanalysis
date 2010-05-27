@@ -124,13 +124,22 @@
   <data name="config_wrong_root_element" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>TestData\config-wrong_root_element.config;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="osm_simple_crossing" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>TestData\osm-simple-crossing.osm;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="osm_circular" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\osm-circular.osm;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="osm_circular_with_other" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\osm-circular_with_other.osm;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="osm_T_crossing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\osm-T-crossing.osm;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="osm_ways_various_tags" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>TestData\osm-ways_various_tags.osm;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="osm_ways_with_nodes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>TestData\osm-ways_with_nodes.osm;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="osm_X_crossing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\osm-X-crossing.osm;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

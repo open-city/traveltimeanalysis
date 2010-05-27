@@ -19,6 +19,16 @@ namespace LK.OSMUtils.OSMDatabase {
 				_nodes = new List<int>();
 		}
 
+		/// <summary>
+		/// Creates a new OSMWay with the scpecific ID and list of nodes
+		/// </summary>
+		/// <param name="id">ID of the OSMWay.</param>
+		/// <param name="nodes">Nodes of this OSMWay</param>
+		public OSMWay(int id, IList<int> nodes)
+			: base(id) {
+			_nodes = new List<int>(nodes);
+		}
+
 		protected List<int> _nodes;
 		/// <summary>
 		/// Gets list of node IDs, that forms the way
