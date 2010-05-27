@@ -12,11 +12,15 @@ namespace LK.OSM2Routing {
 			RoadType acceptedRoad = new RoadType();
 			acceptedRoad.RequiredTags.Add(new OSMTag("highway", "*"));
 
+			DateTime start = DateTime.Now;
+
 			OSMRoutingDB target = new OSMRoutingDB();
-			target.Load(new RoadType[] { acceptedRoad }, "C:\\temp\\test-orig.osm");
+			target.Load(new RoadType[] { acceptedRoad }, "C:\\temp\\czech_republic.osm");
 
 			OSMDB routable = target.BuildRoutableOSM();
 			routable.Save("C:\\temp\\test-segments.osm");
+
+			Console.WriteLine(DateTime.Now - start);
 			Console.WriteLine("Done.");
 		}
 	}

@@ -142,7 +142,14 @@ namespace LK.OSM2Routing {
 			}
 
 			foreach (OSMNode node in Nodes) {
-				result.Nodes.Add(node);
+				OSMNode newNode = new OSMNode(node.ID, node.Latitude, node.Longitude);
+				if (node.Tags.ContainsTag("junction")) {
+					newNode.Tags.Add(node.Tags["junction"]);
+				}
+				if (node.Tags.ContainsTag("highway")) {
+					newNode.Tags.Add(node.Tags["highway"]);
+				}
+				result.Nodes.Add(newNode);
 			}
 
 			return result;
