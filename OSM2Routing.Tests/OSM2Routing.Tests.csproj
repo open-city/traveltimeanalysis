@@ -47,6 +47,7 @@
     <Compile Include="OSMRoutingDBTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoadTypeTest.cs" />
+    <Compile Include="RoutingConfigTest.cs" />
     <Compile Include="TestData.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -74,6 +75,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="TestData\config-road_types.config" />
+    <None Include="TestData\config-wrong_root_element.config" />
     <None Include="TestData\osm-simple-crossing.osm" />
     <None Include="TestData\osm-ways_various_tags.osm" />
     <None Include="TestData\osm-ways_with_nodes.osm" />
