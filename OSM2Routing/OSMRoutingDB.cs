@@ -11,7 +11,10 @@ namespace LK.OSM2Routing {
 	/// <summary>
 	/// Represents a OSMDB that can save it's content id routing-friendly form
 	/// </summary>
-	public class OSMRoutingDB : OSMDB  {
+	public class OSMRoutingDB {
+		OSMDB _storage;
+		IEnumerable<RoadType> _acceptedRoads;
+
 		Dictionary<int, List<int>> _usedNodes;
 		/// <summary>
 		/// Gets the used nodes and ways that contains them
@@ -22,14 +25,30 @@ namespace LK.OSM2Routing {
 			}
 		}
 
-		IEnumerable<RoadType> _acceptedRoads;
+		/// <summary>
+		/// Gets the collection of OSMNodes
+		/// </summary>
+		public OSMObjectCollection<OSMNode> Nodes {
+			get {
+				return _storage.Nodes;
+			}
+		}
+
+		/// <summary>
+		/// Gets the collection of OSMWays
+		/// </summary>
+		public OSMObjectCollection<OSMWay> Ways {
+			get {
+				return _storage.Ways;
+			}
+		}
 
 		/// <summary>
 		/// Creates a new instance of the OSMFIlteredDB
 		/// </summary>
-		public OSMRoutingDB()
-			: base() {
-				_usedNodes = new Dictionary<int, List<int>>();
+		public OSMRoutingDB() {
+			_storage = new OSMDB();
+			_usedNodes = new Dictionary<int, List<int>>();
 		}
 
 		/// <summary>
@@ -70,7 +89,7 @@ namespace LK.OSM2Routing {
 			foreach (RoadType road in _acceptedRoads) {
 				if (road.Match(way)) {
 					ExtractUsedNodes(way);
-					Ways.Add(new OSMRoad(way, road));
+					_storage.Ways.Add(new OSMRoad(way, road));
 				}
 			}
 		}
@@ -81,7 +100,7 @@ namespace LK.OSM2Routing {
 		/// <param name="node">The node read form the OSM file</param>
 		void NodeRead(OSMNode node) {
 			if (_usedNodes.ContainsKey(node.ID)) {
-				Nodes.Add(node);
+				_storage.Nodes.Add(node);
 			}
 		}
 
@@ -107,7 +126,7 @@ namespace LK.OSM2Routing {
 			OSMDB result = new OSMDB();
 			int counter = -1;
 
-			foreach (OSMRoad route in Ways) {
+			foreach (OSMRoad route in _storage.Ways) {
 				OSMWay segment = new OSMWay(counter--);
 				OSMTag wayIDTag = new OSMTag("way-id", route.ID.ToString());
 				OSMTag speedTag = new OSMTag("speed", route.RoadType.Speed.ToString());
@@ -121,7 +140,7 @@ namespace LK.OSM2Routing {
 				for (int i = 0; i < route.Nodes.Count; i++) {
 					segment.Nodes.Add(route.Nodes[i]);
 
-					if ((UsedNodes[route.Nodes[i]].Count > 1) && (i > 0) && (i < (route.Nodes.Count -1))) {
+					if ((UsedNodes[route.Nodes[i]].Count > 1) && (i > 0) && (i < (route.Nodes.Count - 1))) {
 						segment.Tags.Add(wayIDTag);
 						segment.Tags.Add(speedTag);
 						segment.Tags.Add(wayAccessibilityTag);
@@ -141,7 +160,7 @@ namespace LK.OSM2Routing {
 				result.Ways.Add(segment);
 			}
 
-			foreach (OSMNode node in Nodes) {
+			foreach (OSMNode node in _storage.Nodes) {
 				OSMNode newNode = new OSMNode(node.ID, node.Latitude, node.Longitude);
 				if (node.Tags.ContainsTag("junction")) {
 					newNode.Tags.Add(node.Tags["junction"]);

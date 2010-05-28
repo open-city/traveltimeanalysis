@@ -23,30 +23,24 @@ namespace LK.OSMUtils.OSMDatabase {
 		/// Loads OSM entities from the specific OSM file
 		/// </summary>
 		/// <param name="filename">Path to the OSM file</param>
-		public void Load(string filename) {
-            using(FileStream fs = new FileStream(filename, FileMode.Open)) {
-                this.Load(fs);
-            }
-            //OSMXmlDataReader xmlReader = new OSMXmlDataReader();
-            //xmlReader.NodeRead += new OSMNodeReadHandler(node => _nodes.Add(node));
-            //xmlReader.WayRead += new OSMWayReadHandler(way => _ways.Add(way));
-            //xmlReader.RelationRead += new OSMRelationReadHandler(relation => _relations.Add(relation));
-
-            //xmlReader.Read(filename);
+		public virtual void Load(string filename) {
+			using (FileStream fs = new FileStream(filename, FileMode.Open)) {
+				this.Load(fs);
+			}
 		}
 
-        /// <summary>
-        /// Loads OSM entities from the specific Stream
-        /// </summary>
-        /// <param name="stream">Stream with the OSM file</param>
-        public void Load(Stream stream) {
-            OSMXmlDataReader xmlReader = new OSMXmlDataReader();
-            xmlReader.NodeRead += new OSMNodeReadHandler(node => _nodes.Add(node));
-            xmlReader.WayRead += new OSMWayReadHandler(way => _ways.Add(way));
-            xmlReader.RelationRead += new OSMRelationReadHandler(relation => _relations.Add(relation));
+		/// <summary>
+		/// Loads OSM entities from the specific Stream
+		/// </summary>
+		/// <param name="stream">Stream with the OSM file</param>
+		public virtual void Load(Stream stream) {
+			OSMXmlDataReader xmlReader = new OSMXmlDataReader();
+			xmlReader.NodeRead += new OSMNodeReadHandler(node => _nodes.Add(node));
+			xmlReader.WayRead += new OSMWayReadHandler(way => _ways.Add(way));
+			xmlReader.RelationRead += new OSMRelationReadHandler(relation => _relations.Add(relation));
 
-            xmlReader.Read(stream);
-        }
+			xmlReader.Read(stream);
+		}
 
 		/// <summary>
 		/// Saves OSM Database to the specific OSM file
@@ -54,32 +48,32 @@ namespace LK.OSMUtils.OSMDatabase {
 		/// <param name="filename">Path to the OSM file</param>
 		public void Save(string filename) {
 			using (FileStream fs = new FileStream(filename, FileMode.Create)) {
-                this.Save(fs);
+				this.Save(fs);
 			}
 		}
 
-        /// <summary>
-        /// Saves OSM Database to the specific Stream
-        /// </summary>
-        /// <param name="stream">Stream to to save OSM database</param>
-        public void Save(Stream stream) {
-            using (OSMXmlDataWriter writer = new OSMXmlDataWriter(stream)) {
+		/// <summary>
+		/// Saves OSM Database to the specific Stream
+		/// </summary>
+		/// <param name="stream">Stream to to save OSM database</param>
+		public void Save(Stream stream) {
+			using (OSMXmlDataWriter writer = new OSMXmlDataWriter(stream)) {
 
-                foreach (var node in _nodes) {
-                    writer.WriteNode(node);
-                }
+				foreach (var node in _nodes) {
+					writer.WriteNode(node);
+				}
 
-                foreach (var way in _ways) {
-                    writer.WriteWay(way);
-                }
+				foreach (var way in _ways) {
+					writer.WriteWay(way);
+				}
 
-                foreach (var relation in _relations) {
-                    writer.WriteRelation(relation);
-                }
+				foreach (var relation in _relations) {
+					writer.WriteRelation(relation);
+				}
 
-                writer.Close();
-            }
-        }
+				writer.Close();
+			}
+		}
 
 		protected OSMObjectCollection<OSMNode> _nodes;
 		/// <summary>
