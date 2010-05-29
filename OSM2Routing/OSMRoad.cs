@@ -7,13 +7,20 @@ using LK.OSMUtils.OSMDatabase;
 
 namespace LK.OSM2Routing {
 	/// <summary>
-	/// Represent an OSMWay with that is used for building OSMRoutngDB
+	/// Represent an OSMWay with that is used for building OSMRoutingDB
 	/// </summary>
 	public class OSMRoad : OSMWay {
+		private const double MphConversionFactor = 1.609;
 		/// <summary>
 		/// Gets or sets RouteType for this way
 		/// </summary>
 		public RoadType RoadType { get; set; }
+
+		/// <summary>
+		/// Gets or sets typical speed for this road
+		/// </summary>
+		/// <remarks>Value is in kph.</remarks>
+		public double Speed { get; set; }
 
 		/// <summary>
 		/// Creates a new instance of the OSMRoute
@@ -33,6 +40,21 @@ namespace LK.OSM2Routing {
 			_nodes = new List<int>(way.Nodes);
 
 			RoadType = roadType;
+
+			Speed = RoadType.Speed;
+
+			if (Tags.ContainsTag("maxspeed")) {
+				string[] chunks = Tags["maxspeed"].Value.Split(' ');
+				double numericSpeed = 0;
+				if (double.TryParse(chunks[0], out numericSpeed)) {
+					if (chunks.Length == 2 && chunks[1] == "mph") {
+						Speed = numericSpeed * MphConversionFactor;
+					}
+					else {
+						Speed = numericSpeed;
+					}
+				}
+			}
 		}
 
 		/// <summary>

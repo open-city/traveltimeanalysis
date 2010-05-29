@@ -35,6 +35,68 @@ namespace OSM2Routing.Tests {
 		}
 
 		[Fact()]
+		public void OSMRouteConstructorSetsSpeedPropertyFromRoadTypeSpeed() {
+			OSMWay source = new OSMWay(11);
+
+			RoadType sourceType = new RoadType();
+			sourceType.Speed = 60;
+
+			OSMRoad target = new OSMRoad(source, sourceType);
+
+			Assert.Equal(60, target.Speed);
+		}
+
+		[Fact()]
+		public void OSMRouteConstructorSetsSpeedPropertyFromMaxSpeedTag() {
+			OSMWay source = new OSMWay(11);
+			source.Tags.Add(new OSMTag("maxspeed", "50"));
+
+			RoadType sourceType = new RoadType();
+
+			OSMRoad target = new OSMRoad(source, sourceType);
+
+			Assert.Equal(50, target.Speed);
+		}
+
+		[Fact()]
+		public void OSMRouteConstructorSetsSpeedPropertyConvertsFromMph() {
+			OSMWay source = new OSMWay(11);
+			source.Tags.Add(new OSMTag("maxspeed", "50 mph"));
+
+			RoadType sourceType = new RoadType();
+
+			OSMRoad target = new OSMRoad(source, sourceType);
+
+			Assert.Equal(50 * 1.609, target.Speed);
+		}
+
+		[Fact()]
+		public void OSMRouteConstructorSetsSpeedPropertyMaxspeedTagTakesPrecedenceOverRoadTypeSpeed() {
+			OSMWay source = new OSMWay(11);
+			source.Tags.Add(new OSMTag("maxspeed", "50"));
+
+			RoadType sourceType = new RoadType();
+			sourceType.Speed = 60;
+
+			OSMRoad target = new OSMRoad(source, sourceType);
+
+			Assert.Equal(50, target.Speed);
+		}
+
+		[Fact()]
+		public void OSMRouteConstructorSetsSpeedPropertyIgnoresInvalidMaxspeedTags() {
+			OSMWay source = new OSMWay(11);
+			source.Tags.Add(new OSMTag("maxspeed", "some value"));
+
+			RoadType sourceType = new RoadType();
+			sourceType.Speed = 60;
+
+			OSMRoad target = new OSMRoad(source, sourceType);
+
+			Assert.Equal(60, target.Speed);
+		}
+
+		[Fact()]
 		public void RoadTypeIsAccessibleAndIsAccessibleReturnsCorrectValuesForNonOnewayRoads() {
 			RoadType roadType = new RoadType();
 			roadType.RequiredTags.Add(new OSMTag("highway", "*"));

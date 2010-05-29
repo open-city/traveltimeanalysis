@@ -129,7 +129,7 @@ namespace LK.OSM2Routing {
 			foreach (OSMRoad route in _storage.Ways) {
 				OSMWay segment = new OSMWay(counter--);
 				OSMTag wayIDTag = new OSMTag("way-id", route.ID.ToString());
-				OSMTag speedTag = new OSMTag("speed", route.RoadType.Speed.ToString());
+				OSMTag speedTag = new OSMTag("speed", route.Speed.ToString());
 
 				string wayAccessibility = route.IsAccessible() ? "yes" : "no";
 				OSMTag wayAccessibilityTag = new OSMTag("accessible", wayAccessibility);
