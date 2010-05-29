@@ -41,7 +41,7 @@ namespace LK.OSM2Routing {
 		/// <returns>true if the road is accessible in backward direction, otherwise returns false</returns>
 		public bool IsAccessibleReverse() {
 			if (Tags.ContainsTag("oneway") == false) {
-				return true;
+				return !RoadType.Oneway;
 			}
 			else {
 				if (Tags["oneway"].Value == "yes" || Tags["oneway"].Value == "1" || Tags["oneway"].Value == "true") {

@@ -40,8 +40,8 @@ namespace LK.OSM2Routing {
 			XDocument doc = XDocument.Load(new StreamReader(input));
 			XElement root = doc.Root;
 
-			if (root.Name != "routng-config") {
-				throw new XmlException("Wrong root element, expected <routng-config>");
+			if (root.Name != "routing-config") {
+				throw new XmlException("Wrong root element, expected <routing-config>");
 			}
 
 			// Parses route-type element
@@ -49,6 +49,9 @@ namespace LK.OSM2Routing {
 				RoadType parsedType = new RoadType();
 				parsedType.Name = roadTypeElement.Attribute("name").Value;
 				parsedType.Speed = double.Parse(roadTypeElement.Attribute("speed").Value, System.Globalization.CultureInfo.InvariantCulture);
+				if (roadTypeElement.Attribute("oneway") != null) {
+					parsedType.Oneway = roadTypeElement.Attribute("oneway").Value == "yes";
+				}
 
 				foreach (var tagElement in roadTypeElement.Elements("required-tag")) {
 					parsedType.RequiredTags.Add(new OSMTag(tagElement.Attribute("key").Value, tagElement.Attribute("value").Value));

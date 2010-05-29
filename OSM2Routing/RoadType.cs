@@ -23,6 +23,11 @@ namespace LK.OSM2Routing {
 		public List<OSMTag> RequiredTags { get; protected set; }
 
 		/// <summary>
+		/// Gets or sets value that indicates whether rody is one way by default
+		/// </summary>
+		public bool Oneway { get; set; }
+
+		/// <summary>
 		/// Creates a new instance of RoadType object
 		/// </summary>
 		public RoadType() {

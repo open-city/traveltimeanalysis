@@ -60,6 +60,13 @@ namespace OSM2Routing.Tests {
             }
         }
         
+        internal static byte[] config_oneway {
+            get {
+                object obj = ResourceManager.GetObject("config_oneway", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         internal static byte[] config_road_types {
             get {
                 object obj = ResourceManager.GetObject("config_road_types", resourceCulture);

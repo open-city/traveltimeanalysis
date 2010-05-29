@@ -52,5 +52,34 @@ namespace OSM2Routing.Tests {
 			Assert.Contains(new OSMTag("highway", "track"), target.RoadTypes[1].RequiredTags);
 			Assert.Contains(new OSMTag("grade", "5"), target.RoadTypes[1].RequiredTags);
 		}
+
+		[Fact()]
+		public void RoutingConfigLoadReadsOptionalOnewayAttribute() {
+			RoutingConfig target = new RoutingConfig();
+
+			//  <route-type name="residental" speed="50">
+			//    <required-tag key="highway" value="residental" />
+			//  </route-type>
+	
+			//  <route-type name="trunk"  speed="20" oneway="yes">
+			//    <required-tag key="highway" value="trunk" />
+			//  </route-type>
+
+			//  <route-type name="trunk"  speed="20" oneway="no">
+			//    <required-tag key="highway" value="trunk" />
+			//  </route-type>
+
+			//  <route-type name="trunk"  speed="20" oneway="other-value">
+			//    <required-tag key="highway" value="trunk" />
+			//  </route-type>
+
+			target.Load(new MemoryStream(TestData.config_oneway));
+
+			Assert.Equal(4, target.RoadTypes.Count);
+			Assert.Equal(false, target.RoadTypes[0].Oneway);
+			Assert.Equal(true, target.RoadTypes[1].Oneway);
+			Assert.Equal(false, target.RoadTypes[2].Oneway);
+			Assert.Equal(false, target.RoadTypes[3].Oneway);
+		}
 	}
 }

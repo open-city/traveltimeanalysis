@@ -175,5 +175,45 @@ namespace OSM2Routing.Tests {
 			Assert.False(target2.IsAccessible());
 			Assert.True(target2.IsAccessibleReverse());
 		}
+
+		[Fact()]
+		public void RoadTypeIsAccessibleReverseAppliesDefaultOnewayValueFromRoadType() {
+			RoadType roadType = new RoadType();
+			roadType.Oneway = true;
+
+			OSMWay oneWay = new OSMWay(0);
+			OSMRoad target = new OSMRoad(oneWay, roadType);
+
+			Assert.Equal(true, target.IsAccessible());
+			Assert.Equal(false, target.IsAccessibleReverse());
+		}
+
+		[Fact()]
+		public void RoadTypeIsAccessibleReverseAppliesOnewayTagOverridesDefaultValueForRoadType() {
+			RoadType roadType = new RoadType();
+			roadType.Oneway = true;
+
+			OSMWay way = new OSMWay(0);
+			way.Tags.Add(new OSMTag("oneway", "no"));
+
+			OSMRoad target = new OSMRoad(way, roadType);
+
+			Assert.Equal(true, target.IsAccessible());
+			Assert.Equal(true, target.IsAccessibleReverse());
+		}
+
+		[Fact()]
+		public void RoadTypeIsAccessibleReverseAppliesOnewayTagOverridesDefaultValueForRoadType2() {
+			RoadType roadType = new RoadType();
+			roadType.Oneway = false;
+
+			OSMWay way = new OSMWay(0);
+			way.Tags.Add(new OSMTag("oneway", "yes"));
+
+			OSMRoad target = new OSMRoad(way, roadType);
+
+			Assert.Equal(true, target.IsAccessible());
+			Assert.Equal(false, target.IsAccessibleReverse());
+		}
 	}
 }

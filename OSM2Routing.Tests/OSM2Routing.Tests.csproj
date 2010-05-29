@@ -75,7 +75,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="TestData\config-default_access.config" />
+    <None Include="TestData\config-oneway.config" />
     <None Include="TestData\config-road_types.config" />
     <None Include="TestData\config-wrong_root_element.config" />
     <None Include="TestData\osm-circular.osm" />
