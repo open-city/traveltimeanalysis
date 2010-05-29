@@ -7,7 +7,7 @@ using LK.OSMUtils.OSMDatabase;
 
 namespace LK.OSM2Routing {
 	/// <summary>
-	/// Extends OSMWay with RoadType property
+	/// Represent an OSMWay with that is used for building OSMRoutngDB
 	/// </summary>
 	public class OSMRoad : OSMWay {
 		/// <summary>

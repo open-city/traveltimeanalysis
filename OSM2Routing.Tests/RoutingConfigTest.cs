@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
+using System.IO;
 
 using Xunit;
 
 using LK.OSM2Routing;
 using LK.OSMUtils.OSMDatabase;
-
-using System.Xml;
-using System.IO;
 
 namespace OSM2Routing.Tests {
 	public class RoutingConfigTest {

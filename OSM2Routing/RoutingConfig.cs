@@ -10,7 +10,7 @@ using LK.OSMUtils.OSMDatabase;
 
 namespace LK.OSM2Routing {
 	/// <summary>
-	/// Represents the config file with parameters for processing OSM to routable OSM
+	/// Encaptlates config parameters for processing OSM to routable OSM
 	/// </summary>
 	public class RoutingConfig {
 		public List<RoadType> RoadTypes { get; protected set; }

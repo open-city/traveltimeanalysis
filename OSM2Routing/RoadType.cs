@@ -6,6 +6,9 @@ using System.Text;
 using LK.OSMUtils.OSMDatabase;
 
 namespace LK.OSM2Routing {
+	/// <summary>
+	/// Represent the type of the road and it's characteristic properties
+	/// </summary>
 	public class RoadType {
 		/// <summary>
 		/// Gets or sets the name of this RoadType
@@ -18,12 +21,12 @@ namespace LK.OSM2Routing {
 		public double Speed { get; set; }
 
 		/// <summary>
-		/// Gets the list of required tags
+		/// Gets the list of required tags that OSMWay must have to match this RoadType
 		/// </summary>
 		public List<OSMTag> RequiredTags { get; protected set; }
 
 		/// <summary>
-		/// Gets or sets value that indicates whether rody is one way by default
+		/// Gets or sets value that indicates whether the road is oneway by default
 		/// </summary>
 		public bool Oneway { get; set; }
 

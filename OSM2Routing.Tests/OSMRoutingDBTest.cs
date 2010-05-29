@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 using Xunit;
 
 using LK.OSMUtils.OSMDatabase;
 using LK.OSM2Routing;
-using System.IO;
 
 namespace OSM2Routing.Tests {
 	public class OSMRoutingDBTest {

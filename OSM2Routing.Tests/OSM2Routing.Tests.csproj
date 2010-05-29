@@ -43,7 +43,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OSMRouteTest.cs" />
+    <Compile Include="OSMRoadTest.cs" />
     <Compile Include="OSMRoutingDBTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RoadTypeTest.cs" />

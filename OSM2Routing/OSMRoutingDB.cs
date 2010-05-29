@@ -9,7 +9,7 @@ using System.IO;
 
 namespace LK.OSM2Routing {
 	/// <summary>
-	/// Represents a OSMDB that can save it's content id routing-friendly form
+	/// Represents a OSMDB that can save it's content in routing-friendly form
 	/// </summary>
 	public class OSMRoutingDB {
 		OSMDB _storage;
@@ -162,6 +162,8 @@ namespace LK.OSM2Routing {
 
 			foreach (OSMNode node in _storage.Nodes) {
 				OSMNode newNode = new OSMNode(node.ID, node.Latitude, node.Longitude);
+
+				// preserve junction and highway tags on nodes
 				if (node.Tags.ContainsTag("junction")) {
 					newNode.Tags.Add(node.Tags["junction"]);
 				}
