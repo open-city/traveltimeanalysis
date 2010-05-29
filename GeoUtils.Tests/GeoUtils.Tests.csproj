@@ -43,10 +43,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalculationsTest.cs" />
     <Compile Include="Geometry\BBoxTest.cs" />
     <Compile Include="Geometry\PointGeoTest.cs" />
     <Compile Include="Geometry\PolygonTest.cs" />
     <Compile Include="Geometry\PolylineTest.cs" />
+    <Compile Include="GreatCircleDistanceCalculatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

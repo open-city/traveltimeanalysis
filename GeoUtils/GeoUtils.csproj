@@ -8,7 +8,7 @@
     <ProjectGuid>{BD5FFBEC-D5F0-4168-9976-258ADDB39AE9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GeoUtils</RootNamespace>
+    <RootNamespace>LK.GeoUtils</RootNamespace>
     <AssemblyName>GeoUtils</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -44,6 +44,8 @@
     <Compile Include="Geometry\PointGeo.cs" />
     <Compile Include="Geometry\Polygon.cs" />
     <Compile Include="Geometry\Polyline.cs" />
+    <Compile Include="GreatCircleDistanceCalculator.cs" />
+    <Compile Include="IDistanceCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

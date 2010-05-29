@@ -6,14 +6,23 @@ namespace LK.GeoUtils.Geometry {
 	/// <summary>
 	/// Represents a polyline defined by IPointGeo objects
 	/// </summary>
-	public class Polyline<T> : IPolyline<T> where T : IPointGeo  {
+	public class Polyline<T> : IPolyline, IPolyline<T> where T : IPointGeo  {
 		protected List<T> _nodes;
 
 		/// <summary>
 		/// Gets the list of nodes of this polyline
 		/// </summary>
+		/// <remarks>Implements generic IPolyline interface</remarks>
 		public IList<T> Nodes {
 			get { return _nodes; }
+		}
+
+		/// <summary>
+		/// Gets the list of nodes of this polyline
+		/// </summary>
+		/// <remarks>Implements non-generic IPolyline interface</remarks>
+		IList<IPointGeo> IPolyline.Nodes {
+			get { return (IList<IPointGeo>)_nodes; }
 		}
 
 		/// <summary>
