@@ -60,6 +60,13 @@ namespace OSM2Routing.Tests {
             }
         }
         
+        internal static byte[] config_missing_version {
+            get {
+                object obj = ResourceManager.GetObject("config_missing_version", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         internal static byte[] config_oneway {
             get {
                 object obj = ResourceManager.GetObject("config_oneway", resourceCulture);
@@ -77,6 +84,13 @@ namespace OSM2Routing.Tests {
         internal static byte[] config_wrong_root_element {
             get {
                 object obj = ResourceManager.GetObject("config_wrong_root_element", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] config_wrong_version {
+            get {
+                object obj = ResourceManager.GetObject("config_wrong_version", resourceCulture);
                 return ((byte[])(obj));
             }
         }

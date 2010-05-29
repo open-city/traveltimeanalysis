@@ -75,8 +75,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="TestData\config-missing-version.config" />
     <None Include="TestData\config-oneway.config" />
     <None Include="TestData\config-road_types.config" />
+    <None Include="TestData\config-wrong-version.config" />
     <None Include="TestData\config-wrong_root_element.config" />
     <None Include="TestData\osm-circular.osm" />
     <None Include="TestData\osm-circular_with_other.osm" />

@@ -28,6 +28,20 @@ namespace OSM2Routing.Tests {
 		}
 
 		[Fact()]
+		public void RoutingConfigLoadThrowsExceptionForConfigWithOtherVersionThan1() {
+			RoutingConfig target = new RoutingConfig();
+
+			Assert.Throws<XmlException>(delegate { target.Load(new MemoryStream(TestData.config_wrong_version)); });
+		}
+
+		[Fact()]
+		public void RoutingConfigLoadThrowsExceptionForConfigWithMissingVersionAttribute() {
+			RoutingConfig target = new RoutingConfig();
+
+			Assert.Throws<XmlException>(delegate { target.Load(new MemoryStream(TestData.config_missing_version)); });
+		}
+
+		[Fact()]
 		public void RoutingConfigLoadReadsRoadTypes() {
 			RoutingConfig target = new RoutingConfig();
 

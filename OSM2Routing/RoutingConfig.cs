@@ -44,6 +44,10 @@ namespace LK.OSM2Routing {
 				throw new XmlException("Wrong root element, expected <routing-config>");
 			}
 
+			if(root.Attribute("version") == null || root.Attribute("version").Value != "1.0") {
+				throw new XmlException("Wrong root element, expected <routing-config>");			
+			}
+
 			// Parses route-type element
 			foreach (var roadTypeElement in root.Elements("route-type")) {
 				RoadType parsedType = new RoadType();
