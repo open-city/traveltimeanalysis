@@ -46,6 +46,7 @@
     <Compile Include="GPXDocumentTest.cs" />
     <Compile Include="GPXPointTest.cs" />
     <Compile Include="GPXRouteTest.cs" />
+    <Compile Include="GPXSegmentTest.cs" />
     <Compile Include="GPXTrackTest.cs" />
     <Compile Include="GPXTrackSegmentTest.cs" />
     <Compile Include="GPXXmlDataReaderTest.cs" />

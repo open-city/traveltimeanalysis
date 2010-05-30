@@ -50,6 +50,7 @@
     <Compile Include="Geometry\PolylineTest.cs" />
     <Compile Include="GreatCircleDistanceCalculatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SegmentTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GeoUtils\GeoUtils.csproj">

@@ -47,6 +47,7 @@
     <Compile Include="GPXDocument.cs" />
     <Compile Include="GPXPoint.cs" />
     <Compile Include="GPXRoute.cs" />
+    <Compile Include="GPXSegment.cs" />
     <Compile Include="GPXTrack.cs" />
     <Compile Include="GPXTrackSegment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -44,6 +44,7 @@
     <Compile Include="Geometry\PointGeo.cs" />
     <Compile Include="Geometry\Polygon.cs" />
     <Compile Include="Geometry\Polyline.cs" />
+    <Compile Include="Geometry\Segment.cs" />
     <Compile Include="GreatCircleDistanceCalculator.cs" />
     <Compile Include="IDistanceCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
