@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using LK.GeoUtils.Geometry;
+using System.Collections;
 
 namespace LK.GeoUtils {
 	/// <summary>
@@ -41,6 +42,24 @@ namespace LK.GeoUtils {
 			}
 
 			return length;
+		}
+
+		/// <summary>
+		/// Calculate average position from series of points
+		/// </summary>
+		/// <param name="point">The collection of points used to compute average position</param>
+		/// <returns>The average position of points</returns>
+		public static PointGeo Averaging(IEnumerable points) {
+			int count = 0;
+			double lat = 0, lon = 0;
+
+			foreach (IPointGeo point in points) {
+				lat += point.Latitude;
+				lon += point.Longitude;
+				count++;
+			}
+
+			return new PointGeo(lat / count, lon / count);
 		}
 	}
 }
