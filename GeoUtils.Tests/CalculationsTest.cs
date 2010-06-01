@@ -39,5 +39,49 @@ namespace GeoUtils.Tests {
 
 			Assert.True(error < 0.1);
 		}
+
+		[Fact()]
+		public void CalculationsGetDistanceReturnsDistanceFromLineSegmentForPointProjetedToSegment() {
+			PointGeo orgin = new PointGeo(1, 1);
+			PointGeo end = new PointGeo(2, 2);
+			Segment<IPointGeo> segment = new Segment<IPointGeo>(orgin, end);
+
+			PointGeo testPoint = new PointGeo(1, 2);
+
+			Assert.Equal(Calculations.GetDistance2D(testPoint, new PointGeo(1.5,1.5)), Calculations.GetDistance2D(testPoint, segment));
+		}
+
+		[Fact()]
+		public void CalculationsGetDistanceReturnsDistanceFromSegmentEndForPointProjetedOutsideSegment() {
+			PointGeo orgin = new PointGeo(1, 1);
+			PointGeo end = new PointGeo(2, 2);
+			Segment<IPointGeo> segment = new Segment<IPointGeo>(orgin, end);
+
+			PointGeo testPoint1 = new PointGeo(0, 0);
+			PointGeo testPoint2 = new PointGeo(2, 3);
+
+			Assert.Equal(Calculations.GetDistance2D(testPoint1, new PointGeo(1, 1)), Calculations.GetDistance2D(testPoint1, segment));
+			Assert.Equal(Calculations.GetDistance2D(testPoint2, new PointGeo(2, 2)), Calculations.GetDistance2D(testPoint2, segment));
+		}
+
+		[Fact()]
+		public void CalculationsGetDistanceReturnsDistanceFromPolyline() {
+			PointGeo pt1 = new PointGeo(1, 1);
+			PointGeo pt2 = new PointGeo(2, 2);
+			PointGeo pt3 = new PointGeo(2, 3);
+
+			Polyline<IPointGeo> line = new Polyline<IPointGeo>();
+			line.Nodes.Add(pt1);
+			line.Nodes.Add(pt2);
+			line.Nodes.Add(pt3);
+
+			PointGeo testPoint1 = new PointGeo(2, 1);
+			PointGeo testPoint2 = new PointGeo(2, 2.5);
+			PointGeo testPoint3 = new PointGeo(1, 3.5);
+
+			Assert.Equal(Calculations.GetDistance2D(testPoint1, new PointGeo(1.5, 1.5)), Calculations.GetDistance2D(testPoint1, line));
+			Assert.Equal(0, Calculations.GetDistance2D(testPoint2, line));
+			Assert.Equal(Calculations.GetDistance2D(testPoint3, new PointGeo(2, 3)), Calculations.GetDistance2D(testPoint3, line));
+		}
 	}
 }

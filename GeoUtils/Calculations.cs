@@ -30,6 +30,35 @@ namespace LK.GeoUtils {
 		}
 
 		/// <summary>
+		/// Calculates distance of the point from the segment
+		/// </summary>
+		/// <param name="point">The point</param>
+		/// <param name="segment">The segment</param>
+		/// <returns>the distance of point from the segment in meters</returns>
+		public static double GetDistance2D(IPointGeo point, Segment<IPointGeo> segment) {
+			PointGeo projectedPoint = Topology.ProjectPoint(point, segment);
+			return _distanceCalculator.Calculate2D(point, projectedPoint);
+		}
+
+		/// <summary>
+		/// Calculates distance of the point from the line
+		/// </summary>
+		/// <param name="point">The point</param>
+		/// <param name="line">The line</param>
+		/// <returns>the distane of the point from the line in meters</returns>
+		public static double GetDistance2D(IPointGeo point, IPolyline<IPointGeo> line) {
+			double minDistance = double.PositiveInfinity;
+
+			for (int i = 0; i < line.NodesCount -1; i++) {
+				Segment<IPointGeo> segment = new Segment<IPointGeo>(line.Nodes[i], line.Nodes[i + 1]);
+				PointGeo projectedPoint = Topology.ProjectPoint(point, segment);
+				minDistance = Math.Min(minDistance, _distanceCalculator.Calculate2D(point, projectedPoint));
+			}
+
+			return minDistance;
+		}
+
+		/// <summary>
 		/// Calculates length of the specific polyline
 		/// </summary>
 		/// <param name="line">The line to be measured</param>
@@ -45,10 +74,10 @@ namespace LK.GeoUtils {
 		}
 
 		/// <summary>
-		/// Calculate average position from series of points
+		/// Calculate average position of the group of points
 		/// </summary>
 		/// <param name="point">The collection of points used to compute average position</param>
-		/// <returns>The average position of points</returns>
+		/// <returns>point with average position of group of points</returns>
 		public static PointGeo Averaging(IEnumerable points) {
 			int count = 0;
 			double lat = 0, lon = 0;
