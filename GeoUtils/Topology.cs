@@ -25,5 +25,25 @@ namespace LK.GeoUtils {
 
 			return new PointGeo(lat, lon);
 		}
+
+		/// <summary>
+		/// Tests whether two BBoxes have non-empty intersection 
+		/// </summary>
+		/// <param name="bbox1">First BBox</param>
+		/// <param name="bbox2">Second BBox</param>
+		/// <returns>true if bbox have non-empty intersection, otherwise returns false</returns>
+		public static bool Intersects(BBox bbox1, BBox bbox2) {
+			foreach (PointGeo corner in bbox1.Corners) {
+				if (bbox2.IsInside(corner))
+					return true;
+			}
+
+			foreach (PointGeo corner in bbox2.Corners) {
+				if (bbox1.IsInside(corner))
+					return true;
+			}
+
+			return false;
+		}
 	}
 }

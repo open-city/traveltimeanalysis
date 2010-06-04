@@ -105,5 +105,25 @@ namespace LK.GeoUtils.Geometry {
 						 point.Longitude <= _east && point.Longitude >= _west &&
 						 point.Elevation <= _maxElevation && point.Elevation >= _minElevation;
 		}
+
+		/// <summary>
+		/// Inflates bbox around it's center
+		/// </summary>
+		/// <param name="deg">Number of degrees</param>
+		public void Inflate(double deg) {
+			this.initialized = true;
+
+			_south -= deg;
+			_north += deg;
+			_east += deg;
+			_west -= deg;
+		}
+
+		public PointGeo[] Corners {
+			get {
+				return new PointGeo[] {new PointGeo(North, West), new PointGeo(North, East),
+															 new PointGeo(South, East), new PointGeo(South, West)};
+			}
+		}
 	}
 }

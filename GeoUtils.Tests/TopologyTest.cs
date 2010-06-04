@@ -85,5 +85,32 @@ namespace GeoUtils.Tests {
 			Assert.Equal(testPointExpected1, Topology.ProjectPoint(testPoint1, segment));
 			Assert.Equal(testPointExpected2, Topology.ProjectPoint(testPoint2, segment));
 		}
+
+		[Fact()]
+		public void IntersectsReturnsTrueForIntercestiongBBoxes() {
+			BBox bbox1 = new BBox() { North = 1, South = -1, East = 1, West = -1 };
+			BBox bbox2 = new BBox() { North = 1.5, South = 0.5, East = 1.5, West = 0.5 };
+
+			Assert.True(Topology.Intersects(bbox1, bbox2));
+			Assert.True(Topology.Intersects(bbox2, bbox1));
+		}
+
+		[Fact()]
+		public void IntersectsReturnsFalseForNonIntercestiongBBoxes() {
+			BBox bbox1 = new BBox() { North = 1, South = -1, East = 1, West = -1 };
+			BBox bbox2 = new BBox() { North = 1.5, South = 1.1, East = 1.5, West = 1.1 };
+
+			Assert.False(Topology.Intersects(bbox1, bbox2));
+			Assert.False(Topology.Intersects(bbox2, bbox1));
+		}
+
+		[Fact()]
+		public void IntersectsReturnsTrueForBBoxInsideLargerOne() {
+			BBox large = new BBox() { North = 1, South = -1, East = 1, West = -1 };
+			BBox small = new BBox() { North = 0.5, South = -0.5, East = 0.5, West = -0.5 };
+
+			Assert.True(Topology.Intersects(large, small));
+			Assert.True(Topology.Intersects(small, large));
+		}
 	}
 }

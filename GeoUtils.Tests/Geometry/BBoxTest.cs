@@ -95,5 +95,34 @@ namespace GeoUtils.Tests {
 			Assert.False(target.IsInside(pTestLon), "Longitude");
 			Assert.False(target.IsInside(pTestEle), "Elevation");
 		}
+
+		[Fact()]
+		public void BBoxInflateIncreasesBBoxSize() {
+			PointGeo p1 = new PointGeo(15, 10, -100);
+			PointGeo p2 = new PointGeo(-15, -10, 1000);
+			
+			BBox target = new BBox(new IPointGeo[] { p1, p2 });
+			target.Inflate(1.0);
+
+			Assert.Equal(16, target.North);
+			Assert.Equal(-16, target.South);
+			Assert.Equal(11, target.East);
+			Assert.Equal(-11, target.West);
+		}
+
+		[Fact()]
+		public void BBoxCornersReturnsCorners() {
+			BBox target = new BBox() { North = 10, South = 8, East = 9, West = 7 };
+
+			PointGeo corner1 = new PointGeo(10, 9);
+			PointGeo corner2 = new PointGeo(10, 7);
+			PointGeo corner3 = new PointGeo(8, 9);
+			PointGeo corner4 = new PointGeo(8, 7);
+
+			Assert.Contains(corner1, target.Corners);
+			Assert.Contains(corner2, target.Corners);
+			Assert.Contains(corner3, target.Corners);
+			Assert.Contains(corner4, target.Corners);
+		}
 	}
 }
