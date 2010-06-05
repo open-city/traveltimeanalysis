@@ -107,6 +107,16 @@ namespace LK.GeoUtils.Geometry {
 		}
 
 		/// <summary>
+		/// Tests if the specific point is inside this BBox
+		/// </summary>
+		/// <param name="point">The point to be tested</param>
+		/// <returns>True if the point is inside this BBox or on the boundary of this BBox otherwise returns false</returns>
+		public bool IsInside2D(IPointGeo point) {
+			return point.Latitude <= _north && point.Latitude >= _south &&
+						 point.Longitude <= _east && point.Longitude >= _west;
+		}
+
+		/// <summary>
 		/// Inflates bbox around it's center
 		/// </summary>
 		/// <param name="deg">Number of degrees</param>

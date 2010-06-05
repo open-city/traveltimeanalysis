@@ -20,6 +20,7 @@ namespace LK.MatchGPX2OSM {
 			get {
 				if (_bbox == null) {
 					_bbox = new BBox(Nodes);
+					_bbox.Inflate(0.0014);
 				}
 				return _bbox;
 			}

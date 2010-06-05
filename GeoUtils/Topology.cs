@@ -26,6 +26,9 @@ namespace LK.GeoUtils {
 			return new PointGeo(lat, lon);
 		}
 
+			static double ToRadians(double angle) {
+				return angle * Math.PI / 180;
+			}
 		/// <summary>
 		/// Tests whether two BBoxes have non-empty intersection 
 		/// </summary>
