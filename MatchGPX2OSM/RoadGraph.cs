@@ -29,12 +29,20 @@ namespace LK.MatchGPX2OSM {
 			}
 		}
 
+		private List<ConnectionGeometry> _connectionGeometries;
+		public IEnumerable<ConnectionGeometry> ConnectionGeometries {
+			get {
+				return _connectionGeometries;
+			}
+		}
+
 		/// <summary>
 		/// Creates a new RoadGraph
 		/// </summary>
 		public RoadGraph() {
 			_nodes = new Dictionary<int, Node>();
 			_connections = new List<Connection>();
+			_connectionGeometries = new List<ConnectionGeometry>();
 		}
 
 		/// <summary>
@@ -49,24 +57,28 @@ namespace LK.MatchGPX2OSM {
 				double speed = double.Parse(segment.Tags["speed"].Value, System.Globalization.CultureInfo.InvariantCulture);
 				int wayId = int.Parse(segment.Tags["way-id"].Value, System.Globalization.CultureInfo.InvariantCulture);
 
-				Polyline<IPointGeo> geometry = new Polyline<IPointGeo>();
+				ConnectionGeometry geometry = new ConnectionGeometry();
+				geometry.WayID = wayId;
 				foreach (var n in segment.Nodes) {
 					OSMNode mapPoint = map.Nodes[n];
 					geometry.Nodes.Add(new PointGeo(mapPoint.Latitude, mapPoint.Longitude));
 				}
+				_connectionGeometries.Add(geometry);
 
 				if (segment.Tags["accessible"].Value == "yes") {
-					Connection sc = new Connection(start, end) { Speed = speed, Geometry = geometry, ID = wayId };
+					Connection sc = new Connection(start, end) { Speed = speed, Geometry = geometry };
 					start.AddConnection(sc);
 					end.AddConnection(sc);
+					geometry.Connections.Add(sc);
 
 					_connections.Add(sc);
 				}
 
 				if (segment.Tags["accessible-reverse"].Value == "yes") {
-					Connection sc = new Connection(end, start) { Speed = speed, Geometry = geometry, ID = wayId };
+					Connection sc = new Connection(end, start) { Speed = speed, Geometry = geometry };
 					start.AddConnection(sc);
 					end.AddConnection(sc);
+					geometry.Connections.Add(sc);
 
 					_connections.Add(sc);
 				}

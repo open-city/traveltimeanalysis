@@ -31,18 +31,13 @@ namespace LK.MatchGPX2OSM {
 		public Node To { get; set; }
 
 		/// <summary>
-		/// Gets or sets IPolyline object representing geometry of the connection
+		/// 
 		/// </summary>
-		public IPolyline<IPointGeo> Geometry { get; set; }
+		public ConnectionGeometry Geometry { get; set; }
 
 		/// <summary>
 		/// Gets or sets maximal speed on this connection
 		/// </summary>
 		public double Speed { get; set; }
-
-		/// <summary>
-		/// Gets or sets ID
-		/// </summary>
-		public int ID { get; set; }
 	}
 }

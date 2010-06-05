@@ -45,5 +45,21 @@ namespace LK.GeoUtils {
 
 			return false;
 		}
+
+		public static PointGeo ProjectPoint(IPointGeo point, IPolyline<IPointGeo> line) {
+			double minDiatance = double.PositiveInfinity;
+			PointGeo closestPoint = new PointGeo();
+
+			for (int i = 0; i < line.Nodes.Count -1; i++) {
+				PointGeo projected = ProjectPoint(point, new Segment<IPointGeo>(line.Nodes[i], line.Nodes[i + 1]));
+				double distance = Calculations.GetDistance2D(point, projected);
+				if (distance < minDiatance) {
+					minDiatance = distance;
+					closestPoint = projected;
+				}
+			}
+
+			return closestPoint;
+		}
 	}
 }

@@ -43,7 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CandidatePoint.cs" />
+    <Compile Include="CandidatesGraph.cs" />
     <Compile Include="Connection.cs" />
+    <Compile Include="ConnectionGeometry.cs" />
     <Compile Include="NDesk.Options.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
