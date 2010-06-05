@@ -5,7 +5,10 @@ using System.Text;
 
 using NDesk.Options;
 
-namespace MatchGPX2OSM {
+using LK.OSMUtils.OSMDatabase;
+using LK.GPXUtils;
+
+namespace LK.MatchGPX2OSM {
 	class Program {
 		static void Main(string[] args) {
 			string osmPath = "";
@@ -36,6 +39,20 @@ namespace MatchGPX2OSM {
 				return;
 			}
 
+			Console.Write("Loading OSM file ...");
+			OSMDB map = new OSMDB();
+			map.Load(osmPath);
+			Console.WriteLine("\t\tDone.");
+
+			Console.Write("Building RoadGraph ...");
+			RoadGraph graph = new RoadGraph();
+			graph.BuildGraph(map);
+			Console.WriteLine("\t\tDone.");
+
+			Console.Write("Loading GPS track ...");
+			GPXDocument gpx = new GPXDocument();
+			gpx.Load(gpxPath);
+			Console.WriteLine("\t\tDone.");
 
 		}
 
