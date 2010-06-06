@@ -26,9 +26,6 @@ namespace LK.GeoUtils {
 			return new PointGeo(lat, lon);
 		}
 
-			static double ToRadians(double angle) {
-				return angle * Math.PI / 180;
-			}
 		/// <summary>
 		/// Tests whether two BBoxes have non-empty intersection 
 		/// </summary>
@@ -36,17 +33,7 @@ namespace LK.GeoUtils {
 		/// <param name="bbox2">Second BBox</param>
 		/// <returns>true if bbox have non-empty intersection, otherwise returns false</returns>
 		public static bool Intersects(BBox bbox1, BBox bbox2) {
-			foreach (PointGeo corner in bbox1.Corners) {
-				if (bbox2.IsInside(corner))
-					return true;
-			}
-
-			foreach (PointGeo corner in bbox2.Corners) {
-				if (bbox1.IsInside(corner))
-					return true;
-			}
-
-			return false;
+			return !(bbox2.West > bbox1.East || bbox2.East < bbox1.West || bbox2.South > bbox1.North || bbox2.North < bbox1.South);
 		}
 
 		public static PointGeo ProjectPoint(IPointGeo point, IPolyline<IPointGeo> line) {

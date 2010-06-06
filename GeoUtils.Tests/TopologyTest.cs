@@ -112,5 +112,20 @@ namespace GeoUtils.Tests {
 			Assert.True(Topology.Intersects(large, small));
 			Assert.True(Topology.Intersects(small, large));
 		}
+
+		[Fact()]
+		public void IntersectsReturnsTrueForIntersectingBBoxesCrossShape() {
+			//    ___
+			//   |   |
+			//  _|___|__
+			// |_|___|__|
+			//   |___|
+
+			BBox bbox1 = new BBox() { North = 4, South = 0, East = 3, West = 1};
+			BBox bbox2 = new BBox() { North = 2, South = 1, East = 4, West = 0};
+
+			Assert.True(Topology.Intersects(bbox1, bbox2));
+			Assert.True(Topology.Intersects(bbox2, bbox1));
+		}
 	}
 }

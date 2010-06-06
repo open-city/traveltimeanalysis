@@ -124,5 +124,7 @@ namespace GeoUtils.Tests {
 			Assert.Contains(corner3, target.Corners);
 			Assert.Contains(corner4, target.Corners);
 		}
+
+
 	}
 }
