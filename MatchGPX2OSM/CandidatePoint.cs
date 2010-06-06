@@ -6,7 +6,7 @@ using System.Text;
 using LK.GeoUtils.Geometry;
 
 namespace LK.MatchGPX2OSM {
-	public struct CandidatePoint : IPointGeo {
+	public class CandidatePoint : IPointGeo {
 		/// <summary>
 		/// Gets or sets latitude of this point (north - positive value, south - negative value)
 		/// </summary>
@@ -25,5 +25,13 @@ namespace LK.MatchGPX2OSM {
 		public ConnectionGeometry Road { get; set; }
 
 		public double ObservationProbability { get; set; }
+
+		public List<CandidatesConection> OutgoingConnections { get; private set; }
+		public List<CandidatesConection> IncomingConnections { get; private set; }
+
+		public CandidatePoint() {
+			OutgoingConnections = new List<CandidatesConection>();
+			IncomingConnections = new List<CandidatesConection>();
+		}
 	}
 }

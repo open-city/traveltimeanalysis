@@ -25,5 +25,11 @@ namespace LK.MatchGPX2OSM {
 				return _bbox;
 			}
 		}
+
+		public IEnumerable<Segment<IPointGeo>> GetSegments() {
+			for (int i = 0; i < Nodes.Count -1; i++) {
+				yield return new Segment<IPointGeo>(Nodes[i], Nodes[i + 1]);
+			}
+		}
 	}
 }
