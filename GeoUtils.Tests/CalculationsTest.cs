@@ -83,5 +83,19 @@ namespace GeoUtils.Tests {
 			Assert.Equal(0, Calculations.GetDistance2D(testPoint2, line));
 			Assert.Equal(Calculations.GetDistance2D(testPoint3, new PointGeo(2, 3)), Calculations.GetDistance2D(testPoint3, line));
 		}
+
+		[Fact()]
+		public void ToDegreesReturnsAngleInDegrees() {
+			double angle = Math.PI / 4;
+
+			Assert.Equal(45, Calculations.ToDegrees(angle));
+		}
+
+		[Fact()]
+		public void ToRadiansReturnsAngleInRadians() {
+			double angle = 45;
+
+			Assert.Equal(Math.PI / 4, Calculations.ToRadians(angle));
+		}
 	}
 }

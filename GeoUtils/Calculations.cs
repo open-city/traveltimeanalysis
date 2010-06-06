@@ -10,6 +10,8 @@ namespace LK.GeoUtils {
 	/// Encapsulates various geographic calculations
 	/// </summary>
 	public static class Calculations {
+		public const double EarthRadius = 6371010.0;
+
 		static IDistanceCalculator _distanceCalculator;
 
 		/// <summary>
@@ -89,6 +91,24 @@ namespace LK.GeoUtils {
 			}
 
 			return new PointGeo(lat / count, lon / count);
+		}
+
+		/// <summary>
+		/// Converts angle in degrees to radians
+		/// </summary>
+		/// <param name="angle">The angle in degrees</param>
+		/// <returns>The angle in radians</returns>
+		public static double ToRadians(double angle) {
+			return angle * Math.PI / 180;
+		}
+
+		/// <summary>
+		/// Convevrts angle in radians to degrees
+		/// </summary>
+		/// <param name="angle">The angle in radians</param>
+		/// <returns>The angle in radians</returns>
+		public static double ToDegrees(double angle) {
+			return angle * 180 / Math.PI;
 		}
 	}
 }

@@ -127,5 +127,61 @@ namespace GeoUtils.Tests {
 			Assert.True(Topology.Intersects(bbox1, bbox2));
 			Assert.True(Topology.Intersects(bbox2, bbox1));
 		}
+
+		[Fact()]
+		public void ProjectPointBearingDistanceReturnsCorrectResults1() {
+			double angleEps = 0.000001;
+			double distanceEps = 0.1;
+
+			// north
+			PointGeo testPoint = new PointGeo(12, 34);
+			PointGeo target = Topology.ProjectPoint(testPoint, 0, 1000);
+
+			Assert.InRange(target.Longitude, testPoint.Longitude - angleEps, testPoint.Longitude + angleEps);
+			Assert.True(target.Latitude > testPoint.Latitude);
+			Assert.InRange(Calculations.GetDistance2D(testPoint, target), 1000 - distanceEps, 1000 + distanceEps);
+		}
+
+		[Fact()]
+		public void ProjectPointBearingDistanceReturnsCorrectResults2() {
+			double angleEps = 0.000001;
+			double distanceEps = 0.1;
+
+			// east
+			PointGeo testPoint = new PointGeo(12, 34);
+			PointGeo target = Topology.ProjectPoint(testPoint, 90, 1000);
+
+			Assert.InRange(target.Latitude, testPoint.Latitude - angleEps, testPoint.Latitude + angleEps);
+			Assert.True(target.Longitude > testPoint.Longitude);
+			Assert.InRange(Calculations.GetDistance2D(testPoint, target), 1000 - distanceEps, 1000 + distanceEps);
+		}
+
+		[Fact()]
+		public void ProjectPointBearingDistanceReturnsCorrectResults3() {
+			double angleEps = 0.000001;
+			double distanceEps = 0.1;
+
+			// south
+			PointGeo testPoint = new PointGeo(12, 34);
+			PointGeo target = Topology.ProjectPoint(testPoint, 180, 1000);
+
+			Assert.InRange(target.Longitude, testPoint.Longitude - angleEps, testPoint.Longitude + angleEps);
+			Assert.True(target.Latitude < testPoint.Latitude);
+			Assert.InRange(Calculations.GetDistance2D(testPoint, target), 1000 - distanceEps, 1000 + distanceEps);
+		}
+
+		[Fact()]
+		public void ProjectPointBearingDistanceReturnsCorrectResults4() {
+			double angleEps = 0.000001;
+			double distanceEps = 0.1;
+
+			// west
+			PointGeo testPoint = new PointGeo(12, 34);
+			PointGeo target = Topology.ProjectPoint(testPoint, 270, 1000);
+
+			Assert.InRange(target.Latitude, testPoint.Latitude - angleEps, testPoint.Latitude + angleEps);
+			Assert.True(target.Longitude < testPoint.Longitude);
+			Assert.InRange(Calculations.GetDistance2D(testPoint, target), 1000 - distanceEps, 1000 + distanceEps);
+		}
 	}
 }
