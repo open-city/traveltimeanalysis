@@ -11,6 +11,7 @@ namespace LK.GeoUtils {
 	/// </summary>
 	public static class Calculations {
 		public const double EarthRadius = 6371010.0;
+		const double epsLength = 0.01;
 
 		static IDistanceCalculator _distanceCalculator;
 
@@ -61,18 +62,75 @@ namespace LK.GeoUtils {
 		}
 
 		/// <summary>
+		/// Calculates length of the pathe between two points along the specific segment
+		/// </summary>
+		/// <param name="from">The point where path starts</param>
+		/// <param name="to">The point where path ends</param>
+		/// <param name="path">Segment that defines path geometry</param>
+		/// <returns>The length of the path between points from and to along the segment</returns>
+		public static double GetPathLength(IPointGeo from, IPointGeo to, Segment<IPointGeo> path) {
+			return Calculations.GetDistance2D(from, to);
+		}
+
+
+		/// <summary>
+		/// Calculates length of the pathe between two points along the specific segment
+		/// </summary>
+		/// <param name="from">The point where path starts</param>
+		/// <param name="to">The point where path ends</param>
+		/// <param name="path">Polyline that defines path geometry</param>
+		/// <returns>The length of the path between points from and to along the polyline</returns>
+		public static double GetPathLength(IPointGeo from, IPointGeo to, IPolyline<IPointGeo> path) {
+			var segments = path.Segments;
+
+			int pointFound = 0;
+			bool fromFound = false; bool toFound = false;
+			double distance = 0;
+			foreach (var segment in path.Segments) {
+				IPointGeo[] points = new IPointGeo[] { segment.StartPoint, segment.EndPoint };
+
+				if (!fromFound && Calculations.GetDistance2D(from, segment) < epsLength) {
+					fromFound = true;
+					points[pointFound++] = from;
+				}
+
+				if (!toFound && Calculations.GetDistance2D(to, segment) < epsLength) {
+					toFound = true;
+					points[pointFound++] = to;
+				}
+
+				if (pointFound > 0) {
+					distance += Calculations.GetDistance2D(points[0], points[1]);
+					if (pointFound == 2)
+						return distance;
+				}
+			}
+
+			throw new ArgumentException("One or more points do not lie on the given path");
+		}
+
+		/// <summary>
 		/// Calculates length of the specific polyline
 		/// </summary>
 		/// <param name="line">The line to be measured</param>
 		/// <returns>length of the line in meters</returns>
-		public static double GetLength(IPolyline line) {
+		public static double GetLength(IPolyline<IPointGeo> line) {
 			double length = 0;
-			
-			for (int i = 0; i < line.NodesCount -1; i++) {
-				length += Calculations.GetDistance2D(line.Nodes[i], line.Nodes[i + 1]);				
+
+			foreach (var segment in line.Segments) {
+				length += GetLength(segment);
 			}
 
 			return length;
+		}
+
+		/// <summary>
+		/// Calculates length of the specific line segment
+		/// </summary>
+		/// <param name="segment">The line segment to be measured</param>
+		/// <returns>length of the line segment in meters</returns>
+		public static double GetLength(Segment<IPointGeo> segment) {
+			return Calculations.GetDistance2D(segment.StartPoint, segment.EndPoint);
 		}
 
 		/// <summary>

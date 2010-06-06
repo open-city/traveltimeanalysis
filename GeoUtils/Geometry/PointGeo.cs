@@ -44,5 +44,13 @@ namespace LK.GeoUtils.Geometry {
 			Longitude = lon;
 			Elevation = elevation;
 		}
+
+		/// <summary>
+		/// Returns string representation of this point
+		/// </summary>
+		/// <returns></returns>
+		public override string ToString() {
+			return string.Format("lat: {0:F4} lon: {1:F4}", Latitude, Longitude);
+		}
 	}
 }

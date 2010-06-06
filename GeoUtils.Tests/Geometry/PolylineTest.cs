@@ -41,5 +41,28 @@ namespace GeoUtils.Tests {
 
 			Assert.Equal(2, target.NodesCount);
 		}
+
+		[Fact()]
+		public void PolylineSegmentsReturnsListOfSegments() {
+			PointGeo pt1 = new PointGeo(1, 2);
+			PointGeo pt2 = new PointGeo(3, 4);
+			PointGeo pt3 = new PointGeo(5, 6);
+
+			Polyline<IPointGeo> target = new Polyline<IPointGeo>();
+			target.Nodes.Add(pt1);
+			target.Nodes.Add(pt2);
+			target.Nodes.Add(pt3);
+
+			IList<Segment<IPointGeo>> segments = target.Segments;
+
+			Assert.Equal(2, segments.Count);
+
+			Assert.Equal(pt1, segments[0].StartPoint);
+			Assert.Equal(pt2, segments[0].EndPoint);
+
+			Assert.Equal(pt2, segments[1].StartPoint);
+			Assert.Equal(pt3, segments[1].EndPoint);
+		}
+
 	}
 }

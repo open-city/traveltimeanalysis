@@ -13,6 +13,11 @@ namespace LK.GeoUtils.Geometry {
 		IList<T> Nodes { get; }
 
 		/// <summary>
+		/// Gets segments of this polyline
+		/// </summary>
+		IList<Segment<T>> Segments { get; }
+
+		/// <summary>
 		/// Gets nodes count
 		/// </summary>
 		int NodesCount { get; }

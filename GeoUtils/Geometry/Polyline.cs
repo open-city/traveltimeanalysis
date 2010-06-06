@@ -18,6 +18,28 @@ namespace LK.GeoUtils.Geometry {
 		}
 
 		/// <summary>
+		/// Gets the list of segment of this polyline
+		/// </summary>
+		/// <remarks>List isn't cached, it is built every time it is requested</remarks>
+		public IList<Segment<T>> Segments {
+			get {
+				return GetSegments();
+			}
+		}
+
+		/// <summary>
+		/// Builds list of segments of this polyline
+		/// </summary>
+		/// <returns>List of segments of this polyline</returns>
+		protected List<Segment<T>> GetSegments() {
+			List<Segment<T>> result = new List<Segment<T>>();
+			for (int i = 0; i < Nodes.Count -1; i++) {
+				result.Add(new Segment<T>(Nodes[i], Nodes[i + 1]));
+			}
+
+			return result;
+		}
+		/// <summary>
 		/// Gets the list of nodes of this polyline
 		/// </summary>
 		/// <remarks>Implements non-generic IPolyline interface</remarks>
@@ -25,6 +47,7 @@ namespace LK.GeoUtils.Geometry {
 			get { return (IList<IPointGeo>)_nodes; }
 		}
 
+	
 		/// <summary>
 		/// Gets nodes count
 		/// </summary>
