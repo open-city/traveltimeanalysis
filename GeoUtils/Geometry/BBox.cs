@@ -117,16 +117,17 @@ namespace LK.GeoUtils.Geometry {
 		}
 
 		/// <summary>
-		/// Inflates bbox around it's center
+		/// Inflates this bbox by specific amout of degrees
 		/// </summary>
-		/// <param name="deg">Number of degrees</param>
-		public void Inflate(double deg) {
+		/// <param name="dLat">Extension in latitudal direction</param>
+		/// <param name="dLon">Extension in longitudal direction</param>
+		public void Inflate(double dLat, double dLon) {
 			this.initialized = true;
 
-			_south -= deg;
-			_north += deg;
-			_east += deg;
-			_west -= deg;
+			North += dLat;
+			South -= dLat;
+			East += dLon;
+			West -= dLon;
 		}
 
 		public PointGeo[] Corners {

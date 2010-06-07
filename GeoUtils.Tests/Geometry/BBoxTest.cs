@@ -2,15 +2,10 @@
 using System;
 using Xunit;
 
+using LK.GeoUtils;
+
 namespace GeoUtils.Tests {
-
-
-	/// <summary>
-	///This is a test class for BBoxTest and is intended
-	///to contain all BBoxTest Unit Tests
-	///</summary>
-	
-	public class BBoxTest {
+		public class BBoxTest {
 		[Fact()]
 		public void BBoxExtendToCoverInflatesBBox() {
 			PointGeo p1 = new PointGeo(12.1, 18.3, 100);
@@ -98,16 +93,17 @@ namespace GeoUtils.Tests {
 
 		[Fact()]
 		public void BBoxInflateIncreasesBBoxSize() {
-			PointGeo p1 = new PointGeo(15, 10, -100);
-			PointGeo p2 = new PointGeo(-15, -10, 1000);
+			PointGeo p1 = new PointGeo(1, 0);
+			PointGeo p2 = new PointGeo(0, 1);
 			
 			BBox target = new BBox(new IPointGeo[] { p1, p2 });
-			target.Inflate(1.0);
 
-			Assert.Equal(16, target.North);
-			Assert.Equal(-16, target.South);
-			Assert.Equal(11, target.East);
-			Assert.Equal(-11, target.West);
+			target.Inflate(0.1, 0.2);
+				
+			Assert.Equal(1.1, target.North);
+			Assert.Equal(-0.1, target.South);
+			Assert.Equal(1.2, target.East);
+			Assert.Equal(-0.2, target.West);
 		}
 
 		[Fact()]

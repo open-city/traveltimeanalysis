@@ -16,11 +16,18 @@ namespace LK.MatchGPX2OSM {
 			_graph = graph;
 		}
 
+		/// <summary>
+		/// Finds all candidates points for given GPS track point
+		/// </summary>
+		/// <param name="gpxPt">GPS point</param>
+		/// <returns>Collection of points candidate points on road segments</returns>
 		public IEnumerable<CandidatePoint> FindCandidatePoints(GPXPoint gpxPt) {
 			List<CandidatePoint> result = new List<CandidatePoint>();
-
+			BBox gpxBbox = new BBox(new IPointGeo[] { gpxPt });
+			gpxBbox.Inflate(0.0007, 0.0011);
+			
 			foreach (var road in _graph.ConnectionGeometries) {
-				if (road.BBox.IsInside2D(gpxPt)) {
+				if (Topology.Intersects(gpxBbox, road.BBox)) {
 					PointGeo projectedPoint = Topology.ProjectPoint(gpxPt, road);
 					result.Add(new CandidatePoint() { Latitude = projectedPoint.Latitude, Longitude = projectedPoint.Longitude, Road = road, ObservationProbability = CalculateObservationProbability(gpxPt, projectedPoint) });
 				}
@@ -29,11 +36,22 @@ namespace LK.MatchGPX2OSM {
 			return result;
 		}
 
+		/// <summary>
+		/// Calculates observation probability
+		/// </summary>
+		/// <param name="original">GPS track point</param>
+		/// <param name="candidate">Candidate point</param>
+		/// <returns>double representing probability that GPS track point corresponds with Candidate point</returns>
 		public double CalculateObservationProbability(GPXPoint original, PointGeo candidate) {
 			double distance = Calculations.GetDistance2D(original, candidate);
 			return Math.Exp(-distance * distance / (2 * 20 * 20)) / (20 * Math.Sqrt(Math.PI * 2));
 		}
 
+		/// <summary>
+		/// Calculates transmission probability for connection
+		/// </summary>
+		/// <param name="c">Connection</param>
+		/// <returns>double value representing transmission probability</returns>
 		public double CalculateTransmissionProbability(CandidatesConection c) {
 			double gcd = Calculations.GetDistance2D(c.From, c.To);
 			double shortestPath = ComputeShortestPath(c.From, c.To);
@@ -41,56 +59,21 @@ namespace LK.MatchGPX2OSM {
 			return gcd / shortestPath;
 		}
 
+		/// <summary>
+		/// Finds shortest path between two points along routes
+		/// </summary>
+		/// <param name="from">Start point</param>
+		/// <param name="to">Destination point</param>
+		/// <returns>length of the path in meters</returns>
 		public double ComputeShortestPath(CandidatePoint from, CandidatePoint to) {
 			if (from.Road == to.Road) {
-				return ComputeDistanceOnRoad(from, to, from.Road);
+				return Calculations.GetPathLength(from, to, from.Road);
 			}
 			return 0;
 		}
 
-		double ComputeDistanceOnRoad(CandidatePoint from, CandidatePoint to, ConnectionGeometry road) {
-			double eps = 1e-4;
-
-			double distance = 0;
-
-			List<Segment<IPointGeo>> segments = new List<Segment<IPointGeo>>(road.GetSegments());
-			int seg1 = -1;
-			int seg2 = -1;
-
-			for (int i = 0; i < segments.Count; i++) {
-				if (Calculations.GetDistance2D(from, segments[i]) < eps) {
-					seg1 = i;
-				}
-				if (Calculations.GetDistance2D(to, segments[i]) < eps) {
-					seg2 = i;
-				}
-			}
-
-			if (seg1 == seg2) {
-				return Calculations.GetDistance2D(from, to);
-			}
-			else {
-				if (seg1 < seg2) {
-					distance += Calculations.GetDistance2D(from, segments[seg1].EndPoint);
-
-					while (++seg1 < seg2) {
-						distance += Calculations.GetDistance2D(segments[seg1].StartPoint, segments[seg1].EndPoint);
-					}
-
-					distance += Calculations.GetDistance2D(segments[seg1].StartPoint, to);
-				}
-				else {
-					distance += Calculations.GetDistance2D(from, segments[seg1].StartPoint);
-
-					while (--seg1 > seg2) {
-						distance += Calculations.GetDistance2D(segments[seg1].StartPoint, segments[seg1].EndPoint);
-					}
-
-					distance += Calculations.GetDistance2D(segments[seg1].EndPoint, to);
-				}
-
-				return distance;
-			}
+		public void AStar(CandidatePoint from, CandidatePoint to) {
+			
 		}
 		
 		public void Match(GPXTrackSegment gpx) {
@@ -105,11 +88,13 @@ namespace LK.MatchGPX2OSM {
 				_layers.Add(layer);
 			}
 
-			// Transmissio probability
+			// Transmission probability
 			ConnectLayers();
 		}
 
-
+		/// <summary>
+		/// Creates connections among candidate points in subsequent layers
+		/// </summary>
 		void ConnectLayers() {
 			for (int l = 0; l < _layers.Count-1; l++) {
 				for (int i = 0; i < _layers[l].Candidates.Count; i++) {
@@ -120,6 +105,11 @@ namespace LK.MatchGPX2OSM {
 			}
 		}
 
+		/// <summary>
+		/// Adds connection between two candidate points
+		/// </summary>
+		/// <param name="from"></param>
+		/// <param name="to"></param>
 		void AddConnection(CandidatePoint from, CandidatePoint to) {
 			CandidatesConection c = new CandidatesConection() { From = from, To = to };
 			from.OutgoingConnections.Add(c);
