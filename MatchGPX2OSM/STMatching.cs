@@ -69,11 +69,11 @@ namespace LK.MatchGPX2OSM {
 			if (from.Road == to.Road) {
 				return Calculations.GetPathLength(from, to, from.Road);
 			}
-			return 0;
-		}
-
-		public void AStar(CandidatePoint from, CandidatePoint to) {
-			
+			else {
+				Astar pathfinder = new Astar(_graph);
+				pathfinder.FindPath(from, to);
+				return 0;
+			}
 		}
 		
 		public void Match(GPXTrackSegment gpx) {

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Astar.cs" />
     <Compile Include="CandidatePoint.cs" />
     <Compile Include="CandidatesConection.cs" />
     <Compile Include="CandidatesGraph.cs" />

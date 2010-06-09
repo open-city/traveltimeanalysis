@@ -52,7 +52,10 @@ namespace LK.MatchGPX2OSM {
 		public void BuildGraph(OSMDB map) {
 			foreach (var segment in map.Ways) {
 				Node start = GetOrCreateNode(segment.Nodes[0]);
+				start.Position = map.Nodes[start.ID];
+
 				Node end = GetOrCreateNode(segment.Nodes[segment.Nodes.Count - 1]);
+				end.Position = map.Nodes[end.ID];
 
 				double speed = double.Parse(segment.Tags["speed"].Value, System.Globalization.CultureInfo.InvariantCulture);
 				int wayId = int.Parse(segment.Tags["way-id"].Value, System.Globalization.CultureInfo.InvariantCulture);
