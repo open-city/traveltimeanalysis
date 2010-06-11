@@ -29,7 +29,7 @@ namespace LK.MatchGPX2OSM {
 			foreach (var road in _graph.ConnectionGeometries) {
 				if (Topology.Intersects(gpxBbox, road.BBox)) {
 					PointGeo projectedPoint = Topology.ProjectPoint(gpxPt, road);
-					result.Add(new CandidatePoint() { Latitude = projectedPoint.Latitude, Longitude = projectedPoint.Longitude, Road = road, ObservationProbability = CalculateObservationProbability(gpxPt, projectedPoint) });
+					result.Add(new CandidatePoint() { Latitude = projectedPoint.Latitude, Longitude = projectedPoint.Longitude, Road = road, ObservationProbability = CalculateObservationProbability(gpxPt, projectedPoint), recorded = gpxPt.Time });
 				}
 			}
 
@@ -43,8 +43,9 @@ namespace LK.MatchGPX2OSM {
 		/// <param name="candidate">Candidate point</param>
 		/// <returns>double representing probability that GPS track point corresponds with Candidate point</returns>
 		public double CalculateObservationProbability(GPXPoint original, PointGeo candidate) {
+			double sigma = 20;
 			double distance = Calculations.GetDistance2D(original, candidate);
-			return Math.Exp(-distance * distance / (2 * 20 * 20)) / (20 * Math.Sqrt(Math.PI * 2));
+			return 0.5 * Math.Exp(-distance * distance / (2 * sigma * sigma)) / (sigma * Math.Sqrt(Math.PI * 2));
 		}
 
 		/// <summary>
@@ -55,8 +56,10 @@ namespace LK.MatchGPX2OSM {
 		public double CalculateTransmissionProbability(CandidatesConection c) {
 			double gcd = Calculations.GetDistance2D(c.From, c.To);
 			double shortestPath = ComputeShortestPath(c.From, c.To);
-
-			return gcd / shortestPath;
+			if (gcd == 0 && shortestPath == 0)
+				return 1;
+			else 
+				return gcd / shortestPath;
 		}
 
 		/// <summary>
@@ -71,12 +74,13 @@ namespace LK.MatchGPX2OSM {
 			}
 			else {
 				Astar pathfinder = new Astar(_graph);
-				pathfinder.FindPath(from, to);
-				return 0;
+				double length = double.PositiveInfinity;
+				pathfinder.FindPath(from, to, ref length);
+				return length;
 			}
 		}
 		
-		public void Match(GPXTrackSegment gpx) {
+		public List<CandidatePoint> Match(GPXTrackSegment gpx) {
 			_layers = new List<CandidateGraphLayer>();
 
 			//Find candidate points + ObservationProbability
@@ -90,8 +94,41 @@ namespace LK.MatchGPX2OSM {
 
 			// Transmission probability
 			ConnectLayers();
+
+			// FInd matched sequence
+			foreach (var candidate in _layers[0].Candidates) {
+				candidate.HighestScore = candidate.ObservationProbability;
+			}
+
+			for (int i = 0; i < _layers.Count -1; i++) {
+				foreach (var candidate in _layers[i+1].Candidates) {
+					foreach (var connection in candidate.IncomingConnections) {
+						double score = connection.From.HighestScore + candidate.ObservationProbability * connection.TransmissionProbability;
+						if (score > candidate.HighestScore) {
+							candidate.HighestScore = score;
+							candidate.HighesScoreParent = connection.From;
+						}
+					}
+				}
+			}
+
+			List<CandidatePoint> result = new List<CandidatePoint>();
+			CandidatePoint current = new CandidatePoint() { HighestScore = double.NegativeInfinity };
+			foreach (var point in _layers[_layers.Count-1].Candidates) {
+				if (point.HighestScore > current.HighestScore) {
+					current = point;
+				}
+			}
+
+			while (current != null) {
+				result.Add(current);
+				current = current.HighesScoreParent;
+			}
+
+			return result;
 		}
 
+		
 		/// <summary>
 		/// Creates connections among candidate points in subsequent layers
 		/// </summary>

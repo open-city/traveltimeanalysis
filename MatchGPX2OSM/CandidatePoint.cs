@@ -22,6 +22,8 @@ namespace LK.MatchGPX2OSM {
 		/// </summary>
 		public double Elevation { get; set; }
 
+		public DateTime recorded { get; set; }
+
 		public ConnectionGeometry Road { get; set; }
 
 		public double ObservationProbability { get; set; }
@@ -33,5 +35,8 @@ namespace LK.MatchGPX2OSM {
 			OutgoingConnections = new List<CandidatesConection>();
 			IncomingConnections = new List<CandidatesConection>();
 		}
+
+		public double HighestScore = double.NegativeInfinity;
+		public CandidatePoint HighesScoreParent;
 	}
 }
