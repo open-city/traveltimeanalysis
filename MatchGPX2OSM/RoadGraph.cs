@@ -8,6 +8,7 @@ using LK.OSMUtils.OSMDataSource;
 using LK.GeoUtils.Geometry;
 
 namespace LK.MatchGPX2OSM {
+	//Represents routable road graph, every road segment is represented by directed Connection and every road crossing by Node
 	public class RoadGraph {
 		private Dictionary<int, Node> _nodes;
 		/// <summary>
@@ -21,7 +22,7 @@ namespace LK.MatchGPX2OSM {
 
 		private List<Connection> _connections;
 		/// <summary>
-		/// Gets collection of all enges in this graph
+		/// Gets collection of all edges in this graph
 		/// </summary>
 		public IEnumerable<Connection> Connections {
 			get {
@@ -30,6 +31,9 @@ namespace LK.MatchGPX2OSM {
 		}
 
 		private List<ConnectionGeometry> _connectionGeometries;
+		/// <summary>
+		/// Gets collection of all shapes of the connections from this graph
+		/// </summary>
 		public IEnumerable<ConnectionGeometry> ConnectionGeometries {
 			get {
 				return _connectionGeometries;
