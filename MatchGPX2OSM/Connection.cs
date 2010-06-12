@@ -11,13 +11,16 @@ namespace LK.MatchGPX2OSM {
 	/// </summary>
 	public class Connection {
 		/// <summary>
-		/// Create a new connection with the specific end nodes
+		/// Create a new connection with the specific end nodes and create relation among nodes and connection
 		/// </summary>
 		/// <param name="from">The node, where this connection starts</param>
 		/// <param name="to">The noe where this connection ends</param>
 		public Connection(Node from, Node to) {
 			this.From = from;
+			from.AddConnection(this);
+
 			this.To = to;
+			to.AddConnection(this);
 		}
 
 		/// <summary>

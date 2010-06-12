@@ -33,7 +33,6 @@ namespace MatchGPX2OSM.Tests {
 			Node target = new Node();
 
 			Connection addedConnection = new Connection(target, connectionEnd);
-			target.AddConnection(addedConnection);
 
 			Assert.Equal(1, target.Connections.Count());
 			Assert.Equal(addedConnection, target.Connections.Single());
@@ -43,10 +42,8 @@ namespace MatchGPX2OSM.Tests {
 		public void NodeRemoveConnectionRemovesConnection() {
 			Node connectionEnd = new Node();
 			Node target = new Node();
-			Connection firstConnection = new Connection(new Node(), new Node());
+			Connection firstConnection = new Connection(target, new Node());
 			Connection toRemove = new Connection(target, connectionEnd);
-			target.AddConnection(firstConnection);
-			target.AddConnection(toRemove);
 
 			bool result = target.RemoveConnection(toRemove);
 

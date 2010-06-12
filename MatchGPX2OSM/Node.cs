@@ -7,6 +7,9 @@ using LK.GeoUtils;
 using LK.GeoUtils.Geometry;
 
 namespace LK.MatchGPX2OSM {
+	/// <summary>
+	/// Represents a node in the routable road graph
+	/// </summary>
 	public class Node {
 		/// <summary>
 		/// Creates a new Node with the specific position

@@ -74,19 +74,13 @@ namespace LK.MatchGPX2OSM {
 
 				if (segment.Tags["accessible"].Value == "yes") {
 					Connection sc = new Connection(start, end) { Speed = speed, Geometry = geometry };
-					start.AddConnection(sc);
-					end.AddConnection(sc);
 					geometry.Connections.Add(sc);
-
 					_connections.Add(sc);
 				}
 
 				if (segment.Tags["accessible-reverse"].Value == "yes") {
 					Connection sc = new Connection(end, start) { Speed = speed, Geometry = geometry };
-					start.AddConnection(sc);
-					end.AddConnection(sc);
 					geometry.Connections.Add(sc);
-
 					_connections.Add(sc);
 				}
 			}
