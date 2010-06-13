@@ -47,6 +47,8 @@ namespace LK.MatchGPX2OSM {
 			CandidatesConection c = new CandidatesConection() { From = from, To = to };
 			from.OutgoingConnections.Add(c);
 			to.IncomingConnections.Add(c);
+
+
 		}
 
 	}

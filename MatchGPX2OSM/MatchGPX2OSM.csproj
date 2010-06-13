@@ -49,6 +49,7 @@
     <Compile Include="CandidatesGraph.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="ConnectionGeometry.cs" />
+    <Compile Include="Debug.cs" />
     <Compile Include="NDesk.Options.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="CandidateGraphLayer.cs" />

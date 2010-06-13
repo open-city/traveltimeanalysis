@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='-6344' visible='true' lat='50.49888566461954' lon='16.101576742244507' />
+  <node id='-6342' visible='true' lat='50.497924864411175' lon='16.100662519252364' />
+  <node id='-6340' visible='true' lat='50.497039899560264' lon='16.10018553334342' />
+  <node id='-6339' visible='true' lat='50.49612963270185' lon='16.0990328173968' />
+  <node id='-6335' visible='true' lat='50.49934077368627' lon='16.108612284401445' />
+  <node id='-6333' visible='true' lat='50.49949247573402' lon='16.10690308489439' />
+  <node id='-6332' visible='true' lat='50.499062651999914' lon='16.10519388538734' />
+  <node id='-6329' visible='true' lat='50.49868339251562' lon='16.111275455726386' />
+  <node id='-6327' visible='true' lat='50.497646734387466' lon='16.110440730385733' />
+  <node id='-6325' visible='true' lat='50.49612963270185' lon='16.108970023833155' />
+  <node id='-6324' visible='true' lat='50.4947389133527' lon='16.107976303189517' />
+  <way id='-6341' action='modify' visible='true'>
+    <nd ref='-6339' />
+    <nd ref='-6340' />
+    <nd ref='-6342' />
+    <nd ref='-6344' />
+
+    <tag k='accessible' v='yes' />
+    <tag k='accessible-reverse' v='yes' />
+    <tag k='speed' v='50' />
+    <tag k='way-id' v='1' />
+
+  </way>
+  <way id='-6334' action='modify' visible='true'>
+    <nd ref='-6332' />
+    <nd ref='-6333' />
+    <nd ref='-6335' />
+    <nd ref='-6329' />
+    <tag k='accessible' v='yes' />
+    <tag k='accessible-reverse' v='yes' />
+    <tag k='speed' v='50' />
+    <tag k='way-id' v='2' />
+  </way>
+  <way id='-6326' action='modify' visible='true'>
+    <nd ref='-6324' />
+    <nd ref='-6325' />
+    <nd ref='-6327' />
+    <nd ref='-6329' />
+    <tag k='accessible' v='yes' />
+    <tag k='accessible-reverse' v='yes' />
+    <tag k='speed' v='50' />
+    <tag k='way-id' v='3' />  
+</way>
+</osm>
