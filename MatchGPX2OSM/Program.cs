@@ -46,7 +46,7 @@ namespace LK.MatchGPX2OSM {
 
 			Console.Write("Building RoadGraph ...");
 			RoadGraph graph = new RoadGraph();
-			graph.BuildGraph(map);
+			graph.Build(map);
 			Console.WriteLine("\t\tDone.");
 
 			Console.Write("Loading GPS track ...");

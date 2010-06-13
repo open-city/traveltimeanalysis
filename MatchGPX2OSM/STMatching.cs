@@ -9,6 +9,8 @@ using LK.GPXUtils;
 
 namespace LK.MatchGPX2OSM {
 	public class STMatching {
+		public static int MaxCandidatesCount = 5;
+
 		protected RoadGraph _graph;
 		List<CandidateGraphLayer> _layers;
 
@@ -29,7 +31,7 @@ namespace LK.MatchGPX2OSM {
 			foreach (var road in _graph.ConnectionGeometries) {
 				if (Topology.Intersects(gpxBbox, road.BBox)) {
 					PointGeo projectedPoint = Topology.ProjectPoint(gpxPt, road);
-					result.Add(new CandidatePoint() { Latitude = projectedPoint.Latitude, Longitude = projectedPoint.Longitude, Road = road, ObservationProbability = CalculateObservationProbability(gpxPt, projectedPoint), recorded = gpxPt.Time });
+					result.Add(new CandidatePoint() { Latitude = projectedPoint.Latitude, Longitude = projectedPoint.Longitude, Road = road, ObservationProbability = CalculateObservationProbability(gpxPt, projectedPoint) });
 				}
 			}
 
@@ -97,15 +99,15 @@ namespace LK.MatchGPX2OSM {
 
 			// FInd matched sequence
 			foreach (var candidate in _layers[0].Candidates) {
-				candidate.HighestScore = candidate.ObservationProbability;
+				candidate.HighestProbability = candidate.ObservationProbability;
 			}
 
 			for (int i = 0; i < _layers.Count -1; i++) {
 				foreach (var candidate in _layers[i+1].Candidates) {
 					foreach (var connection in candidate.IncomingConnections) {
-						double score = connection.From.HighestScore + candidate.ObservationProbability * connection.TransmissionProbability;
-						if (score > candidate.HighestScore) {
-							candidate.HighestScore = score;
+						double score = connection.From.HighestProbability + candidate.ObservationProbability * connection.TransmissionProbability;
+						if (score > candidate.HighestProbability) {
+							candidate.HighestProbability = score;
 							candidate.HighesScoreParent = connection.From;
 						}
 					}
@@ -113,9 +115,9 @@ namespace LK.MatchGPX2OSM {
 			}
 
 			List<CandidatePoint> result = new List<CandidatePoint>();
-			CandidatePoint current = new CandidatePoint() { HighestScore = double.NegativeInfinity };
+			CandidatePoint current = new CandidatePoint() { HighestProbability = double.NegativeInfinity };
 			foreach (var point in _layers[_layers.Count-1].Candidates) {
-				if (point.HighestScore > current.HighestScore) {
+				if (point.HighestProbability > current.HighestProbability) {
 					current = point;
 				}
 			}

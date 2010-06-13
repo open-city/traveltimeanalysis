@@ -34,7 +34,7 @@ namespace LK.MatchGPX2OSM {
 		public Node To { get; set; }
 
 		/// <summary>
-		/// 
+		/// Gets or sets shape of the connection
 		/// </summary>
 		public ConnectionGeometry Geometry { get; set; }
 

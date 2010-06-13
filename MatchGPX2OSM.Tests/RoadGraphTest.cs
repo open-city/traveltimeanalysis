@@ -32,7 +32,7 @@ namespace MatchGPX2OSM.Tests {
 			map.Ways.Add(way);
 
 			RoadGraph target = new RoadGraph();
-			target.BuildGraph(map);
+			target.Build(map);
 
 			Assert.Equal(2, target.Connections.Count());
 			Assert.Equal(1, target.Connections.Where(c => c.From.ID == 1 && c.To.ID == 2).Count());
@@ -56,7 +56,7 @@ namespace MatchGPX2OSM.Tests {
 			map.Ways.Add(way);
 
 			RoadGraph target = new RoadGraph();
-			target.BuildGraph(map);
+			target.Build(map);
 
 			Assert.Equal(1, target.Connections.Count());
 			Assert.Equal(1, target.Connections.Where(c => c.From.ID == 1 && c.To.ID == 2).Count());
@@ -79,7 +79,7 @@ namespace MatchGPX2OSM.Tests {
 			map.Ways.Add(way);
 
 			RoadGraph target = new RoadGraph();
-			target.BuildGraph(map);
+			target.Build(map);
 
 			Assert.Equal(1, target.Connections.Count());
 			Assert.Equal(1, target.Connections.Where(c => c.From.ID == 2 && c.To.ID == 1).Count());
@@ -102,7 +102,7 @@ namespace MatchGPX2OSM.Tests {
 			map.Ways.Add(way);
 
 			RoadGraph target = new RoadGraph();
-			target.BuildGraph(map);
+			target.Build(map);
 
 			Assert.Equal(2, target.Nodes.Count());
 			Assert.Equal(1, target.Nodes.Where(n => n.ID == 1 && n.Position.Latitude == 1 && n.Position.Longitude == 2).Count());
@@ -124,7 +124,7 @@ namespace MatchGPX2OSM.Tests {
 			map.Ways.Add(way);
 
 			RoadGraph target = new RoadGraph();
-			target.BuildGraph(map);
+			target.Build(map);
 
 			Assert.Equal(1, target.ConnectionGeometries.Count());
 			Assert.Equal(3, target.ConnectionGeometries.Single().Nodes.Count);

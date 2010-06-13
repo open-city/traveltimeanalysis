@@ -53,7 +53,7 @@ namespace LK.MatchGPX2OSM {
 		/// Builds road graph from map data
 		/// </summary>
 		/// <param name="map">OSMDB with preprocessed map data from OSM2Routing utility</param>
-		public void BuildGraph(OSMDB map) {
+		public void Build(OSMDB map) {
 			foreach (var segment in map.Ways) {
 				Node start = GetOrCreateNode(segment.Nodes[0]);
 				start.Position = map.Nodes[start.ID];
