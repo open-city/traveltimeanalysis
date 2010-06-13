@@ -11,8 +11,8 @@ namespace LK.MatchGPX2OSM {
 	public class STMatching {
 		public static int MaxCandidatesCount = 5;
 
-		protected RoadGraph _graph;
-		List<CandidateGraphLayer> _layers;
+		RoadGraph _graph;
+		CandidatesGraph _candidatesGraph;
 
 		public STMatching(RoadGraph graph) {
 			_graph = graph;
@@ -82,8 +82,13 @@ namespace LK.MatchGPX2OSM {
 			}
 		}
 		
+		/// <summary>
+		/// Matches the given GPX track to the map
+		/// </summary>
+		/// <param name="gpx"></param>
+		/// <returns>The list of candidates points that matched the gpx track</returns>
 		public List<CandidatePoint> Match(GPXTrackSegment gpx) {
-			_layers = new List<CandidateGraphLayer>();
+			_candidatesGraph = new CandidatesGraph();
 
 			//Find candidate points + ObservationProbability
 			foreach (var gpxPoint in gpx.Nodes) {
@@ -91,19 +96,19 @@ namespace LK.MatchGPX2OSM {
 
 				CandidateGraphLayer layer = new CandidateGraphLayer() { TrackPoint = gpxPoint };
 				layer.Candidates.AddRange(candidates.Take(Math.Min(candidates.Count(), 5)));
-				_layers.Add(layer);
+				_candidatesGraph.Layers.Add(layer);
 			}
+			_candidatesGraph.ConnectLayers();
 
-			// Transmission probability
-			ConnectLayers();
+			//TODO calculate transmission probability
 
 			// FInd matched sequence
-			foreach (var candidate in _layers[0].Candidates) {
+			foreach (var candidate in _candidatesGraph.Layers[0].Candidates) {
 				candidate.HighestProbability = candidate.ObservationProbability;
 			}
 
-			for (int i = 0; i < _layers.Count -1; i++) {
-				foreach (var candidate in _layers[i+1].Candidates) {
+			for (int i = 0; i < _candidatesGraph.Layers.Count - 1; i++) {
+				foreach (var candidate in _candidatesGraph.Layers[i + 1].Candidates) {
 					foreach (var connection in candidate.IncomingConnections) {
 						double score = connection.From.HighestProbability + candidate.ObservationProbability * connection.TransmissionProbability;
 						if (score > candidate.HighestProbability) {
@@ -116,7 +121,7 @@ namespace LK.MatchGPX2OSM {
 
 			List<CandidatePoint> result = new List<CandidatePoint>();
 			CandidatePoint current = new CandidatePoint() { HighestProbability = double.NegativeInfinity };
-			foreach (var point in _layers[_layers.Count-1].Candidates) {
+			foreach (var point in _candidatesGraph.Layers[_candidatesGraph.Layers.Count - 1].Candidates) {
 				if (point.HighestProbability > current.HighestProbability) {
 					current = point;
 				}
@@ -128,33 +133,6 @@ namespace LK.MatchGPX2OSM {
 			}
 
 			return result;
-		}
-
-		
-		/// <summary>
-		/// Creates connections among candidate points in subsequent layers
-		/// </summary>
-		void ConnectLayers() {
-			for (int l = 0; l < _layers.Count-1; l++) {
-				for (int i = 0; i < _layers[l].Candidates.Count; i++) {
-					for (int j = 0; j < _layers[l+1].Candidates.Count; j++) {
-						AddConnection(_layers[l].Candidates[i], _layers[l + 1].Candidates[j]);
-					}
-				}
-			}
-		}
-
-		/// <summary>
-		/// Adds connection between two candidate points
-		/// </summary>
-		/// <param name="from"></param>
-		/// <param name="to"></param>
-		void AddConnection(CandidatePoint from, CandidatePoint to) {
-			CandidatesConection c = new CandidatesConection() { From = from, To = to };
-			from.OutgoingConnections.Add(c);
-			to.IncomingConnections.Add(c);
-
-			c.TransmissionProbability = CalculateTransmissionProbability(c);
 		}
 	}
 }
