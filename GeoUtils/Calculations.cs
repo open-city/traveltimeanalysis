@@ -39,7 +39,7 @@ namespace LK.GeoUtils {
 		/// <param name="segment">The segment</param>
 		/// <returns>the distance of point from the segment in meters</returns>
 		public static double GetDistance2D(IPointGeo point, Segment<IPointGeo> segment) {
-			PointGeo projectedPoint = Topology.ProjectPoint(point, segment);
+			IPointGeo projectedPoint = Topology.ProjectPoint(point, segment);
 			return _distanceCalculator.Calculate2D(point, projectedPoint);
 		}
 
@@ -54,7 +54,7 @@ namespace LK.GeoUtils {
 
 			for (int i = 0; i < line.NodesCount -1; i++) {
 				Segment<IPointGeo> segment = new Segment<IPointGeo>(line.Nodes[i], line.Nodes[i + 1]);
-				PointGeo projectedPoint = Topology.ProjectPoint(point, segment);
+				IPointGeo projectedPoint = Topology.ProjectPoint(point, segment);
 				minDistance = Math.Min(minDistance, _distanceCalculator.Calculate2D(point, projectedPoint));
 			}
 

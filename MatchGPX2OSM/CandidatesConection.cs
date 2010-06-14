@@ -12,5 +12,6 @@ namespace LK.MatchGPX2OSM {
 		public CandidatePoint To { get; set; }
 
 		public double TransmissionProbability { get; set; }
+		public double GPXSimilarity { get; set; }
 	}
 }

@@ -40,7 +40,6 @@ namespace LK.MatchGPX2OSM {
 			foreach (var candidate in _candidatesGraph.Layers[0].Candidates) {
 				candidate.HighestProbability = candidate.ObservationProbability;
 			}
-
 			for (int i = 0; i < _candidatesGraph.Layers.Count - 1; i++) {
 				foreach (var candidate in _candidatesGraph.Layers[i + 1].Candidates) {
 					foreach (var connection in candidate.IncomingConnections) {
@@ -81,7 +80,7 @@ namespace LK.MatchGPX2OSM {
 
 			foreach (var road in _graph.ConnectionGeometries) {
 				if (Topology.Intersects(gpxBbox, road.BBox)) {
-					PointGeo projectedPoint = Topology.ProjectPoint(gpxPt, road);
+					IPointGeo projectedPoint = Topology.ProjectPoint(gpxPt, road);
 					result.Add(new CandidatePoint() { Latitude = projectedPoint.Latitude, Longitude = projectedPoint.Longitude, Road = road, ObservationProbability = CalculateObservationProbability(gpxPt, projectedPoint) });
 				}
 			}
@@ -112,8 +111,8 @@ namespace LK.MatchGPX2OSM {
 		/// <param name="original">GPS track point</param>
 		/// <param name="candidate">Candidate point</param>
 		/// <returns>double representing probability that GPS track point corresponds with Candidate point</returns>
-		double CalculateObservationProbability(GPXPoint original, PointGeo candidate) {
-			double sigma = 15;
+		double CalculateObservationProbability(GPXPoint original, IPointGeo candidate) {
+			double sigma = 30;
 			double distance = Calculations.GetDistance2D(original, candidate);
 			return Math.Exp(-distance * distance / (2 * sigma * sigma)) / (sigma * Math.Sqrt(Math.PI * 2));
 		}
@@ -122,7 +121,6 @@ namespace LK.MatchGPX2OSM {
 		/// Assigns transmission probability to every connection in the graph
 		/// </summary>
 		void AssignTransmissionProbability() {
-			int counter = 1;
 			foreach (var layer in _candidatesGraph.Layers) {
 				foreach (var candidatePoint in layer.Candidates) {
 					foreach (var connection in candidatePoint.OutgoingConnections) {
