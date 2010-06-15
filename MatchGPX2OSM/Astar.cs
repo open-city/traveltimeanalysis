@@ -49,6 +49,7 @@ namespace LK.MatchGPX2OSM {
 						current = close[current.PreviousNode];
 					}
 
+					result.Reverse();
 					return result;
 				}
 

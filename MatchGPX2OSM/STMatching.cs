@@ -6,6 +6,7 @@ using System.Text;
 using LK.GeoUtils;
 using LK.GeoUtils.Geometry;
 using LK.GPXUtils;
+using LK.OSMUtils.OSMDatabase;
 
 namespace LK.MatchGPX2OSM {
 	public class STMatching {
@@ -22,8 +23,56 @@ namespace LK.MatchGPX2OSM {
 		/// Matches the given GPX track to the map
 		/// </summary>
 		/// <param name="gpx"></param>
-		/// <returns>The list of candidates points that matched the gpx track</returns>
-		public List<CandidatePoint> Match(GPXTrackSegment gpx) {
+		/// <returns>OSM db that represents matched track</returns>
+		public OSMDB Match(GPXTrackSegment gpx) {
+			var matched = FindMatchedCandidates(gpx).ToList();
+
+			OSMDB result = new OSMDB();
+			int counter = -1;
+
+			Astar pathfinder = new Astar(_graph);
+
+			OSMNode node = new OSMNode(counter--, matched[0].Latitude, matched[0].Longitude);
+			node.Tags.Add(new OSMTag("time", matched[0].Layer.TrackPoint.Time.ToString()));
+			result.Nodes.Add(node);
+
+			for (int i = 0; i < matched.Count -1; i++) {
+				OSMWay track = new OSMWay(counter--);
+				track.Nodes.Add(node.ID);
+				result.Ways.Add(track);
+
+				if (matched[i].Road == matched[i + 1].Road) {
+					node = new OSMNode(counter--, matched[i + 1].Latitude, matched[i + 1].Longitude);
+					node.Tags.Add(new OSMTag("time", matched[i+1].Layer.TrackPoint.Time.ToString()));
+					result.Nodes.Add(node);
+					track.Nodes.Add(node.ID);
+				}
+				else {
+					double lenght = 0;
+					var path = pathfinder.FindPath(matched[i], matched[i + 1], ref lenght);
+
+					foreach (var point in path) {
+						node = new OSMNode(counter--, point.Position.Latitude, point.Position.Longitude);
+						result.Nodes.Add(node);
+						track.Nodes.Add(node.ID);
+					}
+
+					node = new OSMNode(counter--, matched[i + 1].Latitude, matched[i + 1].Longitude);
+					node.Tags.Add(new OSMTag("time", matched[i + 1].Layer.TrackPoint.Time.ToString()));
+					result.Nodes.Add(node);
+					track.Nodes.Add(node.ID);
+				}
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// Finds the best matching sequence of candidate points
+		/// </summary>
+		/// <param name="gpx">The GPS track</param>
+		/// <returns></returns>
+		IEnumerable<CandidatePoint> FindMatchedCandidates(GPXTrackSegment gpx) {
 			_candidatesGraph = new CandidatesGraph();
 
 			//Find candidate points + ObservationProbability
@@ -65,9 +114,10 @@ namespace LK.MatchGPX2OSM {
 				current = current.HighesScoreParent;
 			}
 
+			result.Reverse();
 			return result;
 		}
-
+		
 		/// <summary>
 		/// Finds all candidates points for given GPS track point
 		/// </summary>
