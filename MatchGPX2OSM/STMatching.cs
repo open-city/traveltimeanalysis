@@ -19,11 +19,92 @@ namespace LK.MatchGPX2OSM {
 			_graph = graph;
 		}
 
-		public OSMDB Reconstruct(IEnumerable<CandidatePoint> matched) {
+		/// <summary>
+		/// Recontruct path from the candidates points
+		/// </summary>
+		/// <param name="matched"></param>
+		/// <returns></returns>
+		public OSMDB Reconstruct(IList<CandidatePoint> matched) {
+			Astar pathfinder = new Astar(_graph);			
 			OSMDB result = new OSMDB();
 			int counter = -1;
 
+			OSMNode node = AddNodeToPath(result, ref counter, matched[0]);// new OSMNode(counter--, matched[0].Latitude, matched[0].Longitude);
+			node.Tags.Add(new OSMTag("time", matched[0].Layer.TrackPoint.Time.ToString()));
 
+			for (int i = 0; i < matched.Count - 1; i++) {
+				OSMWay way = new OSMWay(counter--);
+				result.Ways.Add(way);
+				way.Nodes.Add(node.ID);
+
+				ConnectionGeometry wayGeometry = null;
+				if (Calculations.GetDistance2D(matched[i + 1], matched[i].Road) < Calculations.EpsLength)
+					wayGeometry = matched[i].Road;
+				else if (Calculations.GetDistance2D(matched[i], matched[i + 1].Road) < Calculations.EpsLength)
+					wayGeometry = matched[i + 1].Road;
+
+				// both points are on the same way
+				if (wayGeometry != null) {
+					way.Tags.Add(new OSMTag("way-id", wayGeometry.WayID.ToString()));
+
+					var points = GetNodesBetweenPoints(matched[i], matched[i + 1], wayGeometry);
+					foreach (var point in points) {
+						node = AddNodeToPath(result, ref counter, point);
+						way.Nodes.Add(node.ID);
+					}
+				}
+				else {
+					double lenght = 0;
+					// find path between matched[i] and matched[i+1]
+					var paths = pathfinder.FindPath(matched[i], matched[i + 1], ref lenght).ToList();
+
+					int lastWayId = 0;
+					if (paths.Count > 0) {
+						lastWayId = paths[0].Road.WayID;
+						way.Tags.Add(new OSMTag("way-id", paths[0].Road.WayID.ToString()));
+					}
+
+					for (int j = 0; j < paths.Count; j++) {
+						if (j > 0) {
+							node = AddNodeToPath(result, ref counter, paths[j].From.Position);
+							way.Nodes.Add(node.ID);
+						}
+
+						// Split way if original way ids differs
+						if (paths[j].Road.WayID != lastWayId) {
+							lastWayId = paths[j].Road.WayID;
+							way = new OSMWay(counter--);
+							result.Ways.Add(way);
+							way.Nodes.Add(node.ID);
+							way.Tags.Add(new OSMTag("way-id", paths[j].Road.WayID.ToString()));
+						}
+						
+						var points = GetNodesBetweenPoints(paths[j].From.Position, paths[j].To.Position, paths[j].Road).ToList();
+						foreach (var point in points) {
+							node = AddNodeToPath(result, ref counter, point);
+							way.Nodes.Add(node.ID);
+						}
+					}
+				}
+
+				node = AddNodeToPath(result, ref counter, matched[i + 1]);
+				node.Tags.Add(new OSMTag("time", matched[i + 1].Layer.TrackPoint.Time.ToString()));
+				way.Nodes.Add(node.ID);
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		/// Adds a new node to the OSMDB
+		/// </summary>
+		/// <param name="db"></param>
+		/// <param name="counter"></param>
+		/// <param name="node"></param>
+		/// <returns></returns>
+		OSMNode AddNodeToPath(OSMDB db, ref int counter, IPointGeo node) {
+			OSMNode result = new OSMNode(counter--, node.Latitude, node.Longitude);
+			db.Nodes.Add(result);
 
 			return result;
 		}
@@ -35,73 +116,16 @@ namespace LK.MatchGPX2OSM {
 		/// <returns>OSM db that represents matched track</returns>
 		public OSMDB Match(GPXTrackSegment gpx) {
 			IList<CandidatePoint> matched = FindMatchedCandidates(gpx).ToList();
-			
-			OSMDB result = new OSMDB();
-			int counter = -1;
-
-			Astar pathfinder = new Astar(_graph);
-
-			OSMNode node = new OSMNode(counter--, matched[0].Latitude, matched[0].Longitude);
-			node.Tags.Add(new OSMTag("time", matched[0].Layer.TrackPoint.Time.ToString()));
-			result.Nodes.Add(node);
-
-			for (int i = 0; i < matched.Count - 1; i++) {
-				if (counter < -90) {
-					int a = 0;
-				}
-
-				OSMWay track = new OSMWay(counter--);
-				result.Ways.Add(track);
-				track.Nodes.Add(node.ID);
-
-				if (Calculations.GetDistance2D(matched[i + 1], matched[i].Road) < 0.01) {
-					var points = GetNodesBetweenPoints(matched[i], matched[i + 1], matched[i].Road).ToList();
-					foreach (var point in points) {
-						node = new OSMNode(counter--, point.Latitude, point.Longitude);
-						result.Nodes.Add(node);
-						track.Nodes.Add(node.ID);
-					}
-				}
-				else if (Calculations.GetDistance2D(matched[i], matched[i+1].Road) < 0.01) {
-					var points = GetNodesBetweenPoints(matched[i], matched[i + 1], matched[i+1].Road).ToList();
-					foreach (var point in points) {
-						node = new OSMNode(counter--, point.Latitude, point.Longitude);
-						result.Nodes.Add(node);
-						track.Nodes.Add(node.ID);
-					}
-				}
-				else {
-					if (counter < -90) {
-						int a = 0;
-					}
-					double lenght = 0;
-					var paths = pathfinder.FindPath(matched[i], matched[i + 1], ref lenght).ToList();
-
-					for(int j = 0; j < paths.Count; j++) {
-						if (j > 0) {
-							node = new OSMNode(counter--, paths[j].From.Position.Latitude, paths[j].From.Position.Longitude);
-							result.Nodes.Add(node);
-							track.Nodes.Add(node.ID);
-						}
-						
-						var points = GetNodesBetweenPoints(paths[j].From.Position, paths[j].To.Position, paths[j].Road).ToList();
-						foreach (var point in points) {
-							node = new OSMNode(counter--, point.Latitude, point.Longitude);
-							result.Nodes.Add(node);
-							track.Nodes.Add(node.ID);
-						}
-					}
-				}
-
-				node = new OSMNode(counter--, matched[i + 1].Latitude, matched[i + 1].Longitude);
-				node.Tags.Add(new OSMTag("time", matched[i + 1].Layer.TrackPoint.Time.ToString()));
-				result.Nodes.Add(node);
-				track.Nodes.Add(node.ID);
-			}
-
-			return result;
+			return Reconstruct(matched);
 		}
 
+		/// <summary>
+		/// Returns nodes on the specific path between two points
+		/// </summary>
+		/// <param name="from"></param>
+		/// <param name="to"></param>
+		/// <param name="path"></param>
+		/// <returns></returns>
 		IEnumerable<IPointGeo> GetNodesBetweenPoints(IPointGeo from, IPointGeo to, IPolyline<IPointGeo> path) {
 			var segments = path.Segments;
 
