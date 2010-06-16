@@ -66,5 +66,12 @@ namespace MatchGPX2OSM.Tests {
                 return ((byte[])(obj));
             }
         }
+        
+        internal static byte[] two_ways_routable {
+            get {
+                object obj = ResourceManager.GetObject("two_ways_routable", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

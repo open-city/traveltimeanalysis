@@ -11,7 +11,7 @@ namespace LK.GeoUtils {
 	/// </summary>
 	public static class Calculations {
 		public const double EarthRadius = 6371010.0;
-		const double epsLength = 0.01;
+		public const double EpsLength = 0.01;
 
 		static IDistanceCalculator _distanceCalculator;
 
@@ -89,12 +89,12 @@ namespace LK.GeoUtils {
 			foreach (var segment in path.Segments) {
 				IPointGeo[] points = new IPointGeo[] { segment.StartPoint, segment.EndPoint };
 
-				if (!fromFound && Calculations.GetDistance2D(from, segment) < epsLength) {
+				if (!fromFound && Calculations.GetDistance2D(from, segment) < EpsLength) {
 					fromFound = true;
 					points[pointFound++] = from;
 				}
 
-				if (!toFound && Calculations.GetDistance2D(to, segment) < epsLength) {
+				if (!toFound && Calculations.GetDistance2D(to, segment) < EpsLength) {
 					toFound = true;
 					points[pointFound++] = to;
 				}

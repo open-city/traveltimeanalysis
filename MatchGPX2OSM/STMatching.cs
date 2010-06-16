@@ -19,14 +19,23 @@ namespace LK.MatchGPX2OSM {
 			_graph = graph;
 		}
 
+		public OSMDB Reconstruct(IEnumerable<CandidatePoint> matched) {
+			OSMDB result = new OSMDB();
+			int counter = -1;
+
+
+
+			return result;
+		}
+		
 		/// <summary>
 		/// Matches the given GPX track to the map
 		/// </summary>
 		/// <param name="gpx"></param>
 		/// <returns>OSM db that represents matched track</returns>
 		public OSMDB Match(GPXTrackSegment gpx) {
-			var matched = FindMatchedCandidates(gpx).ToList();
-
+			IList<CandidatePoint> matched = FindMatchedCandidates(gpx).ToList();
+			
 			OSMDB result = new OSMDB();
 			int counter = -1;
 
@@ -36,37 +45,106 @@ namespace LK.MatchGPX2OSM {
 			node.Tags.Add(new OSMTag("time", matched[0].Layer.TrackPoint.Time.ToString()));
 			result.Nodes.Add(node);
 
-			for (int i = 0; i < matched.Count -1; i++) {
-				OSMWay track = new OSMWay(counter--);
-				track.Nodes.Add(node.ID);
-				result.Ways.Add(track);
-
-				if (matched[i].Road == matched[i + 1].Road) {
-					node = new OSMNode(counter--, matched[i + 1].Latitude, matched[i + 1].Longitude);
-					node.Tags.Add(new OSMTag("time", matched[i+1].Layer.TrackPoint.Time.ToString()));
-					result.Nodes.Add(node);
-					track.Nodes.Add(node.ID);
+			for (int i = 0; i < matched.Count - 1; i++) {
+				if (counter < -90) {
+					int a = 0;
 				}
-				else {
-					double lenght = 0;
-					var path = pathfinder.FindPath(matched[i], matched[i + 1], ref lenght);
 
-					foreach (var point in path) {
-						node = new OSMNode(counter--, point.Position.Latitude, point.Position.Longitude);
+				OSMWay track = new OSMWay(counter--);
+				result.Ways.Add(track);
+				track.Nodes.Add(node.ID);
+
+				if (Calculations.GetDistance2D(matched[i + 1], matched[i].Road) < 0.01) {
+					var points = GetNodesBetweenPoints(matched[i], matched[i + 1], matched[i].Road).ToList();
+					foreach (var point in points) {
+						node = new OSMNode(counter--, point.Latitude, point.Longitude);
 						result.Nodes.Add(node);
 						track.Nodes.Add(node.ID);
 					}
-
-					node = new OSMNode(counter--, matched[i + 1].Latitude, matched[i + 1].Longitude);
-					node.Tags.Add(new OSMTag("time", matched[i + 1].Layer.TrackPoint.Time.ToString()));
-					result.Nodes.Add(node);
-					track.Nodes.Add(node.ID);
 				}
+				else if (Calculations.GetDistance2D(matched[i], matched[i+1].Road) < 0.01) {
+					var points = GetNodesBetweenPoints(matched[i], matched[i + 1], matched[i+1].Road).ToList();
+					foreach (var point in points) {
+						node = new OSMNode(counter--, point.Latitude, point.Longitude);
+						result.Nodes.Add(node);
+						track.Nodes.Add(node.ID);
+					}
+				}
+				else {
+					if (counter < -90) {
+						int a = 0;
+					}
+					double lenght = 0;
+					var paths = pathfinder.FindPath(matched[i], matched[i + 1], ref lenght).ToList();
+
+					for(int j = 0; j < paths.Count; j++) {
+						if (j > 0) {
+							node = new OSMNode(counter--, paths[j].From.Position.Latitude, paths[j].From.Position.Longitude);
+							result.Nodes.Add(node);
+							track.Nodes.Add(node.ID);
+						}
+						
+						var points = GetNodesBetweenPoints(paths[j].From.Position, paths[j].To.Position, paths[j].Road).ToList();
+						foreach (var point in points) {
+							node = new OSMNode(counter--, point.Latitude, point.Longitude);
+							result.Nodes.Add(node);
+							track.Nodes.Add(node.ID);
+						}
+					}
+				}
+
+				node = new OSMNode(counter--, matched[i + 1].Latitude, matched[i + 1].Longitude);
+				node.Tags.Add(new OSMTag("time", matched[i + 1].Layer.TrackPoint.Time.ToString()));
+				result.Nodes.Add(node);
+				track.Nodes.Add(node.ID);
 			}
 
 			return result;
 		}
 
+		IEnumerable<IPointGeo> GetNodesBetweenPoints(IPointGeo from, IPointGeo to, IPolyline<IPointGeo> path) {
+			var segments = path.Segments;
+
+			List<IPointGeo> result = new List<IPointGeo>();
+
+			int fromIndex = -1;
+			int toIndex = -1;
+			for (int i = 0; i < segments.Count; i++) {
+				if (Calculations.GetDistance2D(from, segments[i]) < Calculations.EpsLength) {
+					if (fromIndex > -1 && toIndex > -1 && toIndex < fromIndex)
+						;
+					else
+						fromIndex = i;
+				}
+				if (Calculations.GetDistance2D(to, segments[i]) < Calculations.EpsLength) {
+					if (fromIndex > -1 && toIndex > -1 && toIndex > fromIndex)
+						;
+					else
+						toIndex = i;
+				}
+			}
+			if (fromIndex == -1 || toIndex == -1)
+				return result;
+
+			if (fromIndex == toIndex - 1) {
+				result.Add(segments[fromIndex].EndPoint);
+			}
+			else if (fromIndex - 1 == toIndex) {
+				result.Add(segments[toIndex].EndPoint);
+			}
+			else if (fromIndex < toIndex) {
+				for (int i = fromIndex; i < toIndex; i++) {
+					result.Add(segments[i].EndPoint);
+				}
+			}
+			else if (toIndex < fromIndex) {
+				for (int i = fromIndex; i > toIndex; i--) {
+					result.Add(segments[i].StartPoint);
+				}
+			}
+
+			return result;
+		}
 		/// <summary>
 		/// Finds the best matching sequence of candidate points
 		/// </summary>
@@ -117,7 +195,7 @@ namespace LK.MatchGPX2OSM {
 			result.Reverse();
 			return result;
 		}
-		
+
 		/// <summary>
 		/// Finds all candidates points for given GPS track point
 		/// </summary>
