@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Filters\FrequncyFilter.cs" />
+    <Compile Include="Filters\FrequencyFilter.cs" />
     <Compile Include="Filters\StopsDetector.cs" />
     <Compile Include="GPXDataSource\GPXXmlDataReader.cs" />
     <Compile Include="GPXDataSource\GPXXmlDataWriter.cs" />

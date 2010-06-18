@@ -29,9 +29,7 @@ namespace GeoUtils.Tests {
 			Segment<PointGeo> target = new Segment<PointGeo>(startPoint, endPoint);
 
 			double expectedLength = Calculations.GetDistance2D(startPoint, endPoint);
-			double error = Math.Abs(expectedLength - target.Length);
-
-			Assert.True(error < 0.1);
+			Assert.InRange(target.Length, expectedLength - Calculations.EpsLength, expectedLength + Calculations.EpsLength);
 		}
 	}
 }

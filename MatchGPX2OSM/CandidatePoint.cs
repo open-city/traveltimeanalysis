@@ -40,15 +40,15 @@ namespace LK.MatchGPX2OSM {
 		/// </summary>
 		public CandidateGraphLayer Layer { get; set; }
 
-		public List<CandidatesConection> OutgoingConnections { get; private set; }
-		public List<CandidatesConection> IncomingConnections { get; private set; }
+		public List<CandidatesConnection> OutgoingConnections { get; private set; }
+		public List<CandidatesConnection> IncomingConnections { get; private set; }
 
 		/// <summary>
 		/// Creates a new instance of the Candidate point
 		/// </summary>
 		public CandidatePoint() {
-			OutgoingConnections = new List<CandidatesConection>();
-			IncomingConnections = new List<CandidatesConection>();
+			OutgoingConnections = new List<CandidatesConnection>();
+			IncomingConnections = new List<CandidatesConnection>();
 		}
 
 		/// <summary>

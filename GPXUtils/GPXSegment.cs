@@ -15,7 +15,8 @@ namespace LK.GPXUtils {
 		/// </summary>
 		/// <param name="start">The point, where segment starts</param>
 		/// <param name="end">The point, where segment ends</param>
-		public GPXSegment(GPXPoint start, GPXPoint end) : base(start, end) {
+		public GPXSegment(GPXPoint start, GPXPoint end)
+			: base(start, end) {
 		}
 
 		/// <summary>
@@ -30,7 +31,7 @@ namespace LK.GPXUtils {
 		/// <summary>
 		/// Gets the average speed on the segment in kph
 		/// </summary>
-		public double AverageSpeed { 
+		public double AverageSpeed {
 			get {
 				return Length / 1000 / TravelTime.TotalHours;
 			}

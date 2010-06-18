@@ -84,9 +84,11 @@ namespace LK.GeoUtils {
 			var segments = path.Segments;
 
 			int pointFound = 0;
+			int pointFoundLast = 0;
 			bool fromFound = false; bool toFound = false;
 			double distance = 0;
 			foreach (var segment in path.Segments) {
+				pointFoundLast = pointFound;
 				IPointGeo[] points = new IPointGeo[] { segment.StartPoint, segment.EndPoint };
 
 				if (!fromFound && Calculations.GetDistance2D(from, segment) < EpsLength) {
@@ -100,7 +102,11 @@ namespace LK.GeoUtils {
 				}
 
 				if (pointFound > 0) {
-					distance += Calculations.GetDistance2D(points[0], points[1]);
+					if(pointFound == pointFoundLast) 
+						distance += segment.Length; //Calculations.GetDistance2D(points[0], points[1]);
+					else
+						distance += Calculations.GetDistance2D(points[0], points[1]);
+
 					if (pointFound == 2)
 						return distance;
 				}

@@ -29,7 +29,7 @@ namespace LK.MatchGPX2OSM {
 			OSMDB result = new OSMDB();
 			int counter = -1;
 
-			OSMNode node = AddNodeToPath(result, ref counter, matched[0]);// new OSMNode(counter--, matched[0].Latitude, matched[0].Longitude);
+			OSMNode node = AddNodeToPath(result, ref counter, matched[0]);
 			node.Tags.Add(new OSMTag("time", matched[0].Layer.TrackPoint.Time.ToString()));
 
 			for (int i = 0; i < matched.Count - 1; i++) {
@@ -286,7 +286,7 @@ namespace LK.MatchGPX2OSM {
 		/// </summary>
 		/// <param name="c">Connection</param>
 		/// <returns>double value representing transmission probability</returns>
-		double CalculateTransmissionProbability(CandidatesConection c) {
+		double CalculateTransmissionProbability(CandidatesConnection c) {
 			double gcd = Calculations.GetDistance2D(c.From, c.To);
 			double shortestPath = FindShortestPath(c.From, c.To);
 

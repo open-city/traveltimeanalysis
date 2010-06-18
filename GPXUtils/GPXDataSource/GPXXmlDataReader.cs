@@ -125,7 +125,9 @@ namespace LK.GPXUtils.GPXDataSource {
 								break;
 							case "time":
 								string time = _xmlReader.ReadString();
-								parsedPoint.Time = DateTime.ParseExact(time, "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal | System.Globalization.DateTimeStyles.AssumeUniversal);
+								parsedPoint.Time = DateTime.Parse(time, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal | System.Globalization.DateTimeStyles.AssumeUniversal);
+								
+							//parsedPoint.Time = DateTime.ParseExact(time, "yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal | System.Globalization.DateTimeStyles.AssumeUniversal);
 								_xmlReader.Skip();								
 								break;
 							case "name":

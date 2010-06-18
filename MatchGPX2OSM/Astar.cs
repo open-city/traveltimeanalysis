@@ -39,22 +39,10 @@ namespace LK.MatchGPX2OSM {
 				open.Remove(current);
 				close.Add(current);
 
-				//if (current.Position == destination) {
-				if (Calculations.GetDistance2D(current.Position.Position, destination.Position) < Calculations.EpsLength) {
-				
+				if (Calculations.GetDistance2D(current.Position.Position, destination.Position) < Calculations.EpsLength) {		
 					length = current.PathLength;
-					
-					//List<Node> result = new List<Node>();
-					//result.Add(current.Position);
-					//while (current.PreviousNode != null) {
-					//  result.Add(current.PreviousNode);
-					//  current = close[current.PreviousNode];
-					//}
-
-					//result.Reverse();
-					//return result;
-
 					List<PathSegment> result = new List<PathSegment>();
+
 					while (current.PreviousNode != null) {
 						result.Add(new PathSegment() { From = current.PreviousNode, To = current.Position, Road = current.PreviousPath });
 						current = close[current.PreviousNode];
@@ -80,7 +68,7 @@ namespace LK.MatchGPX2OSM {
 				
 				foreach (var link in current.Position.Connections) {
 					if (link.From != current.Position) continue;
-					double distance = current.PathLength + Calculations.GetLength(link.Geometry);
+					double distance = current.PathLength + link.Geometry.Length; //Calculations.GetLength(link.Geometry);
 					Path expanded = null;
 					if (open.Contains(link.To)) {
 						if (open[link.To].PathLength > distance) {
@@ -177,12 +165,19 @@ namespace LK.MatchGPX2OSM {
 			}
 
 			public void Add(Path path) {
-				nodePath.Add(path.Position, path);
-				int index = 0;
-				while (index < paths.Count && paths[index].PathLength < path.PathLength) {
-					index++;
+				if (nodePath.ContainsKey(path.Position)) {
+					nodePath[path.Position] = path;
+					Update();
 				}
-				paths.Insert(index, path);
+				else {
+					nodePath.Add(path.Position, path);
+					paths.Add(path);
+					int index = 0;
+					while (index < paths.Count && paths[index].PathLength < path.PathLength) {
+						index++;
+					}
+					paths.Insert(index, path);
+				}
 			}
 
 			public void Remove(Path path) {

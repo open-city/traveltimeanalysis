@@ -23,7 +23,6 @@ namespace LK.MatchGPX2OSM {
 
 				OSMWay osmConnection = new OSMWay(counter--, new int[] { from.ID, osmCandidate.ID });
 				osmConnection.Tags.Add(new OSMTag("transmission", connection.TransmissionProbability.ToString()));
-				osmConnection.Tags.Add(new OSMTag("similarity", connection.GPXSimilarity.ToString()));
 
 				result.Ways.Add(osmConnection);
 			}

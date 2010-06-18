@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Astar.cs" />
     <Compile Include="CandidatePoint.cs" />
-    <Compile Include="CandidatesConection.cs" />
+    <Compile Include="CandidatesConnection.cs" />
     <Compile Include="CandidatesGraph.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="ConnectionGeometry.cs" />

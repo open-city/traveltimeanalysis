@@ -44,11 +44,15 @@ namespace LK.MatchGPX2OSM {
 		/// <param name="from">The point, where the connections starts</param>
 		/// <param name="to">The point, where the connection ends</param>
 		void ConnectPoints(CandidatePoint from, CandidatePoint to) {
-			CandidatesConection c = new CandidatesConection() { From = from, To = to };
+			CandidatesConnection c = new CandidatesConnection() { From = from, To = to };
 			from.OutgoingConnections.Add(c);
 			to.IncomingConnections.Add(c);
 
-
+			//if (from.Road == to.Road) {
+			//  for (int i = 0; i < from.Road.; i++) {
+					
+			//  }
+			//}
 		}
 
 	}

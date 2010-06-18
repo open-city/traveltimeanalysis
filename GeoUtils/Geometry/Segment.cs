@@ -10,35 +10,31 @@ namespace LK.GeoUtils.Geometry {
 		/// <summary>
 		/// Gets the start point of this Segment
 		/// </summary>
-		public T StartPoint { get; protected set; }
+		public T StartPoint { get; private set; }
 		
 		/// <summary>
 		/// Gets the end point of this Segment
 		/// </summary>
-		public T EndPoint { get; protected set; }
+		public T EndPoint { get; private set; }
 
 		/// <summary>
 		/// Creates a new segment with the specific start and end points
 		/// </summary>
 		/// <param name="start">The point, where segment starts</param>
 		/// <param name="end">The point, where segment ends</param>
-		public Segment(T start, T end) {
+		public Segment(T start, T end)  {
 			StartPoint = start;
 			EndPoint = end;
 
-			_length = double.NaN;
+			_length = Calculations.GetDistance2D(StartPoint, EndPoint);
 		}
 
-		protected double _length;
+		private double _length;
 		/// <summary>
 		/// Gets length of the segment in meters
 		/// </summary>
 		public double Length {
 			get {
-				if (double.IsNaN(_length)) {
-					_length = Calculations.GetDistance2D(StartPoint, EndPoint);
-				}
-
 				return _length;
 			}
 		}

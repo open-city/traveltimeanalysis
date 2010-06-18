@@ -9,7 +9,7 @@ namespace LK.GPXUtils.Filters {
 	/// <summary>
 	/// Implements filter that reduces frequncy of the GPS track
 	/// </summary>
-	public class FrequncyFilter {
+	public class FrequencyFilter {
 		public GPXTrackSegment Filter(TimeSpan minInterval, GPXTrackSegment track) {
 			GPXTrackSegment result = new GPXTrackSegment();
 
