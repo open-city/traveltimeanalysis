@@ -103,7 +103,7 @@ namespace LK.GeoUtils {
 
 				if (pointFound > 0) {
 					if(pointFound == pointFoundLast) 
-						distance += segment.Length; //Calculations.GetDistance2D(points[0], points[1]);
+						distance += segment.Length;
 					else
 						distance += Calculations.GetDistance2D(points[0], points[1]);
 

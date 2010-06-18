@@ -17,7 +17,7 @@ namespace LK.MatchGPX2OSM {
 
 		public IList<PathSegment> FindPath(CandidatePoint from, CandidatePoint to, ref double length) {
 			SortedPathList open = new SortedPathList();
-			SortedPathList close = new SortedPathList();
+			Dictionary<Node, Path> close = new Dictionary<Node, Path>();
 
 			List<Node> target = new List<Node>();
 			foreach (var targetConnections in to.Road.Connections) {
@@ -37,7 +37,12 @@ namespace LK.MatchGPX2OSM {
 			while (open.Count > 0) {
 				Path current = open[0];
 				open.Remove(current);
-				close.Add(current);
+				if (close.ContainsKey(current.Position) == false) {
+					close.Add(current.Position, current);
+				}
+				else {
+					close[current.Position] = current;
+				}
 
 				if (Calculations.GetDistance2D(current.Position.Position, destination.Position) < Calculations.EpsLength) {		
 					length = current.PathLength;
@@ -68,7 +73,7 @@ namespace LK.MatchGPX2OSM {
 				
 				foreach (var link in current.Position.Connections) {
 					if (link.From != current.Position) continue;
-					double distance = current.PathLength + link.Geometry.Length; //Calculations.GetLength(link.Geometry);
+					double distance = current.PathLength + link.Geometry.Length;
 					Path expanded = null;
 					if (open.Contains(link.To)) {
 						if (open[link.To].PathLength > distance) {
@@ -78,7 +83,8 @@ namespace LK.MatchGPX2OSM {
 							open.Update();
 						}
 					}
-					else if (close.Contains(link.To)) {
+
+					else if (close.ContainsKey(link.To)) {
 						if (close[link.To].PathLength > distance) {
 							close[link.To].PathLength = distance;
 							close[link.To].Position = current.Position;
