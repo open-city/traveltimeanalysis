@@ -10,13 +10,13 @@ using LK.GeoUtils.Geometry;
 namespace LK.MatchGPX2OSM {
 	//Represents routable road graph, every road segment is represented by directed Connection and every road crossing by Node
 	public class RoadGraph {
-		private Dictionary<int, Node> _nodes;
+		private List<Node> _nodes;
 		/// <summary>
 		/// Gets collection of all nodes in this graph
 		/// </summary>
-		public IEnumerable<Node> Nodes {
+		public ICollection<Node> Nodes {
 			get {
-				return _nodes.Values;
+				return _nodes;
 			}
 		}
 
@@ -24,7 +24,7 @@ namespace LK.MatchGPX2OSM {
 		/// <summary>
 		/// Gets collection of all edges in this graph
 		/// </summary>
-		public IEnumerable<Connection> Connections {
+		public ICollection<Connection> Connections {
 			get {
 				return _connections;
 			}
@@ -34,7 +34,7 @@ namespace LK.MatchGPX2OSM {
 		/// <summary>
 		/// Gets collection of all shapes of the connections from this graph
 		/// </summary>
-		public IEnumerable<ConnectionGeometry> ConnectionGeometries {
+		public ICollection<ConnectionGeometry> ConnectionGeometries {
 			get {
 				return _connectionGeometries;
 			}
@@ -44,7 +44,7 @@ namespace LK.MatchGPX2OSM {
 		/// Creates a new RoadGraph
 		/// </summary>
 		public RoadGraph() {
-			_nodes = new Dictionary<int, Node>();
+			_nodes = new List<Node>();
 			_connections = new List<Connection>();
 			_connectionGeometries = new List<ConnectionGeometry>();
 		}
@@ -54,12 +54,14 @@ namespace LK.MatchGPX2OSM {
 		/// </summary>
 		/// <param name="map">OSMDB with preprocessed map data from OSM2Routing utility</param>
 		public void Build(OSMDB map) {
-			foreach (var segment in map.Ways) {
-				Node start = GetOrCreateNode(segment.Nodes[0]);
-				start.Position = map.Nodes[start.ID];
+			Dictionary<int, Node> usedNodes = new Dictionary<int, Node>();
 
-				Node end = GetOrCreateNode(segment.Nodes[segment.Nodes.Count - 1]);
-				end.Position = map.Nodes[end.ID];
+			foreach (var segment in map.Ways) {
+				Node start = GetOrCreateNode(segment.Nodes[0], usedNodes);
+				start.MapPoint = map.Nodes[segment.Nodes[0]];
+
+				Node end = GetOrCreateNode(segment.Nodes[segment.Nodes.Count - 1], usedNodes);
+				end.MapPoint = map.Nodes[segment.Nodes[segment.Nodes.Count - 1]];
 
 				double speed = double.Parse(segment.Tags["speed"].Value, System.Globalization.CultureInfo.InvariantCulture);
 				int wayId = int.Parse(segment.Tags["way-id"].Value, System.Globalization.CultureInfo.InvariantCulture);
@@ -91,14 +93,15 @@ namespace LK.MatchGPX2OSM {
 		/// </summary>
 		/// <param name="nodeId">The ID of the node</param>
 		/// <returns>The node with specific ID</returns>
-		private Node GetOrCreateNode(int nodeId) {
-			if (_nodes.ContainsKey(nodeId) == false) {
-				Node n = new Node() { ID = nodeId };
-				_nodes.Add(nodeId, n);
+		private Node GetOrCreateNode(int nodeId, Dictionary<int, Node> usedNodes) {
+			if (usedNodes.ContainsKey(nodeId) == false) {
+				Node n = new Node();
+				usedNodes.Add(nodeId, n);
+				_nodes.Add(n);
 				return n;
 			}
 			else {
-				return _nodes[nodeId];
+				return usedNodes[nodeId];
 			}
 		}
 	}

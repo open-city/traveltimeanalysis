@@ -35,11 +35,11 @@ namespace MatchGPX2OSM.Tests {
 			target.Build(map);
 
 			Assert.Equal(2, target.Connections.Count());
-			Assert.Equal(1, target.Connections.Where(c => c.From.ID == 1 && c.To.ID == 2).Count());
-			Assert.Equal(1, target.Connections.Where(c => c.From.ID == 2 && c.To.ID == 1).Count());
+			Assert.Equal(1, target.Connections.Where(c => c.From.MapPoint == map.Nodes[1] && c.To.MapPoint == map.Nodes[2]).Count());
+			Assert.Equal(1, target.Connections.Where(c => c.From.MapPoint == map.Nodes[2] && c.To.MapPoint == map.Nodes[1]).Count());
 
-			Assert.Equal(2, target.Nodes.Where(n => n.ID == 1).Single().Connections.Count());
-			Assert.Equal(2, target.Nodes.Where(n => n.ID == 2).Single().Connections.Count());
+			Assert.Equal(2, target.Nodes.Where(n => n.MapPoint == map.Nodes[1]).Single().Connections.Count());
+			Assert.Equal(2, target.Nodes.Where(n => n.MapPoint == map.Nodes[2]).Single().Connections.Count());
 		}
 
 		[Fact()]
@@ -59,10 +59,10 @@ namespace MatchGPX2OSM.Tests {
 			target.Build(map);
 
 			Assert.Equal(1, target.Connections.Count());
-			Assert.Equal(1, target.Connections.Where(c => c.From.ID == 1 && c.To.ID == 2).Count());
+			Assert.Equal(1, target.Connections.Where(c => c.From.MapPoint == map.Nodes[1] && c.To.MapPoint == map.Nodes[2]).Count());
 
-			Assert.Equal(1, target.Nodes.Where(n => n.ID == 1).Single().Connections.Count());
-			Assert.Equal(1, target.Nodes.Where(n => n.ID == 2).Single().Connections.Count());
+			Assert.Equal(1, target.Nodes.Where(n => n.MapPoint == map.Nodes[1]).Single().Connections.Count());
+			Assert.Equal(1, target.Nodes.Where(n => n.MapPoint == map.Nodes[2]).Single().Connections.Count());
 		}
 
 		[Fact()]
@@ -82,10 +82,10 @@ namespace MatchGPX2OSM.Tests {
 			target.Build(map);
 
 			Assert.Equal(1, target.Connections.Count());
-			Assert.Equal(1, target.Connections.Where(c => c.From.ID == 2 && c.To.ID == 1).Count());
+			Assert.Equal(1, target.Connections.Where(c => c.From.MapPoint == map.Nodes[2] && c.To.MapPoint == map.Nodes[1]).Count());
 
-			Assert.Equal(1, target.Nodes.Where(n => n.ID == 1).Single().Connections.Count());
-			Assert.Equal(1, target.Nodes.Where(n => n.ID == 2).Single().Connections.Count());
+			Assert.Equal(1, target.Nodes.Where(n => n.MapPoint == map.Nodes[1]).Single().Connections.Count());
+			Assert.Equal(1, target.Nodes.Where(n => n.MapPoint == map.Nodes[2]).Single().Connections.Count());
 		}
 
 		[Fact()]
@@ -105,8 +105,8 @@ namespace MatchGPX2OSM.Tests {
 			target.Build(map);
 
 			Assert.Equal(2, target.Nodes.Count());
-			Assert.Equal(1, target.Nodes.Where(n => n.ID == 1 && n.Position.Latitude == 1 && n.Position.Longitude == 2).Count());
-			Assert.Equal(1, target.Nodes.Where(n => n.ID == 2 && n.Position.Latitude == 2 && n.Position.Longitude == 3).Count());
+			Assert.Equal(1, target.Nodes.Where(n => n.MapPoint == map.Nodes[1]).Count());
+			Assert.Equal(1, target.Nodes.Where(n => n.MapPoint == map.Nodes[2]).Count());
 		}
 
 		[Fact()]

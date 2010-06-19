@@ -66,7 +66,7 @@ namespace LK.MatchGPX2OSM {
 
 					for (int j = 0; j < paths.Count; j++) {
 						if (j > 0) {
-							node = AddNodeToPath(result, ref counter, paths[j].From.Position);
+							node = AddNodeToPath(result, ref counter, paths[j].From.MapPoint);
 							way.Nodes.Add(node.ID);
 						}
 
@@ -79,7 +79,7 @@ namespace LK.MatchGPX2OSM {
 							way.Tags.Add(new OSMTag("way-id", paths[j].Road.WayID.ToString()));
 						}
 						
-						var points = GetNodesBetweenPoints(paths[j].From.Position, paths[j].To.Position, paths[j].Road).ToList();
+						var points = GetNodesBetweenPoints(paths[j].From.MapPoint, paths[j].To.MapPoint, paths[j].Road).ToList();
 						foreach (var point in points) {
 							node = AddNodeToPath(result, ref counter, point);
 							way.Nodes.Add(node.ID);

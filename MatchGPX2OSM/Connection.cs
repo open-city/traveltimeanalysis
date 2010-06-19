@@ -17,10 +17,10 @@ namespace LK.MatchGPX2OSM {
 		/// <param name="to">The noe where this connection ends</param>
 		public Connection(Node from, Node to) {
 			this.From = from;
-			from.AddConnection(this);
+			from.Connections.Add(this);
 
 			this.To = to;
-			to.AddConnection(this);
+			to.Connections.Add(this);
 		}
 
 		/// <summary>

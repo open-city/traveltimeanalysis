@@ -16,7 +16,7 @@ namespace LK.MatchGPX2OSM {
 		/// <summary>
 		/// Gets the list of connections that shares this shape
 		/// </summary>
-		public List<Connection> Connections { get; private set; }
+		public IList<Connection> Connections { get; private set; }
 
 		/// <summary>
 		/// Creates a new Connection geometry object

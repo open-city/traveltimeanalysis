@@ -17,82 +17,82 @@ namespace LK.MatchGPX2OSM {
 
 		public IList<PathSegment> FindPath(CandidatePoint from, CandidatePoint to, ref double length) {
 			SortedPathList open = new SortedPathList();
-			Dictionary<Node, Path> close = new Dictionary<Node, Path>();
+			Dictionary<Node, PartialPath> close = new Dictionary<Node, PartialPath>();
 
 			List<Node> target = new List<Node>();
 			foreach (var targetConnections in to.Road.Connections) {
 				target.Add(targetConnections.From);
 			}
-			Node destination = new Node() { Position = to };
+			Node destination = new Node() { MapPoint = to };
 			
 
 			foreach (var connection in from.Road.Connections) {
-				Path path = new Path();
-				path.Position = connection.To;
-				path.PathLength = Calculations.GetPathLength(from, path.Position.Position, connection.Geometry);
+				PartialPath path = new PartialPath();
+				path.CurrentPosition = connection.To;
+				path.Length = Calculations.GetPathLength(from, path.CurrentPosition.MapPoint, connection.Geometry);
 				path.PreviousPath = connection.Geometry;
 				open.Add(path);
 			}
 
 			while (open.Count > 0) {
-				Path current = open[0];
+				PartialPath current = open[0];
 				open.Remove(current);
-				if (close.ContainsKey(current.Position) == false) {
-					close.Add(current.Position, current);
+				if (close.ContainsKey(current.CurrentPosition) == false) {
+					close.Add(current.CurrentPosition, current);
 				}
 				else {
-					close[current.Position] = current;
+					close[current.CurrentPosition] = current;
 				}
 
-				if (Calculations.GetDistance2D(current.Position.Position, destination.Position) < Calculations.EpsLength) {		
-					length = current.PathLength;
+				if (Calculations.GetDistance2D(current.CurrentPosition.MapPoint, destination.MapPoint) < Calculations.EpsLength) {		
+					length = current.Length;
 					List<PathSegment> result = new List<PathSegment>();
 
 					while (current.PreviousNode != null) {
-						result.Add(new PathSegment() { From = current.PreviousNode, To = current.Position, Road = current.PreviousPath });
+						result.Add(new PathSegment() { From = current.PreviousNode, To = current.CurrentPosition, Road = current.PreviousPath });
 						current = close[current.PreviousNode];
 					}
-					result.Add(new PathSegment() { From = new Node(from), To = current.Position, Road = current.PreviousPath });
+					result.Add(new PathSegment() { From = new Node(from), To = current.CurrentPosition, Road = current.PreviousPath });
 
 					result.Reverse();
 					return result;
 				}
 
-				if (target.Contains(current.Position)) {
-					double distance = current.PathLength + Calculations.GetPathLength(current.Position.Position, destination.Position, to.Road);
+				if (target.Contains(current.CurrentPosition)) {
+					double distance = current.Length + Calculations.GetPathLength(current.CurrentPosition.MapPoint, destination.MapPoint, to.Road);
 					if (open.Contains(destination)) {
-						if (open[destination].PathLength > distance) {
-							open[destination].PathLength = distance;
-							open[destination].PreviousNode = current.Position;
+						if (open[destination].Length > distance) {
+							open[destination].Length = distance;
+							open[destination].PreviousNode = current.CurrentPosition;
 						}
 					}
 					else {
-						open.Add(new Path() { Position = destination, PathLength = distance, PreviousNode = current.Position, PreviousPath = to.Road });
+						open.Add(new PartialPath() { CurrentPosition = destination, Length = distance, PreviousNode = current.CurrentPosition, PreviousPath = to.Road });
 					}
 				}
 				
-				foreach (var link in current.Position.Connections) {
-					if (link.From != current.Position) continue;
-					double distance = current.PathLength + link.Geometry.Length;
-					Path expanded = null;
+				foreach (var link in current.CurrentPosition.Connections) {
+					if (link.From != current.CurrentPosition) continue;
+					double distance = current.Length + link.Geometry.Length;
+					PartialPath expanded = null;
 					if (open.Contains(link.To)) {
-						if (open[link.To].PathLength > distance) {
-							open[link.To].PathLength = distance;
-							open[link.To].PreviousNode = current.Position;
+						if (open[link.To].Length > distance) {
+							open[link.To].Length = distance;
+							open[link.To].PreviousNode = current.CurrentPosition;
 							open[link.To].PreviousPath = link.Geometry;
 							open.Update();
 						}
 					}
 
 					else if (close.ContainsKey(link.To)) {
-						if (close[link.To].PathLength > distance) {
-							close[link.To].PathLength = distance;
-							close[link.To].Position = current.Position;
+						if (close[link.To].Length > distance) {
+							close[link.To].Length = distance;
+							close[link.To].CurrentPosition = current.CurrentPosition;
 							close[link.To].PreviousPath = link.Geometry;
 						}
 					}
 					else {
-						expanded = new Path() { PathLength = distance, Position = link.To, PreviousNode = current.Position, PreviousPath = link.Geometry};
+						expanded = new PartialPath() { Length = distance, CurrentPosition = link.To, PreviousNode = current.CurrentPosition, PreviousPath = link.Geometry};
 						open.Add(expanded);
 					}
 				}
@@ -101,55 +101,19 @@ namespace LK.MatchGPX2OSM {
 			return null;
 		}
 
-		class Path : IComparer<Path>, IComparable {
-			public Node Position;
-			public Node PreviousNode;
-			public ConnectionGeometry PreviousPath;
-			public double PathLength;
 
-			public override bool Equals(object obj) {
-				if (obj is Path) {
-					Path other = (Path)obj;
-					return this.Position.Equals(other.Position);
-				}
-				return base.Equals(obj);
-			}
-
-			public override int GetHashCode() {
-				return this.Position.GetHashCode();
-			}
-			#region IComparer<Path> Members
-
-			public int Compare(Path x, Path y) {
-				return x.PathLength.CompareTo(y.PathLength);
-			}
-
-			#endregion
-
-			#region IComparable Members
-
-			public int CompareTo(object obj) {
-				if (obj is Path) {
-					Path other = (Path)obj;
-					return Compare(this, other);
-				}
-				return 0;
-			}
-
-			#endregion
-		}
 
 		class SortedPathList {
-			protected List<Path> paths;
-			protected Dictionary<Node, Path> nodePath;
+			protected List<PartialPath> paths;
+			protected Dictionary<Node, PartialPath> nodePath;
 
-			public Path this[int index] {
+			public PartialPath this[int index] {
 				get {
 					return paths[index];
 				}
 			}
 
-			public Path this[Node node] {
+			public PartialPath this[Node node] {
 				get {
 					return nodePath[node];
 				}
@@ -162,32 +126,32 @@ namespace LK.MatchGPX2OSM {
 			}
 
 			public SortedPathList() {
-				paths = new List<Path>();
-				nodePath = new Dictionary<Node, Path>();
+				paths = new List<PartialPath>();
+				nodePath = new Dictionary<Node, PartialPath>();
 			}
 
 			public bool Contains(Node pathEnd) {
 				return nodePath.ContainsKey(pathEnd);
 			}
 
-			public void Add(Path path) {
-				if (nodePath.ContainsKey(path.Position)) {
-					nodePath[path.Position] = path;
+			public void Add(PartialPath path) {
+				if (nodePath.ContainsKey(path.CurrentPosition)) {
+					nodePath[path.CurrentPosition] = path;
 					Update();
 				}
 				else {
-					nodePath.Add(path.Position, path);
+					nodePath.Add(path.CurrentPosition, path);
 					paths.Add(path);
 					int index = 0;
-					while (index < paths.Count && paths[index].PathLength < path.PathLength) {
+					while (index < paths.Count && paths[index].Length < path.Length) {
 						index++;
 					}
 					paths.Insert(index, path);
 				}
 			}
 
-			public void Remove(Path path) {
-				nodePath.Remove(path.Position);
+			public void Remove(PartialPath path) {
+				nodePath.Remove(path.CurrentPosition);
 				paths.Remove(path);
 			}
 
