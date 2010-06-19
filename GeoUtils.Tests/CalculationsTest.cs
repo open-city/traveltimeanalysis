@@ -10,8 +10,6 @@ using LK.GeoUtils.Geometry;
 
 namespace GeoUtils.Tests {
 	public class CalculationsTest {
-		const double epsLength = 0.01;
-
 		[Fact()]
 		public void CalculationsGetDistanceComputesDistanceBetweenPointsUsingGCD() {
 			double error = Math.Abs(Calculations.GetDistance2D(new PointGeo(36.12, -86.67), new PointGeo(33.94, -118.4)) - 2886449);
@@ -108,7 +106,7 @@ namespace GeoUtils.Tests {
 			Segment<IPointGeo> target = new Segment<IPointGeo>(origin, end);
 			double length = Calculations.GetLength(target);
 
-			Assert.InRange(length, length - epsLength, length + epsLength);
+			Assert.InRange(length, length - Calculations.EpsLength, length + Calculations.EpsLength);
 		}
 
 		[Fact()]
@@ -121,9 +119,13 @@ namespace GeoUtils.Tests {
 			double exceptedLength = Calculations.GetDistance2D(from, to);
 
 			Segment<IPointGeo> target = new Segment<IPointGeo>(segmentOrigin, segmentEnd);
-			double length = Calculations.GetPathLength(from, to, target);
 
-			Assert.InRange(length, exceptedLength - epsLength, exceptedLength + epsLength);
+			double length = Calculations.GetPathLength(from, to, target);
+			Assert.InRange(length, exceptedLength - Calculations.EpsLength, exceptedLength + Calculations.EpsLength);
+
+			// Reverse direction
+			length = Calculations.GetPathLength(to, from, target);
+			Assert.InRange(length, exceptedLength - Calculations.EpsLength, exceptedLength + Calculations.EpsLength);
 		}
 
 		[Fact()]
@@ -139,8 +141,31 @@ namespace GeoUtils.Tests {
 			double exceptedLength = Calculations.GetDistance2D(from, to);
 
 			double length = Calculations.GetPathLength(from, to, target);
+			Assert.InRange(length, exceptedLength - Calculations.EpsLength, exceptedLength + Calculations.EpsLength);
 
-			Assert.InRange(length, exceptedLength - epsLength, exceptedLength + epsLength);
+			// Reverse direction
+			length = Calculations.GetPathLength(to, from, target);
+			Assert.InRange(length, exceptedLength - Calculations.EpsLength, exceptedLength + Calculations.EpsLength);
+		}
+
+		[Fact()]
+		public void GetPathLengthPolylineReturnsCorrectLengthForPointaOnTheSameSegment_FromToSegmentsPath() {
+			Polyline<IPointGeo> target = new Polyline<IPointGeo>();
+			target.Nodes.Add(new PointGeo(10, 10));
+			target.Nodes.Add(new PointGeo(10, 11));
+			target.Nodes.Add(new PointGeo(11, 11));
+			target.Nodes.Add(new PointGeo(11, 12));
+
+			PointGeo from = new PointGeo(10, 10.5);
+			PointGeo to = new PointGeo(10, 10.6);
+			double exceptedLength = Calculations.GetDistance2D(from, to);
+
+			double length = Calculations.GetPathLength(from, target.Segments[0], to, target.Segments[0], target);
+			Assert.InRange(length, exceptedLength - Calculations.EpsLength, exceptedLength + Calculations.EpsLength);
+
+			// Reverse direction
+			length = Calculations.GetPathLength(to, target.Segments[0], from, target.Segments[0], target);
+			Assert.InRange(length, exceptedLength - Calculations.EpsLength, exceptedLength + Calculations.EpsLength);
 		}
 
 		[Fact()]
@@ -159,10 +184,34 @@ namespace GeoUtils.Tests {
 															Calculations.GetDistance2D(new PointGeo(11, 11), to);
 
 			double length = Calculations.GetPathLength(from, to, target);
-			Assert.InRange(length, exceptedLength - epsLength, exceptedLength + epsLength);
+			Assert.InRange(length, exceptedLength - Calculations.EpsLength, exceptedLength + Calculations.EpsLength);
 
+			// reverse direction
 			length = Calculations.GetPathLength(to, from, target);
-			Assert.InRange(length, exceptedLength - epsLength, exceptedLength + epsLength);
+			Assert.InRange(length, exceptedLength - Calculations.EpsLength, exceptedLength + Calculations.EpsLength);
+		}
+
+		[Fact()]
+		public void GetPathLengthPolylineReturnsCorrectLengthForPointaOnVariousegment_FromToSegmentsPath() {
+			Polyline<IPointGeo> target = new Polyline<IPointGeo>();
+			target.Nodes.Add(new PointGeo(10, 10));
+			target.Nodes.Add(new PointGeo(10, 11));
+			target.Nodes.Add(new PointGeo(11, 11));
+			target.Nodes.Add(new PointGeo(11, 12));
+			target.Nodes.Add(new PointGeo(12, 12));
+
+			PointGeo from = new PointGeo(10, 10.4);
+			PointGeo to = new PointGeo(11, 11.3);
+			double exceptedLength = Calculations.GetDistance2D(from, new PointGeo(10, 11)) +
+															Calculations.GetDistance2D(new PointGeo(10, 11), new PointGeo(11, 11)) +
+															Calculations.GetDistance2D(new PointGeo(11, 11), to);
+
+			double length = Calculations.GetPathLength(from, target.Segments[0], to, target.Segments[2], target);
+			Assert.InRange(length, exceptedLength - Calculations.EpsLength, exceptedLength + Calculations.EpsLength);
+
+			// Reverse direction
+			length = Calculations.GetPathLength(to, target.Segments[2], from, target.Segments[0], target);
+			Assert.InRange(length, exceptedLength - Calculations.EpsLength, exceptedLength + Calculations.EpsLength);
 		}
 
 		[Fact()]
@@ -180,14 +229,56 @@ namespace GeoUtils.Tests {
 															Calculations.GetDistance2D(new PointGeo(11, 11), new PointGeo(11, 12));
 
 			double length = Calculations.GetPathLength(from, to, target);
-			Assert.InRange(length, exceptedLength - epsLength, exceptedLength + epsLength);
+			Assert.InRange(length, exceptedLength - Calculations.EpsLength, exceptedLength + Calculations.EpsLength);
 
+			// Reverse direction
 			length = Calculations.GetPathLength(to, from, target);
-			Assert.InRange(length, exceptedLength - epsLength, exceptedLength + epsLength);
+			Assert.InRange(length, exceptedLength - Calculations.EpsLength, exceptedLength + Calculations.EpsLength);
 		}
 
 		[Fact()]
-		public void GetPathLengthPolylineThrowaExceptionIfPointDistanceGreaterTanEPS() {
+		public void GetPathLengthPolylineReturnsCorrectLengthForPointaOnSegmentEnds_FromToSegmentsPath() {
+			Polyline<IPointGeo> target = new Polyline<IPointGeo>();
+			target.Nodes.Add(new PointGeo(10, 10));
+			target.Nodes.Add(new PointGeo(10, 11));
+			target.Nodes.Add(new PointGeo(11, 11));
+			target.Nodes.Add(new PointGeo(11, 12));
+			target.Nodes.Add(new PointGeo(12, 12));
+
+			PointGeo from = new PointGeo(10, 11);
+			PointGeo to = new PointGeo(11, 12);
+			double exceptedLength = Calculations.GetDistance2D(new PointGeo(10, 11), new PointGeo(11, 11)) +
+															Calculations.GetDistance2D(new PointGeo(11, 11), new PointGeo(11, 12));
+
+			// Every endpoint is a part of two segments
+			double length = Calculations.GetPathLength(from, target.Segments[0], to, target.Segments[2], target);
+			Assert.InRange(length, exceptedLength - Calculations.EpsLength, exceptedLength + Calculations.EpsLength);
+
+			length = Calculations.GetPathLength(from, target.Segments[0], to, target.Segments[3], target);
+			Assert.InRange(length, exceptedLength - Calculations.EpsLength, exceptedLength + Calculations.EpsLength);
+
+			length = Calculations.GetPathLength(from, target.Segments[1], to, target.Segments[2], target);
+			Assert.InRange(length, exceptedLength - Calculations.EpsLength, exceptedLength + Calculations.EpsLength);
+
+			length = Calculations.GetPathLength(from, target.Segments[1], to, target.Segments[3], target);
+			Assert.InRange(length, exceptedLength - Calculations.EpsLength, exceptedLength + Calculations.EpsLength);
+
+			// Reverse dirrection
+			length = Calculations.GetPathLength(to, target.Segments[2], from, target.Segments[0], target);
+			Assert.InRange(length, exceptedLength - Calculations.EpsLength, exceptedLength + Calculations.EpsLength);
+
+			length = Calculations.GetPathLength(to, target.Segments[3], from, target.Segments[0], target);
+			Assert.InRange(length, exceptedLength - Calculations.EpsLength, exceptedLength + Calculations.EpsLength);
+
+			length = Calculations.GetPathLength(to, target.Segments[2], from, target.Segments[1], target);
+			Assert.InRange(length, exceptedLength - Calculations.EpsLength, exceptedLength + Calculations.EpsLength);
+
+			length = Calculations.GetPathLength(to, target.Segments[3], from, target.Segments[1], target);
+			Assert.InRange(length, exceptedLength - Calculations.EpsLength, exceptedLength + Calculations.EpsLength);
+		}
+
+		[Fact()]
+		public void GetPathLengthPolylineThrowaExceptionIfPointDistanceGreaterThenEPS() {
 			Polyline<IPointGeo> target = new Polyline<IPointGeo>();
 			target.Nodes.Add(new PointGeo(10, 10));
 			target.Nodes.Add(new PointGeo(10, 11));
@@ -197,7 +288,6 @@ namespace GeoUtils.Tests {
 			PointGeo to = new PointGeo(11, 11.1);
 
 			Assert.Throws<ArgumentException>(delegate {Calculations.GetPathLength(from, to, target);});
-
 		}
 	}
 }

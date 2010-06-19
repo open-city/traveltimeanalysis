@@ -83,15 +83,13 @@ namespace LK.GeoUtils {
 
 
 		/// <summary>
-		/// Calculates length of the pathe between two points along the specific segment
+		/// Calculates length of the path between two points along the specifid Polyline
 		/// </summary>
 		/// <param name="from">The point where path starts</param>
 		/// <param name="to">The point where path ends</param>
 		/// <param name="path">Polyline that defines path geometry</param>
 		/// <returns>The length of the path between points from and to along the polyline</returns>
 		public static double GetPathLength(IPointGeo from, IPointGeo to, IPolyline<IPointGeo> path) {
-			var segments = path.Segments;
-
 			int pointFound = 0;
 			int pointFoundLast = 0;
 			bool fromFound = false; bool toFound = false;
@@ -112,6 +110,48 @@ namespace LK.GeoUtils {
 
 				if (pointFound > 0) {
 					if(pointFound == pointFoundLast) 
+						distance += segment.Length;
+					else
+						distance += Calculations.GetDistance2D(points[0], points[1]);
+
+					if (pointFound == 2)
+						return distance;
+				}
+			}
+
+			throw new ArgumentException("One or more points do not lie on the given path");
+		}
+
+		/// <summary>
+		/// Calculates length of the path between two points along the specifid Polyline
+		/// </summary>
+		/// <param name="from">The point where path starts</param>
+		/// <param name="fromSegment">The Segment, where the point From lies</param>
+		/// <param name="to">The point where path ends</param>
+		/// <param name="toSegment">The Segment, where the point To lies</param>
+		/// <param name="path">Polyline that defines path geometry</param>
+		/// <returns>The length of the path between points from and to along the polyline</returns>
+		public static double GetPathLength(IPointGeo from, Segment<IPointGeo> fromSegment, IPointGeo to, Segment<IPointGeo> toSegment, IPolyline<IPointGeo> path) {
+			int pointFound = 0;
+			int pointFoundLast = 0;
+			bool fromFound = false; bool toFound = false;
+			double distance = 0;
+			foreach (var segment in path.Segments) {
+				pointFoundLast = pointFound;
+				IPointGeo[] points = new IPointGeo[] { segment.StartPoint, segment.EndPoint };
+
+				if (!fromFound && fromSegment.Equals(segment)) {
+					fromFound = true;
+					points[pointFound++] = from;
+				}
+
+				if (!toFound && toSegment.Equals(segment)) {
+					toFound = true;
+					points[pointFound++] = to;
+				}
+
+				if (pointFound > 0) {
+					if (pointFound == pointFoundLast)
 						distance += segment.Length;
 					else
 						distance += Calculations.GetDistance2D(points[0], points[1]);
