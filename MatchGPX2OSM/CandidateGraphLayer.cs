@@ -7,7 +7,7 @@ using LK.GPXUtils;
 
 namespace LK.MatchGPX2OSM {
 	/// <summary>
-	/// Represents set of the candidate points for the given GPX point
+	/// Represents set of the candidate points for the GPX point
 	/// </summary>
 	public class CandidateGraphLayer {
 		/// <summary>

@@ -26,9 +26,14 @@ namespace LK.MatchGPX2OSM {
 		public double Elevation { get; set; }
 
 		/// <summary>
-		/// Gets or sets road segement on that this candidate point lies
+		/// Gets or sets ConnectionGeometry that represents the road on which this candidate point lies
 		/// </summary>
 		public ConnectionGeometry Road { get; set; }
+
+		/// <summary>
+		/// Gets or sets Segmen that represents the part of the road on which this candidate point lies
+		/// </summary>
+		public Segment<IPointGeo> RoadSegment { get; set; }
 
 		/// <summary>
 		/// Gets or sets Observation probability
@@ -51,10 +56,10 @@ namespace LK.MatchGPX2OSM {
 			IncomingConnections = new List<CandidatesConnection>();
 		}
 
-		/// <summary>
-		/// Gets or sets highest reached probability for this candidate point during the candidates matching phase
-		/// </summary>
 		private double _highestProbability = double.NegativeInfinity;
+		/// <summary>
+		/// Gets or sets highest probability for this candidate point during the candidates matching phase
+		/// </summary>
 		public double HighestProbability {
 			get {
 				return _highestProbability;
@@ -65,7 +70,7 @@ namespace LK.MatchGPX2OSM {
 		}
 
 		/// <summary>
-		/// Gets the node that's connection with this point has the highest probability
+		/// Gets the CandidatePoint from the previous layer that's connection with this point has the highest probability
 		/// </summary>
 		public CandidatePoint HighesScoreParent;
 	}

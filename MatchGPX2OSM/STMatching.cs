@@ -250,8 +250,11 @@ namespace LK.MatchGPX2OSM {
 
 			foreach (var road in _graph.ConnectionGeometries) {
 				if (Topology.Intersects(gpxBbox, road.BBox)) {
-					IPointGeo projectedPoint = Topology.ProjectPoint(gpxPt, road);
-					result.Add(new CandidatePoint() { Latitude = projectedPoint.Latitude, Longitude = projectedPoint.Longitude, Road = road, ObservationProbability = CalculateObservationProbability(gpxPt, projectedPoint) });
+					Segment<IPointGeo> roadSegment;
+					IPointGeo projectedPoint = Topology.ProjectPoint(gpxPt, road, out roadSegment);
+					result.Add(new CandidatePoint() { Latitude = projectedPoint.Latitude, Longitude = projectedPoint.Longitude, 
+						                                Road = road, RoadSegment = roadSegment,
+																						ObservationProbability = CalculateObservationProbability(gpxPt, projectedPoint) });
 				}
 			}
 
