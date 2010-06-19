@@ -38,5 +38,40 @@ namespace LK.GeoUtils.Geometry {
 				return _length;
 			}
 		}
+
+		/// <summary>
+		/// Determines whethet specified object is equal to the current Segment
+		/// </summary>
+		/// <param name="obj">The object to compare with the current Segment</param>
+		/// <returns>true if obj is Segment and has the same StartPoint and EndPoint as this Segment, otherwise returns false</returns>
+		public override bool Equals(object obj) {
+			Segment<T> other = obj as Segment<T>;
+			if (other != null) {
+				return StartPoint.Equals(other.StartPoint) && EndPoint.Equals(other.EndPoint);
+			}
+			else
+				return false;
+		}
+
+		/// <summary>
+		/// Determines whethet specified object is equal to the current Segment
+		/// </summary>
+		/// <param name="obj">The object to compare with the current Segment</param>
+		/// <returns>true if obj is Segment and has the same StartPoint and EndPoint as this Segment, otherwise returns false</returns>
+		public bool Equals(Segment<T> other) {
+			if (other != null) {
+				return StartPoint.Equals(other.StartPoint) && EndPoint.Equals(other.EndPoint);
+			}
+			else
+				return false;
+		}
+
+		/// <summary>
+		/// Returns a hash code for the current Segment
+		/// </summary>
+		/// <returns>A hash code for the current Segment.</returns>
+		public override int GetHashCode() {
+			return unchecked(StartPoint.GetHashCode() + 31 * EndPoint.GetHashCode());
+		}
 	}
 }
