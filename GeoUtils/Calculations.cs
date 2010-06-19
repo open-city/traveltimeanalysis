@@ -22,6 +22,16 @@ namespace LK.GeoUtils {
 			_distanceCalculator = new GreatCircleDistanceCalculator();
 		}
 
+		public static double GetBearing(IPointGeo pt1, IPointGeo pt2) {
+			double dLon = Calculations.ToRadians(pt1.Longitude - pt2.Longitude);
+			double dLat = Calculations.ToRadians(pt1.Latitude - pt2.Latitude);
+
+			double y = Math.Sin(dLon) * Math.Cos(Calculations.ToRadians(pt2.Latitude));
+			double x = Math.Cos(Calculations.ToRadians(pt1.Latitude)) * Math.Sin(Calculations.ToRadians(pt2.Latitude)) -
+							Math.Sin(Calculations.ToRadians(pt1.Latitude)) * Math.Cos(Calculations.ToRadians(pt2.Latitude)) * Math.Cos(dLon);
+			return Calculations.ToDegrees(Math.Atan2(y, x));
+		}
+
 		/// <summary>
 		/// Calculates distance between 2 points on geoid surface (ignores points elevations)
 		/// </summary>

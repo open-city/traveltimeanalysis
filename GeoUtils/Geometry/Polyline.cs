@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 
+using LK.CommonLib.Collections;
+
 namespace LK.GeoUtils.Geometry {
 	/// <summary>
 	/// Represents a polyline defined by IPointGeo objects
 	/// </summary>
 	public class Polyline<T> : IPolyline<T> where T : IPointGeo  {
-		protected List<T> _nodes;
+		protected ObservableList<T> _nodes;
 
 		/// <summary>
 		/// Gets the list of nodes of this polyline
 		/// </summary>
-		/// <remarks>Implements generic IPolyline interface</remarks>
 		public IList<T> Nodes {
 			get { return _nodes; }
 		}
@@ -20,19 +21,16 @@ namespace LK.GeoUtils.Geometry {
 		/// <summary>
 		/// Gets the list of segment of this polyline
 		/// </summary>
-		/// <remarks>List isn't cached, it is built every time it is requested</remarks>
+		List<Segment<T>> _segments;
 		public IList<Segment<T>> Segments {
 			get {
 				if (_segments == null) {
 					_segments = GetSegments();
 				}
 				return _segments;
-
-				//return GetSegments();
 			}
 		}
 
-		List<Segment<T>> _segments;
 		/// <summary>
 		/// Builds list of segments of this polyline
 		/// </summary>
@@ -53,15 +51,10 @@ namespace LK.GeoUtils.Geometry {
 			get { return _nodes.Count; }
 		}
 
-		/// <summary>
-		/// Creates a new, empty instance of the polyline
-		/// </summary>
-		public Polyline() {
-			_nodes = new List<T>();
-			_length = double.NaN;
-		}
-
 		private double _length;
+		/// <summary>
+		/// Gets the length of the Polyline in meters
+		/// </summary>
 		public double Length {
 			get {
 				if (double.IsNaN(_length)) {
@@ -71,5 +64,22 @@ namespace LK.GeoUtils.Geometry {
 				return _length;
 			}
 		}
+
+		protected void InvalidateComputedProperties(object sender) {
+			_length = double.NaN;
+			_segments = null;
+		}
+
+		/// <summary>
+		/// Creates a new, empty instance of the polyline
+		/// </summary>
+		public Polyline() {
+			_nodes = new ObservableList<T>();
+			_nodes.ListContentChanged += new ListContentChangedHandler(InvalidateComputedProperties);
+
+			InvalidateComputedProperties(null);
+		}
+
+
 	}
 }

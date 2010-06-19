@@ -1,14 +1,12 @@
 ﻿using LK.GeoUtils.Geometry;
 using System;
 using System.Collections.Generic;
+
 using Xunit;
 
+using LK.GeoUtils;
+
 namespace GeoUtils.Tests {
-    /// <summary>
-    ///This is a test class for PolylineTest and is intended
-    ///to contain all PolylineTest Unit Tests
-    ///</summary>
-	
 	public class PolylineTest {
 		[Fact()]
 		public void PolylineConstructorInitializesInteralFields() {
@@ -43,6 +41,38 @@ namespace GeoUtils.Tests {
 		}
 
 		[Fact()]
+		public void PolylineLengthReturnsLengthOfThePolyline() {
+			PointGeo p1 = new PointGeo(1, 2);
+			PointGeo p2 = new PointGeo(3, 4);
+
+			IPolyline<IPointGeo> target = new Polyline<IPointGeo>();
+			target.Nodes.Add(p1);
+			target.Nodes.Add(p2);
+
+			double expectedLength = Calculations.GetLength(target);
+
+			Assert.InRange(target.Length, expectedLength - Calculations.EpsLength, expectedLength + Calculations.EpsLength);
+		}
+
+		[Fact()]
+		public void PolylineLengthReturnsLengthOfThePolylineAfterPolylineChange() {
+			PointGeo p1 = new PointGeo(1, 2);
+			PointGeo p2 = new PointGeo(3, 4);
+			PointGeo p3 = new PointGeo(5, 6);
+
+			IPolyline<IPointGeo> target = new Polyline<IPointGeo>();
+			target.Nodes.Add(p1);
+			target.Nodes.Add(p2);
+			double length = target.Length;
+
+			//change polyline
+			target.Nodes.Add(p3);
+			double expectedLength = Calculations.GetLength(target);
+
+			Assert.InRange(target.Length, expectedLength - Calculations.EpsLength, expectedLength + Calculations.EpsLength);
+		}
+
+		[Fact()]
 		public void PolylineSegmentsReturnsListOfSegments() {
 			PointGeo pt1 = new PointGeo(1, 2);
 			PointGeo pt2 = new PointGeo(3, 4);
@@ -64,5 +94,22 @@ namespace GeoUtils.Tests {
 			Assert.Equal(pt3, segments[1].EndPoint);
 		}
 
+		[Fact()]
+		public void PolylineSegmentsReturnsListOfSegmentsAfterPolylineChange() {
+			PointGeo pt1 = new PointGeo(1, 2);
+			PointGeo pt2 = new PointGeo(3, 4);
+			PointGeo pt3 = new PointGeo(5, 6);
+
+			Polyline<IPointGeo> target = new Polyline<IPointGeo>();
+			target.Nodes.Add(pt1);
+			target.Nodes.Add(pt2);
+
+			IList<Segment<IPointGeo>> segments = target.Segments;
+
+			target.Nodes.Add(pt3);
+			segments = target.Segments;
+
+			Assert.Equal(2, segments.Count);
+		}
 	}
 }

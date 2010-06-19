@@ -18,6 +18,11 @@ namespace LK.GeoUtils.Geometry {
 		IList<Segment<T>> Segments { get; }
 
 		/// <summary>
+		/// Gets the length of the IPolyline in meters
+		/// </summary>
+		double Length { get; }
+
+		/// <summary>
 		/// Gets nodes count
 		/// </summary>
 		int NodesCount { get; }

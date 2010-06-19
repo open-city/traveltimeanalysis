@@ -23,8 +23,9 @@ namespace LK.GPXUtils {
 		/// <param name="points">Points that belong to the GPXTrackSegment</param>
 		public GPXTrackSegment(IEnumerable<GPXPoint> points)
 			: base() {
-
-				_nodes.AddRange(points);
+				foreach (var point in points) {
+					_nodes.Add(point);					
+				}
 		}
 	}
 }

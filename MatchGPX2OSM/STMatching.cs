@@ -116,7 +116,25 @@ namespace LK.MatchGPX2OSM {
 		/// <returns>OSM db that represents matched track</returns>
 		public OSMDB Match(GPXTrackSegment gpx) {
 			IList<CandidatePoint> matched = FindMatchedCandidates(gpx).ToList();
-			return Reconstruct(matched);
+			OSMDB recostructed = Reconstruct(matched);
+
+			var ways = recostructed.Ways.ToList();
+
+			Segment<OSMNode> lastSegment = new Segment<OSMNode>(recostructed.Nodes[ways[0].Nodes[ways[0].Nodes.Count -2]], recostructed.Nodes[ways[0].Nodes[ways[0].Nodes.Count -1]]);
+			double lastAngle = Calculations.GetBearing(lastSegment.StartPoint, lastSegment.EndPoint);
+
+			for (int i = 1; i < ways.Count; i++) {
+				Segment<OSMNode> segment = new Segment<OSMNode>(recostructed.Nodes[ways[i].Nodes[0]], recostructed.Nodes[ways[i].Nodes[1]]);
+				double angle = Calculations.GetBearing(segment.StartPoint, segment.EndPoint);
+
+				if (Math.Abs(180 - Math.Abs(lastAngle - angle)) < 1) {
+					if (i < ways.Count -1 && Calculations.GetDistance2D(segment.StartPoint, segment.EndPoint) < 50) {
+						ways[i + 1].Nodes[0] = ways[i].Nodes[0];
+						recostructed.Ways.Remove(ways[i]);
+					}
+				}
+			}
+			return recostructed;
 		}
 
 		/// <summary>
