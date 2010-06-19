@@ -50,7 +50,7 @@ namespace LK.GeoUtils.Geometry {
 		/// </summary>
 		/// <returns></returns>
 		public override string ToString() {
-			return string.Format("lat: {0:F4} lon: {1:F4}", Latitude, Longitude);
+			return string.Format("lat: {0:F5} lon: {1:F5}", Latitude, Longitude);
 		}
 	}
 }

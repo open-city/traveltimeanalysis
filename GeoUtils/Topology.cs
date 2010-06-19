@@ -54,6 +54,7 @@ namespace LK.GeoUtils {
 		/// <param name="toProject">The point to be projected</param>
 		/// <param name="projectTo">The segment, point will be projected to</param>
 		/// <returns>the orthogonaly projected point that lies on the specific line segment</returns>
+		/// <remarks>This function uses the sphere Earth approximation</remarks>
 		public static IPointGeo ProjectPointSphere(IPointGeo toProject, Segment<IPointGeo> projectTo) {
 			Vector3 a = new Vector3(projectTo.StartPoint);
 			Vector3 b = new Vector3(projectTo.EndPoint);
@@ -82,13 +83,16 @@ namespace LK.GeoUtils {
 		/// <param name="toProject">The point to be projected</param>
 		/// <param name="projectTo">The segment, point will be projected to</param>
 		/// <returns>the orthogonaly projected point that lies on the specific line segment</returns>
-		public static PointGeo ProjectPoint(IPointGeo toProject, Segment<IPointGeo> projectTo) {
+		/// <remarks>This function uses the flat Earth approximation</remarks>
+		public static IPointGeo ProjectPoint(IPointGeo toProject, Segment<IPointGeo> projectTo) {
 		  double u = ((projectTo.EndPoint.Longitude - projectTo.StartPoint.Longitude) * (toProject.Longitude - projectTo.StartPoint.Longitude) +
 		              (projectTo.EndPoint.Latitude - projectTo.StartPoint.Latitude) * (toProject.Latitude - projectTo.StartPoint.Latitude)) /
 		              (Math.Pow(projectTo.EndPoint.Longitude - projectTo.StartPoint.Longitude, 2) + Math.Pow(projectTo.EndPoint.Latitude - projectTo.StartPoint.Latitude, 2));
 
-		  u = Math.Max(u, 0);
-		  u = Math.Min(u, 1);
+			if (u <= 0)
+				return projectTo.StartPoint;
+			if (u >= 1)
+				return projectTo.EndPoint;
 
 		  double lon = projectTo.StartPoint.Longitude + u * (projectTo.EndPoint.Longitude - projectTo.StartPoint.Longitude);
 		  double lat = projectTo.StartPoint.Latitude + u * (projectTo.EndPoint.Latitude - projectTo.StartPoint.Latitude);
@@ -97,21 +101,46 @@ namespace LK.GeoUtils {
 		}
 
 		/// <summary>
-		/// Projects the point to the specific Polyline
+		/// Projects the point to the Polyline
 		/// </summary>
 		/// <param name="point">The point to be projected</param>
 		/// <param name="line">The polyline, point will be projected to</param>
-		/// <returns>the orthogonaly projected point that lies on the specific polyline</returns>
+		/// <returns>the orthogonaly projected point that lies on the Polyline</returns>
 		public static IPointGeo ProjectPoint(IPointGeo point, IPolyline<IPointGeo> line) {
 			double minDiatance = double.PositiveInfinity;
-			IPointGeo closestPoint = new PointGeo();
+			IPointGeo closestPoint = null;
 
-			for (int i = 0; i < line.Nodes.Count - 1; i++) {
-				IPointGeo projected = ProjectPoint(point, new Segment<IPointGeo>(line.Nodes[i], line.Nodes[i + 1]));
+			foreach (var segment in line.Segments) {
+				IPointGeo projected = ProjectPoint(point, segment);
 				double distance = Calculations.GetDistance2D(point, projected);
 				if (distance < minDiatance) {
 					minDiatance = distance;
 					closestPoint = projected;
+				}
+			}
+
+			return closestPoint;
+		}
+
+		/// <summary>
+		/// Projects the point to the Polyline and sets onSegment out paramater
+		/// </summary>
+		/// <param name="point">The point to project</param>
+		/// <param name="line">The polyline, point will be projected to</param>
+		/// <param name="onSegment">The Segment of the Polyline, on which the projected point lies</param>
+		/// <returns>the orthogonaly projected point that lies on the Polyline</returns>
+		public static IPointGeo ProjectPoint(IPointGeo point, IPolyline<IPointGeo> line, out Segment<IPointGeo> onSegment) {
+			double minDiatance = double.PositiveInfinity;
+			IPointGeo closestPoint = null;
+			onSegment = null;
+
+			foreach (var segment in line.Segments) {
+				IPointGeo projected = ProjectPoint(point, segment);
+				double distance = Calculations.GetDistance2D(point, projected);
+				if (distance < minDiatance) {
+					minDiatance = distance;
+					closestPoint = projected;
+					onSegment = segment;
 				}
 			}
 

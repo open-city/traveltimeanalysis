@@ -62,8 +62,7 @@ namespace LK.GeoUtils {
 		public static double GetDistance2D(IPointGeo point, IPolyline<IPointGeo> line) {
 			double minDistance = double.PositiveInfinity;
 
-			for (int i = 0; i < line.NodesCount -1; i++) {
-				Segment<IPointGeo> segment = new Segment<IPointGeo>(line.Nodes[i], line.Nodes[i + 1]);
+			foreach (var segment in line.Segments) {
 				IPointGeo projectedPoint = Topology.ProjectPoint(point, segment);
 				minDistance = Math.Min(minDistance, _distanceCalculator.Calculate2D(point, projectedPoint));
 			}
@@ -134,7 +133,7 @@ namespace LK.GeoUtils {
 			double length = 0;
 
 			foreach (var segment in line.Segments) {
-				length += GetLength(segment);
+				length += segment.Length;
 			}
 
 			return length;
