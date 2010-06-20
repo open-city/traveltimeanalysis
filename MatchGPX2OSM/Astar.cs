@@ -9,6 +9,9 @@ using LK.OSMUtils.OSMDatabase;
 
 namespace LK.MatchGPX2OSM {
 	public class Astar {
+		public int nodesCount = 0;
+		public int runs = 0;
+
 		protected RoadGraph _graph;
 
 		public Astar(RoadGraph graph) {
@@ -16,7 +19,7 @@ namespace LK.MatchGPX2OSM {
 		}
 
 		public IList<PathSegment> FindPath(CandidatePoint from, CandidatePoint to, ref double length) {
-			SortedPathList open = new SortedPathList();
+			PartialPathList open = new PartialPathList();
 			Dictionary<Node, PartialPath> close = new Dictionary<Node, PartialPath>();
 
 			List<Node> target = new List<Node>();
@@ -35,8 +38,7 @@ namespace LK.MatchGPX2OSM {
 			}
 
 			while (open.Count > 0) {
-				PartialPath current = open[0];
-				open.Remove(current);
+				PartialPath current = open.RemoveTop();
 				if (close.ContainsKey(current.CurrentPosition) == false) {
 					close.Add(current.CurrentPosition, current);
 				}
@@ -55,6 +57,9 @@ namespace LK.MatchGPX2OSM {
 					result.Add(new PathSegment() { From = new Node(from), To = current.CurrentPosition, Road = current.PreviousPath });
 
 					result.Reverse();
+					runs++;
+					nodesCount += close.Count + open.Count;
+
 					return result;
 				}
 
@@ -67,7 +72,8 @@ namespace LK.MatchGPX2OSM {
 						}
 					}
 					else {
-						open.Add(new PartialPath() { CurrentPosition = destination, Length = distance, PreviousNode = current.CurrentPosition, PreviousPath = to.Road });
+						PartialPath p = new PartialPath() { CurrentPosition = destination, Length = distance, PreviousNode = current.CurrentPosition, PreviousPath = to.Road };
+						open.Add(p);
 					}
 				}
 				
@@ -76,11 +82,11 @@ namespace LK.MatchGPX2OSM {
 					double distance = current.Length + link.Geometry.Length;
 					PartialPath expanded = null;
 					if (open.Contains(link.To)) {
-						if (open[link.To].Length > distance) {
-							open[link.To].Length = distance;
-							open[link.To].PreviousNode = current.CurrentPosition;
-							open[link.To].PreviousPath = link.Geometry;
-							open.Update();
+						PartialPath p = open[link.To];
+						if (p.Length > distance) {
+							p.PreviousNode = current.CurrentPosition;
+							p.PreviousPath = link.Geometry;
+							open.Update(p, distance);
 						}
 					}
 
@@ -99,65 +105,6 @@ namespace LK.MatchGPX2OSM {
 			}
 
 			return null;
-		}
-
-
-
-		class SortedPathList {
-			protected List<PartialPath> paths;
-			protected Dictionary<Node, PartialPath> nodePath;
-
-			public PartialPath this[int index] {
-				get {
-					return paths[index];
-				}
-			}
-
-			public PartialPath this[Node node] {
-				get {
-					return nodePath[node];
-				}
-			}
-
-			public int Count {
-				get {
-					return paths.Count;
-				}
-			}
-
-			public SortedPathList() {
-				paths = new List<PartialPath>();
-				nodePath = new Dictionary<Node, PartialPath>();
-			}
-
-			public bool Contains(Node pathEnd) {
-				return nodePath.ContainsKey(pathEnd);
-			}
-
-			public void Add(PartialPath path) {
-				if (nodePath.ContainsKey(path.CurrentPosition)) {
-					nodePath[path.CurrentPosition] = path;
-					Update();
-				}
-				else {
-					nodePath.Add(path.CurrentPosition, path);
-					paths.Add(path);
-					int index = 0;
-					while (index < paths.Count && paths[index].Length < path.Length) {
-						index++;
-					}
-					paths.Insert(index, path);
-				}
-			}
-
-			public void Remove(PartialPath path) {
-				nodePath.Remove(path.CurrentPosition);
-				paths.Remove(path);
-			}
-
-			public void Update() {
-				paths.Sort();
-			}
 		}
 	}
 }

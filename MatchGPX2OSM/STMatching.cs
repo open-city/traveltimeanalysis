@@ -54,7 +54,7 @@ namespace LK.MatchGPX2OSM {
 					}
 				}
 				else {
-					double lenght = 0;
+					double lenght = double.PositiveInfinity;
 					// find path between matched[i] and matched[i+1]
 					var paths = pathfinder.FindPath(matched[i], matched[i + 1], ref lenght).ToList();
 
@@ -91,7 +91,9 @@ namespace LK.MatchGPX2OSM {
 				node.Tags.Add(new OSMTag("time", matched[i + 1].Layer.TrackPoint.Time.ToString()));
 				way.Nodes.Add(node.ID);
 			}
-
+			Console.WriteLine(pathfinder.nodesCount);
+			Console.WriteLine(pathfinder.runs);
+			//Console.WriteLine(pathfinder.nodesCount / pathfinder.runs);
 			return result;
 		}
 
@@ -213,6 +215,9 @@ namespace LK.MatchGPX2OSM {
 				foreach (var candidate in _candidatesGraph.Layers[i + 1].Candidates) {
 					foreach (var connection in candidate.IncomingConnections) {
 						double score = connection.From.HighestProbability + candidate.ObservationProbability * connection.TransmissionProbability;
+						if (score == double.NegativeInfinity) {
+							int a = 1;
+						}
 						if (score > candidate.HighestProbability) {
 							candidate.HighestProbability = score;
 							candidate.HighesScoreParent = connection.From;
