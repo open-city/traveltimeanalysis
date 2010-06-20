@@ -53,16 +53,16 @@
     <Compile Include="CandidatePoint.cs" />
     <Compile Include="CandidatesConnection.cs" />
     <Compile Include="CandidatesGraph.cs" />
-    <Compile Include="Connection.cs" />
-    <Compile Include="ConnectionGeometry.cs" />
+    <Compile Include="RoadGraph\Connection.cs" />
+    <Compile Include="RoadGraph\ConnectionGeometry.cs" />
     <Compile Include="Debug.cs" />
     <Compile Include="NDesk.Options.cs" />
-    <Compile Include="Node.cs" />
+    <Compile Include="RoadGraph\Node.cs" />
     <Compile Include="CandidateGraphLayer.cs" />
     <Compile Include="AStar\PathSegment.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RoadGraph.cs" />
+    <Compile Include="RoadGraph\RoadGraph.cs" />
     <Compile Include="STMatching.cs" />
   </ItemGroup>
   <ItemGroup>

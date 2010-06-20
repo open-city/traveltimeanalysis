@@ -14,13 +14,15 @@ namespace LK.MatchGPX2OSM {
 
 		RoadGraph _graph;
 		CandidatesGraph _candidatesGraph;
+		AstarPathfinder _pathfinder;
 
 		public STMatching(RoadGraph graph) {
 			_graph = graph;
+			_pathfinder = new AstarPathfinder(_graph);
 		}
 
 		/// <summary>
-		/// Recontruct path from the candidates points
+		/// Recontructs path from the candidates points
 		/// </summary>
 		/// <param name="matched"></param>
 		/// <returns></returns>
@@ -91,9 +93,6 @@ namespace LK.MatchGPX2OSM {
 				node.Tags.Add(new OSMTag("time", matched[i + 1].Layer.TrackPoint.Time.ToString()));
 				way.Nodes.Add(node.ID);
 			}
-			//Console.WriteLine(pathfinder.nodesCount);
-			//Console.WriteLine(pathfinder.runs);
-			//Console.WriteLine(pathfinder.nodesCount / pathfinder.runs);
 			return result;
 		}
 
@@ -307,6 +306,7 @@ namespace LK.MatchGPX2OSM {
 				}
 			}
 		}
+
 		/// <summary>
 		/// Calculates transmission probability for connection
 		/// </summary>
@@ -333,9 +333,8 @@ namespace LK.MatchGPX2OSM {
 				return Calculations.GetPathLength(from, to, from.Road);
 			}
 			else {
-				AstarPathfinder pathfinder = new AstarPathfinder(_graph);
 				double length = double.PositiveInfinity;
-				pathfinder.FindPath(from, to, ref length);
+				_pathfinder.FindPath(from, to, ref length);
 				return length;
 			}
 		}
