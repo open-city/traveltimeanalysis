@@ -8,10 +8,11 @@ namespace LK.MatchGPX2OSM {
 	/// Represents partial Path in the AStar pathfinder
 	/// </summary>
 	class PartialPath : IComparer<PartialPath>, IComparable {
-		public Node CurrentPosition;
+		public Node End;
 		public Node PreviousNode;
-		public ConnectionGeometry PreviousPath;
+		public ConnectionGeometry PathFromPrevious;
 		public double Length;
+		public double EstimationToEnd;
 
 		/// <summary>
 		/// Determines whether Obj equals this PartialPath
@@ -21,7 +22,7 @@ namespace LK.MatchGPX2OSM {
 		public override bool Equals(object obj) {
 			PartialPath other = obj as PartialPath;
 			if (other != null) {
-				return this.CurrentPosition.Equals(other.CurrentPosition);
+				return this.End.Equals(other.End);
 			}
 			else
 				return false;
@@ -33,7 +34,7 @@ namespace LK.MatchGPX2OSM {
 		/// <param name="other">The PartialPath to compare with the current PartialPath</param>
 		/// <returns>true if CurrentPosition are the same, otherwise false</returns>
 		public bool Equals(PartialPath other) {
-				return this.CurrentPosition.Equals(other.CurrentPosition);
+				return this.End.Equals(other.End);
 		}
 
 		/// <summary>
@@ -41,13 +42,15 @@ namespace LK.MatchGPX2OSM {
 		/// </summary>
 		/// <returns>A hash code for the current Segment.</returns>
 		public override int GetHashCode() {
-			return this.CurrentPosition.GetHashCode();
+			return this.End.GetHashCode();
 		}
 
 		#region IComparer<Path> Members
 
 		public int Compare(PartialPath x, PartialPath y) {
-			return x.Length.CompareTo(y.Length);
+			double totalLength = x.Length + x.EstimationToEnd;
+
+			return totalLength.CompareTo(y.Length + y.EstimationToEnd);
 		}
 
 		#endregion

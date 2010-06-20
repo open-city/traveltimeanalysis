@@ -25,7 +25,7 @@ namespace LK.MatchGPX2OSM {
 		/// <param name="matched"></param>
 		/// <returns></returns>
 		public OSMDB Reconstruct(IList<CandidatePoint> matched) {
-			Astar pathfinder = new Astar(_graph);			
+			AstarPathfinder pathfinder = new AstarPathfinder(_graph);			
 			OSMDB result = new OSMDB();
 			int counter = -1;
 
@@ -91,8 +91,8 @@ namespace LK.MatchGPX2OSM {
 				node.Tags.Add(new OSMTag("time", matched[i + 1].Layer.TrackPoint.Time.ToString()));
 				way.Nodes.Add(node.ID);
 			}
-			Console.WriteLine(pathfinder.nodesCount);
-			Console.WriteLine(pathfinder.runs);
+			//Console.WriteLine(pathfinder.nodesCount);
+			//Console.WriteLine(pathfinder.runs);
 			//Console.WriteLine(pathfinder.nodesCount / pathfinder.runs);
 			return result;
 		}
@@ -333,7 +333,7 @@ namespace LK.MatchGPX2OSM {
 				return Calculations.GetPathLength(from, to, from.Road);
 			}
 			else {
-				Astar pathfinder = new Astar(_graph);
+				AstarPathfinder pathfinder = new AstarPathfinder(_graph);
 				double length = double.PositiveInfinity;
 				pathfinder.FindPath(from, to, ref length);
 				return length;

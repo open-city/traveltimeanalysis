@@ -48,7 +48,7 @@ namespace LK.MatchGPX2OSM {
 		/// </summary>
 		/// <param name="item">The item to add</param>
 		public new void Add(PartialPath item) {
-			_paths.Add(item.CurrentPosition, item);
+			_paths.Add(item.End, item);
 			base.Add(item);
 		}
 
@@ -58,7 +58,7 @@ namespace LK.MatchGPX2OSM {
 		/// <param name="item">The item to remove</param>
 		/// <returns>true if item was removed, otherwise returns false</returns>
 		public new bool Remove(PartialPath item) {
-			_paths.Remove(item.CurrentPosition);
+			_paths.Remove(item.End);
 			return base.Remove(item);
 		}
 
@@ -68,7 +68,7 @@ namespace LK.MatchGPX2OSM {
 		/// <returns>The shortest PartialPath object from the list</returns>
 		public new PartialPath RemoveTop() {
 			PartialPath result = base.RemoveTop();
-			_paths.Remove(result.CurrentPosition);
+			_paths.Remove(result.End);
 
 			return result;
 		}
@@ -79,7 +79,7 @@ namespace LK.MatchGPX2OSM {
 		/// <param name="item">The item to check</param>
 		/// <returns>true if item is presented in the List, otherwise returns false</returns>
 		public new bool Contains(PartialPath item) {
-			return _paths.ContainsKey(item.CurrentPosition);
+			return _paths.ContainsKey(item.End);
 		}
 
 		/// <summary>

@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Astar.cs" />
+    <Compile Include="AStar\Astar.cs" />
     <Compile Include="AStar\PartialPath.cs" />
     <Compile Include="AStar\PartialPathList.cs" />
     <Compile Include="CandidatePoint.cs" />
