@@ -183,5 +183,112 @@ namespace GeoUtils.Tests {
 			Assert.True(target.Longitude < testPoint.Longitude);
 			Assert.InRange(Calculations.GetDistance2D(testPoint, target), 1000 - distanceEps, 1000 + distanceEps);
 		}
+
+		[Fact()]
+		public void GetNodesBetweenPointsReturnsEmptyListForPointsOnPolylineEnds() {
+			PointGeo start = new PointGeo(1, 1);
+			PointGeo end = new PointGeo(1, 2);
+			Polyline<IPointGeo> line = new Polyline<IPointGeo>();
+			line.Nodes.Add(start);
+			line.Nodes.Add(end);
+
+			var result = Topology.GetNodesBetweenPoints(start, end, line);
+			Assert.Equal(0, result.Count());
+
+			result = Topology.GetNodesBetweenPoints(end, start, line);
+			Assert.Equal(0, result.Count());
+		}
+
+		[Fact()]
+		public void GetNodesBetweenPointsReturnsSinglePointForPointBetweenPoints() {
+			PointGeo start = new PointGeo(1, 1);
+			PointGeo middle = new PointGeo(1.5, 1.5);
+			PointGeo end = new PointGeo(1, 2);
+			Polyline<IPointGeo> line = new Polyline<IPointGeo>();
+			line.Nodes.Add(start);
+			line.Nodes.Add(middle);
+			line.Nodes.Add(end);
+
+			var result = Topology.GetNodesBetweenPoints(start, end, line);
+			Assert.Equal(1, result.Count());
+			Assert.Equal(middle, result.Single());
+
+			result = Topology.GetNodesBetweenPoints(end, start, line);
+			Assert.Equal(1, result.Count());
+			Assert.Equal(middle, result.Single());
+		}
+
+		[Fact()]
+		public void GetNodesBetweenPointsReturnsSinglePointForPointBetweenPointsDifferentEndPoints() {
+			PointGeo start = new PointGeo(1, 1);
+			PointGeo middle = new PointGeo(1, 1.5);
+			PointGeo end = new PointGeo(1, 2);
+			Polyline<IPointGeo> line = new Polyline<IPointGeo>();
+			line.Nodes.Add(start);
+			line.Nodes.Add(middle);
+			line.Nodes.Add(end);
+
+			var result = Topology.GetNodesBetweenPoints(new PointGeo(1, 1.1), new PointGeo(1, 1.9), line);
+			Assert.Equal(1, result.Count());
+			Assert.Equal(middle, result.Single());
+
+			result = Topology.GetNodesBetweenPoints(new PointGeo(1, 1.9), new PointGeo(1, 1.1), line);
+			Assert.Equal(1, result.Count());
+			Assert.Equal(middle, result.Single());
+		}
+
+		[Fact()]
+		public void GetNodesBetweenPointsReturnPointsInCorrectOrder1() {
+			PointGeo start = new PointGeo(1, 1);
+			PointGeo middle1 = new PointGeo(1, 1.5);
+			PointGeo middle2 = new PointGeo(1, 1.6);
+			PointGeo middle3 = new PointGeo(1, 1.7);
+			PointGeo end = new PointGeo(1, 2);
+			Polyline<IPointGeo> line = new Polyline<IPointGeo>();
+			line.Nodes.Add(start);
+			line.Nodes.Add(middle1);
+			line.Nodes.Add(middle2);
+			line.Nodes.Add(middle3);
+			line.Nodes.Add(end);
+
+			var result = Topology.GetNodesBetweenPoints(new PointGeo(1, 1.1), new PointGeo(1, 1.9), line).ToList();
+			Assert.Equal(3, result.Count());
+			Assert.Equal(middle1, result[0]);
+			Assert.Equal(middle2, result[1]);
+			Assert.Equal(middle3, result[2]);
+
+
+			result = Topology.GetNodesBetweenPoints(new PointGeo(1, 1.9), new PointGeo(1, 1.1), line).ToList();
+			Assert.Equal(3, result.Count());
+			Assert.Equal(middle3, result[0]);
+			Assert.Equal(middle2, result[1]);
+			Assert.Equal(middle1, result[2]);
+		}
+
+		[Fact()]
+		public void GetNodesBetweenPointsReturnPointsInCorrectOrder2() {
+			PointGeo start = new PointGeo(1, 1);
+			PointGeo middle1 = new PointGeo(1, 1.5);
+			PointGeo middle2 = new PointGeo(1, 1.6);
+			PointGeo middle3 = new PointGeo(1, 1.7);
+			PointGeo end = new PointGeo(1, 2);
+			Polyline<IPointGeo> line = new Polyline<IPointGeo>();
+			line.Nodes.Add(start);
+			line.Nodes.Add(middle1);
+			line.Nodes.Add(middle2);
+			line.Nodes.Add(middle3);
+			line.Nodes.Add(end);
+
+			var result = Topology.GetNodesBetweenPoints(new PointGeo(1, 1.55), new PointGeo(1, 1.9), line).ToList();
+			Assert.Equal(2, result.Count());
+			Assert.Equal(middle2, result[0]);
+			Assert.Equal(middle3, result[1]);
+
+
+			result = Topology.GetNodesBetweenPoints(new PointGeo(1, 1.9), new PointGeo(1, 1.55), line).ToList();
+			Assert.Equal(2, result.Count());
+			Assert.Equal(middle3, result[0]);
+			Assert.Equal(middle2, result[1]);
+		}
 	}
 }

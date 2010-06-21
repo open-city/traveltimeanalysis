@@ -4,16 +4,9 @@ using System.Linq;
 using System.Collections.Generic;
 using Xunit;
 
-namespace OSMUtils.Tests
+namespace GeoUtils.Tests
 {
-    
-    
-    /// <summary>
-    ///This is a test class for PolygonTest and is intended
-    ///to contain all PolygonTest Unit Tests
-    ///</summary>
-	
-	public class PolygonTest {
+  public class PolygonTest {
 		[Fact()]
 		public void PolygonConstructorInitializesEmptyPolygon() {
 			Polygon<PointGeo> target = new Polygon<PointGeo>();

@@ -49,7 +49,7 @@ namespace LK.MatchGPX2OSM {
 				if (wayGeometry != null) {
 					way.Tags.Add(new OSMTag("way-id", wayGeometry.WayID.ToString()));
 
-					var points = GetNodesBetweenPoints(matched[i], matched[i + 1], wayGeometry);
+					var points = Topology.GetNodesBetweenPoints(matched[i], matched[i + 1], wayGeometry);
 					foreach (var point in points) {
 						node = AddNodeToPath(result, ref counter, point);
 						way.Nodes.Add(node.ID);
@@ -81,7 +81,7 @@ namespace LK.MatchGPX2OSM {
 							way.Tags.Add(new OSMTag("way-id", paths[j].Road.WayID.ToString()));
 						}
 						
-						var points = GetNodesBetweenPoints(paths[j].From.MapPoint, paths[j].To.MapPoint, paths[j].Road).ToList();
+						var points = Topology.GetNodesBetweenPoints(paths[j].From.MapPoint, paths[j].To.MapPoint, paths[j].Road).ToList();
 						foreach (var point in points) {
 							node = AddNodeToPath(result, ref counter, point);
 							way.Nodes.Add(node.ID);
@@ -138,56 +138,6 @@ namespace LK.MatchGPX2OSM {
 			return recostructed;
 		}
 
-		/// <summary>
-		/// Returns nodes on the specific path between two points
-		/// </summary>
-		/// <param name="from"></param>
-		/// <param name="to"></param>
-		/// <param name="path"></param>
-		/// <returns></returns>
-		IEnumerable<IPointGeo> GetNodesBetweenPoints(IPointGeo from, IPointGeo to, IPolyline<IPointGeo> path) {
-			var segments = path.Segments;
-
-			List<IPointGeo> result = new List<IPointGeo>();
-
-			int fromIndex = -1;
-			int toIndex = -1;
-			for (int i = 0; i < segments.Count; i++) {
-				if (Calculations.GetDistance2D(from, segments[i]) < Calculations.EpsLength) {
-					if (fromIndex > -1 && toIndex > -1 && toIndex < fromIndex)
-						;
-					else
-						fromIndex = i;
-				}
-				if (Calculations.GetDistance2D(to, segments[i]) < Calculations.EpsLength) {
-					if (fromIndex > -1 && toIndex > -1 && toIndex > fromIndex)
-						;
-					else
-						toIndex = i;
-				}
-			}
-			if (fromIndex == -1 || toIndex == -1)
-				return result;
-
-			if (fromIndex == toIndex - 1) {
-				result.Add(segments[fromIndex].EndPoint);
-			}
-			else if (fromIndex - 1 == toIndex) {
-				result.Add(segments[toIndex].EndPoint);
-			}
-			else if (fromIndex < toIndex) {
-				for (int i = fromIndex; i < toIndex; i++) {
-					result.Add(segments[i].EndPoint);
-				}
-			}
-			else if (toIndex < fromIndex) {
-				for (int i = fromIndex; i > toIndex; i--) {
-					result.Add(segments[i].StartPoint);
-				}
-			}
-
-			return result;
-		}
 		/// <summary>
 		/// Finds the best matching sequence of candidate points
 		/// </summary>

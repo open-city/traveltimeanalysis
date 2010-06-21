@@ -175,6 +175,55 @@ namespace LK.GeoUtils {
 			return !(bbox2.West > bbox1.East || bbox2.East < bbox1.West || bbox2.South > bbox1.North || bbox2.North < bbox1.South);
 		}
 
+		/// <summary>
+		/// Returns nodes on the path between two points
+		/// </summary>
+		/// <param name="from">The start point</param>
+		/// <param name="to">The end point</param>
+		/// <param name="path"></param>
+		/// <returns></returns>
+		public static IEnumerable<IPointGeo> GetNodesBetweenPoints(IPointGeo from, IPointGeo to, IPolyline<IPointGeo> path) {
+			var segments = path.Segments;
 
+			List<IPointGeo> result = new List<IPointGeo>();
+
+			int fromIndex = -1;
+			int toIndex = -1;
+			for (int i = 0; i < segments.Count; i++) {
+				if (Calculations.GetDistance2D(from, segments[i]) < Calculations.EpsLength) {
+					if (fromIndex > -1 && toIndex > -1 && toIndex < fromIndex)
+						;
+					else
+						fromIndex = i;
+				}
+				if (Calculations.GetDistance2D(to, segments[i]) < Calculations.EpsLength) {
+					if (fromIndex > -1 && toIndex > -1 && toIndex > fromIndex)
+						;
+					else
+						toIndex = i;
+				}
+			}
+			if (fromIndex == -1 || toIndex == -1)
+				return result;
+
+			if (fromIndex == toIndex - 1) {
+				result.Add(segments[fromIndex].EndPoint);
+			}
+			else if (fromIndex - 1 == toIndex) {
+				result.Add(segments[toIndex].EndPoint);
+			}
+			else if (fromIndex < toIndex) {
+				for (int i = fromIndex; i < toIndex; i++) {
+					result.Add(segments[i].EndPoint);
+				}
+			}
+			else if (toIndex < fromIndex) {
+				for (int i = fromIndex; i > toIndex; i--) {
+					result.Add(segments[i].StartPoint);
+				}
+			}
+
+			return result;
+		}
 	}
 }
