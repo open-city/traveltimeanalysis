@@ -150,7 +150,7 @@ namespace LK.MatchGPX2OSM {
 			foreach (var gpxPoint in gpx.Nodes) {
 				var candidates = FindCandidatePoints(gpxPoint);
 
-				_candidatesGraph.Layers.Add(CreateLayer(gpxPoint, candidates));
+			_candidatesGraph.CreateLayer(gpxPoint, candidates.OrderByDescending(c => c.ObservationProbability).Take(Math.Min(candidates.Count(), STMatching.MaxCandidatesCount)));
 			}
 
 			_candidatesGraph.ConnectLayers();
@@ -210,23 +210,6 @@ namespace LK.MatchGPX2OSM {
 						                                Road = road, RoadSegment = roadSegment,
 																						ObservationProbability = CalculateObservationProbability(gpxPt, projectedPoint) });
 				}
-			}
-
-			return result;
-		}
-
-		/// <summary>
-		/// Creates a new layer
-		/// </summary>
-		/// <param name="originalPoint">GPX track point</param>
-		/// <param name="candidates">Candidate points for the original point</param>
-		/// <returns></returns>
-		CandidateGraphLayer CreateLayer(GPXPoint originalPoint, IEnumerable<CandidatePoint> candidates) {
-			CandidateGraphLayer result = new CandidateGraphLayer() { TrackPoint = originalPoint };
-			result.Candidates.AddRange(candidates.OrderByDescending(c => c.ObservationProbability).Take(Math.Min(candidates.Count(), STMatching.MaxCandidatesCount)));
-
-			foreach (var candidate in result.Candidates) {
-				candidate.Layer = result;
 			}
 
 			return result;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using LK.GPXUtils;
 
 namespace LK.MatchGPX2OSM {
 	/// <summary>
@@ -47,13 +48,21 @@ namespace LK.MatchGPX2OSM {
 			CandidatesConnection c = new CandidatesConnection() { From = from, To = to };
 			from.OutgoingConnections.Add(c);
 			to.IncomingConnections.Add(c);
-
-			//if (from.Road == to.Road) {
-			//  for (int i = 0; i < from.Road.; i++) {
-					
-			//  }
-			//}
 		}
 
+		/// <summary>
+		/// Creates a new layer in the CandidatesGraph
+		/// </summary>
+		/// <param name="originalPoint">GPX track point</param>
+		/// <param name="candidates">Candidate points for the original point</param>
+		public void CreateLayer(GPXPoint originalPoint, IEnumerable<CandidatePoint> candidates) {
+			CandidateGraphLayer result = new CandidateGraphLayer() { TrackPoint = originalPoint };
+			result.Candidates.AddRange(candidates);
+
+			foreach (var candidate in candidates) {
+				candidate.Layer = result;
+			}
+			_layers.Add(result);
+		}
 	}
 }
