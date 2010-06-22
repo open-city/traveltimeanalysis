@@ -16,172 +16,40 @@ namespace LK.MatchGPX2OSM {
 		CandidatesGraph _candidatesGraph;
 		AstarPathfinder _pathfinder;
 
+		/// <summary>
+		/// Create a new instance of the STMatching class
+		/// </summary>
+		/// <param name="graph">The RoadGraph object that represents road network</param>
 		public STMatching(RoadGraph graph) {
 			_graph = graph;
 			_pathfinder = new AstarPathfinder(_graph);
-		}
-
-		/// <summary>
-		/// Recontructs path from the candidates points
-		/// </summary>
-		/// <param name="matched"></param>
-		/// <returns></returns>
-		public OSMDB Reconstruct(IList<CandidatePoint> matched) {
-			AstarPathfinder pathfinder = new AstarPathfinder(_graph);			
-			OSMDB result = new OSMDB();
-			int counter = -1;
-
-			OSMNode node = AddNodeToPath(result, ref counter, matched[0]);
-			node.Tags.Add(new OSMTag("time", matched[0].Layer.TrackPoint.Time.ToString()));
-
-			for (int i = 0; i < matched.Count - 1; i++) {
-				OSMWay way = new OSMWay(counter--);
-				result.Ways.Add(way);
-				way.Nodes.Add(node.ID);
-
-				ConnectionGeometry wayGeometry = null;
-				if (Calculations.GetDistance2D(matched[i + 1], matched[i].Road) < Calculations.EpsLength)
-					wayGeometry = matched[i].Road;
-				else if (Calculations.GetDistance2D(matched[i], matched[i + 1].Road) < Calculations.EpsLength)
-					wayGeometry = matched[i + 1].Road;
-
-				// both points are on the same way
-				if (wayGeometry != null) {
-					way.Tags.Add(new OSMTag("way-id", wayGeometry.WayID.ToString()));
-
-					var points = Topology.GetNodesBetweenPoints(matched[i], matched[i + 1], wayGeometry);
-					foreach (var point in points) {
-						node = AddNodeToPath(result, ref counter, point);
-						way.Nodes.Add(node.ID);
-					}
-				}
-				else {
-					double lenght = double.PositiveInfinity;
-					// find path between matched[i] and matched[i+1]
-					var paths = pathfinder.FindPath(matched[i], matched[i + 1], ref lenght).ToList();
-
-					int lastWayId = 0;
-					if (paths.Count > 0) {
-						lastWayId = paths[0].Road.WayID;
-						way.Tags.Add(new OSMTag("way-id", paths[0].Road.WayID.ToString()));
-					}
-
-					for (int j = 0; j < paths.Count; j++) {
-						if (j > 0) {
-							node = AddNodeToPath(result, ref counter, paths[j].From.MapPoint);
-							way.Nodes.Add(node.ID);
-						}
-
-						// Split way if original way ids differs
-						if (paths[j].Road.WayID != lastWayId) {
-							lastWayId = paths[j].Road.WayID;
-							way = new OSMWay(counter--);
-							result.Ways.Add(way);
-							way.Nodes.Add(node.ID);
-							way.Tags.Add(new OSMTag("way-id", paths[j].Road.WayID.ToString()));
-						}
-						
-						var points = Topology.GetNodesBetweenPoints(paths[j].From.MapPoint, paths[j].To.MapPoint, paths[j].Road).ToList();
-						foreach (var point in points) {
-							node = AddNodeToPath(result, ref counter, point);
-							way.Nodes.Add(node.ID);
-						}
-					}
-				}
-
-				node = AddNodeToPath(result, ref counter, matched[i + 1]);
-				node.Tags.Add(new OSMTag("time", matched[i + 1].Layer.TrackPoint.Time.ToString()));
-				way.Nodes.Add(node.ID);
-			}
-			return result;
-		}
-
-		/// <summary>
-		/// Adds a new node to the OSMDB
-		/// </summary>
-		/// <param name="db"></param>
-		/// <param name="counter"></param>
-		/// <param name="node"></param>
-		/// <returns></returns>
-		OSMNode AddNodeToPath(OSMDB db, ref int counter, IPointGeo node) {
-			OSMNode result = new OSMNode(counter--, node.Latitude, node.Longitude);
-			db.Nodes.Add(result);
-
-			return result;
 		}
 		
 		/// <summary>
 		/// Matches the given GPX track to the map
 		/// </summary>
-		/// <param name="gpx"></param>
-		/// <returns>OSM db that represents matched track</returns>
-		public OSMDB Match(GPXTrackSegment gpx) {
-			IList<CandidatePoint> matched = FindMatchedCandidates(gpx).ToList();
-			OSMDB recostructed = Reconstruct(matched);
-
-			var ways = recostructed.Ways.ToList();
-
-			Segment<OSMNode> lastSegment = new Segment<OSMNode>(recostructed.Nodes[ways[0].Nodes[ways[0].Nodes.Count -2]], recostructed.Nodes[ways[0].Nodes[ways[0].Nodes.Count -1]]);
-			double lastAngle = Calculations.GetBearing(lastSegment.StartPoint, lastSegment.EndPoint);
-
-			for (int i = 1; i < ways.Count; i++) {
-				Segment<OSMNode> segment = new Segment<OSMNode>(recostructed.Nodes[ways[i].Nodes[0]], recostructed.Nodes[ways[i].Nodes[1]]);
-				double angle = Calculations.GetBearing(segment.StartPoint, segment.EndPoint);
-
-				if (Math.Abs(180 - Math.Abs(lastAngle - angle)) < 1) {
-					if (i < ways.Count -1 && Calculations.GetDistance2D(segment.StartPoint, segment.EndPoint) < 50) {
-						ways[i + 1].Nodes[0] = ways[i].Nodes[0];
-						recostructed.Ways.Remove(ways[i]);
-					}
-				}
-			}
-			return recostructed;
-		}
-
-		/// <summary>
-		/// Finds the best matching sequence of candidate points
-		/// </summary>
-		/// <param name="gpx">The GPS track</param>
-		/// <returns></returns>
-		IEnumerable<CandidatePoint> FindMatchedCandidates(GPXTrackSegment gpx) {
+		/// <param name="gpx">The GPS track log</param>
+		/// <returns>List of the CandidatePoints that match GPS log the best</returns>
+		public IList<CandidatePoint> Match(GPXTrackSegment gpx) {
 			_candidatesGraph = new CandidatesGraph();
 
 			//Find candidate points + ObservationProbability
 			foreach (var gpxPoint in gpx.Nodes) {
 				var candidates = FindCandidatePoints(gpxPoint);
 
-			_candidatesGraph.CreateLayer(gpxPoint, candidates.OrderByDescending(c => c.ObservationProbability).Take(Math.Min(candidates.Count(), STMatching.MaxCandidatesCount)));
+				_candidatesGraph.CreateLayer(gpxPoint, candidates.OrderByDescending(c => c.ObservationProbability).Take(Math.Min(candidates.Count(), STMatching.MaxCandidatesCount)));
 			}
 
+			// Calculate transmission probability
 			_candidatesGraph.ConnectLayers();
 			AssignTransmissionProbability();
 
-			// Find matched sequence
-			foreach (var candidate in _candidatesGraph.Layers[0].Candidates) {
-				candidate.HighestProbability = candidate.ObservationProbability;
-			}
-			for (int i = 0; i < _candidatesGraph.Layers.Count - 1; i++) {
-				foreach (var candidate in _candidatesGraph.Layers[i + 1].Candidates) {
-					foreach (var connection in candidate.IncomingConnections) {
-						double score = connection.From.HighestProbability + candidate.ObservationProbability * connection.TransmissionProbability;
-						if (score == double.NegativeInfinity) {
-							int a = 1;
-						}
-						if (score > candidate.HighestProbability) {
-							candidate.HighestProbability = score;
-							candidate.HighesScoreParent = connection.From;
-						}
-					}
-				}
-			}
+			//Evaluates paths in the graph
+			EvaluateGraph();
 
+			//Extract result
 			List<CandidatePoint> result = new List<CandidatePoint>();
-			CandidatePoint current = new CandidatePoint() { HighestProbability = double.NegativeInfinity };
-			foreach (var point in _candidatesGraph.Layers[_candidatesGraph.Layers.Count - 1].Candidates) {
-				if (point.HighestProbability > current.HighestProbability) {
-					current = point;
-				}
-			}
+			CandidatePoint current = _candidatesGraph.Layers[_candidatesGraph.Layers.Count - 1].Candidates.OrderByDescending(c => c.HighestProbability).FirstOrDefault();
 
 			while (current != null) {
 				result.Add(current);
@@ -192,6 +60,29 @@ namespace LK.MatchGPX2OSM {
 			return result;
 		}
 
+		/// <summary>
+		/// Traverses through the CandidatesGraph and finds ancestor with the highest probability for every CandidatePoint in the graph
+		/// </summary>
+		void EvaluateGraph() {
+			// Find matched sequence
+			foreach (var candidate in _candidatesGraph.Layers[0].Candidates) {
+				candidate.HighestProbability = candidate.ObservationProbability;
+			}
+
+			for (int i = 0; i < _candidatesGraph.Layers.Count - 1; i++) {
+				foreach (var candidate in _candidatesGraph.Layers[i + 1].Candidates) {
+					foreach (var connection in candidate.IncomingConnections) {
+						double score = connection.From.HighestProbability + candidate.ObservationProbability * connection.TransmissionProbability;
+
+						if (score > candidate.HighestProbability) {
+							candidate.HighestProbability = score;
+							candidate.HighesScoreParent = connection.From;
+						}
+					}
+				}
+			}
+		}
+		
 		/// <summary>
 		/// Finds all candidates points for given GPS track point
 		/// </summary>

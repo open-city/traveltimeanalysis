@@ -53,6 +53,7 @@
     <Compile Include="CandidatePoint.cs" />
     <Compile Include="CandidatesConnection.cs" />
     <Compile Include="CandidatesGraph.cs" />
+    <Compile Include="PathReconstructer.cs" />
     <Compile Include="RoadGraph\Connection.cs" />
     <Compile Include="RoadGraph\ConnectionGeometry.cs" />
     <Compile Include="Debug.cs" />
