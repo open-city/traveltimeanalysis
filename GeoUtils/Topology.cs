@@ -191,13 +191,13 @@ namespace LK.GeoUtils {
 			int toIndex = -1;
 			for (int i = 0; i < segments.Count; i++) {
 				if (Calculations.GetDistance2D(from, segments[i]) < Calculations.EpsLength) {
-					if (fromIndex > -1 && toIndex > -1 && toIndex < fromIndex)
+					if (fromIndex > -1 && toIndex > -1 && toIndex <= fromIndex)
 						;
 					else
 						fromIndex = i;
 				}
 				if (Calculations.GetDistance2D(to, segments[i]) < Calculations.EpsLength) {
-					if (fromIndex > -1 && toIndex > -1 && toIndex > fromIndex)
+					if (fromIndex > -1 && toIndex > -1 && toIndex >= fromIndex)
 						;
 					else
 						toIndex = i;

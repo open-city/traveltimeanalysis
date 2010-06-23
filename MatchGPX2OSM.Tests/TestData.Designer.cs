@@ -60,6 +60,41 @@ namespace MatchGPX2OSM.Tests {
             }
         }
         
+        internal static byte[] gpx_two_points_different_ways {
+            get {
+                object obj = ResourceManager.GetObject("gpx_two_points_different_ways", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] gpx_two_points_same_segment {
+            get {
+                object obj = ResourceManager.GetObject("gpx_two_points_same_segment", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] gpx_two_points_same_segment_reverse {
+            get {
+                object obj = ResourceManager.GetObject("gpx_two_points_same_segment_reverse", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] gpx_two_points_same_way {
+            get {
+                object obj = ResourceManager.GetObject("gpx_two_points_same_way", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] gpx_two_points_same_way_reverse {
+            get {
+                object obj = ResourceManager.GetObject("gpx_two_points_same_way_reverse", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         internal static byte[] osm_find_candidates_test {
             get {
                 object obj = ResourceManager.GetObject("osm_find_candidates_test", resourceCulture);
@@ -67,9 +102,9 @@ namespace MatchGPX2OSM.Tests {
             }
         }
         
-        internal static byte[] two_ways_routable {
+        internal static byte[] osm_reconstruct {
             get {
-                object obj = ResourceManager.GetObject("two_ways_routable", resourceCulture);
+                object obj = ResourceManager.GetObject("osm_reconstruct", resourceCulture);
                 return ((byte[])(obj));
             }
         }

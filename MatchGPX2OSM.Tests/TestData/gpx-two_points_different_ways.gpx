@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+ <trk>
+  <name>TwoPointSameWay</name>
+  <trkseg>
+   <trkpt lat="50.4982205" lon="16.0914951">
+    <time>2010-05-31T22:00:00Z</time>
+   </trkpt>
+   <trkpt lat="50.4980512" lon="16.0901834">
+    <time>2010-05-31T22:00:01Z</time>
+   </trkpt>
+  </trkseg>
+ </trk>
+</gpx>

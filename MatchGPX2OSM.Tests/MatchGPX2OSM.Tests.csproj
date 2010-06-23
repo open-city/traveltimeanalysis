@@ -48,6 +48,7 @@
     <Compile Include="ConnectionGeometryTest.cs" />
     <Compile Include="ConnectionTest.cs" />
     <Compile Include="NodeTest.cs" />
+    <Compile Include="PathReconstructerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestData.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -83,7 +84,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\osm-find_candidates-test.osm" />
+    <None Include="Resources\reconstruct.osm" />
+    <None Include="TestData\gpx-two_points_different_ways.gpx" />
+    <None Include="TestData\gpx-two_points_same_segment.gpx" />
+    <None Include="TestData\gpx-two_points_same_segment_reverse.gpx" />
+    <None Include="TestData\gpx-two_points_same_way.gpx" />
+    <None Include="TestData\gpx-two_points_same_way_reverse.gpx" />
     <None Include="TestData\osm-find_candidates-test.osm" />
+    <None Include="TestData\osm_reconstruct.osm" />
     <None Include="TestData\two-ways-routable.osm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

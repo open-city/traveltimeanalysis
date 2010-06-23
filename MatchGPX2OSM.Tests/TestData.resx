@@ -117,12 +117,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="gpx_two_points_different_ways" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\gpx-two_points_different_ways.gpx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="gpx_two_points_same_segment" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\gpx-two_points_same_segment.gpx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="gpx_two_points_same_segment_reverse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\gpx-two_points_same_segment_reverse.gpx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="gpx_two_points_same_way" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\gpx-two_points_same_way.gpx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="gpx_two_points_same_way_reverse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\gpx-two_points_same_way_reverse.gpx;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="osm_find_candidates_test" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>TestData\osm-find_candidates-test.osm;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="two_ways_routable" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>TestData\two-ways-routable.osm;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="osm_reconstruct" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>TestData\osm_reconstruct.osm;System.Byte[], mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

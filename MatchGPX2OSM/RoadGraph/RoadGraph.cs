@@ -70,7 +70,8 @@ namespace LK.MatchGPX2OSM {
 				geometry.WayID = wayId;
 				foreach (var n in segment.Nodes) {
 					OSMNode mapPoint = map.Nodes[n];
-					geometry.Nodes.Add(new PointGeo(mapPoint.Latitude, mapPoint.Longitude));
+					geometry.Nodes.Add(mapPoint);
+					//geometry.Nodes.Add(new PointGeo(mapPoint.Latitude, mapPoint.Longitude));
 				}
 				_connectionGeometries.Add(geometry);
 

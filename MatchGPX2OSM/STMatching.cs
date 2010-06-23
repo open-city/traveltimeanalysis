@@ -97,6 +97,9 @@ namespace LK.MatchGPX2OSM {
 				if (Topology.Intersects(gpxBbox, road.BBox)) {
 					Segment<IPointGeo> roadSegment;
 					IPointGeo projectedPoint = Topology.ProjectPoint(gpxPt, road, out roadSegment);
+					if (projectedPoint.Latitude == 50.4984849 && projectedPoint.Longitude == 16.1141259) {
+						int a = 1;
+					}
 					result.Add(new CandidatePoint() { Latitude = projectedPoint.Latitude, Longitude = projectedPoint.Longitude, 
 						                                Road = road, RoadSegment = roadSegment,
 																						ObservationProbability = CalculateObservationProbability(gpxPt, projectedPoint) });

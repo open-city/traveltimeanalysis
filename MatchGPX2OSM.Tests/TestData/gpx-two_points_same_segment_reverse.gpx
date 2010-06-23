@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+ <trk>
+  <name>TwoPointSameSegment</name>
+  <trkseg>
+   <trkpt lat="50.4980116" lon="16.0896357">
+    <time>2010-05-31T22:00:00Z</time>
+   </trkpt>
+   <trkpt lat="50.4981529" lon="16.0880575">
+    <time>2010-05-31T22:00:01Z</time>
+   </trkpt>
+  </trkseg>
+ </trk>
+</gpx>
