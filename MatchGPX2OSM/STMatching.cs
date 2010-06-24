@@ -100,7 +100,7 @@ namespace LK.MatchGPX2OSM {
 					if (projectedPoint.Latitude == 50.4984849 && projectedPoint.Longitude == 16.1141259) {
 						int a = 1;
 					}
-					result.Add(new CandidatePoint() { Latitude = projectedPoint.Latitude, Longitude = projectedPoint.Longitude, 
+					result.Add(new CandidatePoint() { MapPoint = projectedPoint,
 						                                Road = road, RoadSegment = roadSegment,
 																						ObservationProbability = CalculateObservationProbability(gpxPt, projectedPoint) });
 				}
@@ -140,7 +140,7 @@ namespace LK.MatchGPX2OSM {
 		/// <param name="c">Connection</param>
 		/// <returns>double value representing transmission probability</returns>
 		double CalculateTransmissionProbability(CandidatesConnection c) {
-			double gcd = Calculations.GetDistance2D(c.From, c.To);
+			double gcd = Calculations.GetDistance2D(c.From.MapPoint, c.To.MapPoint);
 			double shortestPath = FindShortestPath(c.From, c.To);
 
 			if (gcd == 0 && shortestPath == 0)
@@ -157,7 +157,7 @@ namespace LK.MatchGPX2OSM {
 		/// <returns>length of the path in meters</returns>
 		double FindShortestPath(CandidatePoint from, CandidatePoint to) {
 			if (from.Road == to.Road) {
-				return Calculations.GetPathLength(from, to, from.Road);
+				return Calculations.GetPathLength(from.MapPoint, to.MapPoint, from.Road);
 			}
 			else {
 				double length = double.PositiveInfinity;

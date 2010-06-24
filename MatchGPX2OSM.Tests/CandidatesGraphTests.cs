@@ -7,6 +7,7 @@ using Xunit;
 
 using LK.MatchGPX2OSM;
 using LK.GPXUtils;
+using LK.GeoUtils.Geometry;
 
 namespace MatchGPX2OSM.Tests {
 	public class CandidatesGraphTests {
@@ -21,9 +22,9 @@ namespace MatchGPX2OSM.Tests {
 		public void ConnectLayrsCreatesConnectionsAmongPoints() {
 			CandidatesGraph target = new CandidatesGraph();
 
-			CandidatePoint pt11 = new CandidatePoint() { Latitude = 1, Longitude = 1 };
-			CandidatePoint pt21 = new CandidatePoint() { Latitude = 2.1, Longitude = 2.1 };
-			CandidatePoint pt22 = new CandidatePoint() { Latitude = 2.2, Longitude = 2.2 };
+			CandidatePoint pt11 = new CandidatePoint() { MapPoint = new PointGeo() { Latitude = 1, Longitude = 1 } };
+			CandidatePoint pt21 = new CandidatePoint() { MapPoint = new PointGeo() { Latitude = 2.1, Longitude = 2.1} };
+			CandidatePoint pt22 = new CandidatePoint() { MapPoint = new PointGeo() { Latitude = 2.2, Longitude = 2.2} };
 
 			CandidateGraphLayer layer1 = new CandidateGraphLayer();
 			layer1.Candidates.Add(pt11);
@@ -51,8 +52,8 @@ namespace MatchGPX2OSM.Tests {
 			CandidatesGraph target = new CandidatesGraph();
 
 			GPXPoint originalPt = new GPXPoint(1, 1.1);
-			CandidatePoint pt1 = new CandidatePoint() { Latitude = 1, Longitude = 1 };
-			CandidatePoint pt2 = new CandidatePoint() { Latitude = 2.1, Longitude = 2.1 };
+			CandidatePoint pt1 = new CandidatePoint() { MapPoint = new PointGeo() { Latitude = 1, Longitude = 1 } };
+			CandidatePoint pt2 = new CandidatePoint() { MapPoint = new PointGeo() { Latitude = 2.1, Longitude = 2.1 } };
 
 			target.CreateLayer(originalPt, new CandidatePoint[] { pt1, pt2 });
 
@@ -65,8 +66,8 @@ namespace MatchGPX2OSM.Tests {
 			CandidatesGraph target = new CandidatesGraph();
 
 			GPXPoint originalPt = new GPXPoint(1, 1.1);
-			CandidatePoint pt1 = new CandidatePoint() { Latitude = 1, Longitude = 1 };
-			CandidatePoint pt2 = new CandidatePoint() { Latitude = 2.1, Longitude = 2.1 };
+			CandidatePoint pt1 = new CandidatePoint() { MapPoint = new PointGeo() { Latitude = 1, Longitude = 1 } };
+			CandidatePoint pt2 = new CandidatePoint() { MapPoint = new PointGeo() { Latitude = 2.1, Longitude = 2.1 } };
 
 			target.CreateLayer(originalPt, new CandidatePoint[] { pt1, pt2 });
 

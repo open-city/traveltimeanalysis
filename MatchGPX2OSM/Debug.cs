@@ -11,12 +11,12 @@ namespace LK.MatchGPX2OSM {
 			int counter = -1;
 			OSMDB result = new OSMDB();
 
-			OSMNode osmCandidate = new OSMNode(counter--, candidate.Latitude, candidate.Longitude);
+			OSMNode osmCandidate = new OSMNode(counter--, candidate.MapPoint.Latitude, candidate.MapPoint.Longitude);
 			osmCandidate.Tags.Add(new OSMTag("observation", candidate.ObservationProbability.ToString()));
 			osmCandidate.Tags.Add(new OSMTag("time", candidate.Layer.TrackPoint.Time.ToString()));
 			result.Nodes.Add(osmCandidate);
 			foreach (var connection in candidate.IncomingConnections) {
-				OSMNode from = new OSMNode(counter--, connection.From.Latitude, connection.From.Longitude);
+				OSMNode from = new OSMNode(counter--, connection.From.MapPoint.Latitude, connection.From.MapPoint.Longitude);
 				from.Tags.Add(new OSMTag("observation", connection.From.ObservationProbability.ToString()));
 				from.Tags.Add(new OSMTag("time", connection.From.Layer.TrackPoint.Time.ToString()));
 				result.Nodes.Add(from);

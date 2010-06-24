@@ -16,6 +16,7 @@ namespace LK.MatchGPX2OSM {
 		PartialPathList _open;
 		Dictionary<Node, PartialPath> _close;
 
+		List<Connection> _temporaryConnections;
 		/// <summary>
 		/// Creates a new instance of the pathfinder 
 		/// </summary>
@@ -25,6 +26,7 @@ namespace LK.MatchGPX2OSM {
 
 			_open = new PartialPathList();
 			_close = new Dictionary<Node, PartialPath>();
+			_temporaryConnections = new List<Connection>();
 		}
 
 		/// <summary>
@@ -39,14 +41,17 @@ namespace LK.MatchGPX2OSM {
 			// Add nodes reachable from the From point to the open list
 			foreach (var connection in from.Road.Connections) {
 				PartialPath path = new PartialPath() {End = connection.To, PathFromPrevious = connection.Geometry,
-					                                    Length = Calculations.GetPathLength(from, connection.To.MapPoint, connection.Geometry),
-																							EstimationToEnd = Calculations.GetDistance2D(connection.To.MapPoint, to)};
+																							Length = Calculations.GetPathLength(from.MapPoint, connection.To.MapPoint, connection.Geometry),
+																							EstimationToEnd = Calculations.GetDistance2D(connection.To.MapPoint, to.MapPoint)
+				};
 				_open.Add(path);
 			}
 
+			_temporaryConnections.Clear();
 			// Add temporary connections to the TO point
 			foreach (var targetConnections in to.Road.Connections) {
-				Connection destinationConnection = new Connection(targetConnections.From, new Node(to)) { Geometry = to.Road };
+				Connection destinationConnection = new Connection(targetConnections.From, new Node(to.MapPoint)) { Geometry = to.Road };
+				_temporaryConnections.Add(destinationConnection);
 			}
 		}
 
@@ -55,11 +60,14 @@ namespace LK.MatchGPX2OSM {
 		/// </summary>
 		/// <param name="to">The destination point</param>
 		void Finalize(CandidatePoint to) {
-			// Remove temporary connections
-			foreach (var targetConnections in to.Road.Connections) {
-				var connection = targetConnections.From.Connections.Where(c => c.To.MapPoint == to).Single();
-				targetConnections.From.Connections.Remove(connection);
+			foreach (var connection in _temporaryConnections) {
+				connection.From.Connections.Remove(connection);
 			}
+			// Remove temporary connections
+			//foreach (var targetConnections in to.Road.Connections) {
+			//  var connection = targetConnections.From.Connections.Where(c => c.To.MapPoint == to.MapPoint).Single();
+			//  targetConnections.From.Connections.Remove(connection);
+			//}
 		}
 		
 		/// <summary>
@@ -76,7 +84,7 @@ namespace LK.MatchGPX2OSM {
 				lastPathPart = _close[lastPathPart.PreviousNode];
 			}
 
-			result.Add(new PathSegment() { From = new Node(from), To = lastPathPart.End, Road = lastPathPart.PathFromPrevious });
+			result.Add(new PathSegment() { From = new Node(from.MapPoint), To = lastPathPart.End, Road = lastPathPart.PathFromPrevious });
 			result.Reverse();
 
 			return result;
@@ -97,7 +105,7 @@ namespace LK.MatchGPX2OSM {
 				_close.Add(current.End, current);
 	
 				// Path found
-				if(current.End.MapPoint == to) {
+				if(current.End.MapPoint == to.MapPoint) {
 					length = current.Length;
 					var result = BuildPath(current, from);
 					Finalize(to);
@@ -109,8 +117,8 @@ namespace LK.MatchGPX2OSM {
 					if (link.From != current.End) continue;
 
 					double distance;
-					if(link.To.MapPoint == to)
-						distance = current.Length + Calculations.GetPathLength(current.End.MapPoint, to, to.Road);
+					if (link.To.MapPoint == to.MapPoint) 
+						distance = current.Length + Calculations.GetPathLength(current.End.MapPoint, to.MapPoint, link.Geometry);
 					else
 						distance = current.Length + link.Geometry.Length;
 
@@ -133,7 +141,9 @@ namespace LK.MatchGPX2OSM {
 					}
 					else {
 						// Expand path to new node
-						PartialPath expanded = new PartialPath() { Length = distance, EstimationToEnd = Calculations.GetDistance2D(link.To.MapPoint, to),
+						PartialPath expanded = new PartialPath() {
+							Length = distance,
+							EstimationToEnd = Calculations.GetDistance2D(link.To.MapPoint, to.MapPoint),
 							                                         End = link.To, PreviousNode = current.End, PathFromPrevious = link.Geometry };
 						_open.Add(expanded);
 					}

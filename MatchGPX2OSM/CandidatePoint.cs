@@ -9,16 +9,17 @@ namespace LK.MatchGPX2OSM {
 	/// <summary>
 	/// Represents candidate point during map-matching
 	/// </summary>
-	public class CandidatePoint : IPointGeo {
-		/// <summary>
-		/// Gets or sets latitude of this point (north - positive value, south - negative value)
-		/// </summary>
-		public double Latitude { get; set; }
+	public class CandidatePoint {
+		public IPointGeo MapPoint { get; set; }
+		///// <summary>
+		///// Gets or sets latitude of this point (north - positive value, south - negative value)
+		///// </summary>
+		//public double Latitude { get; set; }
 
-		/// <summary>
-		/// Gets or sets the longitude of this point (east - positive value, west - negative value)
-		/// </summary>
-		public double Longitude { get; set; }
+		///// <summary>
+		///// Gets or sets the longitude of this point (east - positive value, west - negative value)
+		///// </summary>
+		//public double Longitude { get; set; }
 
 		/// <summary>
 		/// Gets or sets the elevation above MSL in meters of this point

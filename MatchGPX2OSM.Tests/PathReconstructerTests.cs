@@ -28,8 +28,8 @@ namespace MatchGPX2OSM.Tests {
 			STMatching matching = new STMatching(graph);
 			var matched = matching.Match(gps.Tracks[0].Segments[0]);
 
-			PathReconstructer target = new PathReconstructer();
-			var result = target.Reconstruct(matched, graph);
+			PathReconstructer target = new PathReconstructer(graph);
+			var result = target.Reconstruct(matched);
 
 			Assert.Equal(2, result.Nodes.Count);
 			Assert.Equal(1, result.Ways.Count);
@@ -57,11 +57,67 @@ namespace MatchGPX2OSM.Tests {
 			STMatching matching = new STMatching(graph);
 			var matched = matching.Match(gps.Tracks[0].Segments[0]);
 
-			PathReconstructer target = new PathReconstructer();
-			var result = target.Reconstruct(matched, graph);
+			PathReconstructer target = new PathReconstructer(graph);
+			var result = target.Reconstruct(matched);
 
 			Assert.True(result.Ways.First().Tags.ContainsTag("way-id"));
 			Assert.Equal("1", result.Ways.First().Tags["way-id"].Value);
+		}
+
+		[Fact()]
+		public void ReconstructSetsOriginalNodeIDTag() {
+			OSMDB map = new OSMDB();
+			map.Load(new MemoryStream(TestData.osm_reconstruct));
+
+			RoadGraph graph = new RoadGraph();
+			graph.Build(map);
+
+			GPXDocument gps = new GPXDocument();
+			// Track between nodes 30 and 31 in OSM map
+			gps.Load(new MemoryStream(TestData.gpx_two_points_same_segment));
+
+			STMatching matching = new STMatching(graph);
+			var matched = matching.Match(gps.Tracks[0].Segments[0]);
+
+			PathReconstructer target = new PathReconstructer(graph);
+			var result = target.Reconstruct(matched);
+
+			var nodeIds = result.Ways.First().Nodes;
+
+			Assert.Equal(2, nodeIds.Count);
+			Assert.True(result.Nodes[nodeIds[0]].Tags.ContainsTag("node-id"));
+			Assert.Equal("30", result.Nodes[nodeIds[0]].Tags["node-id"].Value);
+			Assert.True(result.Nodes[nodeIds[1]].Tags.ContainsTag("node-id"));
+			Assert.Equal("31", result.Nodes[nodeIds[1]].Tags["node-id"].Value);
+		}
+
+		[Fact()]
+		public void ReconstructSetsOriginalNodeIDTagOnMiddleNodes() {
+			OSMDB map = new OSMDB();
+			map.Load(new MemoryStream(TestData.osm_reconstruct));
+
+			RoadGraph graph = new RoadGraph();
+			graph.Build(map);
+
+			GPXDocument gps = new GPXDocument();
+			// Track between nodes 30 and 31 in OSM map
+			gps.Load(new MemoryStream(TestData.gpx_two_points_same_way));
+
+			STMatching matching = new STMatching(graph);
+			var matched = matching.Match(gps.Tracks[0].Segments[0]);
+
+			PathReconstructer target = new PathReconstructer(graph);
+			var result = target.Reconstruct(matched);
+
+			var nodeIds = result.Ways.First().Nodes;
+
+			Assert.Equal(3, nodeIds.Count);
+			Assert.True(result.Nodes[nodeIds[0]].Tags.ContainsTag("node-id"));
+			Assert.Equal("30", result.Nodes[nodeIds[0]].Tags["node-id"].Value);
+			Assert.True(result.Nodes[nodeIds[1]].Tags.ContainsTag("node-id"));
+			Assert.Equal("31", result.Nodes[nodeIds[1]].Tags["node-id"].Value);
+			Assert.True(result.Nodes[nodeIds[2]].Tags.ContainsTag("node-id"));
+			Assert.Equal("32", result.Nodes[nodeIds[2]].Tags["node-id"].Value);
 		}
 
 		[Fact()]
@@ -79,8 +135,8 @@ namespace MatchGPX2OSM.Tests {
 			STMatching matching = new STMatching(graph);
 			var matched = matching.Match(gps.Tracks[0].Segments[0]);
 
-			PathReconstructer target = new PathReconstructer();
-			var result = target.Reconstruct(matched, graph);
+			PathReconstructer target = new PathReconstructer(graph);
+			var result = target.Reconstruct(matched);
 
 			Assert.Equal(2, result.Nodes.Count);
 			Assert.Equal(1, result.Ways.Count);
@@ -108,8 +164,8 @@ namespace MatchGPX2OSM.Tests {
 			STMatching matching = new STMatching(graph);
 			var matched = matching.Match(gps.Tracks[0].Segments[0]);
 
-			PathReconstructer target = new PathReconstructer();
-			var result = target.Reconstruct(matched, graph);
+			PathReconstructer target = new PathReconstructer(graph);
+			var result = target.Reconstruct(matched);
 
 			Assert.Equal(3, result.Nodes.Count);
 			Assert.Equal(1, result.Ways.Count);
@@ -139,8 +195,8 @@ namespace MatchGPX2OSM.Tests {
 			STMatching matching = new STMatching(graph);
 			var matched = matching.Match(gps.Tracks[0].Segments[0]);
 
-			PathReconstructer target = new PathReconstructer();
-			var result = target.Reconstruct(matched, graph);
+			PathReconstructer target = new PathReconstructer(graph);
+			var result = target.Reconstruct(matched);
 
 			Assert.Equal(3, result.Nodes.Count);
 			Assert.Equal(1, result.Ways.Count);
@@ -156,7 +212,7 @@ namespace MatchGPX2OSM.Tests {
 		}
 
 		[Fact()]
-		public void ReconstructReturnsOneWayForPointsOnDifferentWays() {
+		public void ReconstructReturnsTwoWayForPointsOnDifferentWays() {
 			OSMDB map = new OSMDB();
 			map.Load(new MemoryStream(TestData.osm_reconstruct));
 
@@ -170,8 +226,8 @@ namespace MatchGPX2OSM.Tests {
 			STMatching matching = new STMatching(graph);
 			var matched = matching.Match(gps.Tracks[0].Segments[0]);
 
-			PathReconstructer target = new PathReconstructer();
-			var result = target.Reconstruct(matched, graph);
+			PathReconstructer target = new PathReconstructer(graph);
+			var result = target.Reconstruct(matched);
 
 			Assert.Equal(5, result.Nodes.Count);
 			Assert.Equal(2, result.Ways.Count);
