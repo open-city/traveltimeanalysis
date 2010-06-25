@@ -25,7 +25,7 @@ namespace LK.MatchGPX2OSM {
 		/// </summary>
 		/// <param name="matched">The list of CandidatePoints to reconstruct the path from</param>
 		/// <returns>OSMDB object with the reconstructed path</returns>
-		public OSMDB Reconstruct(IList<CandidatePoint> matched) {
+		public OSMDB Reconstruct(IList<CandidatePoint> matched, bool filter) {
 			_db = new OSMDB();
 			_dbCounter = -1;
 
@@ -67,7 +67,7 @@ namespace LK.MatchGPX2OSM {
 						var points = Topology.GetNodesBetweenPoints(pathSegments[j].From.MapPoint, pathSegments[j].To.MapPoint, pathSegments[j].Road).ToList();
 						AddNodes(points, way);
 
-						if (j < pathSegments.Count-1) {
+						if (j < pathSegments.Count - 1) {
 							node = AddNode(pathSegments[j].To.MapPoint);
 							way.Nodes.Add(node.ID);
 						}
@@ -79,6 +79,144 @@ namespace LK.MatchGPX2OSM {
 			}
 
 			return _db;
+		}
+
+		static bool IsUTurn(Segment<IPointGeo> first, Segment<IPointGeo> second) {
+			if (first != null && second != null) {
+				double firstBearing = Calculations.GetBearing(first);
+				double secondBearing = Calculations.GetBearing(second);
+
+				return Math.Abs(Math.Abs(firstBearing - secondBearing) - 180) < 0.01;
+			}
+
+			return false;
+		}
+
+		static int IsClose(Segment<IPointGeo> toCompare, List<SegmentOSM> segments) {
+			for (int i = segments.Count -1; i >= 0; i--) {
+				if (Calculations.GetDistance2D(toCompare.EndPoint, segments[i]) < Calculations.EpsLength ||
+					  Calculations.GetDistance2D(segments[0].StartPoint, toCompare) < Calculations.EpsLength)
+					return i;
+			}
+
+			return -1;
+		}
+
+		static void RemoveSegment(SegmentOSM toRemove, OSMDB db) {
+			OSMNode start = (OSMNode)toRemove.StartPoint;
+			OSMNode end = (OSMNode)toRemove.EndPoint;
+
+			if (toRemove.Way.Nodes.Count == 2) {
+				db.Ways.Remove(toRemove.Way);
+			}
+			else {
+				toRemove.Way.Nodes.Remove(start.ID);
+			}
+		}
+
+		class SegmentOSM : Segment<IPointGeo> {
+			public OSMWay Way { get; set; }
+
+			public SegmentOSM(IPointGeo start, IPointGeo end, OSMWay way)
+				: base(start, end) {
+					Way = way;
+			}
+		}
+
+		public static void HFFilter(OSMDB toFilter) {
+			double MaxUTurnLength = 100;
+
+			List<SegmentOSM> all = new List<SegmentOSM>();
+
+			foreach (var way in toFilter.Ways.OrderBy(w => int.Parse(w.Tags["order"].Value))) {
+				for (int i = 0; i < way.Nodes.Count - 1; i++) {
+					all.Add(new SegmentOSM(toFilter.Nodes[way.Nodes[i]], toFilter.Nodes[way.Nodes[i + 1]], way));
+				}
+			}
+
+			List<SegmentOSM> open = new List<SegmentOSM>();
+			IPointGeo lastValid = all[0].StartPoint;
+			OSMWay lastValidWay = toFilter.Ways.Where(w => w.Nodes.Count > 0 && w.Nodes[0] == ((OSMNode)lastValid).ID).Single();
+
+			while (all.Count > 0) {
+				var segment = all[0];
+				all.RemoveAt(0);
+				if (segment.Way.ID == -1197) {
+					int a = 1;
+				}
+				if(IsUTurn(open.LastOrDefault(), segment)) {
+					List<SegmentOSM> toRemove = new List<SegmentOSM>();
+					int lastIndex = -1;
+					int openIndexMatched = int.MaxValue;
+
+					while ((lastIndex = IsClose(segment, open)) > -1) {
+						if (lastIndex <= openIndexMatched) {
+							openIndexMatched = lastIndex;
+						}
+
+						if (toRemove.Sum(seg => seg.Length) + segment.Length > MaxUTurnLength) {
+							toRemove.Clear();
+						}
+						else {
+							toRemove.Add(segment);
+							segment = all[0];
+							all.RemoveAt(0);
+						}
+
+						if (IsUTurn(toRemove.Last(), segment)) {
+							break;
+						}
+					}
+
+					for (int i = open.Count-1; i >= openIndexMatched; i--) {
+						RemoveSegment(open[i], toFilter);
+						if (open[i].StartPoint != lastValid/* && i > openIndexMatched*/) {
+							toFilter.Nodes.Remove(toFilter.Nodes[((OSMNode)open[i].StartPoint).ID]);
+							open.RemoveAt(i);
+						}
+					}
+
+					foreach (var seg in toRemove) {
+						RemoveSegment(seg, toFilter);
+						toFilter.Nodes.Remove(toFilter.Nodes[((OSMNode)seg.StartPoint).ID]);
+					}
+
+					OSMNode start = (OSMNode)segment.StartPoint;
+					OSMNode end = (OSMNode)segment.EndPoint;
+
+					if (open.Count > 0) {
+						open.Last().Way.Nodes[open.Last().Way.Nodes.Count - 1] = start.ID;
+						SegmentOSM temp = open.Last();
+						open.Remove(temp);
+						open.Add(new SegmentOSM(temp.StartPoint, start, temp.Way));
+						//segment.Way.Nodes[0] = open.Last().Way.Nodes.Last();
+						//segment = new SegmentOSM(toFilter.Nodes[open.Last().Way.Nodes.Last()], end, segment.Way);
+						//open[open.Count-1].Way.Nodes.Insert(0, ((OSMNode)lastValid).ID);
+					}
+					else {
+						segment.Way.Nodes.Insert(0, ((OSMNode)lastValid).ID);
+						lastValidWay.Nodes[lastValidWay.Nodes.Count - 1] = start.ID;
+					}
+
+					toRemove.Clear();
+					open.Add(segment);
+
+					while (open.Count > 0 && open.Sum(seg => seg.Length) > MaxUTurnLength) {
+						lastValid = open[0].EndPoint;
+						lastValidWay = open[0].Way;
+						open.RemoveAt(0);
+					}
+				}
+				else {
+					open.Add(segment);
+
+					while(open.Count > 0 && open.Sum(seg => seg.Length) > MaxUTurnLength) {
+						lastValid = open[0].EndPoint;
+						lastValidWay = open[0].Way;
+						open.RemoveAt(0);
+					}
+				}
+			}
 		}
 
 		/// <summary>
@@ -130,6 +268,7 @@ namespace LK.MatchGPX2OSM {
 		OSMWay AddWay(int wayID) {
 			OSMWay result = new OSMWay(_dbCounter--);
 			result.Tags.Add(new OSMTag("way-id", wayID.ToString()));
+			result.Tags.Add(new OSMTag("order", (_db.Ways.Count + 1).ToString()));
 
 			_db.Ways.Add(result);
 

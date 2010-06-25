@@ -32,6 +32,10 @@ namespace LK.GeoUtils {
 			return Calculations.ToDegrees(Math.Atan2(y, x));
 		}
 
+		public static double GetBearing(Segment<IPointGeo> segment) {
+			return Calculations.GetBearing(segment.StartPoint, segment.EndPoint);
+		}
+
 		/// <summary>
 		/// Calculates distance between 2 points on geoid surface (ignores points elevations)
 		/// </summary>

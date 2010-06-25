@@ -29,7 +29,7 @@ namespace MatchGPX2OSM.Tests {
 			var matched = matching.Match(gps.Tracks[0].Segments[0]);
 
 			PathReconstructer target = new PathReconstructer(graph);
-			var result = target.Reconstruct(matched);
+			var result = target.Reconstruct(matched, false);
 
 			Assert.Equal(2, result.Nodes.Count);
 			Assert.Equal(1, result.Ways.Count);
@@ -58,7 +58,7 @@ namespace MatchGPX2OSM.Tests {
 			var matched = matching.Match(gps.Tracks[0].Segments[0]);
 
 			PathReconstructer target = new PathReconstructer(graph);
-			var result = target.Reconstruct(matched);
+			var result = target.Reconstruct(matched, false);
 
 			Assert.True(result.Ways.First().Tags.ContainsTag("way-id"));
 			Assert.Equal("1", result.Ways.First().Tags["way-id"].Value);
@@ -80,7 +80,7 @@ namespace MatchGPX2OSM.Tests {
 			var matched = matching.Match(gps.Tracks[0].Segments[0]);
 
 			PathReconstructer target = new PathReconstructer(graph);
-			var result = target.Reconstruct(matched);
+			var result = target.Reconstruct(matched, false);
 
 			var nodeIds = result.Ways.First().Nodes;
 
@@ -107,7 +107,7 @@ namespace MatchGPX2OSM.Tests {
 			var matched = matching.Match(gps.Tracks[0].Segments[0]);
 
 			PathReconstructer target = new PathReconstructer(graph);
-			var result = target.Reconstruct(matched);
+			var result = target.Reconstruct(matched, false);
 
 			var nodeIds = result.Ways.First().Nodes;
 
@@ -136,7 +136,7 @@ namespace MatchGPX2OSM.Tests {
 			var matched = matching.Match(gps.Tracks[0].Segments[0]);
 
 			PathReconstructer target = new PathReconstructer(graph);
-			var result = target.Reconstruct(matched);
+			var result = target.Reconstruct(matched, false);
 
 			Assert.Equal(2, result.Nodes.Count);
 			Assert.Equal(1, result.Ways.Count);
@@ -165,7 +165,7 @@ namespace MatchGPX2OSM.Tests {
 			var matched = matching.Match(gps.Tracks[0].Segments[0]);
 
 			PathReconstructer target = new PathReconstructer(graph);
-			var result = target.Reconstruct(matched);
+			var result = target.Reconstruct(matched, false);
 
 			Assert.Equal(3, result.Nodes.Count);
 			Assert.Equal(1, result.Ways.Count);
@@ -196,7 +196,7 @@ namespace MatchGPX2OSM.Tests {
 			var matched = matching.Match(gps.Tracks[0].Segments[0]);
 
 			PathReconstructer target = new PathReconstructer(graph);
-			var result = target.Reconstruct(matched);
+			var result = target.Reconstruct(matched, false);
 
 			Assert.Equal(3, result.Nodes.Count);
 			Assert.Equal(1, result.Ways.Count);
@@ -227,7 +227,7 @@ namespace MatchGPX2OSM.Tests {
 			var matched = matching.Match(gps.Tracks[0].Segments[0]);
 
 			PathReconstructer target = new PathReconstructer(graph);
-			var result = target.Reconstruct(matched);
+			var result = target.Reconstruct(matched, false);
 
 			Assert.Equal(5, result.Nodes.Count);
 			Assert.Equal(2, result.Ways.Count);
@@ -250,6 +250,72 @@ namespace MatchGPX2OSM.Tests {
 			Assert.True(Calculations.GetDistance2D(firstNode2, map.Nodes[10]) < Calculations.EpsLength);
 			Assert.True(Calculations.GetDistance2D(middleNode2, map.Nodes[33]) < Calculations.EpsLength);
 			Assert.True(Calculations.GetDistance2D(lastNode2, map.Nodes[32]) < Calculations.EpsLength);
+		}
+
+		[Fact()]
+		public void FilterPrecessesSimpleUTurnCorrectly() {
+			OSMDB original = new OSMDB();
+			original.Load(new MemoryStream(TestData.osm_simle_uturn));
+
+			OSMDB target = new OSMDB();
+			target.Load(new MemoryStream(TestData.osm_simle_uturn));
+			PathReconstructer.HFFilter(target);
+
+			Assert.Equal(3, target.Nodes.Count);
+			Assert.Equal(2, target.Ways.Count);
+
+			Assert.Equal(1, target.Ways.OrderBy(w => w.Tags["order"].Value).First().Nodes[0]);
+			Assert.Equal(6, target.Ways.OrderBy(w => w.Tags["order"].Value).First().Nodes[1]);
+
+			Assert.Equal(6, target.Ways.OrderBy(w => w.Tags["order"].Value).Last().Nodes[0]);
+			Assert.Equal(7, target.Ways.OrderBy(w => w.Tags["order"].Value).Last().Nodes[1]);
+
+			//OSMWay first = target.Ways.OrderBy(w => w.Tags["order"].Value).ToList()[0];
+			//Assert.Equal(original.Nodes[1].Latitude, target.Nodes[first.Nodes[0]].Latitude);
+			//Assert.Equal(original.Nodes[1].Longitude, target.Nodes[first.Nodes[0]].Longitude);
+			//Assert.Equal(original.Nodes[1].Tags["time"], target.Nodes[first.Nodes[0]].Tags["time"]);
+
+			//Assert.Equal(original.Nodes[2].Tags["node-id"], target.Nodes[first.Nodes[1]].Tags["node-id"]);
+			//Assert.Equal(original.Nodes[2].Latitude, target.Nodes[first.Nodes[1]].Latitude);
+			//Assert.Equal(original.Nodes[2].Longitude, target.Nodes[first.Nodes[1]].Longitude);
+
+			//OSMWay second = target.Ways.OrderBy(w => w.Tags["order"].Value).ToList()[1];
+			//Assert.Equal(first.Nodes[1], second.Nodes[0]);
+			////Assert.False(target.Nodes[second.Nodes[0]].Tags.ContainsTag("time"));
+
+			//Assert.Equal(original.Nodes[7].Latitude, target.Nodes[second.Nodes[1]].Latitude);
+			//Assert.Equal(original.Nodes[7].Longitude, target.Nodes[second.Nodes[1]].Longitude);
+			//Assert.Equal(original.Nodes[7].Tags["time"], target.Nodes[second.Nodes[1]].Tags["time"]);
+		}
+
+		[Fact()]
+		public void FilterPrecessesSimpleUTurnOnOneWayCorrectly() {
+			OSMDB original = new OSMDB();
+			original.Load(new MemoryStream(TestData.osm_uturns_one_way));
+
+			OSMDB target = new OSMDB();
+			target.Load(new MemoryStream(TestData.osm_uturns_one_way));
+			PathReconstructer.HFFilter(target);
+
+			Assert.Equal(4, target.Nodes.Count);
+			Assert.Equal(2, target.Ways.Count);
+
+			Assert.Equal(1, target.Ways.OrderBy(w => w.Tags["order"].Value).First().Nodes[0]);
+			Assert.Equal(4, target.Ways.OrderBy(w => w.Tags["order"].Value).First().Nodes[1]);
+			Assert.Equal(5, target.Ways.OrderBy(w => w.Tags["order"].Value).First().Nodes[2]);
+
+			Assert.Equal(5, target.Ways.OrderBy(w => w.Tags["order"].Value).Last().Nodes[0]);
+			Assert.Equal(6, target.Ways.OrderBy(w => w.Tags["order"].Value).Last().Nodes[1]);
+		}
+
+		[Fact()]
+		public void FilterPrecessesMoreUTurnsOnOneWayCorrectly() {
+			OSMDB original = new OSMDB();
+			original.Load(new MemoryStream(TestData.osm_more_uturns_one_way));
+
+			OSMDB target = new OSMDB();
+			target.Load(new MemoryStream(TestData.osm_more_uturns_one_way));
+			PathReconstructer.HFFilter(target);
 		}
 	}
 }

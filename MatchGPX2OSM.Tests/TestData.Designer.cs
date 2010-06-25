@@ -102,9 +102,30 @@ namespace MatchGPX2OSM.Tests {
             }
         }
         
+        internal static byte[] osm_more_uturns_one_way {
+            get {
+                object obj = ResourceManager.GetObject("osm_more_uturns_one_way", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         internal static byte[] osm_reconstruct {
             get {
                 object obj = ResourceManager.GetObject("osm_reconstruct", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] osm_simle_uturn {
+            get {
+                object obj = ResourceManager.GetObject("osm_simle_uturn", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] osm_uturns_one_way {
+            get {
+                object obj = ResourceManager.GetObject("osm_uturns_one_way", resourceCulture);
                 return ((byte[])(obj));
             }
         }

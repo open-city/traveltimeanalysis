@@ -89,7 +89,10 @@
     <None Include="TestData\gpx-two_points_same_way.gpx" />
     <None Include="TestData\gpx-two_points_same_way_reverse.gpx" />
     <None Include="TestData\osm-find_candidates-test.osm" />
+    <None Include="TestData\osm-simle-uturn.osm" />
+    <None Include="TestData\osm_more_uturns_one_way.osm" />
     <None Include="TestData\osm_reconstruct.osm" />
+    <None Include="TestData\osm_uturns_one_way.osm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
