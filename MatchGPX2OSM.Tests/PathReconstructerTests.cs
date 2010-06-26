@@ -261,6 +261,8 @@ namespace MatchGPX2OSM.Tests {
 			target.Load(new MemoryStream(TestData.osm_simle_uturn));
 			PathReconstructer.HFFilter(target);
 
+			target.Save("test.osm");
+
 			Assert.Equal(3, target.Nodes.Count);
 			Assert.Equal(2, target.Ways.Count);
 
@@ -333,7 +335,6 @@ namespace MatchGPX2OSM.Tests {
 			target.Load(new MemoryStream(TestData.osm_test_case_1));
 			PathReconstructer.HFFilter(target);
 
-			target.Save("test.osm");
 			Assert.Equal(4, target.Nodes.Count);
 			Assert.Equal(3, target.Ways.Count);
 
@@ -358,14 +359,23 @@ namespace MatchGPX2OSM.Tests {
 			target.Load(new MemoryStream(TestData.osm_test_case_2));
 			PathReconstructer.HFFilter(target);
 
-			target.Save("test.osm");
-			Assert.Equal(4, target.Nodes.Count);
-			Assert.Equal(3, target.Ways.Count);
+			Assert.Equal(6, target.Nodes.Count);
+			Assert.Equal(4, target.Ways.Count);
 
 			var ways = target.Ways.OrderBy(w => int.Parse(w.Tags["order"].Value)).ToList();
 
-			//Assert.Equal(1, ways[0].Nodes[0]);
-			//Assert.Equal(2, ways[0].Nodes[1]);
+			Assert.Equal(1, ways[0].Nodes[0]);
+			Assert.Equal(2, ways[0].Nodes[1]);
+
+			Assert.Equal(2, ways[1].Nodes[0]);
+			Assert.Equal(3, ways[1].Nodes[1]);
+			Assert.Equal(4, ways[1].Nodes[2]);
+
+			Assert.Equal(4, ways[2].Nodes[0]);
+			Assert.Equal(13, ways[2].Nodes[1]);
+
+			Assert.Equal(13, ways[3].Nodes[0]);
+			Assert.Equal(15, ways[3].Nodes[1]);
 
 			//Assert.Equal(2, ways[1].Nodes[0]);
 			//Assert.Equal(7, ways[1].Nodes[1]);

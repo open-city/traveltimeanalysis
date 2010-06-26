@@ -195,9 +195,14 @@ namespace LK.MatchGPX2OSM {
 							toRemove.Clear();
 						}
 						else {
-							toRemove.Add(segment);
-							segment = all[0];
-							all.RemoveAt(0);
+							if (all.Count > 0) {
+								toRemove.Add(segment);
+
+								segment = all[0];
+								all.RemoveAt(0);
+							}
+							else
+								break;
 						}
 
 						if (IsUTurn(toRemove, segment)) {
@@ -205,29 +210,43 @@ namespace LK.MatchGPX2OSM {
 						}
 					}
 
+
+					OSMNode start = (OSMNode)segment.StartPoint;
+					OSMNode end = (OSMNode)segment.EndPoint;
+
 					for (int i = open.Count-1; i >= openIndexMatched; i--) {
 						if (open[i].StartPoint != lastValid) {
+							double temp = Calculations.GetDistance2D(start, open[i].EndPoint);
+							if(i == openIndexMatched && ((OSMNode)open[i].StartPoint).Tags.ContainsTag("time") == false)
+								continue;
+
 							RemoveSegment(open[i], toFilter);
-							//if (i > openIndexMatched) {
-								toFilter.Nodes.Remove(toFilter.Nodes[((OSMNode)open[i].StartPoint).ID]);
-							//}
+							toFilter.Nodes.Remove(toFilter.Nodes[((OSMNode)open[i].StartPoint).ID]);
 							open.RemoveAt(i);
 						}
 					}
 
 					foreach (var seg in toRemove) {
 						RemoveSegment(seg, toFilter);
-						toFilter.Nodes.Remove(toFilter.Nodes[((OSMNode)seg.StartPoint).ID]);
+							toFilter.Nodes.Remove(toFilter.Nodes[((OSMNode)seg.StartPoint).ID]);
 					}
 
-					OSMNode start = (OSMNode)segment.StartPoint;
-					OSMNode end = (OSMNode)segment.EndPoint;
-
 					if (open.Count > 0) {
+						if (all.Count == 0) {
+							int a = 1;
+						}
 						open.Last().Way.Nodes[open.Last().Way.Nodes.Count - 1] = start.ID;
 						SegmentOSM temp = open.Last();
 						open.Remove(temp);
-						open.Add(new SegmentOSM(temp.StartPoint, start, temp.Way));
+
+						SegmentOSM modified = new SegmentOSM(temp.StartPoint, start, temp.Way);
+						if (Calculations.GetLength(modified) < Calculations.EpsLength) {
+							RemoveSegment(temp, toFilter);
+							segment.Way.Nodes[0] = ((OSMNode)temp.StartPoint).ID;
+							modified = new SegmentOSM(temp.StartPoint, end, temp.Way);
+							toFilter.Nodes.Remove(start);
+						}
+						open.Add(modified);
 					}
 					else {
 						segment.Way.Nodes.Insert(0, ((OSMNode)lastValid).ID);
