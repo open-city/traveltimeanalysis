@@ -206,10 +206,11 @@ namespace LK.MatchGPX2OSM {
 					}
 
 					for (int i = open.Count-1; i >= openIndexMatched; i--) {
-						if (open[i].StartPoint != lastValid/* && i > openIndexMatched*/) {
+						if (open[i].StartPoint != lastValid) {
 							RemoveSegment(open[i], toFilter);
-
-							toFilter.Nodes.Remove(toFilter.Nodes[((OSMNode)open[i].StartPoint).ID]);
+							//if (i > openIndexMatched) {
+								toFilter.Nodes.Remove(toFilter.Nodes[((OSMNode)open[i].StartPoint).ID]);
+							//}
 							open.RemoveAt(i);
 						}
 					}
@@ -227,9 +228,6 @@ namespace LK.MatchGPX2OSM {
 						SegmentOSM temp = open.Last();
 						open.Remove(temp);
 						open.Add(new SegmentOSM(temp.StartPoint, start, temp.Way));
-						//segment.Way.Nodes[0] = open.Last().Way.Nodes.Last();
-						//segment = new SegmentOSM(toFilter.Nodes[open.Last().Way.Nodes.Last()], end, segment.Way);
-						//open[open.Count-1].Way.Nodes.Insert(0, ((OSMNode)lastValid).ID);
 					}
 					else {
 						segment.Way.Nodes.Insert(0, ((OSMNode)lastValid).ID);
