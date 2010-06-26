@@ -33,9 +33,26 @@ namespace LK.MatchGPX2OSM {
 				return _db;
 
 			OSMNode node = AddNode(matched[0].MapPoint, matched[0].Layer.TrackPoint.Time);
+			bool skipped = false;
 
 			for (int i = 0; i < matched.Count - 1; i++) {
 				ConnectionGeometry wayGeometry = null;
+				if (Calculations.GetDistance2D(matched[i].MapPoint, matched[i + 1].MapPoint) < Calculations.EpsLength) {
+					skipped = true;
+					continue;
+				}
+				else {
+					if (skipped) {
+						OSMWay way = AddWay(matched[i].Road.WayID);
+						way.Nodes.Add(node.ID);
+						node = AddNode(matched[i].MapPoint, matched[i].Layer.TrackPoint.Time);
+						way.Nodes.Add(node.ID);
+
+						skipped = false;
+					}
+				}
+				
+				
 				if (Calculations.GetDistance2D(matched[i + 1].MapPoint, matched[i].Road) < Calculations.EpsLength)
 					wayGeometry = matched[i].Road;
 				else if (Calculations.GetDistance2D(matched[i].MapPoint, matched[i + 1].Road) < Calculations.EpsLength)
@@ -81,15 +98,32 @@ namespace LK.MatchGPX2OSM {
 			return _db;
 		}
 
-		static bool IsUTurn(Segment<IPointGeo> first, Segment<IPointGeo> second) {
-			if (first != null && second != null) {
-				double firstBearing = Calculations.GetBearing(first);
-				double secondBearing = Calculations.GetBearing(second);
+		static bool IsUTurn(List<SegmentOSM> segments, Segment<IPointGeo> toTest) {
+			if (Calculations.GetLength(toTest) < Calculations.EpsLength)
+				return false;
+
+			for (int i = segments.Count-1; i >= 0; i--) {
+				if (Calculations.GetLength(segments[i]) < Calculations.EpsLength)
+					continue;
+
+				double firstBearing = Calculations.GetBearing(segments[i]);
+				double secondBearing = Calculations.GetBearing(toTest);
 
 				return Math.Abs(Math.Abs(firstBearing - secondBearing) - 180) < 0.01;
 			}
 
 			return false;
+			//if (segments != null && toTest != null) {
+			//  if (Calculations.GetDistance2D(segments.StartPoint, toTest.EndPoint) < Calculations.EpsLength)
+			//    return true;
+
+			//  double firstBearing = Calculations.GetBearing(segments);
+			//  double secondBearing = Calculations.GetBearing(toTest);
+
+			//  return Math.Abs(Math.Abs(firstBearing - secondBearing) - 180) < 0.01;
+			//}
+
+			//return false;
 		}
 
 		static int IsClose(Segment<IPointGeo> toCompare, List<SegmentOSM> segments) {
@@ -103,6 +137,9 @@ namespace LK.MatchGPX2OSM {
 		}
 
 		static void RemoveSegment(SegmentOSM toRemove, OSMDB db) {
+			if (toRemove.Way.ID == -2) {
+				int a = 1;
+			}
 			OSMNode start = (OSMNode)toRemove.StartPoint;
 			OSMNode end = (OSMNode)toRemove.EndPoint;
 
@@ -144,7 +181,7 @@ namespace LK.MatchGPX2OSM {
 				if (segment.Way.ID == -1197) {
 					int a = 1;
 				}
-				if(IsUTurn(open.LastOrDefault(), segment)) {
+				if(IsUTurn(open, segment)) {
 					List<SegmentOSM> toRemove = new List<SegmentOSM>();
 					int lastIndex = -1;
 					int openIndexMatched = int.MaxValue;
@@ -163,14 +200,15 @@ namespace LK.MatchGPX2OSM {
 							all.RemoveAt(0);
 						}
 
-						if (IsUTurn(toRemove.Last(), segment)) {
+						if (IsUTurn(toRemove, segment)) {
 							break;
 						}
 					}
 
 					for (int i = open.Count-1; i >= openIndexMatched; i--) {
-						RemoveSegment(open[i], toFilter);
 						if (open[i].StartPoint != lastValid/* && i > openIndexMatched*/) {
+							RemoveSegment(open[i], toFilter);
+
 							toFilter.Nodes.Remove(toFilter.Nodes[((OSMNode)open[i].StartPoint).ID]);
 							open.RemoveAt(i);
 						}

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<osm version="0.5" generator="OSMUtils">
+  <node version="1" id="1" visible="true" lat="50.4951618446955" lon="16.1036164515498">
+    <tag k="time" v="3.8.2009 17:25:06" />
+  </node>
+  <node version="1" id="2" visible="true" lat="50.4951629884247" lon="16.1036799725076">
+    <tag k="time" v="3.8.2009 17:25:07" />
+  </node>
+  <node version="1" id="3" visible="true" lat="50.4951630539367" lon="16.1036836109479">
+    <tag k="time" v="3.8.2009 17:25:08" />
+  </node>
+  <node version="1" id="4" visible="true" lat="50.4951630539367" lon="16.1036836109479">
+    <tag k="time" v="3.8.2009 17:26:19" />
+  </node>
+  <node version="1" id="5" visible="true" lat="50.4951615127976" lon="16.1035980184503">
+    <tag k="time" v="3.8.2009 17:26:20" />
+  </node>
+  <node version="1" id="6" visible="true" lat="50.4951615127976" lon="16.1035980184503">
+    <tag k="time" v="3.8.2009 17:28:59" />
+  </node>
+  <node version="1" id="7" visible="true" lat="50.4951669516256" lon="16.1039000825885">
+    <tag k="time" v="3.8.2009 17:29:00" />
+  </node>
+  <node version="1" id="8" visible="true" lat="50.495167745233" lon="16.1039441583268">
+    <tag k="time" v="3.8.2009 17:29:01" />
+  </node>
+  
+
+  <way version="1" id="100" visible="true">
+    <nd ref="1" />
+    <nd ref="2" />
+    <tag k="way-id" v="36881784" />
+    <tag k="order" v="1" />
+  </way>
+  <way version="1" id="101" visible="true">
+    <nd ref="2" />
+    <nd ref="3" />
+    <tag k="way-id" v="36881784" />
+    <tag k="order" v="2" />
+  </way>
+  <way version="1" id="102" visible="true">
+    <nd ref="3" />
+    <nd ref="4" />
+    <tag k="way-id" v="36881784" />
+    <tag k="order" v="3" />
+  </way>
+  <way version="1" id="103" visible="true">
+    <nd ref="4" />
+    <nd ref="5" />
+    <tag k="way-id" v="36881784" />
+    <tag k="order" v="4" />
+  </way>
+  <way version="1" id="104" visible="true">
+    <nd ref="5" />
+    <nd ref="6" />
+    <tag k="way-id" v="36881784" />
+    <tag k="order" v="5" />
+  </way>
+  <way version="1" id="105" visible="true">
+    <nd ref="6" />
+    <nd ref="7" />
+    <tag k="way-id" v="36881784" />
+    <tag k="order" v="6" />
+  </way>
+  <way version="1" id="106" visible="true">
+    <nd ref="7" />
+    <nd ref="8" />
+    <tag k="way-id" v="36881784" />
+    <tag k="order" v="7" />
+  </way>
+</osm>

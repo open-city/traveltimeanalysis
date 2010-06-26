@@ -92,6 +92,8 @@
     <None Include="TestData\osm-simle-uturn.osm" />
     <None Include="TestData\osm_more_uturns_one_way.osm" />
     <None Include="TestData\osm_reconstruct.osm" />
+    <None Include="TestData\osm_test_case_1.osm" />
+    <None Include="TestData\osm_test_case_2.osm" />
     <None Include="TestData\osm_uturns_one_way.osm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

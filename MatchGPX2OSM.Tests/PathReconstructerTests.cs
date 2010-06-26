@@ -269,23 +269,6 @@ namespace MatchGPX2OSM.Tests {
 
 			Assert.Equal(6, target.Ways.OrderBy(w => w.Tags["order"].Value).Last().Nodes[0]);
 			Assert.Equal(7, target.Ways.OrderBy(w => w.Tags["order"].Value).Last().Nodes[1]);
-
-			//OSMWay first = target.Ways.OrderBy(w => w.Tags["order"].Value).ToList()[0];
-			//Assert.Equal(original.Nodes[1].Latitude, target.Nodes[first.Nodes[0]].Latitude);
-			//Assert.Equal(original.Nodes[1].Longitude, target.Nodes[first.Nodes[0]].Longitude);
-			//Assert.Equal(original.Nodes[1].Tags["time"], target.Nodes[first.Nodes[0]].Tags["time"]);
-
-			//Assert.Equal(original.Nodes[2].Tags["node-id"], target.Nodes[first.Nodes[1]].Tags["node-id"]);
-			//Assert.Equal(original.Nodes[2].Latitude, target.Nodes[first.Nodes[1]].Latitude);
-			//Assert.Equal(original.Nodes[2].Longitude, target.Nodes[first.Nodes[1]].Longitude);
-
-			//OSMWay second = target.Ways.OrderBy(w => w.Tags["order"].Value).ToList()[1];
-			//Assert.Equal(first.Nodes[1], second.Nodes[0]);
-			////Assert.False(target.Nodes[second.Nodes[0]].Tags.ContainsTag("time"));
-
-			//Assert.Equal(original.Nodes[7].Latitude, target.Nodes[second.Nodes[1]].Latitude);
-			//Assert.Equal(original.Nodes[7].Longitude, target.Nodes[second.Nodes[1]].Longitude);
-			//Assert.Equal(original.Nodes[7].Tags["time"], target.Nodes[second.Nodes[1]].Tags["time"]);
 		}
 
 		[Fact()]
@@ -298,14 +281,18 @@ namespace MatchGPX2OSM.Tests {
 			PathReconstructer.HFFilter(target);
 
 			Assert.Equal(4, target.Nodes.Count);
-			Assert.Equal(2, target.Ways.Count);
+			Assert.Equal(3, target.Ways.Count);
 
-			Assert.Equal(1, target.Ways.OrderBy(w => w.Tags["order"].Value).First().Nodes[0]);
-			Assert.Equal(4, target.Ways.OrderBy(w => w.Tags["order"].Value).First().Nodes[1]);
-			Assert.Equal(5, target.Ways.OrderBy(w => w.Tags["order"].Value).First().Nodes[2]);
+			var ways = target.Ways.OrderBy(w => int.Parse(w.Tags["order"].Value)).ToList();
 
-			Assert.Equal(5, target.Ways.OrderBy(w => w.Tags["order"].Value).Last().Nodes[0]);
-			Assert.Equal(6, target.Ways.OrderBy(w => w.Tags["order"].Value).Last().Nodes[1]);
+			Assert.Equal(1, ways[0].Nodes[0]);
+			Assert.Equal(4, ways[0].Nodes[1]);
+
+			Assert.Equal(4, ways[1].Nodes[0]);
+			Assert.Equal(5, ways[1].Nodes[1]);
+
+			Assert.Equal(5, ways[2].Nodes[0]);
+			Assert.Equal(6, ways[2].Nodes[1]);
 		}
 
 		[Fact()]
@@ -316,6 +303,75 @@ namespace MatchGPX2OSM.Tests {
 			OSMDB target = new OSMDB();
 			target.Load(new MemoryStream(TestData.osm_more_uturns_one_way));
 			PathReconstructer.HFFilter(target);
+
+			Assert.Equal(9, target.Nodes.Count);
+			Assert.Equal(3, target.Ways.Count);
+
+			var ways = target.Ways.OrderBy(w => int.Parse(w.Tags["order"].Value)).ToList();
+
+			Assert.Equal(1, ways[0].Nodes[0]);
+			Assert.Equal(25, ways[0].Nodes[1]);
+
+			Assert.Equal(25, ways[1].Nodes[0]);
+			Assert.Equal(26, ways[1].Nodes[1]);
+			Assert.Equal(27, ways[1].Nodes[2]);
+			Assert.Equal(28, ways[1].Nodes[3]);
+			Assert.Equal(29, ways[1].Nodes[4]);
+			Assert.Equal(30, ways[1].Nodes[5]);
+			Assert.Equal(31, ways[1].Nodes[6]);
+
+			Assert.Equal(31, ways[2].Nodes[0]);
+			Assert.Equal(32, ways[2].Nodes[1]);
+		}
+
+		[Fact()]
+		public void FilterPrecessesTestCase1Correctly() {
+			OSMDB original = new OSMDB();
+			original.Load(new MemoryStream(TestData.osm_test_case_1));
+
+			OSMDB target = new OSMDB();
+			target.Load(new MemoryStream(TestData.osm_test_case_1));
+			PathReconstructer.HFFilter(target);
+
+			target.Save("test.osm");
+			Assert.Equal(4, target.Nodes.Count);
+			Assert.Equal(3, target.Ways.Count);
+
+			var ways = target.Ways.OrderBy(w => int.Parse(w.Tags["order"].Value)).ToList();
+
+			Assert.Equal(1, ways[0].Nodes[0]);
+			Assert.Equal(2, ways[0].Nodes[1]);
+
+			Assert.Equal(2, ways[1].Nodes[0]);
+			Assert.Equal(7, ways[1].Nodes[1]);
+
+			Assert.Equal(7, ways[2].Nodes[0]);
+			Assert.Equal(8, ways[2].Nodes[1]);
+		}
+
+		[Fact()]
+		public void FilterPrecessesTestCase2Correctly() {
+			OSMDB original = new OSMDB();
+			original.Load(new MemoryStream(TestData.osm_test_case_2));
+
+			OSMDB target = new OSMDB();
+			target.Load(new MemoryStream(TestData.osm_test_case_2));
+			PathReconstructer.HFFilter(target);
+
+			target.Save("test.osm");
+			Assert.Equal(4, target.Nodes.Count);
+			Assert.Equal(3, target.Ways.Count);
+
+			var ways = target.Ways.OrderBy(w => int.Parse(w.Tags["order"].Value)).ToList();
+
+			//Assert.Equal(1, ways[0].Nodes[0]);
+			//Assert.Equal(2, ways[0].Nodes[1]);
+
+			//Assert.Equal(2, ways[1].Nodes[0]);
+			//Assert.Equal(7, ways[1].Nodes[1]);
+
+			//Assert.Equal(7, ways[2].Nodes[0]);
+			//Assert.Equal(8, ways[2].Nodes[1]);
 		}
 	}
 }

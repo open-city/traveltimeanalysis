@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<osm version="0.5" generator="OSMUtils">
+  <node id="1" visible="true" lat="50.4948891908808" lon="16.0961971641953">
+    <tag k="time" v="3.8.2009 17:40:27" />
+  </node>
+  <node id="2" visible="true" lat="50.4948829" lon="16.0961993">
+    <tag k="node-id" v="442720510" />
+    <tag k="time" v="3.8.2009 17:40:28" />
+  </node>
+  <node id="3" visible="true" lat="50.4946491" lon="16.0963787">
+    <tag k="node-id" v="442720511" />
+  </node>
+  <node id="4" visible="true" lat="50.4945933" lon="16.0964897">
+    <tag k="node-id" v="415991318" />
+  </node>
+  <node id="5" visible="true" lat="50.4947545" lon="16.0968088">
+    <tag k="node-id" v="415991310" />
+    <tag k="time" v="3.8.2009 17:40:29" />
+  </node>
+  <node id="6" visible="true" lat="50.4947545" lon="16.0968088">
+    <tag k="node-id" v="415991310" />
+    <tag k="time" v="3.8.2009 17:40:37" />
+  </node>
+  <node id="7" visible="true" lat="50.4947306169695" lon="16.0967615228596">
+    <tag k="time" v="3.8.2009 17:40:38" />
+  </node>
+  <node id="8" visible="true" lat="50.4947339692318" lon="16.0967681587585">
+    <tag k="time" v="3.8.2009 17:40:39" />
+  </node>
+  <node id="9" visible="true" lat="50.4947431801018" lon="16.0967863919385">
+    <tag k="time" v="3.8.2009 17:40:40" />
+  </node>
+  <node id="10" visible="true" lat="50.494741669509" lon="16.096783401677">
+    <tag k="time" v="3.8.2009 17:40:41" />
+  </node>
+  <node id="11" visible="true" lat="50.4947408146374" lon="16.0967817094342">
+    <tag k="time" v="3.8.2009 17:40:42" />
+  </node>
+  <node id="12" visible="true" lat="50.4945933" lon="16.0964897">
+    <tag k="node-id" v="415991318" />
+    <tag k="time" v="3.8.2009 17:40:43" />
+  </node>
+  <node id="13" visible="true" lat="50.4943460621913" lon="16.0967373059046">
+    <tag k="time" v="3.8.2009 17:40:44" />
+  </node>
+  <node id="15" visible="true" lat="50.4943250815406" lon="16.0967583177921">
+    <tag k="time" v="3.8.2009 17:40:45" />
+  </node>
+
+  <way id="100" visible="true">
+    <nd ref="1" />
+    <nd ref="2" />
+    <tag k="way-id" v="37746606" />
+    <tag k="order" v="675" />
+  </way>
+  <way id="101" visible="true">
+    <nd ref="2" />
+    <nd ref="3" />
+    <nd ref="4" />
+    <tag k="way-id" v="37746606" />
+    <tag k="order" v="676" />
+  </way>
+  <way id="102" visible="true">
+    <nd ref="4" />
+    <nd ref="5" />
+    <tag k="way-id" v="35472312" />
+    <tag k="order" v="677" />
+  </way>
+  <way id="103" visible="true">
+    <nd ref="5" />
+    <nd ref="6" />
+    <tag k="way-id" v="35472312" />
+    <tag k="order" v="678" />
+  </way>
+  <way id="104" visible="true">
+    <nd ref="6" />
+    <nd ref="7" />
+    <tag k="way-id" v="35472312" />
+    <tag k="order" v="679" />
+  </way>
+  <way id="105" visible="true">
+    <nd ref="7" />
+    <nd ref="8" />
+    <tag k="way-id" v="35472312" />
+    <tag k="order" v="680" />
+  </way>
+  <way id="106" visible="true">
+    <nd ref="8" />
+    <nd ref="9" />
+    <tag k="way-id" v="35472312" />
+    <tag k="order" v="681" />
+  </way>
+  <way id="107" visible="true">
+    <nd ref="9" />
+    <nd ref="10" />
+    <tag k="way-id" v="35472312" />
+    <tag k="order" v="682" />
+  </way>
+  <way id="108" visible="true">
+    <nd ref="10" />
+    <nd ref="11" />
+    <tag k="way-id" v="35472312" />
+    <tag k="order" v="683" />
+  </way>
+  <way id="109" visible="true">
+    <nd ref="11" />
+    <nd ref="12" />
+    <tag k="way-id" v="35472312" />
+    <tag k="order" v="684" />
+  </way>
+  <way id="110" visible="true">
+    <nd ref="12" />
+    <nd ref="13" />
+    <tag k="way-id" v="35472313" />
+    <tag k="order" v="685" />
+  </way>
+  <way id="111" visible="true">
+    <nd ref="13" />
+    <nd ref="15" />
+    <tag k="way-id" v="35472313" />
+    <tag k="order" v="686" />
+  </way>
+</osm>

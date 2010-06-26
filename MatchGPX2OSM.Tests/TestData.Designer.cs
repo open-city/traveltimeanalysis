@@ -123,6 +123,20 @@ namespace MatchGPX2OSM.Tests {
             }
         }
         
+        internal static byte[] osm_test_case_1 {
+            get {
+                object obj = ResourceManager.GetObject("osm_test_case_1", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] osm_test_case_2 {
+            get {
+                object obj = ResourceManager.GetObject("osm_test_case_2", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         internal static byte[] osm_uturns_one_way {
             get {
                 object obj = ResourceManager.GetObject("osm_uturns_one_way", resourceCulture);
