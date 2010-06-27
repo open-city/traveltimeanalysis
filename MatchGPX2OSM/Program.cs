@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 using NDesk.Options;
 
@@ -17,9 +18,9 @@ namespace LK.MatchGPX2OSM {
 			bool showHelp = false;
 
 			OptionSet parameters = new OptionSet() {
-				{ "osm=",					v => osmPath = v},
-				{ "gpx=",					v => gpxPath = v},
-				{ "o|output=",			v => outputPath = v},
+				{ "osm=", "path to the routable map file",																				v => osmPath = v},
+				{ "gpx=",	"path to the GPX file to process or to the directory to process",				v => gpxPath = v},
+				{ "o|output=", "path to the output directory",																		v => outputPath = v},
 				{ "h|?|help",				v => showHelp = v != null},
 			};
 
@@ -34,7 +35,7 @@ namespace LK.MatchGPX2OSM {
 			}
 
 
-			if (showHelp) {
+			if (showHelp || string.IsNullOrEmpty(osmPath) || string.IsNullOrEmpty(gpxPath) || string.IsNullOrEmpty(outputPath)) {
 				ShowHelp(parameters);
 				return;
 			}
@@ -42,18 +43,67 @@ namespace LK.MatchGPX2OSM {
 			Console.Write("Loading OSM file ...");
 			OSMDB map = new OSMDB();
 			map.Load(osmPath);
-			Console.WriteLine("\t\tDone.");
+			Console.WriteLine("\t\t\tDone.");
 
-			Console.Write("Building RoadGraph ...");
+			Console.Write("Building routable road graph ...");
 			RoadGraph graph = new RoadGraph();
 			graph.Build(map);
-			Console.WriteLine("\t\tDone.");
+			Console.WriteLine("\tDone.");
 
-			Console.Write("Loading GPS track ...");
+
+			STMatching processor = new STMatching(graph);
+			PathReconstructer reconstructor = new PathReconstructer(graph);
+
+			if (File.Exists(gpxPath)) {
+				ProcessGPXFile(gpxPath, processor, reconstructor, outputPath, 30);
+			}
+			else if (Directory.Exists(gpxPath)) {
+				var files = Directory.GetFiles(gpxPath, "*.gpx");
+				Console.WriteLine("Found {0} GPX file(s).");
+
+				foreach (var file in files) {
+					ProcessGPXFile(file, processor, reconstructor, outputPath, 30);
+					Console.WriteLine();
+				}
+			}
+			else {
+				Console.WriteLine("No GPX files found");
+			}
+		}
+
+		static void ProcessGPXFile(string path, STMatching processor, PathReconstructer reconstructor, string outputPath, int samplingPeriod) {
+			GPXUtils.Filters.FrequencyFilter filter = new GPXUtils.Filters.FrequencyFilter();
+
+			Console.Write("Loading {0} ...", Path.GetFileName(path));
 			GPXDocument gpx = new GPXDocument();
-			gpx.Load(gpxPath);
-			Console.WriteLine("\t\tDone.");
+			gpx.Load(path);
 
+			Console.WriteLine("[{0} track(s); {1} segment(s)]", gpx.Tracks.Count, gpx.Tracks.Sum(track => track.Segments.Count));
+			for (int trackIndex = 0; trackIndex < gpx.Tracks.Count; trackIndex++) {
+				for (int segmentIndex = 0; segmentIndex < gpx.Tracks[trackIndex].Segments.Count; segmentIndex++) {
+					string name = string.IsNullOrEmpty(gpx.Tracks[trackIndex].Name) ? "t" + trackIndex.ToString() : gpx.Tracks[trackIndex].Name;
+					name += "_s" + segmentIndex.ToString();
+					Console.Write("\t" + name + " ");
+
+					try {
+						GPXTrackSegment toProcess = gpx.Tracks[trackIndex].Segments[segmentIndex];
+						if (samplingPeriod > 0)
+							toProcess = filter.Filter(new TimeSpan(0, 0, samplingPeriod), toProcess);
+
+						var result = processor.Match(toProcess);
+						Console.Write(".");
+
+						var reconstructedPath = reconstructor.Reconstruct(result, true);
+						Console.Write(".");
+
+						reconstructedPath.Save(Path.Combine(outputPath, Path.GetFileNameWithoutExtension(path) + "_" + name + ".osm"));
+						Console.WriteLine(".");
+					}
+					catch (Exception e) {
+						Console.WriteLine("Error: " + e.Message);
+					}
+				}
+			}
 		}
 
 		/// <summary>
