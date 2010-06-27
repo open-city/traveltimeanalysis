@@ -259,9 +259,7 @@ namespace MatchGPX2OSM.Tests {
 
 			OSMDB target = new OSMDB();
 			target.Load(new MemoryStream(TestData.osm_simle_uturn));
-			PathReconstructer.HFFilter(target);
-
-			target.Save("test.osm");
+			PathReconstructer.FilterUTurns(target, 100);
 
 			Assert.Equal(3, target.Nodes.Count);
 			Assert.Equal(2, target.Ways.Count);
@@ -280,7 +278,7 @@ namespace MatchGPX2OSM.Tests {
 
 			OSMDB target = new OSMDB();
 			target.Load(new MemoryStream(TestData.osm_uturns_one_way));
-			PathReconstructer.HFFilter(target);
+			PathReconstructer.FilterUTurns(target, 100);
 
 			Assert.Equal(4, target.Nodes.Count);
 			Assert.Equal(3, target.Ways.Count);
@@ -304,7 +302,7 @@ namespace MatchGPX2OSM.Tests {
 
 			OSMDB target = new OSMDB();
 			target.Load(new MemoryStream(TestData.osm_more_uturns_one_way));
-			PathReconstructer.HFFilter(target);
+			PathReconstructer.FilterUTurns(target, 100);
 
 			Assert.Equal(9, target.Nodes.Count);
 			Assert.Equal(3, target.Ways.Count);
@@ -333,7 +331,7 @@ namespace MatchGPX2OSM.Tests {
 
 			OSMDB target = new OSMDB();
 			target.Load(new MemoryStream(TestData.osm_test_case_1));
-			PathReconstructer.HFFilter(target);
+			PathReconstructer.FilterUTurns(target, 100);
 
 			Assert.Equal(4, target.Nodes.Count);
 			Assert.Equal(3, target.Ways.Count);
@@ -357,7 +355,7 @@ namespace MatchGPX2OSM.Tests {
 
 			OSMDB target = new OSMDB();
 			target.Load(new MemoryStream(TestData.osm_test_case_2));
-			PathReconstructer.HFFilter(target);
+			PathReconstructer.FilterUTurns(target, 100);
 
 			Assert.Equal(6, target.Nodes.Count);
 			Assert.Equal(4, target.Ways.Count);
@@ -376,12 +374,6 @@ namespace MatchGPX2OSM.Tests {
 
 			Assert.Equal(13, ways[3].Nodes[0]);
 			Assert.Equal(15, ways[3].Nodes[1]);
-
-			//Assert.Equal(2, ways[1].Nodes[0]);
-			//Assert.Equal(7, ways[1].Nodes[1]);
-
-			//Assert.Equal(7, ways[2].Nodes[0]);
-			//Assert.Equal(8, ways[2].Nodes[1]);
 		}
 	}
 }
