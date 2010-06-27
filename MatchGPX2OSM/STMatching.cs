@@ -119,7 +119,6 @@ namespace LK.MatchGPX2OSM {
 			gpxBbox.Inflate(0.0007, 0.0011);
 
 			foreach (var road in _trackCutout) {			
-			//foreach (var road in _graph.ConnectionGeometries) {
 				if (Topology.Intersects(gpxBbox, road.BBox)) {
 					Segment<IPointGeo> roadSegment;
 					IPointGeo projectedPoint = Topology.ProjectPoint(gpxPt, road, out roadSegment);

@@ -15,12 +15,14 @@ namespace LK.MatchGPX2OSM {
 			string osmPath = "";
 			string gpxPath = "";
 			string outputPath = "";
+			int samplingPeriod = 30;
 			bool showHelp = false;
 
 			OptionSet parameters = new OptionSet() {
 				{ "osm=", "path to the routable map file",																				v => osmPath = v},
 				{ "gpx=",	"path to the GPX file to process or to the directory to process",				v => gpxPath = v},
 				{ "o|output=", "path to the output directory",																		v => outputPath = v},
+				{ "p|period=", "sampling period of the GPX file",																	v => samplingPeriod = int.Parse(v)},
 				{ "h|?|help",				v => showHelp = v != null},
 			};
 
@@ -55,14 +57,14 @@ namespace LK.MatchGPX2OSM {
 			PathReconstructer reconstructor = new PathReconstructer(graph);
 
 			if (File.Exists(gpxPath)) {
-				ProcessGPXFile(gpxPath, processor, reconstructor, outputPath, 30);
+				ProcessGPXFile(gpxPath, processor, reconstructor, outputPath, samplingPeriod);
 			}
 			else if (Directory.Exists(gpxPath)) {
 				var files = Directory.GetFiles(gpxPath, "*.gpx");
 				Console.WriteLine("Found {0} GPX file(s).", files.Length);
 
 				foreach (var file in files) {
-					ProcessGPXFile(file, processor, reconstructor, outputPath, 30);
+					ProcessGPXFile(file, processor, reconstructor, outputPath, samplingPeriod);
 					Console.WriteLine();
 				}
 			}
