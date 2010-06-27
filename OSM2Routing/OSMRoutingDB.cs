@@ -15,6 +15,7 @@ namespace LK.OSM2Routing {
 		OSMDB _storage;
 		IEnumerable<RoadType> _acceptedRoads;
 
+		Dictionary<int, int> _ways;
 		Dictionary<int, List<int>> _usedNodes;
 		/// <summary>
 		/// Gets the used nodes and ways that contains them
@@ -49,6 +50,7 @@ namespace LK.OSM2Routing {
 		public OSMRoutingDB() {
 			_storage = new OSMDB();
 			_usedNodes = new Dictionary<int, List<int>>();
+			_ways = new Dictionary<int, int>();
 		}
 
 		/// <summary>
@@ -87,9 +89,10 @@ namespace LK.OSM2Routing {
 		/// <param name="way">The way read form the OSM file</param>
 		void WayRead(OSMWay way) {
 			foreach (RoadType road in _acceptedRoads) {
-				if (road.Match(way)) {
+				if (road.Match(way) && _ways.ContainsKey(way.ID) == false) {
 					ExtractUsedNodes(way);
 					_storage.Ways.Add(new OSMRoad(way, road));
+					_ways.Add(way.ID, way.ID);
 				}
 			}
 		}

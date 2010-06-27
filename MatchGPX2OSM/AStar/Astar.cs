@@ -44,7 +44,16 @@ namespace LK.MatchGPX2OSM {
 																							Length = Calculations.GetPathLength(from.MapPoint, connection.To.MapPoint, connection.Geometry),
 																							EstimationToEnd = Calculations.GetDistance2D(connection.To.MapPoint, to.MapPoint)
 				};
-				_open.Add(path);
+
+				if (_open.Contains(path)) {
+					if (_open[path.End].Length > path.Length) {
+						_open.Remove(_open[path.End]);
+						_open.Add(path);
+					}
+				}
+				else {
+					_open.Add(path);
+				}
 			}
 
 			_temporaryConnections.Clear();
