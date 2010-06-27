@@ -32,28 +32,33 @@ namespace LK.OSM2Routing {
 				return;
 			}
 
-			if (showHelp) {
+			if (showHelp || string.IsNullOrEmpty(osmPath) || string.IsNullOrEmpty(configPath) || string.IsNullOrEmpty(outputPath)) {
 				ShowHelp(parameters);
 				return;
 			}
 
-			Console.Write("Loading config file ...");		
-			RoutingConfig config = new RoutingConfig();
-			config.Load(configPath);
-			Console.WriteLine("\t\t\tDone.");
+			try {
+				Console.Write("Loading config file ...");
+				RoutingConfig config = new RoutingConfig();
+				config.Load(configPath);
+				Console.WriteLine("\t\t\tDone.");
 
-			Console.Write("Loading OSM file ...");
-			OSMRoutingDB map = new OSMRoutingDB();
-			map.Load(config.RoadTypes, osmPath);
-			Console.WriteLine("\t\t\tDone.");
+				Console.Write("Loading OSM file ...");
+				OSMRoutingDB map = new OSMRoutingDB();
+				map.Load(config.RoadTypes, osmPath);
+				Console.WriteLine("\t\t\tDone.");
 
-			Console.Write("Creating routable OSM file ...");
-			OSMDB routableMap = map.BuildRoutableOSM();
-			Console.WriteLine("\t\tDone.");
+				Console.Write("Creating routable OSM file ...");
+				OSMDB routableMap = map.BuildRoutableOSM();
+				Console.WriteLine("\t\tDone.");
 
-			Console.Write("Saving routable OSM file ...");
-			routableMap.Save(outputPath);
-			Console.WriteLine("\t\tDone.");
+				Console.Write("Saving routable OSM file ...");
+				routableMap.Save(outputPath);
+				Console.WriteLine("\t\tDone.");
+			}
+			catch (Exception e) {
+				Console.WriteLine("\nError: " + e.Message);
+			}
 		}
 
 		/// <summary>
