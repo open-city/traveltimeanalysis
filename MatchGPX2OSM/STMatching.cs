@@ -7,6 +7,7 @@ using LK.GeoUtils;
 using LK.GeoUtils.Geometry;
 using LK.GPXUtils;
 using LK.OSMUtils.OSMDatabase;
+using System.Collections;
 
 namespace LK.MatchGPX2OSM {
 	public class STMatching {
@@ -15,7 +16,7 @@ namespace LK.MatchGPX2OSM {
 		RoadGraph _graph;
 		CandidatesGraph _candidatesGraph;
 		AstarPathfinder _pathfinder;
-
+		List<ConnectionGeometry> _trackCutout;
 		/// <summary>
 		/// Create a new instance of the STMatching class
 		/// </summary>
@@ -23,6 +24,7 @@ namespace LK.MatchGPX2OSM {
 		public STMatching(RoadGraph graph) {
 			_graph = graph;
 			_pathfinder = new AstarPathfinder(_graph);
+			_trackCutout = new List<ConnectionGeometry>();
 		}
 		
 		/// <summary>
@@ -32,6 +34,8 @@ namespace LK.MatchGPX2OSM {
 		/// <returns>List of the CandidatePoints that match GPS log the best</returns>
 		public IList<CandidatePoint> Match(GPXTrackSegment gpx) {
 			_candidatesGraph = new CandidatesGraph();
+
+			CreateTrackCutout(gpx);
 
 			//Find candidate points + ObservationProbability
 			foreach (var gpxPoint in gpx.Nodes) {
@@ -87,6 +91,22 @@ namespace LK.MatchGPX2OSM {
 				}
 			}
 		}
+
+		void CreateTrackCutout(GPXTrackSegment track) {
+			_trackCutout.Clear();
+
+			BBox trackBBox = new BBox();
+			foreach (var point in track.Nodes) {
+				trackBBox.ExtendToCover(point);
+			}
+			trackBBox.Inflate(0.0015, 0.0015);
+
+			foreach (var road in _graph.ConnectionGeometries) {
+				if (Topology.Intersects(road.BBox, trackBBox)) {
+					_trackCutout.Add(road);
+				}
+			}
+		}
 		
 		/// <summary>
 		/// Finds all candidates points for given GPS track point
@@ -98,7 +118,8 @@ namespace LK.MatchGPX2OSM {
 			BBox gpxBbox = new BBox(new IPointGeo[] { gpxPt });
 			gpxBbox.Inflate(0.0007, 0.0011);
 
-			foreach (var road in _graph.ConnectionGeometries) {
+			foreach (var road in _trackCutout) {			
+			//foreach (var road in _graph.ConnectionGeometries) {
 				if (Topology.Intersects(gpxBbox, road.BBox)) {
 					Segment<IPointGeo> roadSegment;
 					IPointGeo projectedPoint = Topology.ProjectPoint(gpxPt, road, out roadSegment);
