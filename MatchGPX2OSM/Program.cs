@@ -59,7 +59,7 @@ namespace LK.MatchGPX2OSM {
 			}
 			else if (Directory.Exists(gpxPath)) {
 				var files = Directory.GetFiles(gpxPath, "*.gpx");
-				Console.WriteLine("Found {0} GPX file(s).");
+				Console.WriteLine("Found {0} GPX file(s).", files.Length);
 
 				foreach (var file in files) {
 					ProcessGPXFile(file, processor, reconstructor, outputPath, 30);

@@ -95,6 +95,9 @@ namespace LK.MatchGPX2OSM {
 				}
 			}
 
+			if (filter) {
+				FilterUTurns(_db, 100);
+			}
 			return _db;
 		}
 
@@ -183,6 +186,7 @@ namespace LK.MatchGPX2OSM {
 					List<SegmentOSM> toRemove = new List<SegmentOSM>();
 					int lastIndex = -1;
 					int openIndexMatched = int.MaxValue;
+					bool moveToNext = false;
 
 					// while it follows path in the open list, i.e. u-turn continues
 					while ((lastIndex = IsClose(segment, open)) > -1) {
@@ -192,7 +196,9 @@ namespace LK.MatchGPX2OSM {
 
 						// stop if length of the u-turn is greather then maxUTurnLength
 						if (toRemove.Sum(seg => seg.Length) + segment.Length > maxUTurnLength) {
-							toRemove.Clear();
+							moveToNext = true;
+							AddToList(segment, open, maxUTurnLength, ref lastValid, ref lastValidWay);
+							break;
 						}
 						else {
 							if (all.Count > 0) {
@@ -211,6 +217,9 @@ namespace LK.MatchGPX2OSM {
 							break;
 						}
 					}
+
+					if (moveToNext)
+						continue;
 
 					// remove u-turn
 					OSMNode start = (OSMNode)segment.StartPoint;
