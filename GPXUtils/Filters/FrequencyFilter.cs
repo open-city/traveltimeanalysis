@@ -27,6 +27,11 @@ namespace LK.GPXUtils.Filters {
 				}
 				index++;
 			}
+
+			if (last.Time != track.Nodes.Last().Time) {
+				result.Nodes.Add(track.Nodes.Last());
+			}
+
 			return result;
 		}
 	}
