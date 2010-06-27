@@ -80,6 +80,11 @@ namespace LK.MatchGPX2OSM {
 						}
 					}
 				}
+
+				if (_candidatesGraph.Layers[i + 1].Candidates.Max(c => c.HighestProbability) == double.NegativeInfinity) {
+					throw new Exception(string.Format("Can not find any connections between points {0} and {1}",
+						                  _candidatesGraph.Layers[i].TrackPoint, _candidatesGraph.Layers[i + 1]));
+				}
 			}
 		}
 		
@@ -97,13 +102,14 @@ namespace LK.MatchGPX2OSM {
 				if (Topology.Intersects(gpxBbox, road.BBox)) {
 					Segment<IPointGeo> roadSegment;
 					IPointGeo projectedPoint = Topology.ProjectPoint(gpxPt, road, out roadSegment);
-					if (projectedPoint.Latitude == 50.4984849 && projectedPoint.Longitude == 16.1141259) {
-						int a = 1;
-					}
 					result.Add(new CandidatePoint() { MapPoint = projectedPoint,
 						                                Road = road, RoadSegment = roadSegment,
 																						ObservationProbability = CalculateObservationProbability(gpxPt, projectedPoint) });
 				}
+			}
+
+			if (result.Count == 0) {
+				throw new Exception(string.Format("Can not find any candidate point for {0}", gpxPt));
 			}
 
 			return result;
