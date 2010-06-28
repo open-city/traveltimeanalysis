@@ -11,6 +11,7 @@ namespace LK.MatchGPX2OSM {
 		OSMDB _db;
 		int _dbCounter;
 		AstarPathfinder _pathfinder;
+		Dictionary<IPointGeo, PointEx> _points;
 
 		/// <summary>
 		/// Creates a new instance of the PathReconstructer
@@ -20,20 +21,90 @@ namespace LK.MatchGPX2OSM {
 			_pathfinder = new AstarPathfinder(graph);
 		}
 
+		/// <summary>
+		/// Represents part of the path of the result
+		/// </summary>
+		class PolylineID : Polyline<IPointGeo> {
+			public int WayID { get; set; }
+		}
+
+		/// <summary>
+		/// Represents point of the result track
+		/// </summary>
+		class PointEx : IPointGeo {
+			public double Latitude { get; set; }
+			public double Longitude { get; set; }
+			public double Elevation { get; set; }
+			public int NodeID { get; set; }
+			public DateTime Time { get; set; }
+		}
+
+		/// <summary>
+		/// Gets PointEx from the internal storage or creates a new one (for given point)
+		/// </summary>
+		/// <param name="point"></param>
+		/// <returns></returns>
+		PointEx GetOrCreatePointEx(IPointGeo point) {
+			if (_points.ContainsKey(point)) {
+				return _points[point];
+			}
+			else {
+				PointEx result = new PointEx() { Latitude = point.Latitude, Longitude = point.Longitude, Elevation = point.Elevation };
+				_points.Add(point, result);
+				OSMNode pointOSM = point as OSMNode;
+				if (pointOSM != null) {
+					result.NodeID = pointOSM.ID;
+				}
+				return result;
+			}
+		}
+
+		/// <summary>
+		/// Creates a new Polyline as part of the result
+		/// </summary>
+		/// <param name="from"></param>
+		/// <param name="to"></param>
+		/// <param name="road"></param>
+		/// <returns></returns>
 		Polyline<IPointGeo> CreateLine(IPointGeo from, IPointGeo to, ConnectionGeometry road) {
-			Polyline<IPointGeo> line = new Polyline<IPointGeo>();
-			line.Nodes.Add(from);
+			return CreateLine(from, to, DateTime.MinValue, DateTime.MinValue, road);
+		}
+
+		/// <summary>
+		/// Creates a new Polyline as part of the result and assigns times for the start and end points
+		/// </summary>
+		/// <param name="from"></param>
+		/// <param name="to"></param>
+		/// <param name="fromTime"></param>
+		/// <param name="totime"></param>
+		/// <param name="road"></param>
+		/// <returns></returns>
+		Polyline<IPointGeo> CreateLine(IPointGeo from, IPointGeo to, DateTime fromTime, DateTime totime, ConnectionGeometry road) {
+			PolylineID line = new PolylineID() { WayID = road.WayID };
+
+			PointEx toAdd = GetOrCreatePointEx(from);
+			toAdd.Time = fromTime;
+			line.Nodes.Add(toAdd);
 
 			var points = Topology.GetNodesBetweenPoints(from, to, road);
 			foreach (var point in points) {
-				line.Nodes.Add(point);
+				line.Nodes.Add(GetOrCreatePointEx(point));
 			}
 
-			line.Nodes.Add(to);
+			toAdd = GetOrCreatePointEx(to);
+			toAdd.Time = totime;
+			line.Nodes.Add(toAdd);
+
 			return line;
 		}
 
+		/// <summary>
+		/// Recostrcucts Path from the list of candidate points
+		/// </summary>
+		/// <param name="matched">List of the candidate points</param>
+		/// <returns>List of Polylines that represents matched path</returns>
 		public List<Polyline<IPointGeo>> Reconstruct(IList<CandidatePoint> matched) {
+			_points = new Dictionary<IPointGeo, PointEx>();
 			List<Polyline<IPointGeo>> result = new List<Polyline<IPointGeo>>();
 
 			for (int i = 0; i < matched.Count - 1; i++) {
@@ -45,163 +116,36 @@ namespace LK.MatchGPX2OSM {
 
 				// both points are on the same road segment
 				if (wayGeometry != null) {
-					result.Add(CreateLine(matched[i].MapPoint, matched[i + 1].MapPoint, wayGeometry));
+					result.Add(CreateLine(matched[i].MapPoint, matched[i + 1].MapPoint, matched[i].Layer.TrackPoint.Time, matched[i + 1].Layer.TrackPoint.Time, wayGeometry));
 				}
 				else {
 					double lenght = double.PositiveInfinity;
 
 					// find path between matched[i] and matched[i+1]
-					var pathSegments = _pathfinder.FindPath(matched[i], matched[i + 1], ref lenght);
-					foreach (var pathSegment in pathSegments) {
-						result.Add(CreateLine(pathSegment.From.MapPoint, pathSegment.To.MapPoint, pathSegment.Road));
-					}
-				}
-			}
-			return result;
-		}
+					var pathSegments = _pathfinder.FindPath(matched[i], matched[i + 1], ref lenght).ToList();
+					if (pathSegments.Count > 1) {
+						result.Add(CreateLine(pathSegments[0].From.MapPoint, pathSegments[0].To.MapPoint, matched[i].Layer.TrackPoint.Time, DateTime.MinValue, pathSegments[0].Road));
 
-
-
-		/// <summary>
-		/// Recontructs path from the candidates points
-		/// </summary>
-		/// <param name="matched">The list of CandidatePoints to reconstruct the path from</param>
-		/// <returns>OSMDB object with the reconstructed path</returns>
-		public OSMDB Reconstruct(IList<CandidatePoint> matched, bool filter) {
-			_db = new OSMDB();
-			_dbCounter = -1;
-
-			if (matched.Count == 0)
-				return _db;
-
-			OSMNode node = AddNode(matched[0].MapPoint, matched[0].Layer.TrackPoint.Time);
-			bool skipped = false;
-
-			for (int i = 0; i < matched.Count - 1; i++) {
-				ConnectionGeometry wayGeometry = null;
-				if (Calculations.GetDistance2D(matched[i].MapPoint, matched[i + 1].MapPoint) < Calculations.EpsLength) {
-					skipped = true;
-					continue;
-				}
-				else {
-					if (skipped) {
-						OSMWay way = AddWay(matched[i].Road.WayID);
-						way.Nodes.Add(node.ID);
-						node = AddNode(matched[i].MapPoint, matched[i].Layer.TrackPoint.Time);
-						way.Nodes.Add(node.ID);
-
-						skipped = false;
-					}
-				}
-
-
-				if (Calculations.GetDistance2D(matched[i + 1].MapPoint, matched[i].Road) < Calculations.EpsLength)
-					wayGeometry = matched[i].Road;
-				else if (Calculations.GetDistance2D(matched[i].MapPoint, matched[i + 1].Road) < Calculations.EpsLength)
-					wayGeometry = matched[i + 1].Road;
-
-				// both points are on the same road segment
-				if (wayGeometry != null) {
-					//Create a new way and add either the first  matched point or the end of the last way
-					OSMWay way = AddWay(wayGeometry.WayID);
-					way.Nodes.Add(node.ID);
-
-					var points = Topology.GetNodesBetweenPoints(matched[i].MapPoint, matched[i + 1].MapPoint, wayGeometry);
-					AddNodes(points, way);
-
-					node = AddNode(matched[i + 1].MapPoint, matched[i + 1].Layer.TrackPoint.Time);
-					way.Nodes.Add(node.ID);
-				}
-				else {
-					double lenght = double.PositiveInfinity;
-
-					// find path between matched[i] and matched[i+1]
-					var pathSegments = _pathfinder.FindPath(matched[i], matched[i + 1], ref lenght);
-					OSMWay way = null;
-
-					for (int j = 0; j < pathSegments.Count; j++) {
-						way = AddWay(pathSegments[j].Road.WayID);
-						way.Nodes.Add(node.ID);
-
-						var points = Topology.GetNodesBetweenPoints(pathSegments[j].From.MapPoint, pathSegments[j].To.MapPoint, pathSegments[j].Road).ToList();
-						AddNodes(points, way);
-
-						if (j < pathSegments.Count - 1) {
-							node = AddNode(pathSegments[j].To.MapPoint);
-							way.Nodes.Add(node.ID);
+						for (int j = 1; j < pathSegments.Count - 1; j++) {
+							result.Add(CreateLine(pathSegments[j].From.MapPoint, pathSegments[j].To.MapPoint, pathSegments[j].Road));
 						}
-					}
 
-					node = AddNode(matched[i + 1].MapPoint, matched[i + 1].Layer.TrackPoint.Time);
-					way.Nodes.Add(node.ID);
+						result.Add(CreateLine(pathSegments[pathSegments.Count - 1].From.MapPoint, pathSegments[pathSegments.Count - 1].To.MapPoint, DateTime.MinValue, matched[i + 1].Layer.TrackPoint.Time, pathSegments[pathSegments.Count - 1].Road));
+					}
+					else {
+						result.Add(CreateLine(pathSegments[0].From.MapPoint, pathSegments[0].To.MapPoint, matched[i].Layer.TrackPoint.Time, matched[i + 1].Layer.TrackPoint.Time, pathSegments[0].Road));
+					}
 				}
 			}
-
-			if (filter) {
-				FilterUTurns(_db, 100);
-			}
-			return _db;
-		}
-
-		/// <summary>
-		/// Adds a new node to the OSMDB
-		/// </summary>
-		/// <param name="node"></param>
-		/// <param name="time"></param>
-		/// <returns></returns>
-		OSMNode AddNode(IPointGeo node, DateTime time) {
-			OSMNode result = AddNode(node);
-			result.Tags.Add(new OSMTag("time", time.ToString()));
-
 			return result;
 		}
 
 		/// <summary>
-		/// Adds nodes to the OSMDB and into OSMWay
+		/// Tests whether an uturn occured between previousLine and toTest
 		/// </summary>
-		/// <param name="points"></param>
-		/// <param name="way"></param>
-		void AddNodes(IEnumerable<IPointGeo> points, OSMWay way) {
-			foreach (var point in points) {
-				OSMNode node = AddNode(point);
-				way.Nodes.Add(node.ID);
-			}
-		}
-
-		/// <summary>
-		/// Adds a new way to the OSMDB
-		/// </summary>
-		/// <param name="wayID"></param>
+		/// <param name="previousLine"></param>
+		/// <param name="toTest"></param>
 		/// <returns></returns>
-		OSMWay AddWay(int wayID) {
-			OSMWay result = new OSMWay(_dbCounter--);
-			result.Tags.Add(new OSMTag("way-id", wayID.ToString()));
-			result.Tags.Add(new OSMTag("order", (_db.Ways.Count + 1).ToString()));
-
-			_db.Ways.Add(result);
-
-			return result;
-		}
-
-
-		/// <summary>
-		/// Adds a new node to the OSMDB
-		/// </summary>
-		/// <param name="point"></param>
-		/// <returns></returns>
-		OSMNode AddNode(IPointGeo point) {
-			OSMNode result = new OSMNode(_dbCounter--, point.Latitude, point.Longitude);
-			if (point is OSMNode) {
-				result.Tags.Add(new OSMTag("node-id", ((OSMNode)point).ID.ToString()));
-			}
-
-			_db.Nodes.Add(result);
-
-			return result;
-		}
-
-
-
 		bool IsUTurn(Polyline<IPointGeo> previousLine, Polyline<IPointGeo> toTest) {
 			if (previousLine == null || toTest == null)
 				return false;
@@ -210,7 +154,7 @@ namespace LK.MatchGPX2OSM {
 				return false;
 
 			Segment<IPointGeo> previousLineSegment = null;
-			for (int i = previousLine.Segments.Count -1; i >= 0; i--) {
+			for (int i = previousLine.Segments.Count - 1; i >= 0; i--) {
 				if (previousLine.Segments[i].Length > Calculations.EpsLength) {
 					previousLineSegment = previousLine.Segments[i];
 					break;
@@ -235,6 +179,12 @@ namespace LK.MatchGPX2OSM {
 			return false;
 		}
 
+		/// <summary>
+		/// Searches list of the Polylines from maxIndex back to the beggining of th list for the first polyline with non-zero length
+		/// </summary>
+		/// <param name="lines"></param>
+		/// <param name="maxIndex"></param>
+		/// <returns></returns>
 		int GetPreviousNonZeroLengthLineIndex(IList<Polyline<IPointGeo>> lines, int maxIndex) {
 			for (int i = maxIndex; i >= 0; i--) {
 				if (lines[i].Length > Calculations.EpsLength)
@@ -243,7 +193,12 @@ namespace LK.MatchGPX2OSM {
 
 			return -1;
 		}
-		
+
+		/// <summary>
+		/// Filtes Uturns shorter then mamUTurnLength from the path
+		/// </summary>
+		/// <param name="path">List of the polylines that represents matched path</param>
+		/// <param name="maxUTurnLength">Maximal length of the u-turn in meters</param>
 		public void FilterUturns(IList<Polyline<IPointGeo>> path, double maxUTurnLength) {
 			IPointGeo lastNonUTurn = path[0].Nodes[0];
 			Polyline<IPointGeo> lastNonUTurnWay = path[0];
@@ -256,7 +211,7 @@ namespace LK.MatchGPX2OSM {
 					index++;
 					continue;
 				}
-				
+
 				if (current.Length > maxUTurnLength) {
 					lastNonUTurn = current.Nodes.Last();
 					lastNonUTurnWay = current;
@@ -288,8 +243,8 @@ namespace LK.MatchGPX2OSM {
 						int j = 0;
 						while (j < current.Segments.Count &&
 									 Calculations.GetDistance2D(current.Segments[j].EndPoint, path[previousLineIndex], ref lastSegmentIndex) < Calculations.EpsLength) {
-										 currentSegmentIndex = j;
-										 j++;
+							currentSegmentIndex = j;
+							j++;
 						}
 
 						// delete the whole previous line
@@ -304,6 +259,7 @@ namespace LK.MatchGPX2OSM {
 
 							path[previousLineIndex].Nodes.Clear();
 						}
+						// delete the whole current line
 						else if (currentSegmentIndex == current.Segments.Count - 1) {
 							IPointGeo from = path[previousLineIndex].Segments[lastSegmentIndex].StartPoint;
 							IPointGeo to = current.Nodes[current.Nodes.Count - 1];
@@ -320,10 +276,15 @@ namespace LK.MatchGPX2OSM {
 				else {
 					index++;
 				}
-			
+
 			}
 		}
 
+		/// <summary>
+		/// Saves path to the OSMDB
+		/// </summary>
+		/// <param name="path">The list of polylines that represent matched path</param>
+		/// <returns>OSMDB with path converted to the OSM format</returns>
 		public OSMDB SaveToOSM(IList<Polyline<IPointGeo>> path) {
 			_db = new OSMDB();
 			_dbCounter = -1;
@@ -342,7 +303,16 @@ namespace LK.MatchGPX2OSM {
 				_db.Ways.Add(way);
 				foreach (var point in line.Nodes) {
 					if (point != lastPoint) {
-						node = new OSMNode(_dbCounter--, point.Latitude, point.Longitude);
+						lastPoint = point;
+						PointEx pt = (PointEx)point;
+
+						node = new OSMNode(_dbCounter--, pt.Latitude, pt.Longitude);
+						if (pt.NodeID != 0) {
+							node.Tags.Add(new OSMTag("node-id", pt.NodeID.ToString()));
+						}
+						if (pt.Time != DateTime.MinValue) {
+							node.Tags.Add(new OSMTag("time", pt.Time.ToString()));
+						}
 						_db.Nodes.Add(node);
 					}
 					way.Nodes.Add(node.ID);
@@ -350,197 +320,6 @@ namespace LK.MatchGPX2OSM {
 			}
 
 			return _db;
-		}
-		
-		/// <summary>
-		/// Filters u-turns shorter than maxUturnLength from the database
-		/// </summary>
-		/// <param name="toFilter">OSMDb with the result of the Reconstruct method</param>
-		/// <param name="maxUTurnLength">Maximal u-turn length in meters</param>
-		public static void FilterUTurns(OSMDB toFilter, double maxUTurnLength) {
-			List<SegmentOSM> all = new List<SegmentOSM>();
-			//Prepare segments of all ways
-			foreach (var way in toFilter.Ways.OrderBy(w => int.Parse(w.Tags["order"].Value))) {
-				for (int i = 0; i < way.Nodes.Count - 1; i++) {
-					all.Add(new SegmentOSM(toFilter.Nodes[way.Nodes[i]], toFilter.Nodes[way.Nodes[i + 1]], way));
-				}
-			}
-
-			List<SegmentOSM> open = new List<SegmentOSM>();
-			//last point that can not be uturn and thus can not be deleted
-			IPointGeo lastValid = all[0].StartPoint;
-			OSMWay lastValidWay = toFilter.Ways.Where(w => w.Nodes.Count > 0 && w.Nodes[0] == ((OSMNode)lastValid).ID).Single();
-
-			while (all.Count > 0) {
-				var segment = all[0];
-				all.RemoveAt(0);
-
-				// current segment goes in the opposite direction then the last one
-				if (IsUTurn(open, segment)) {
-					List<SegmentOSM> toRemove = new List<SegmentOSM>();
-					int lastIndex = -1;
-					int openIndexMatched = int.MaxValue;
-					bool moveToNext = false;
-
-					// while it follows path in the open list, i.e. u-turn continues
-					while ((lastIndex = IsClose(segment, open)) > -1) {
-						if (lastIndex <= openIndexMatched) {
-							openIndexMatched = lastIndex;
-						}
-
-						// stop if length of the u-turn is greather then maxUTurnLength
-						if (toRemove.Sum(seg => seg.Length) + segment.Length > maxUTurnLength) {
-							moveToNext = true;
-							AddToList(segment, open, maxUTurnLength, ref lastValid, ref lastValidWay);
-							break;
-						}
-						else {
-							if (all.Count > 0) {
-								toRemove.Add(segment);
-
-								segment = all[0];
-								all.RemoveAt(0);
-							}
-							else
-								// or if there are no segments left
-								break;
-						}
-
-						// or another u-turn occures
-						if (IsUTurn(toRemove, segment)) {
-							break;
-						}
-					}
-
-					if (moveToNext)
-						continue;
-
-					// remove u-turn
-					OSMNode start = (OSMNode)segment.StartPoint;
-					OSMNode end = (OSMNode)segment.EndPoint;
-
-					// remove u-turn from the open list (outwards part)
-					for (int i = open.Count - 1; i >= openIndexMatched; i--) {
-						if (open[i].StartPoint != lastValid) {
-							if (i == openIndexMatched && ((OSMNode)open[i].StartPoint).Tags.ContainsTag("time") == false)
-								continue;
-
-							RemoveSegment(open[i], toFilter);
-							toFilter.Nodes.Remove(toFilter.Nodes[((OSMNode)open[i].StartPoint).ID]);
-							open.RemoveAt(i);
-						}
-					}
-
-					// remove u-turn from the toRemove list (backwards part)
-					foreach (var seg in toRemove) {
-						RemoveSegment(seg, toFilter);
-						toFilter.Nodes.Remove(toFilter.Nodes[((OSMNode)seg.StartPoint).ID]);
-					}
-
-					// adjust connection between the part preceding u-turn and the part contiguous u-turn
-					open.Last().Way.Nodes[open.Last().Way.Nodes.Count - 1] = start.ID;
-					SegmentOSM temp = open.Last();
-					open.Remove(temp);
-
-					SegmentOSM modified = new SegmentOSM(temp.StartPoint, start, temp.Way);
-					if (Calculations.GetLength(modified) < Calculations.EpsLength) {
-						RemoveSegment(temp, toFilter);
-						segment.Way.Nodes[0] = ((OSMNode)temp.StartPoint).ID;
-						modified = new SegmentOSM(temp.StartPoint, end, temp.Way);
-						toFilter.Nodes.Remove(start);
-					}
-
-					toRemove.Clear();
-					AddToList(modified, open, maxUTurnLength, ref lastValid, ref lastValidWay);
-					AddToList(segment, open, maxUTurnLength, ref lastValid, ref lastValidWay);
-				}
-				//it is not u-turn - add segment to open list
-				else {
-					AddToList(segment, open, maxUTurnLength, ref lastValid, ref lastValidWay);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Adds segment into list and delete previously add ways if length exceeded max length
-		/// </summary>
-		/// <param name="segment"></param>
-		/// <param name="list"></param>
-		/// <param name="maxLength"></param>
-		/// <param name="lastPoint"></param>
-		/// <param name="lastWay"></param>
-		static void AddToList(SegmentOSM segment, List<SegmentOSM> list, double maxLength, ref IPointGeo lastPoint, ref OSMWay lastWay) {
-			list.Add(segment);
-
-			while (list.Count > 0 && list.Sum(seg => seg.Length) > maxLength) {
-				lastPoint = list[0].EndPoint;
-				lastWay = list[0].Way;
-				list.RemoveAt(0);
-			}
-		}
-		/// <summary>
-		/// Tests whether toTest segment goes in the opposite direction then last non-zero length segment in the segments list
-		/// </summary>
-		/// <param name="segments"></param>
-		/// <param name="toTest"></param>
-		/// <returns></returns>
-		static bool IsUTurn(List<SegmentOSM> segments, Segment<IPointGeo> toTest) {
-			if (Calculations.GetLength(toTest) < Calculations.EpsLength)
-				return false;
-
-			for (int i = segments.Count - 1; i >= 0; i--) {
-				if (Calculations.GetLength(segments[i]) < Calculations.EpsLength)
-					continue;
-
-				double firstBearing = Calculations.GetBearing(segments[i]);
-				double secondBearing = Calculations.GetBearing(toTest);
-
-				return Math.Abs(Math.Abs(firstBearing - secondBearing) - 180) < 0.01;
-			}
-
-			return false;
-		}
-
-		/// <summary>
-		/// Tests whether toCompare segment ends close to any segment in the segments list
-		/// </summary>
-		/// <param name="toCompare"></param>
-		/// <param name="segments"></param>
-		/// <returns>the index of the segment from the segments list, or -1</returns>
-		static int IsClose(Segment<IPointGeo> toCompare, List<SegmentOSM> segments) {
-			for (int i = segments.Count - 1; i >= 0; i--) {
-				if (Calculations.GetDistance2D(toCompare.EndPoint, segments[i]) < Calculations.EpsLength ||
-						Calculations.GetDistance2D(segments[0].StartPoint, toCompare) < Calculations.EpsLength)
-					return i;
-			}
-
-			return -1;
-		}
-
-		/// <summary>
-		/// Removes the toRemove segment from the database
-		/// </summary>
-		/// <param name="toRemove"></param>
-		/// <param name="db"></param>
-		static void RemoveSegment(SegmentOSM toRemove, OSMDB db) {
-			OSMNode start = (OSMNode)toRemove.StartPoint;
-			OSMNode end = (OSMNode)toRemove.EndPoint;
-
-			if (toRemove.Way.Nodes.Count == 2) {
-				db.Ways.Remove(toRemove.Way);
-			}
-			else {
-				toRemove.Way.Nodes.Remove(start.ID);
-			}
-		}
-
-		class SegmentOSM : Segment<IPointGeo> {
-			public OSMWay Way { get; set; }
-
-			public SegmentOSM(IPointGeo start, IPointGeo end, OSMWay way)
-				: base(start, end) {
-				Way = way;
-			}
 		}
 	}
 }

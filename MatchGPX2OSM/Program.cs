@@ -95,10 +95,13 @@ namespace LK.MatchGPX2OSM {
 						var result = processor.Match(toProcess);
 						Console.Write(".");
 
-						var reconstructedPath = reconstructor.Reconstruct(result, true);
+						var reconstructedPath = reconstructor.Reconstruct(result);
 						Console.Write(".");
 
-						reconstructedPath.Save(Path.Combine(outputPath, Path.GetFileNameWithoutExtension(path) + "_" + name + ".osm"));
+						reconstructor.FilterUturns(reconstructedPath, 100);
+						var pathOsm = reconstructor.SaveToOSM(reconstructedPath);
+
+						pathOsm.Save(Path.Combine(outputPath, Path.GetFileNameWithoutExtension(path) + "_" + name + ".osm"));
 						Console.WriteLine(".");
 					}
 					catch (Exception e) {
