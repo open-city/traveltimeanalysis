@@ -20,6 +20,48 @@ namespace LK.MatchGPX2OSM {
 			_pathfinder = new AstarPathfinder(graph);
 		}
 
+		Polyline<IPointGeo> CreateLine(IPointGeo from, IPointGeo to, ConnectionGeometry road) {
+			Polyline<IPointGeo> line = new Polyline<IPointGeo>();
+			line.Nodes.Add(from);
+
+			var points = Topology.GetNodesBetweenPoints(from, to, road);
+			foreach (var point in points) {
+				line.Nodes.Add(point);
+			}
+
+			line.Nodes.Add(to);
+			return line;
+		}
+
+		public List<Polyline<IPointGeo>> Reconstruct(IList<CandidatePoint> matched) {
+			List<Polyline<IPointGeo>> result = new List<Polyline<IPointGeo>>();
+
+			for (int i = 0; i < matched.Count - 1; i++) {
+				ConnectionGeometry wayGeometry = null;
+				if (Calculations.GetDistance2D(matched[i + 1].MapPoint, matched[i].Road) < Calculations.EpsLength)
+					wayGeometry = matched[i].Road;
+				else if (Calculations.GetDistance2D(matched[i].MapPoint, matched[i + 1].Road) < Calculations.EpsLength)
+					wayGeometry = matched[i + 1].Road;
+
+				// both points are on the same road segment
+				if (wayGeometry != null) {
+					result.Add(CreateLine(matched[i].MapPoint, matched[i + 1].MapPoint, wayGeometry));
+				}
+				else {
+					double lenght = double.PositiveInfinity;
+
+					// find path between matched[i] and matched[i+1]
+					var pathSegments = _pathfinder.FindPath(matched[i], matched[i + 1], ref lenght);
+					foreach (var pathSegment in pathSegments) {
+						result.Add(CreateLine(pathSegment.From.MapPoint, pathSegment.To.MapPoint, pathSegment.Road));
+					}
+				}
+			}
+			return result;
+		}
+
+
+
 		/// <summary>
 		/// Recontructs path from the candidates points
 		/// </summary>
@@ -158,6 +200,158 @@ namespace LK.MatchGPX2OSM {
 			return result;
 		}
 
+
+
+		bool IsUTurn(Polyline<IPointGeo> previousLine, Polyline<IPointGeo> toTest) {
+			if (previousLine == null || toTest == null)
+				return false;
+
+			if (Calculations.GetLength(toTest) < Calculations.EpsLength)
+				return false;
+
+			Segment<IPointGeo> previousLineSegment = null;
+			for (int i = previousLine.Segments.Count -1; i >= 0; i--) {
+				if (previousLine.Segments[i].Length > Calculations.EpsLength) {
+					previousLineSegment = previousLine.Segments[i];
+					break;
+				}
+			}
+
+			Segment<IPointGeo> toTestSegment = null;
+			for (int i = 0; i < toTest.Segments.Count; i++) {
+				if (toTest.Segments[i].Length > Calculations.EpsLength) {
+					toTestSegment = toTest.Segments[i];
+					break;
+				}
+			}
+
+			if (previousLineSegment != null && toTestSegment != null) {
+				double firstBearing = Calculations.GetBearing(previousLineSegment);
+				double secondBearing = Calculations.GetBearing(toTestSegment);
+
+				return Math.Abs(Math.Abs(firstBearing - secondBearing) - 180) < 0.01;
+			}
+
+			return false;
+		}
+
+		int GetPreviousNonZeroLengthLineIndex(IList<Polyline<IPointGeo>> lines, int maxIndex) {
+			for (int i = maxIndex; i >= 0; i--) {
+				if (lines[i].Length > Calculations.EpsLength)
+					return i;
+			}
+
+			return -1;
+		}
+		
+		public void FilterUturns(IList<Polyline<IPointGeo>> path, double maxUTurnLength) {
+			IPointGeo lastNonUTurn = path[0].Nodes[0];
+			Polyline<IPointGeo> lastNonUTurnWay = path[0];
+
+			int index = 0;
+			while (index < path.Count) {
+				Polyline<IPointGeo> current = path[index];
+
+				if (current.Length < Calculations.EpsLength) {
+					index++;
+					continue;
+				}
+				
+				if (current.Length > maxUTurnLength) {
+					lastNonUTurn = current.Nodes.Last();
+					lastNonUTurnWay = current;
+					index++;
+					continue;
+				}
+
+				int previousLineIndex = GetPreviousNonZeroLengthLineIndex(path, index - 1);
+
+				if (previousLineIndex > -1 && IsUTurn(path[previousLineIndex], current)) {
+					for (int i = previousLineIndex + 1; i < index; i++) {
+						path[i].Nodes.Clear();
+					}
+
+					// forth and back to the same point
+					if (Calculations.GetDistance2D(path[previousLineIndex].Nodes[0], current.Nodes[current.Nodes.Count - 1]) < Calculations.EpsLength) {
+						IPointGeo from = path[previousLineIndex].Nodes[0];
+						IPointGeo to = current.Nodes[current.Nodes.Count - 1];
+
+						path[previousLineIndex].Nodes.Clear();
+						current.Nodes.Clear();
+						current.Nodes.Add(from);
+						current.Nodes.Add(to);
+					}
+					else {
+						int currentSegmentIndex = 0;
+						int lastSegmentIndex = path[previousLineIndex].Segments.Count - 1;
+
+						int j = 0;
+						while (j < current.Segments.Count &&
+									 Calculations.GetDistance2D(current.Segments[j].EndPoint, path[previousLineIndex], ref lastSegmentIndex) < Calculations.EpsLength) {
+										 currentSegmentIndex = j;
+										 j++;
+						}
+
+						// delete the whole previous line
+						if (lastSegmentIndex == 0) {
+							IPointGeo from = path[previousLineIndex].Nodes[0];
+							IPointGeo to = current.Segments[currentSegmentIndex].EndPoint;
+
+							while (current.Nodes[0] != to) {
+								current.Nodes.RemoveAt(0);
+							}
+							current.Nodes.Insert(0, from);
+
+							path[previousLineIndex].Nodes.Clear();
+						}
+						else if (currentSegmentIndex == current.Segments.Count - 1) {
+							IPointGeo from = path[previousLineIndex].Segments[lastSegmentIndex].StartPoint;
+							IPointGeo to = current.Nodes[current.Nodes.Count - 1];
+
+							while (path[previousLineIndex].Nodes[path[previousLineIndex].Nodes.Count - 1] != from) {
+								path[previousLineIndex].Nodes.RemoveAt(path[previousLineIndex].Nodes.Count - 1);
+							}
+
+							path[previousLineIndex].Nodes.Add(to);
+							current.Nodes.Clear();
+						}
+					}
+				}
+				else {
+					index++;
+				}
+			
+			}
+		}
+
+		public OSMDB SaveToOSM(IList<Polyline<IPointGeo>> path) {
+			_db = new OSMDB();
+			_dbCounter = -1;
+
+			IPointGeo lastPoint = null;
+			OSMNode node = null;
+
+			foreach (var line in path) {
+				if (line.Nodes.Count == 0)
+					continue;
+
+				if (line.Nodes.Count == 1)
+					throw new Exception();
+
+				OSMWay way = new OSMWay(_dbCounter--);
+				_db.Ways.Add(way);
+				foreach (var point in line.Nodes) {
+					if (point != lastPoint) {
+						node = new OSMNode(_dbCounter--, point.Latitude, point.Longitude);
+						_db.Nodes.Add(node);
+					}
+					way.Nodes.Add(node.ID);
+				}
+			}
+
+			return _db;
+		}
+		
 		/// <summary>
 		/// Filters u-turns shorter than maxUturnLength from the database
 		/// </summary>

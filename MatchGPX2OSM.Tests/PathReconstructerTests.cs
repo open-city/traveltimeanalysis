@@ -14,6 +14,143 @@ using LK.OSMUtils.OSMDatabase;
 namespace MatchGPX2OSM.Tests {
 	public class PathReconstructerTests {
 		[Fact()]
+		public void Reconstruct2ReturnsOneWayForPointsOnTheSameSegment() {
+			OSMDB map = new OSMDB();
+			map.Load(new MemoryStream(TestData.osm_reconstruct));
+
+			RoadGraph graph = new RoadGraph();
+			graph.Build(map);
+
+			GPXDocument gps = new GPXDocument();
+			// Track between nodes 30 and 31 in OSM map
+			gps.Load(new MemoryStream(TestData.gpx_two_points_same_segment));
+
+			STMatching matching = new STMatching(graph);
+			var matched = matching.Match(gps.Tracks[0].Segments[0]);
+
+			PathReconstructer target = new PathReconstructer(graph);
+			var result = target.Reconstruct(matched);
+
+			Assert.Equal(1, result.Count);
+			Assert.Equal(2, result[0].Nodes.Count);
+
+			Assert.Equal(map.Nodes[30], result[0].Nodes[0]);
+			Assert.Equal(map.Nodes[31], result[0].Nodes[1]);
+		}
+
+		[Fact()]
+		public void Reconstruct2ReturnsOneWayForPointsOnTheSameSegmentReverse() {
+			OSMDB map = new OSMDB();
+			map.Load(new MemoryStream(TestData.osm_reconstruct));
+
+			RoadGraph graph = new RoadGraph();
+			graph.Build(map);
+
+			GPXDocument gps = new GPXDocument();
+			// Track between nodes 30 and 31 in OSM map
+			gps.Load(new MemoryStream(TestData.gpx_two_points_same_segment_reverse));
+
+			STMatching matching = new STMatching(graph);
+			var matched = matching.Match(gps.Tracks[0].Segments[0]);
+
+			PathReconstructer target = new PathReconstructer(graph);
+			var result = target.Reconstruct(matched);
+
+			Assert.Equal(1, result.Count);
+			Assert.Equal(2, result[0].Nodes.Count);
+
+			Assert.Equal(map.Nodes[31], result[0].Nodes[0]);
+			Assert.Equal(map.Nodes[30], result[0].Nodes[1]);
+		}
+
+		[Fact()]
+		public void Reconstruct2ReturnsOneWayForPointsOnTheSameWay() {
+			OSMDB map = new OSMDB();
+			map.Load(new MemoryStream(TestData.osm_reconstruct));
+
+			RoadGraph graph = new RoadGraph();
+			graph.Build(map);
+
+			GPXDocument gps = new GPXDocument();
+			// Track between nodes 30 and 32 in OSM map, node 31 is between them
+			gps.Load(new MemoryStream(TestData.gpx_two_points_same_way));
+
+			STMatching matching = new STMatching(graph);
+			var matched = matching.Match(gps.Tracks[0].Segments[0]);
+
+			PathReconstructer target = new PathReconstructer(graph);
+			var result = target.Reconstruct(matched);
+
+			Assert.Equal(1, result.Count);
+			Assert.Equal(3, result[0].Nodes.Count);
+
+			Assert.Equal(map.Nodes[30], result[0].Nodes[0]);
+			Assert.Equal(map.Nodes[31], result[0].Nodes[1]);
+			Assert.Equal(map.Nodes[32], result[0].Nodes[2]);
+		}
+
+		[Fact()]
+		public void Reconstruct2ReturnsOneWayForPointsOnTheSameWayReverse() {
+			OSMDB map = new OSMDB();
+			map.Load(new MemoryStream(TestData.osm_reconstruct));
+
+			RoadGraph graph = new RoadGraph();
+			graph.Build(map);
+
+			GPXDocument gps = new GPXDocument();
+			// Track between nodes 30 and 32 in OSM map, node 31 is between them
+			gps.Load(new MemoryStream(TestData.gpx_two_points_same_way_reverse));
+
+			STMatching matching = new STMatching(graph);
+			var matched = matching.Match(gps.Tracks[0].Segments[0]);
+
+			PathReconstructer target = new PathReconstructer(graph);
+			var result = target.Reconstruct(matched);
+
+			Assert.Equal(1, result.Count);
+			Assert.Equal(3, result[0].Nodes.Count);
+
+			Assert.Equal(map.Nodes[32], result[0].Nodes[0]);
+			Assert.Equal(map.Nodes[31], result[0].Nodes[1]);
+			Assert.Equal(map.Nodes[30], result[0].Nodes[2]);
+		}
+
+		[Fact()]
+		public void Reconstruct2ReturnsTwoWayForPointsOnDifferentWays() {
+			OSMDB map = new OSMDB();
+			map.Load(new MemoryStream(TestData.osm_reconstruct));
+
+			RoadGraph graph = new RoadGraph();
+			graph.Build(map);
+
+			GPXDocument gps = new GPXDocument();
+			// Track between nodes 22 and 32 in OSM map, nodes 21, 10, 33 are between them
+			gps.Load(new MemoryStream(TestData.gpx_two_points_different_ways));
+
+			STMatching matching = new STMatching(graph);
+			var matched = matching.Match(gps.Tracks[0].Segments[0]);
+
+			PathReconstructer target = new PathReconstructer(graph);
+			var result = target.Reconstruct(matched);
+
+			Assert.Equal(2, result.Count);
+			Assert.Equal(3, result[0].Nodes.Count);
+			Assert.Equal(3, result[1].Nodes.Count);
+
+			Assert.Equal(map.Nodes[22], result[0].Nodes[0]);
+			Assert.Equal(map.Nodes[21], result[0].Nodes[1]);
+			Assert.Equal(map.Nodes[10], result[0].Nodes[2]);
+
+			Assert.Equal(map.Nodes[10], result[1].Nodes[0]);
+			Assert.Equal(map.Nodes[33], result[1].Nodes[1]);
+			Assert.Equal(map.Nodes[32], result[1].Nodes[2]);
+		}
+
+
+
+
+
+		[Fact()]
 		public void ReconstructReturnsOneWayForPointsOnTheSameSegment() {
 			OSMDB map = new OSMDB();
 			map.Load(new MemoryStream(TestData.osm_reconstruct));

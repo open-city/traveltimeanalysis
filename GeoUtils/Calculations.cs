@@ -75,6 +75,28 @@ namespace LK.GeoUtils {
 		}
 
 		/// <summary>
+		/// Calculates distance of the point from the line
+		/// </summary>
+		/// <param name="point">The point</param>
+		/// <param name="line">The line</param>
+		/// <returns>the distane of the point from the line in meters</returns>
+		public static double GetDistance2D(IPointGeo point, IPolyline<IPointGeo> line, ref int closestSegmentIndex) {
+			double minDistance = double.PositiveInfinity;
+
+			for(int i = 0; i < line.Segments.Count; i++) {
+				IPointGeo projectedPoint = Topology.ProjectPoint(point, line.Segments[i]);
+				double distance = _distanceCalculator.Calculate2D(point, projectedPoint);
+
+				if (distance < minDistance) {
+					minDistance = distance;
+					closestSegmentIndex = i;
+				}
+			}
+
+			return minDistance;
+		}
+
+		/// <summary>
 		/// Calculates length of the pathe between two points along the specific segment
 		/// </summary>
 		/// <param name="from">The point where path starts</param>
