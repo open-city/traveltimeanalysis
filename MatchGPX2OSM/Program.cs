@@ -56,9 +56,11 @@ namespace LK.MatchGPX2OSM {
 			STMatching processor = new STMatching(graph);
 			PathReconstructer reconstructor = new PathReconstructer(graph);
 
+			// Process signle file
 			if (File.Exists(gpxPath)) {
 				ProcessGPXFile(gpxPath, processor, reconstructor, outputPath, samplingPeriod);
 			}
+			// Process all GPX in directory
 			else if (Directory.Exists(gpxPath)) {
 				var files = Directory.GetFiles(gpxPath, "*.gpx");
 				Console.WriteLine("Found {0} GPX file(s).", files.Length);
@@ -83,7 +85,7 @@ namespace LK.MatchGPX2OSM {
 			Console.WriteLine("[{0} track(s); {1} segment(s)]", gpx.Tracks.Count, gpx.Tracks.Sum(track => track.Segments.Count));
 			for (int trackIndex = 0; trackIndex < gpx.Tracks.Count; trackIndex++) {
 				for (int segmentIndex = 0; segmentIndex < gpx.Tracks[trackIndex].Segments.Count; segmentIndex++) {
-					string name = string.IsNullOrEmpty(gpx.Tracks[trackIndex].Name) ? "t" + trackIndex.ToString() : gpx.Tracks[trackIndex].Name;
+					string name = string.IsNullOrEmpty(gpx.Tracks[trackIndex].Name) ? "t" + trackIndex.ToString() : gpx.Tracks[trackIndex].Name.Replace('\\', '-').Replace(":","");
 					name += "_s" + segmentIndex.ToString();
 					Console.Write("\t" + name + " ");
 

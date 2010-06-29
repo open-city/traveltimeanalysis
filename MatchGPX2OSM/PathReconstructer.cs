@@ -200,6 +200,9 @@ namespace LK.MatchGPX2OSM {
 		/// <param name="path">List of the polylines that represents matched path</param>
 		/// <param name="maxUTurnLength">Maximal length of the u-turn in meters</param>
 		public void FilterUturns(IList<Polyline<IPointGeo>> path, double maxUTurnLength) {
+			if (path == null || path.Count == 0)
+				return;
+
 			IPointGeo lastNonUTurn = path[0].Nodes[0];
 			Polyline<IPointGeo> lastNonUTurnWay = path[0];
 
@@ -230,6 +233,7 @@ namespace LK.MatchGPX2OSM {
 					if (Calculations.GetDistance2D(path[previousLineIndex].Nodes[0], current.Nodes[current.Nodes.Count - 1]) < Calculations.EpsLength) {
 						IPointGeo from = path[previousLineIndex].Nodes[0];
 						IPointGeo to = current.Nodes[current.Nodes.Count - 1];
+						((PointEx)to).Time = DateTime.MinValue;
 
 						path[previousLineIndex].Nodes.Clear();
 						current.Nodes.Clear();
@@ -251,6 +255,7 @@ namespace LK.MatchGPX2OSM {
 						if (lastSegmentIndex == 0) {
 							IPointGeo from = path[previousLineIndex].Nodes[0];
 							IPointGeo to = current.Segments[currentSegmentIndex].EndPoint;
+							((PointEx)to).Time = DateTime.MinValue;
 
 							while (current.Nodes[0] != to) {
 								current.Nodes.RemoveAt(0);
@@ -263,6 +268,7 @@ namespace LK.MatchGPX2OSM {
 						else if (currentSegmentIndex == current.Segments.Count - 1) {
 							IPointGeo from = path[previousLineIndex].Segments[lastSegmentIndex].StartPoint;
 							IPointGeo to = current.Nodes[current.Nodes.Count - 1];
+							((PointEx)to).Time = DateTime.MinValue;
 
 							while (path[previousLineIndex].Nodes[path[previousLineIndex].Nodes.Count - 1] != from) {
 								path[previousLineIndex].Nodes.RemoveAt(path[previousLineIndex].Nodes.Count - 1);

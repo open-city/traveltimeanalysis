@@ -55,7 +55,6 @@
       <DependentUpon>TestData.resx</DependentUpon>
     </Compile>
     <Compile Include="RoadGraphTest.cs" />
-    <Compile Include="STMatchingTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GeoUtils\GeoUtils.csproj">
