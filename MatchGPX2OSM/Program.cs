@@ -14,16 +14,18 @@ namespace LK.MatchGPX2OSM {
 		static void Main(string[] args) {
 			string osmPath = "";
 			string gpxPath = "";
-			string outputPath = "";
-			int samplingPeriod = 30;
+			string outputPath = ".";
+			int samplingPeriod = 0;
 			bool showHelp = false;
+			bool filter = false;
 
 			OptionSet parameters = new OptionSet() {
 				{ "osm=", "path to the routable map file",																				v => osmPath = v},
 				{ "gpx=",	"path to the GPX file to process or to the directory to process",				v => gpxPath = v},
 				{ "o|output=", "path to the output directory",																		v => outputPath = v},
 				{ "p|period=", "sampling period of the GPX file",																	v => samplingPeriod = int.Parse(v)},
-				{ "h|?|help",				v => showHelp = v != null},
+				{ "f|filter", "enables output post processing",																		v => filter = v != null},
+				{ "h|?|help",																																			v => showHelp = v != null},
 			};
 
 			try {
@@ -58,7 +60,7 @@ namespace LK.MatchGPX2OSM {
 
 			// Process signle file
 			if (File.Exists(gpxPath)) {
-				ProcessGPXFile(gpxPath, processor, reconstructor, outputPath, samplingPeriod);
+				ProcessGPXFile(gpxPath, processor, reconstructor, outputPath, samplingPeriod, filter);
 			}
 			// Process all GPX in directory
 			else if (Directory.Exists(gpxPath)) {
@@ -66,7 +68,7 @@ namespace LK.MatchGPX2OSM {
 				Console.WriteLine("Found {0} GPX file(s).", files.Length);
 
 				foreach (var file in files) {
-					ProcessGPXFile(file, processor, reconstructor, outputPath, samplingPeriod);
+					ProcessGPXFile(file, processor, reconstructor, outputPath, samplingPeriod, filter);
 					Console.WriteLine();
 				}
 			}
@@ -75,7 +77,7 @@ namespace LK.MatchGPX2OSM {
 			}
 		}
 
-		static void ProcessGPXFile(string path, STMatching processor, PathReconstructer reconstructor, string outputPath, int samplingPeriod) {
+		static void ProcessGPXFile(string path, STMatching processor, PathReconstructer reconstructor, string outputPath, int samplingPeriod, bool filterOutput) {
 			GPXUtils.Filters.FrequencyFilter filter = new GPXUtils.Filters.FrequencyFilter();
 
 			Console.Write("Loading {0} ...", Path.GetFileName(path));
@@ -100,7 +102,9 @@ namespace LK.MatchGPX2OSM {
 						var reconstructedPath = reconstructor.Reconstruct(result);
 						Console.Write(".");
 
-						reconstructor.FilterUturns(reconstructedPath, 100);
+						if (filterOutput) {
+							reconstructor.FilterUturns(reconstructedPath, 100);
+						}
 						var pathOsm = reconstructor.SaveToOSM(reconstructedPath);
 
 						pathOsm.Save(Path.Combine(outputPath, Path.GetFileNameWithoutExtension(path) + "_" + name + ".osm"));
