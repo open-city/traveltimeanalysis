@@ -6,5 +6,6 @@
     <assembly filename="bin\GeoUtils.Tests.dll" shadow-copy="true" />
     <assembly filename="bin\OSM2Routing.Tests.dll" shadow-copy="true" />
     <assembly filename="bin\MatchGPX2OSM.Tests.dll" shadow-copy="true" />
+    <assembly filename="bin\Analyzer.Tests.dll" shadow-copy="true" />
   </assemblies>
 </xunit>
