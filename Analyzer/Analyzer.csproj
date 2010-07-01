@@ -45,6 +45,7 @@
     <Compile Include="ITravelTimesDB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SegmentInfo.cs" />
     <Compile Include="TravelTime.cs" />
   </ItemGroup>
   <ItemGroup>

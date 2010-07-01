@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using LK.MatchGPX2OSM;
 using LK.GPXUtils;
 
 namespace LK.Analyzer {
@@ -11,6 +10,14 @@ namespace LK.Analyzer {
 	/// Represents travel time between two points
 	/// </summary>
 	public class TravelTime {
+		private SegmentInfo _segment;
+		/// <summary>
+		/// Gets the segment that is associated with this TravelTime object
+		/// </summary>
+		public SegmentInfo Segment {
+			get { return _segment; }
+		}
+
 		/// <summary>
 		/// Gets total travel time between Start and End point
 		/// </summary>
@@ -40,13 +47,13 @@ namespace LK.Analyzer {
 			}
 		}
 
-		private List<GPXPoint> _intermediatePoints;
+		private List<GPXPoint> _points;
 		/// <summary>
-		/// Gets the list of intermediate points (with the time) between start and end point
+		/// Gets the list of points (with the time) on the associate segment
 		/// </summary>
-		public IList<GPXPoint> IntermediatePoints {
+		public IList<GPXPoint> Points {
 			get {
-				return _intermediatePoints;
+				return _points;
 			}
 		}
 
@@ -56,12 +63,13 @@ namespace LK.Analyzer {
 		/// <param name="start"></param>
 		/// <param name="end"></param>
 		/// <param name="points"></param>
-		public TravelTime(DateTime start, DateTime end, IList<GPXPoint> points) {
+		public TravelTime(SegmentInfo segment, DateTime start, DateTime end, IList<GPXPoint> points) {
+			_segment = segment;
 			_timeStart = start;
 			_timeEnd = end;
 
-			_intermediatePoints = new List<GPXPoint>();
-			_intermediatePoints.AddRange(points);
+			_points = new List<GPXPoint>();
+			_points.AddRange(points);
 		}
 	}
 }
