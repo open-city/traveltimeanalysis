@@ -91,7 +91,7 @@ namespace LK.Analyzer {
 		}
 
 		void WritePoint(GPXPoint point) {
-			_xmlWriter.WriteStartElement("travel-time");
+			_xmlWriter.WriteStartElement("pt");
 
 			_xmlWriter.WriteAttributeString("lat", point.Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture));
 			_xmlWriter.WriteAttributeString("lon", point.Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture));
