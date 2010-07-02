@@ -37,6 +37,7 @@ namespace LK.MatchGPX2OSM {
 			public double Elevation { get; set; }
 			public int NodeID { get; set; }
 			public DateTime Time { get; set; }
+			public bool Crossroad { get; set; }
 		}
 
 		/// <summary>
@@ -54,6 +55,9 @@ namespace LK.MatchGPX2OSM {
 				OSMNode pointOSM = point as OSMNode;
 				if (pointOSM != null) {
 					result.NodeID = pointOSM.ID;
+					if (pointOSM.Tags.ContainsTag("crossroad")) {
+						result.Crossroad = true;
+					}
 				}
 				return result;
 			}
@@ -321,6 +325,10 @@ namespace LK.MatchGPX2OSM {
 						if (pt.Time != DateTime.MinValue) {
 							node.Tags.Add(new OSMTag("time", pt.Time.ToString()));
 						}
+						if (pt.Crossroad) {
+							node.Tags.Add(new OSMTag("crossroad", "yes"));						
+						}
+						
 						_db.Nodes.Add(node);
 					}
 					way.Nodes.Add(node.ID);
