@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' generator='JOSM'>
+  <node id='-11798' timestamp='2010-07-02T08:38:16Z' visible='true' lat='50.4931702' lon='16.117773'>
+    <tag k='node-id' v='74370098' />
+  </node>
+  <node id='-11797' timestamp='2010-07-02T08:38:16Z' visible='true' lat='50.4932307456877' lon='16.1181368693785'>
+    <tag k='time' v='21.5.2010 16:48:29' />
+  </node>
+  <node id='-11796' timestamp='2010-07-02T08:38:16Z' visible='true' lat='50.4932414' lon='16.1182009'>
+    <tag k='node-id' v='74140674' />
+  </node>
+  <node id='-11795' timestamp='2010-07-02T08:38:16Z' visible='true' lat='50.4932266' lon='16.118365'>
+    <tag k='node-id' v='74216925' />
+  </node>
+  <node id='-11794' timestamp='2010-07-02T08:38:16Z' visible='true' lat='50.493172' lon='16.118563'>
+    <tag k='node-id' v='74287470' />
+  </node>
+  <node id='-11793' timestamp='2010-07-02T08:38:16Z' visible='true' lat='50.4931085' lon='16.117493'>
+    <tag k='crossroad' v='yes' />
+    <tag k='node-id' v='411888806' />
+  </node>
+  <node id='-11792' timestamp='2010-07-02T08:38:16Z' visible='true' lat='50.492749' lon='16.120007'>
+    <tag k='node-id' v='74195210' />
+  </node>
+  <node id='-11791' timestamp='2010-07-02T08:38:16Z' visible='true' lat='50.4930802' lon='16.1172489'>
+    <tag k='node-id' v='74305480' />
+  </node>
+  <node id='-11790' timestamp='2010-07-02T08:38:16Z' visible='true' lat='50.4926931' lon='16.12026'>
+    <tag k='node-id' v='74265857' />
+  </node>
+  <node id='-11789' timestamp='2010-07-02T08:38:16Z' visible='true' lat='50.492678' lon='16.120431'>
+    <tag k='crossroad' v='yes' />
+    <tag k='node-id' v='74165639' />
+  </node>
+  <node id='-11788' timestamp='2010-07-02T08:38:16Z' visible='true' lat='50.493027305379' lon='16.1165830879524'>
+    <tag k='time' v='21.5.2010 16:47:59' />
+  </node>
+  <node id='-11787' timestamp='2010-07-02T08:38:16Z' visible='true' lat='50.4930387' lon='16.1201133'>
+    <tag k='node-id' v='320275325' />
+    <tag k='time' v='21.5.2010 16:49:29' />
+  </node>
+  <node id='-11786' timestamp='2010-07-02T08:38:16Z' visible='true' lat='50.4931431' lon='16.1176373'>
+    <tag k='crossroad' v='yes' />
+    <tag k='node-id' v='415814332' />
+  </node>
+  <node id='-11785' timestamp='2010-07-02T08:38:16Z' visible='true' lat='50.4928959015307' lon='16.1194473495651'>
+    <tag k='time' v='21.5.2010 16:48:59' />
+  </node>
+  <node id='-11784' timestamp='2010-07-02T08:38:16Z' visible='true' lat='50.4928676' lon='16.119538'>
+    <tag k='node-id' v='74116984' />
+  </node>
+  <way id='-11804' timestamp='2010-07-02T08:38:16Z' visible='true'>
+    <nd ref='-11789' />
+    <nd ref='-11787' />
+    <tag k='order' v='20' />
+    <tag k='way-id' v='29115419' />
+  </way>
+  <way id='-11803' timestamp='2010-07-02T08:38:16Z' visible='true'>
+    <nd ref='-11785' />
+    <nd ref='-11784' />
+    <nd ref='-11792' />
+    <nd ref='-11790' />
+    <nd ref='-11789' />
+    <tag k='order' v='19' />
+    <tag k='way-id' v='36881783' />
+  </way>
+  <way id='-11802' timestamp='2010-07-02T08:38:16Z' visible='true'>
+    <nd ref='-11788' />
+    <nd ref='-11791' />
+    <nd ref='-11793' />
+    <tag k='order' v='15' />
+    <tag k='way-id' v='36881784' />
+  </way>
+  <way id='-11801' timestamp='2010-07-02T08:38:16Z' visible='true'>
+    <nd ref='-11793' />
+    <nd ref='-11786' />
+    <tag k='order' v='16' />
+    <tag k='way-id' v='36881783' />
+  </way>
+  <way id='-11800' timestamp='2010-07-02T08:38:16Z' visible='true'>
+    <nd ref='-11797' />
+    <nd ref='-11796' />
+    <nd ref='-11795' />
+    <nd ref='-11794' />
+    <nd ref='-11785' />
+    <tag k='order' v='18' />
+    <tag k='way-id' v='36881783' />
+  </way>
+  <way id='-11799' timestamp='2010-07-02T08:38:16Z' visible='true'>
+    <nd ref='-11786' />
+    <nd ref='-11798' />
+    <nd ref='-11797' />
+    <tag k='order' v='17' />
+    <tag k='way-id' v='36881783' />
+  </way>
+</osm>

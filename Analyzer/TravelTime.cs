@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using LK.GPXUtils;
+using LK.OSMUtils.OSMDatabase;
 
 namespace LK.Analyzer {
 	/// <summary>
@@ -70,6 +71,35 @@ namespace LK.Analyzer {
 
 			_points = new List<GPXPoint>();
 			_points.AddRange(points);
+		}
+
+		public static IEnumerable<TravelTime> FromMatchedTrack(OSMDB track) {
+			List<TravelTime> result = new List<TravelTime>();
+			var orderedWays = track.Ways.OrderBy(way => int.Parse(way.Tags["order"].Value)).ToList();
+
+			DateTime segmentStartTime = DateTime.Parse(track.Nodes[orderedWays[0].Nodes[0]].Tags["time"].Value);
+			
+			int index = 1;
+			while (track.Nodes[orderedWays[index].Nodes[0]].Tags.ContainsTag("crossroad") == false)
+				index++;
+
+			while (index < orderedWays.Count) {
+				int startNodeId = int.Parse(track.Nodes[orderedWays[index].Nodes[0]].Tags["node-id"].Value);
+
+				while (index < orderedWays.Count && track.Nodes[orderedWays[index].Nodes.Last()].Tags.ContainsTag("crossroad") == false)
+					index++;
+
+				if (index < orderedWays.Count) {
+					int endNodeId = int.Parse(track.Nodes[orderedWays[index].Nodes.Last()].Tags["node-id"].Value);
+					int wayId = int.Parse(orderedWays[index].Tags["way-id"].Value);
+					SegmentInfo segment = new SegmentInfo() {NodeFromID = startNodeId, NodeToID = endNodeId, WayID = wayId};
+
+					result.Add(new TravelTime(segment, DateTime.MinValue, DateTime.MinValue, new GPXPoint[] { }));
+					index++;
+				}
+			}
+
+			return result;
 		}
 	}
 }
