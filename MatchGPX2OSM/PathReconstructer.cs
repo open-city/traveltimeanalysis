@@ -307,6 +307,7 @@ namespace LK.MatchGPX2OSM {
 
 				OSMWay way = new OSMWay(_dbCounter--);
 				way.Tags.Add(new OSMTag("way-id", ((PolylineID)line).WayID.ToString()));
+				way.Tags.Add(new OSMTag("order", (_db.Ways.Count + 1).ToString()));
 				_db.Ways.Add(way);
 				foreach (var point in line.Nodes) {
 					if (point != lastPoint) {
