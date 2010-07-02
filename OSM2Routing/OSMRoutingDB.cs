@@ -173,6 +173,11 @@ namespace LK.OSM2Routing {
 				if (node.Tags.ContainsTag("highway")) {
 					newNode.Tags.Add(node.Tags["highway"]);
 				}
+
+				if (_usedNodes[node.ID].Count > 1) {
+					newNode.Tags.Add(new OSMTag("crossroad", "yes"));
+				}
+
 				result.Nodes.Add(newNode);
 			}
 
