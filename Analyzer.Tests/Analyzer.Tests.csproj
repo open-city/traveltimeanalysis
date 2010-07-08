@@ -56,6 +56,14 @@
       <Project>{8E12B9D4-ADCF-4455-BA79-61533D158B9D}</Project>
       <Name>Analyzer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GeoUtils\GeoUtils.csproj">
+      <Project>{BD5FFBEC-D5F0-4168-9976-258ADDB39AE9}</Project>
+      <Name>GeoUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GPXUtils\GPXUtils.csproj">
+      <Project>{2065B4FE-57A1-444E-8712-08C4F8E3240C}</Project>
+      <Name>GPXUtils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OSMUtils\OSMUtils.csproj">
       <Project>{1DD2BDF4-8D35-42B6-9426-EED5CD098058}</Project>
       <Name>OSMUtils</Name>

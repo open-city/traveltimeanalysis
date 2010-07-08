@@ -44,6 +44,59 @@ namespace Analyzer.Tests {
 		}
 
 		[Fact()]
+		public void FromMatchedTrackProcessesInterpolatesTimeToCrossroads() {
+			OSMDB track = new OSMDB();
+			track.Load(new MemoryStream(TestData.osm_2_complete_segments));
+
+			var target = TravelTime.FromMatchedTrack(track).ToList();
+
+			Assert.Equal(2, target.Count());
+
+			DateTime expectedFirstSegmentStart = new DateTime(2010, 5, 21, 16, 48, 16, 320);
+			DateTime expectedFirstSegmentEnd = new DateTime(2010, 5, 21, 16, 48, 19, 220);
+
+			DateTime expectedSecondSegmentStart = expectedFirstSegmentEnd;
+			DateTime expectedSecondSegmentEnd = new DateTime(2010, 5, 21, 16, 49, 17, 500);
+
+
+			Assert.InRange(target[0].TimeStart, expectedFirstSegmentStart.AddMilliseconds(-100), expectedFirstSegmentStart.AddMilliseconds(100));
+			Assert.InRange(target[0].TimeEnd, expectedFirstSegmentEnd.AddMilliseconds(-100), expectedFirstSegmentEnd.AddMilliseconds(100));
+			Assert.InRange(target[1].TimeStart, expectedSecondSegmentStart.AddMilliseconds(-100), expectedSecondSegmentStart.AddMilliseconds(100));
+			Assert.InRange(target[1].TimeEnd, expectedSecondSegmentEnd.AddMilliseconds(-100), expectedSecondSegmentEnd.AddMilliseconds(100));
+		}
+
+		[Fact()]
+		public void FromMatchedTrackFindsStartAndEndTimesForSegmentsThatStartAndEndsOnCrossroads() {
+			OSMDB track = new OSMDB();
+			track.Load(new MemoryStream(TestData.osm_2_segments_without_incolmpete_parts));
+
+			var target = TravelTime.FromMatchedTrack(track).ToList();
+
+			Assert.Equal(2, target.Count());
+			Assert.Equal(new DateTime(2010, 5, 21, 16, 48, 10), target[0].TimeStart);
+			Assert.Equal(new DateTime(2010, 5, 21, 16, 48, 15), target[0].TimeEnd);
+
+			Assert.Equal(new DateTime(2010, 5, 21, 16, 48, 15), target[1].TimeStart);
+			Assert.Equal(new DateTime(2010, 5, 21, 16, 49, 19), target[1].TimeEnd);
+		}
+
+		[Fact()]
+		public void FromMatchedTrackFindsIntrmeiatePoints() {
+			OSMDB track = new OSMDB();
+			track.Load(new MemoryStream(TestData.osm_2_segments_without_incolmpete_parts));
+
+			var target = TravelTime.FromMatchedTrack(track).ToList();
+
+			Assert.Equal(2, target.Count());
+
+			Assert.Equal(0, target[0].Points.Count);
+
+			Assert.Equal(2, target[1].Points.Count);
+			Assert.Equal(new DateTime(2010, 5, 21, 16, 48, 29), target[1].Points[0].Time);
+			Assert.Equal(new DateTime(2010, 5, 21, 16, 48, 59), target[1].Points[1].Time);
+		}
+
+		[Fact()]
 		public void FromMatchedTrackProcessesTrackWithManySegmentsSegments() {
 			OSMDB track = new OSMDB();
 			track.Load(new MemoryStream(TestData.osm_5_segments));

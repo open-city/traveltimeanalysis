@@ -80,8 +80,8 @@ namespace LK.Analyzer {
 
 		void WriteTravelTime(TravelTime tt) {
 			_xmlWriter.WriteStartElement("travel-time");
-			_xmlWriter.WriteAttributeString("start", tt.TimeStart.ToString());
-			_xmlWriter.WriteAttributeString("end", tt.TimeEnd.ToString());
+			_xmlWriter.WriteAttributeString("start", tt.TimeStart.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'f"));
+			_xmlWriter.WriteAttributeString("end", tt.TimeEnd.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'f"));
 			
 			foreach (var point in tt.Points) {
 				WritePoint(point);
@@ -95,7 +95,7 @@ namespace LK.Analyzer {
 
 			_xmlWriter.WriteAttributeString("lat", point.Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture));
 			_xmlWriter.WriteAttributeString("lon", point.Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture));
-			_xmlWriter.WriteAttributeString("time", point.Time.ToString());
+			_xmlWriter.WriteAttributeString("time", point.Time.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'f"));
 
 			_xmlWriter.WriteEndElement();		
 		}
