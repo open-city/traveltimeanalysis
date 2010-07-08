@@ -77,9 +77,11 @@ namespace LK.Analyzer {
 			List<TravelTime> result = new List<TravelTime>();
 			var orderedWays = track.Ways.OrderBy(way => int.Parse(way.Tags["order"].Value)).ToList();
 
-			DateTime segmentStartTime = DateTime.Parse(track.Nodes[orderedWays[0].Nodes[0]].Tags["time"].Value);
+			DateTime segmentStartTime = DateTime.MinValue;
+			if(track.Nodes[orderedWays[0].Nodes[0]].Tags.ContainsTag("time"))
+				segmentStartTime = DateTime.Parse(track.Nodes[orderedWays[0].Nodes[0]].Tags["time"].Value);
 			
-			int index = 1;
+			int index = 0;
 			while (track.Nodes[orderedWays[index].Nodes[0]].Tags.ContainsTag("crossroad") == false)
 				index++;
 

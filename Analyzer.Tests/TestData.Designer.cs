@@ -66,5 +66,19 @@ namespace Analyzer.Tests {
                 return ((byte[])(obj));
             }
         }
+        
+        internal static byte[] osm_2_segments_without_incolmpete_parts {
+            get {
+                object obj = ResourceManager.GetObject("osm_2_segments_without_incolmpete_parts", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] osm_5_segments {
+            get {
+                object obj = ResourceManager.GetObject("osm_5_segments", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
