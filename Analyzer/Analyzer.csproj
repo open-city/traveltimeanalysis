@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ITravelTimesDB.cs" />
+    <Compile Include="NDesk.Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SegmentInfo.cs" />
@@ -60,10 +61,6 @@
     <ProjectReference Include="..\GPXUtils\GPXUtils.csproj">
       <Project>{2065B4FE-57A1-444E-8712-08C4F8E3240C}</Project>
       <Name>GPXUtils</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MatchGPX2OSM\MatchGPX2OSM.csproj">
-      <Project>{44CD514C-A652-4717-8138-41219838E87C}</Project>
-      <Name>MatchGPX2OSM</Name>
     </ProjectReference>
     <ProjectReference Include="..\OSMUtils\OSMUtils.csproj">
       <Project>{1DD2BDF4-8D35-42B6-9426-EED5CD098058}</Project>
