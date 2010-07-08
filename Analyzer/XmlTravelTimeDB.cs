@@ -128,7 +128,8 @@ namespace LK.Analyzer {
 							if (_xmlReader.Name != "travel-time-db")
 								throw new XmlException("Invalid xml root element. Expected <travel-time-db>.");
 
-							ReadRootTag();
+							if(_xmlReader.IsEmptyElement == false)
+								ReadRootTag();
 							return;
 
 						default:

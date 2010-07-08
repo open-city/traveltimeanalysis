@@ -35,7 +35,6 @@ namespace LK.Analyzer {
 				return;
 			}
 
-
 			if (showHelp || string.IsNullOrEmpty(dbPath) || string.IsNullOrEmpty(outputPath)) {
 				ShowHelp(parameters);
 				return;
