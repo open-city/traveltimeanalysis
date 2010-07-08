@@ -42,7 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TTAnalyzer.cs" />
     <Compile Include="ITravelTimesDB.cs" />
+    <Compile Include="Model.cs" />
     <Compile Include="NDesk.Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
