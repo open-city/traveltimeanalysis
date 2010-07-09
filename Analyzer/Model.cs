@@ -9,7 +9,11 @@ namespace LK.Analyzer {
 
 		public double FreeFlowTravelTime { get; set; }
 		public double DelayTraffic { get; set; }
-		public double DelaySignals { get; set; }
-		public double SignalsProbability { get; set; }
+		public TrafficSignalsDelayInfo TrafficSignalsDelay { get; set; }
+	}
+
+	public struct TrafficSignalsDelayInfo {
+		public double Length;
+		public double Probability;
 	}
 }

@@ -80,6 +80,8 @@
     <None Include="TestData\osm-2-complete-segments.osm" />
     <None Include="TestData\osm-2-segments-without-incolmpete-parts.osm" />
     <None Include="TestData\osm-5-segments.osm" />
+    <None Include="TestData\osm-real-traffic-signals.osm" />
+    <None Include="TestData\osm-traffic-signals-map.osm" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

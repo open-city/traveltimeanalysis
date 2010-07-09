@@ -12,6 +12,7 @@ namespace LK.Analyzer {
 	class Program {
 		static void Main(string[] args) {
 			string dbPath = "";
+			string mapPath = "";
 			string trackPath = "";
 			string outputPath = ".";
 			bool addTracks = false;
@@ -21,6 +22,7 @@ namespace LK.Analyzer {
 				{ "db=", "path to the travel times database",																									v => dbPath = v},
 				{ "add", "adds specified tracks to the DB",																										v => addTracks = v != null},
 				{ "track=",	"path to the matched GPS track to process or to the directory to process",				v => trackPath = v},
+				{ "map=", "path to the routable map",																													v => mapPath = v},
 				{ "o|output=", "path to the output directory",																								v => outputPath = v},
 				{ "h|?|help",																																									v => showHelp = v != null},
 			};

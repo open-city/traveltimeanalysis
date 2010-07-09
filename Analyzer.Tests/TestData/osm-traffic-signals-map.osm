@@ -1,0 +1,2535 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version="0.6" generator="Osmosis 0.35-SNAPSHOT-r20116">
+  <node id="683782" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0762107" lon="14.3704194"/>
+  <node id="683783" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0759633" lon="14.3714641"/>
+  <node id="683784" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0755143" lon="14.3720854"/>
+  <node id="683785" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0752039" lon="14.3723719"/>
+  <node id="683786" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0747936" lon="14.3726323">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="683787" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0743981" lon="14.3719379"/>
+  <node id="683788" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0741762" lon="14.3714522">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="683789" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0735776" lon="14.3713597"/>
+  <node id="683790" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0731031" lon="14.3725686">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="683793" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0723335" lon="14.3740821">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="683802" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0711586" lon="14.383155">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="683833" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.06978" lon="14.3764528"/>
+  <node id="1324074" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0672007" lon="14.3729769"/>
+  <node id="1324076" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0674051" lon="14.3736148"/>
+  <node id="1324077" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.067656" lon="14.3749723"/>
+  <node id="1324079" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0678125" lon="14.375085"/>
+  <node id="1324080" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0680108" lon="14.375042"/>
+  <node id="1324081" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0681761" lon="14.3746215"/>
+  <node id="1324083" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0683962" lon="14.3739003"/>
+  <node id="1324085" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0684119" lon="14.3724729"/>
+  <node id="1324088" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.068536" lon="14.3710687">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="1324090" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0685369" lon="14.3707043"/>
+  <node id="1324091" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0685494" lon="14.3703654">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="2197196" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0697197" lon="14.3828659"/>
+  <node id="2197198" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.070308" lon="14.3846403">
+    <tag k="highway" v="traffic_signals"/>
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="2197200" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0708343" lon="14.3877435"/>
+  <node id="2197201" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0710254" lon="14.3889344">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="21312448" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0701346" lon="14.3715445"/>
+  <node id="21312470" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0698896" lon="14.3735742">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="21317948" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0704546" lon="14.3775728"/>
+  <node id="21317950" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0705642" lon="14.3758569"/>
+  <node id="21317952" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.070098" lon="14.3736834">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="21317954" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0700024" lon="14.3702141"/>
+  <node id="21317955" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0701346" lon="14.370257"/>
+  <node id="21712168" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0715657" lon="14.3840178">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="25925597" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0676636" lon="14.3704516">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="25925604" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0677486" lon="14.3712477">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="30960053" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0755513" lon="14.389413"/>
+  <node id="30960057" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0754256" lon="14.3891132"/>
+  <node id="30960058" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0753033" lon="14.3889509">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="30960059" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0751228" lon="14.3889681">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="30960060" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.075116" lon="14.3893868"/>
+  <node id="30960070" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0743626" lon="14.3894048"/>
+  <node id="30960071" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0742321" lon="14.3892978"/>
+  <node id="30960072" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0741188" lon="14.3893114">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="31781493" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0705257" lon="14.3783766"/>
+  <node id="31781494" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0701842" lon="14.3740422"/>
+  <node id="31781514" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0719415" lon="14.3861357"/>
+  <node id="31781518" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0719415" lon="14.3895603">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="31849675" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0726064" lon="14.3893389">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="31850390" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0718001" lon="14.3883734">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="31850403" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0709796" lon="14.3886228">
+    <tag k="highway" v="traffic_signals"/>
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="31850410" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0707919" lon="14.3874121">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="31850421" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.071645" lon="14.387249">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="31850491" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.06965" lon="14.3804504">
+    <tag k="highway" v="traffic_signals"/>
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="31850560" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0714505" lon="14.3796792"/>
+  <node id="31850561" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0718832" lon="14.3797619"/>
+  <node id="31850562" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0722242" lon="14.380168">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="31850563" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0729256" lon="14.3811812">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="31850564" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0732544" lon="14.3812666"/>
+  <node id="31850565" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0735188" lon="14.3810091">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="31850566" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0735794" lon="14.3805406">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="31850567" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0732599" lon="14.3792667"/>
+  <node id="31850568" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0729073" lon="14.3780652">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="31850569" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0707864" lon="14.3802195">
+    <tag k="highway" v="traffic_signals"/>
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="31850640" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0725713" lon="14.3764257"/>
+  <node id="31850641" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0722693" lon="14.3744069">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="32437028" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0750423" lon="14.3883175"/>
+  <node id="32437029" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0749081" lon="14.3877188">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="32437030" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.073982" lon="14.3844472">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="32437031" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0737413" lon="14.3832964"/>
+  <node id="32437032" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0735335" lon="14.3822403">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="32437033" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0704609" lon="14.3779066">
+    <tag k="highway" v="traffic_signals"/>
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="32437232" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.070078" lon="14.3778977"/>
+  <node id="32437233" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.069775" lon="14.3778118">
+    <tag k="highway" v="traffic_signals"/>
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="32437234" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0691855" lon="14.3774513"/>
+  <node id="32437235" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0688383" lon="14.3772548"/>
+  <node id="32437236" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0685544" lon="14.3771518"/>
+  <node id="32437238" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.067103" lon="14.3777689"/>
+  <node id="60792297" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0753364" lon="14.3887961"/>
+  <node id="60792298" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0751923" lon="14.3883894"/>
+  <node id="60792306" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0737327" lon="14.3876636"/>
+  <node id="60792307" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0736418" lon="14.3875919"/>
+  <node id="60792308" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0735461" lon="14.3874245"/>
+  <node id="60792310" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0730688" lon="14.3850628">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="60792311" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.073303" lon="14.384165">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="60792312" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0735892" lon="14.3843925"/>
+  <node id="60792313" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.073814" lon="14.3844595"/>
+  <node id="60792314" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0731345" lon="14.3839108"/>
+  <node id="60792315" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0729754" lon="14.3836206"/>
+  <node id="60792316" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0728191" lon="14.3832604"/>
+  <node id="60792318" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0723839" lon="14.3833923">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="60792319" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0724424" lon="14.3837862"/>
+  <node id="60792320" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0726054" lon="14.3847562"/>
+  <node id="60792321" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0737518" lon="14.3889836"/>
+  <node id="60792322" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0734218" lon="14.3886345"/>
+  <node id="60792323" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0732066" lon="14.3883571"/>
+  <node id="60792324" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0730918" lon="14.3880749"/>
+  <node id="60792325" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.073001" lon="14.3875489"/>
+  <node id="60793856" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0758785" lon="14.3748764"/>
+  <node id="60793857" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0756008" lon="14.3746434">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="60793858" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0755278" lon="14.3748962"/>
+  <node id="60793859" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.075486" lon="14.3751914">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="60793860" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0753002" lon="14.3755218">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="60793861" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0752075" lon="14.3757894"/>
+  <node id="60793862" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0751619" lon="14.3760598"/>
+  <node id="60793863" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0752064" lon="14.3765049"/>
+  <node id="60793864" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0754221" lon="14.376972"/>
+  <node id="60793865" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0755944" lon="14.3771002"/>
+  <node id="60793866" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0757553" lon="14.3771583"/>
+  <node id="60793867" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0761661" lon="14.3771588"/>
+  <node id="60793873" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0755681" lon="14.3755703"/>
+  <node id="60793874" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0757096" lon="14.3758578"/>
+  <node id="60793875" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0759561" lon="14.3761043"/>
+  <node id="60793876" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0762437" lon="14.3762915"/>
+  <node id="60793896" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0762649" lon="14.3796732"/>
+  <node id="60793897" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.076129" lon="14.3793148">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="60793898" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0759346" lon="14.3789707"/>
+  <node id="60793899" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0757045" lon="14.3787819"/>
+  <node id="60793900" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0752039" lon="14.3786034">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="60793901" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.07549" lon="14.3786293"/>
+  <node id="60793903" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0761874" lon="14.3828501">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="60793911" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0749505" lon="14.3786304"/>
+  <node id="60793912" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0747807" lon="14.3787316"/>
+  <node id="60793913" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0746676" lon="14.3788656"/>
+  <node id="60793914" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0745194" lon="14.3792565"/>
+  <node id="60793915" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0745134" lon="14.379023">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="60793916" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0739403" lon="14.3770653"/>
+  <node id="60793918" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0737292" lon="14.3763664">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="60793919" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0742473" lon="14.3752736">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="60793920" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0748085" lon="14.3763449"/>
+  <node id="60793921" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.073728" lon="14.380636"/>
+  <node id="60793922" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0739389" lon="14.3808881">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="60793923" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0741293" lon="14.3808675"/>
+  <node id="60793924" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0743761" lon="14.3806558"/>
+  <node id="60793925" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.074477" lon="14.3804006"/>
+  <node id="60793926" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0745284" lon="14.3800819"/>
+  <node id="60793927" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0745389" lon="14.3797093"/>
+  <node id="60793928" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0744718" lon="14.3795529">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="60793929" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0742837" lon="14.3795607"/>
+  <node id="60793930" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.074047" lon="14.3794166"/>
+  <node id="60793931" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0738721" lon="14.3794114"/>
+  <node id="60793932" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0733907" lon="14.3797518">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="60793933" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0739352" lon="14.3824708"/>
+  <node id="60793934" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0761532" lon="14.3823806"/>
+  <node id="60793935" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0758592" lon="14.3812895"/>
+  <node id="60793950" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0738642" lon="14.3712242"/>
+  <node id="60793951" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0737138" lon="14.3712539"/>
+  <node id="60793952" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.07247" lon="14.3737349">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="60793954" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0751739" lon="14.3738796">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="60793955" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0753618" lon="14.3743421"/>
+  <node id="60793956" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.073229" lon="14.3726764"/>
+  <node id="60793957" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0735934" lon="14.3740812"/>
+  <node id="60793958" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0755031" lon="14.374546">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="60793978" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0666694" lon="14.3873393"/>
+  <node id="60793979" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0667942" lon="14.3874682"/>
+  <node id="60793980" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0670559" lon="14.3883258">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="60793981" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.067071" lon="14.3888195"/>
+  <node id="60793982" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0670484" lon="14.3890537"/>
+  <node id="95943107" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0680855" lon="14.3891263"/>
+  <node id="95943108" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0678518" lon="14.3882998"/>
+  <node id="95943109" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0678114" lon="14.3874928"/>
+  <node id="95943110" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0677496" lon="14.3873349"/>
+  <node id="95943111" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0675592" lon="14.3872579"/>
+  <node id="95943112" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0674627" lon="14.3873431"/>
+  <node id="95943113" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0671687" lon="14.3879565"/>
+  <node id="95943707" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0685129" lon="14.3893812"/>
+  <node id="95943708" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0683311" lon="14.3881195"/>
+  <node id="95943709" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0683049" lon="14.387526">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="95943710" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0683201" lon="14.3870037"/>
+  <node id="95943711" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0684744" lon="14.386257"/>
+  <node id="95943712" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0686597" lon="14.3856211"/>
+  <node id="95943713" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0686663" lon="14.3855071"/>
+  <node id="95943714" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0686088" lon="14.3853581"/>
+  <node id="95943715" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0684536" lon="14.3852034"/>
+  <node id="95943716" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0683301" lon="14.3851808"/>
+  <node id="95943717" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0680612" lon="14.3852785"/>
+  <node id="95943719" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0679841" lon="14.3853129"/>
+  <node id="95943721" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0679014" lon="14.3852785"/>
+  <node id="95943722" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.067862" lon="14.3850267"/>
+  <node id="95943723" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0679069" lon="14.3849272"/>
+  <node id="95943724" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0681836" lon="14.3848501"/>
+  <node id="95943726" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0684248" lon="14.3843344">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="95943727" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.068557" lon="14.3843087"/>
+  <node id="95943728" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0688104" lon="14.3845576"/>
+  <node id="95943729" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0692181" lon="14.3849095"/>
+  <node id="95943730" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0693834" lon="14.3850039"/>
+  <node id="95943731" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0695432" lon="14.3850039"/>
+  <node id="95943733" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0698351" lon="14.3848923"/>
+  <node id="98112053" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0669669" lon="14.3827435"/>
+  <node id="170359583" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0699611" lon="14.3717032">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170359585" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0694102" lon="14.3717204">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170360688" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0692008" lon="14.3741408">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170360689" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0693" lon="14.376175">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170360691" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0697935" lon="14.3762254">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170361357" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0698797" lon="14.374181">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170363304" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0683264" lon="14.3742662"/>
+  <node id="170364110" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0672823" lon="14.3731532">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170364111" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.067087" lon="14.3733608"/>
+  <node id="170364112" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0669134" lon="14.3744658"/>
+  <node id="170369960" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0671331" lon="14.3728704">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170369962" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0669035" lon="14.3721335"/>
+  <node id="170369965" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.066825" lon="14.3715607"/>
+  <node id="170370950" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0672615" lon="14.3727418"/>
+  <node id="170370952" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0671789" lon="14.3724156"/>
+  <node id="170370954" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.067091" lon="14.3720267"/>
+  <node id="170370955" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0670469" lon="14.3719302"/>
+  <node id="170370956" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0669983" lon="14.3719191"/>
+  <node id="170370957" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0669049" lon="14.3720152">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170373524" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0680132" lon="14.3772019">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170373525" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.067868" lon="14.3763407"/>
+  <node id="170373528" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0669089" lon="14.3780805"/>
+  <node id="170375312" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.069224" lon="14.3886596">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170375316" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0689307" lon="14.3885222">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170377780" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.072418" lon="14.3705274"/>
+  <node id="170377781" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0725319" lon="14.3707898"/>
+  <node id="170377782" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0726943" lon="14.3711454"/>
+  <node id="170377783" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0728191" lon="14.3712345"/>
+  <node id="170377784" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0731121" lon="14.3711282"/>
+  <node id="170377785" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0732918" lon="14.3709182"/>
+  <node id="170377786" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0733974" lon="14.3707934">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170378549" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0724769" lon="14.3706313">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170378553" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0720859" lon="14.3716349"/>
+  <node id="170378554" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0718906" lon="14.3723165">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170378556" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0717551" lon="14.3731431">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170378557" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0716807" lon="14.373652"/>
+  <node id="170378559" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0717093" lon="14.3741377"/>
+  <node id="170378560" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0717509" lon="14.3741776"/>
+  <node id="170378563" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0721451" lon="14.3742934">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170380616" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.072407" lon="14.3735314">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170380617" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0724346" lon="14.3732825"/>
+  <node id="170380618" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0727513" lon="14.3720189"/>
+  <node id="170380621" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0729839" lon="14.3713125">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170381503" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0725693" lon="14.3735673"/>
+  <node id="170385711" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0711936" lon="14.3712577"/>
+  <node id="170385712" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.071347" lon="14.3714994"/>
+  <node id="170385713" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0714653" lon="14.3718818"/>
+  <node id="170385714" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.071503" lon="14.372259"/>
+  <node id="170385715" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0718396" lon="14.372553">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170386552" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.072418" lon="14.3734027">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="170389154" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0747811" lon="14.3742553"/>
+  <node id="243492437" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0700471" lon="14.3732077"/>
+  <node id="243492442" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0704821" lon="14.3752274"/>
+  <node id="243492443" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0705695" lon="14.3764942"/>
+  <node id="243492452" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0703902" lon="14.3779042"/>
+  <node id="243492455" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0706953" lon="14.3802348"/>
+  <node id="243492458" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0717153" lon="14.388392"/>
+  <node id="243492460" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0718722" lon="14.3895776"/>
+  <node id="297477813" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0730277" lon="14.3778974"/>
+  <node id="331507310" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0763216" lon="14.3747576"/>
+  <node id="331507313" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.076237" lon="14.3747668"/>
+  <node id="331507315" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.076119" lon="14.3747055"/>
+  <node id="331507320" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0759912" lon="14.3745676"/>
+  <node id="331507324" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0758771" lon="14.3743255"/>
+  <node id="331507326" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0758161" lon="14.3741141">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331507328" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.076322" lon="14.3720516"/>
+  <node id="331507330" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0762299" lon="14.3720663"/>
+  <node id="331507332" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0761379" lon="14.372184"/>
+  <node id="331507334" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0758027" lon="14.3728974"/>
+  <node id="331507336" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0757367" lon="14.373199"/>
+  <node id="331507338" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0757532" lon="14.3734785"/>
+  <node id="331507340" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.075916" lon="14.3739639">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331507352" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0740282" lon="14.3712807"/>
+  <node id="331507355" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0743099" lon="14.3712831"/>
+  <node id="331507359" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0744254" lon="14.3712687"/>
+  <node id="331507362" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0746409" lon="14.3713311"/>
+  <node id="331507365" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0748426" lon="14.3712735"/>
+  <node id="331507369" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0750104" lon="14.3711584"/>
+  <node id="331507373" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0751859" lon="14.3709257"/>
+  <node id="331507374" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0752937" lon="14.3706618"/>
+  <node id="331507377" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0753491" lon="14.370302"/>
+  <node id="331507409" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0760881" lon="14.3706019"/>
+  <node id="331507411" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0760526" lon="14.370777"/>
+  <node id="331507413" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0759864" lon="14.3708993"/>
+  <node id="331507415" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0759788" lon="14.3709569"/>
+  <node id="331507417" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0759941" lon="14.371036"/>
+  <node id="331507419" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0760219" lon="14.3710936"/>
+  <node id="331507422" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0760699" lon="14.3711545">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331507425" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0761696" lon="14.3707938"/>
+  <node id="331507426" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0757925" lon="14.3717581"/>
+  <node id="331510419" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0738797" lon="14.3719724"/>
+  <node id="331510421" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0741822" lon="14.3732624"/>
+  <node id="331510424" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0742617" lon="14.3734878"/>
+  <node id="331510427" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0747016" lon="14.3743581">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331510430" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0739154" lon="14.3719028"/>
+  <node id="331510433" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0739597" lon="14.3718744"/>
+  <node id="331510435" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0740184" lon="14.3719028"/>
+  <node id="331510437" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0741305" lon="14.3721527"/>
+  <node id="331510439" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0741436" lon="14.3722624"/>
+  <node id="331510442" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0741357" lon="14.3723437"/>
+  <node id="331510444" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0740679" lon="14.3724351"/>
+  <node id="331510447" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0740001" lon="14.3724859">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331510449" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0734449" lon="14.3716508"/>
+  <node id="331510452" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.074956" lon="14.3766557"/>
+  <node id="331510453" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0750529" lon="14.3769901"/>
+  <node id="331510456" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0752051" lon="14.3779166"/>
+  <node id="331510460" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0751978" lon="14.3789269"/>
+  <node id="331510462" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0750542" lon="14.3795895"/>
+  <node id="331510463" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0749769" lon="14.3801725"/>
+  <node id="331510466" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0749796" lon="14.380607"/>
+  <node id="331510467" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0748982" lon="14.3809383"/>
+  <node id="331510471" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0746883" lon="14.3814804"/>
+  <node id="331510473" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0746566" lon="14.38173"/>
+  <node id="331510477" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0746745" lon="14.3828895"/>
+  <node id="331510482" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0749506" lon="14.3807598">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331510485" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0750473" lon="14.3809792"/>
+  <node id="331510489" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0752337" lon="14.3816482"/>
+  <node id="331510491" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0753124" lon="14.3821322"/>
+  <node id="331510495" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0753455" lon="14.3825603"/>
+  <node id="331510498" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0753455" lon="14.3831907">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331510501" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0753828" lon="14.3832939"/>
+  <node id="331510503" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.075935" lon="14.3835305"/>
+  <node id="331510508" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0759916" lon="14.3835176"/>
+  <node id="331510512" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0760634" lon="14.3834187"/>
+  <node id="331510515" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0761476" lon="14.3830444"/>
+  <node id="331511465" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0717189" lon="14.3817184"/>
+  <node id="331511466" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.07164" lon="14.3813631"/>
+  <node id="331511467" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0715488" lon="14.3803682"/>
+  <node id="331511468" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0715681" lon="14.380207"/>
+  <node id="331511469" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0716154" lon="14.3801195"/>
+  <node id="331511470" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0716891" lon="14.3800758"/>
+  <node id="331511471" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0717926" lon="14.380084"/>
+  <node id="331511472" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0720487" lon="14.3801796"/>
+  <node id="331512854" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.072189" lon="14.387143">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331512855" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0706539" lon="14.384877"/>
+  <node id="331512856" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.070974" lon="14.3852205"/>
+  <node id="331512858" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0715062" lon="14.3872798">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331512859" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.071773" lon="14.3881867"/>
+  <node id="331512861" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0717637" lon="14.384994">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331512865" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0696098" lon="14.3818386"/>
+  <node id="331512866" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0696474" lon="14.3823538"/>
+  <node id="331512868" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0700346" lon="14.380386">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331512869" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0700602" lon="14.3827383">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331512871" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0698658" lon="14.3833051">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331512875" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0701259" lon="14.3825952"/>
+  <node id="331512877" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0703968" lon="14.3823242"/>
+  <node id="331512878" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0705261" lon="14.3821228"/>
+  <node id="331512879" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0710109" lon="14.3819886">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331514970" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0705799" lon="14.3761854">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331514971" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0712744" lon="14.3756932">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331514972" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0712908" lon="14.3756401"/>
+  <node id="331514973" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.071288" lon="14.3755701"/>
+  <node id="331514974" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0710606" lon="14.3748635"/>
+  <node id="331514976" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0708059" lon="14.3742525"/>
+  <node id="331514978" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.070795" lon="14.3741718"/>
+  <node id="331514980" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0708018" lon="14.3741039"/>
+  <node id="331514982" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0708168" lon="14.3740488">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331514983" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0708482" lon="14.3739979"/>
+  <node id="331514985" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.070904" lon="14.3739681"/>
+  <node id="331514995" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0709612" lon="14.3739597"/>
+  <node id="331514996" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0710211" lon="14.3739894"/>
+  <node id="331514997" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0711151" lon="14.3741612"/>
+  <node id="331514998" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0711505" lon="14.3741994"/>
+  <node id="331515001" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0712036" lon="14.3742185"/>
+  <node id="331515002" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0716748" lon="14.3743204"/>
+  <node id="331515003" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0717211" lon="14.3743564"/>
+  <node id="331515004" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.071766" lon="14.3744371"/>
+  <node id="331515005" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0718178" lon="14.374592"/>
+  <node id="331515006" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0718477" lon="14.3746217"/>
+  <node id="331515008" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0719049" lon="14.3746068"/>
+  <node id="331515010" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0722767" lon="14.3738981"/>
+  <node id="331515012" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.072353" lon="14.3736287"/>
+  <node id="331515013" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0716908" lon="14.3740193"/>
+  <node id="331515014" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0714622" lon="14.3721428"/>
+  <node id="331515015" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0714249" lon="14.3716695"/>
+  <node id="331515016" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0711307" lon="14.3710898"/>
+  <node id="331515017" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0710699" lon="14.3708307"/>
+  <node id="331515018" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0700813" lon="14.3724233">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331515019" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.07021" lon="14.3721701"/>
+  <node id="331515020" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.070426" lon="14.3715526"/>
+  <node id="331515021" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0704748" lon="14.3713596"/>
+  <node id="331515022" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0704881" lon="14.3711929"/>
+  <node id="331515023" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0704897" lon="14.3710007"/>
+  <node id="331515024" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0705066" lon="14.3709245"/>
+  <node id="331515025" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0705514" lon="14.3708659"/>
+  <node id="331515026" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0706035" lon="14.3708434"/>
+  <node id="331515027" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0706612" lon="14.3708484"/>
+  <node id="331515028" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.070714" lon="14.3708971"/>
+  <node id="331515029" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0707469" lon="14.370977"/>
+  <node id="331515030" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0707573" lon="14.3710743"/>
+  <node id="331515031" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0707108" lon="14.3713202"/>
+  <node id="331515032" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0707132" lon="14.3714874"/>
+  <node id="331515033" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.070726" lon="14.3716547"/>
+  <node id="331515034" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0707228" lon="14.3718219"/>
+  <node id="331515035" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0706948" lon="14.3720041"/>
+  <node id="331515036" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0705827" lon="14.3723498"/>
+  <node id="331515038" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0705394" lon="14.3725657"/>
+  <node id="331515039" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.070521" lon="14.3728228"/>
+  <node id="331515041" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.070529" lon="14.3733458"/>
+  <node id="331515042" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0705578" lon="14.3736328"/>
+  <node id="331515044" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0706195" lon="14.3738337"/>
+  <node id="331515046" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0706868" lon="14.3739523"/>
+  <node id="331515047" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0707781" lon="14.3740122"/>
+  <node id="331515049" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0710399" lon="14.3706128"/>
+  <node id="331515053" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0709879" lon="14.3704082"/>
+  <node id="331515054" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0709905" lon="14.3702604"/>
+  <node id="331515056" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.071023" lon="14.370157"/>
+  <node id="331515057" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0710919" lon="14.3700841">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331515059" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0711634" lon="14.3700517"/>
+  <node id="331515060" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0712401" lon="14.3700679"/>
+  <node id="331515062" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0713298" lon="14.370151"/>
+  <node id="331515063" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0716406" lon="14.3705966"/>
+  <node id="331515065" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0717342" lon="14.370783"/>
+  <node id="331515066" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0718135" lon="14.3710018"/>
+  <node id="331515067" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0718733" lon="14.371253"/>
+  <node id="331515068" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0719045" lon="14.3715082"/>
+  <node id="331515069" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.071911" lon="14.3718627"/>
+  <node id="331515070" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0725988" lon="14.3709835"/>
+  <node id="331515073" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0735128" lon="14.3706942"/>
+  <node id="331515074" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0736052" lon="14.3704576"/>
+  <node id="331519239" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0682075" lon="14.3704157">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331519272" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0686091" lon="14.3714418"/>
+  <node id="331519273" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.068603" lon="14.3716646"/>
+  <node id="331519275" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0683875" lon="14.3728384"/>
+  <node id="331519277" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0684076" lon="14.3733939"/>
+  <node id="331534278" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.066695" lon="14.3712158"/>
+  <node id="331534279" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0669455" lon="14.3719546"/>
+  <node id="331535073" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0671118" lon="14.3704521"/>
+  <node id="331535074" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.067262" lon="14.3705904"/>
+  <node id="331535075" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0674945" lon="14.371032"/>
+  <node id="331535076" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0675742" lon="14.3710808"/>
+  <node id="331535078" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0677283" lon="14.3710646">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="331537012" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0669893" lon="14.372738"/>
+  <node id="331537112" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0679513" lon="14.3764078"/>
+  <node id="336703720" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0695253" lon="14.3884037"/>
+  <node id="336703722" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0683116" lon="14.3878131">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="336703725" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.069477" lon="14.3876096"/>
+  <node id="336703727" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0688544" lon="14.3877186">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="336703729" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0687112" lon="14.3893505"/>
+  <node id="336703731" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0684534" lon="14.3870409"/>
+  <node id="336703733" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0688765" lon="14.3860235"/>
+  <node id="336703736" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0689178" lon="14.3859331"/>
+  <node id="336703752" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0688393" lon="14.3888698"/>
+  <node id="352726985" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0760725" lon="14.3894301"/>
+  <node id="352726986" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0760725" lon="14.3890199"/>
+  <node id="352726988" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0760041" lon="14.3877097">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="352726989" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0760507" lon="14.3872813"/>
+  <node id="352726990" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0761519" lon="14.3867674">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="352726993" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0746992" lon="14.3869095">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="352726994" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0750585" lon="14.3868937"/>
+  <node id="352726997" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0754615" lon="14.3868801"/>
+  <node id="352727000" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0755284" lon="14.3869027"/>
+  <node id="352727005" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0755968" lon="14.3869843"/>
+  <node id="352727007" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0761918" lon="14.3880905"/>
+  <node id="354914915" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0703755" lon="14.37628"/>
+  <node id="354915045" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0709301" lon="14.3820183"/>
+  <node id="359220354" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0713669" lon="14.3851331">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="359220355" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0712654" lon="14.3843089"/>
+  <node id="359220356" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0708781" lon="14.3811193"/>
+  <node id="409083082" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0750325" lon="14.3733088"/>
+  <node id="409085702" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0756389" lon="14.3719594"/>
+  <node id="632345540" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0749058" lon="14.3728541"/>
+  <node id="632393712" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0748502" lon="14.3764327"/>
+  <node id="632393757" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0751632" lon="14.3762539"/>
+  <node id="632393848" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0752896" lon="14.3767488"/>
+  <node id="632414789" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.074269" lon="14.380793"/>
+  <node id="632420702" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0735832" lon="14.380789"/>
+  <node id="632420947" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0729595" lon="14.3813405"/>
+  <node id="632420949" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0730837" lon="14.3812593"/>
+  <node id="632420985" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.073407" lon="14.3811662"/>
+  <node id="632420987" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0735707" lon="14.3812895"/>
+  <node id="632421087" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0733932" lon="14.381966"/>
+  <node id="632421300" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0734204" lon="14.3830325"/>
+  <node id="632421441" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0735052" lon="14.383246"/>
+  <node id="632506873" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0731976" lon="14.3889959"/>
+  <node id="632506874" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0732237" lon="14.3889325"/>
+  <node id="632506875" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0732687" lon="14.3889052"/>
+  <node id="632506880" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0732004" lon="14.3890711">
+    <tag k="crossroad" v="yes"/>
+  </node>
+  <node id="632506881" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0732778" lon="14.3891484"/>
+  <node id="632506883" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.073231" lon="14.3891294"/>
+  <node id="632506884" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0733155" lon="14.3889242"/>
+  <node id="632506886" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0733461" lon="14.3889825"/>
+  <node id="632506887" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0733489" lon="14.3890577"/>
+  <node id="632506888" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0733228" lon="14.3891211"/>
+  <node id="632532924" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0714619" lon="14.3824334"/>
+  <node id="632532927" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0717403" lon="14.3837507"/>
+  <node id="632532930" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0717485" lon="14.3836071"/>
+  <node id="632532933" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0717014" lon="14.383875"/>
+  <node id="632532935" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0716441" lon="14.3842897"/>
+  <node id="632532985" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0751219" lon="14.3890266"/>
+  <node id="632599457" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0680075" lon="14.3848753"/>
+  <node id="632599461" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0678508" lon="14.3851749"/>
+  <node id="632601941" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0676802" lon="14.387256"/>
+  <node id="632603105" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0682385" lon="14.3894129"/>
+  <node id="633415399" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.067927" lon="14.3763433"/>
+  <node id="701270432" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0728776" lon="14.3779205"/>
+  <node id="701270472" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0707444" lon="14.3799223"/>
+  <node id="701270476" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0708244" lon="14.3805929"/>
+  <node id="701270489" version="1" timestamp="2010-07-09T15:38:15Z" lat="50.0716812" lon="14.3796613"/>
+  <way id="-280" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="21312470"/>
+    <nd ref="170361357"/>
+    <tag k="way-id" v="4020332"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-281" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170361357"/>
+    <nd ref="170360691"/>
+    <tag k="way-id" v="4020332"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-282" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170360691"/>
+    <nd ref="683833"/>
+    <nd ref="32437233"/>
+    <tag k="way-id" v="4020332"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-283" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="32437233"/>
+    <nd ref="31850491"/>
+    <tag k="way-id" v="4020332"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-284" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31850491"/>
+    <nd ref="331512865"/>
+    <nd ref="331512866"/>
+    <nd ref="2197196"/>
+    <nd ref="331512871"/>
+    <tag k="way-id" v="4020332"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-285" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331512871"/>
+    <nd ref="2197198"/>
+    <tag k="way-id" v="4020332"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-286" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="2197198"/>
+    <nd ref="31850410"/>
+    <tag k="way-id" v="4020332"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-287" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31850410"/>
+    <nd ref="2197200"/>
+    <nd ref="31850403"/>
+    <tag k="way-id" v="4020332"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-288" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31850403"/>
+    <nd ref="2197201"/>
+    <tag k="way-id" v="4020332"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-289" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="2197201"/>
+    <tag k="way-id" v="4020332"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-6231" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="25925597"/>
+    <nd ref="331519239"/>
+    <tag k="way-id" v="4709470"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-6232" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331519239"/>
+    <nd ref="1324091"/>
+    <tag k="way-id" v="4709470"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-6268" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331537012"/>
+    <nd ref="170369960"/>
+    <tag k="way-id" v="4711632"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-6269" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170369960"/>
+    <nd ref="1324074"/>
+    <nd ref="170364110"/>
+    <tag k="way-id" v="4711632"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-6270" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170364110"/>
+    <nd ref="1324076"/>
+    <nd ref="1324077"/>
+    <nd ref="1324079"/>
+    <nd ref="1324080"/>
+    <nd ref="1324081"/>
+    <nd ref="170363304"/>
+    <nd ref="1324083"/>
+    <nd ref="331519277"/>
+    <nd ref="331519275"/>
+    <nd ref="1324085"/>
+    <nd ref="331519273"/>
+    <nd ref="331519272"/>
+    <nd ref="1324088"/>
+    <tag k="way-id" v="4711632"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-6273" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="25925597"/>
+    <tag k="way-id" v="4711633"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-6274" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="25925597"/>
+    <nd ref="331535078"/>
+    <tag k="way-id" v="4711633"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-6275" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331535078"/>
+    <nd ref="25925604"/>
+    <tag k="way-id" v="4711633"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-7521" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="30960053"/>
+    <nd ref="30960057"/>
+    <nd ref="30960058"/>
+    <tag k="way-id" v="4818733"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-7522" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="30960058"/>
+    <nd ref="30960059"/>
+    <tag k="way-id" v="4818733"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-8452" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="2197201"/>
+    <nd ref="243492460"/>
+    <nd ref="31781518"/>
+    <tag k="way-id" v="4892782"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-8453" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31781518"/>
+    <nd ref="31849675"/>
+    <tag k="way-id" v="4892782"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-8459" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31850390"/>
+    <nd ref="243492458"/>
+    <nd ref="31850403"/>
+    <tag k="way-id" v="4892791"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-8460" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31850410"/>
+    <nd ref="331512858"/>
+    <tag k="way-id" v="4892792"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-8461" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31850491"/>
+    <nd ref="331512868"/>
+    <tag k="way-id" v="4892794"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-8462" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331512868"/>
+    <nd ref="243492455"/>
+    <nd ref="31850569"/>
+    <tag k="way-id" v="4892794"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-8463" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31850569"/>
+    <nd ref="31850560"/>
+    <nd ref="701270489"/>
+    <nd ref="31850561"/>
+    <nd ref="31850562"/>
+    <tag k="way-id" v="4892795"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-8464" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31850562"/>
+    <nd ref="31850563"/>
+    <tag k="way-id" v="4892795"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-8465" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31850563"/>
+    <nd ref="632420949"/>
+    <nd ref="31850564"/>
+    <nd ref="632420985"/>
+    <nd ref="31850565"/>
+    <tag k="way-id" v="4892795"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-8466" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31850565"/>
+    <nd ref="632420702"/>
+    <nd ref="31850566"/>
+    <tag k="way-id" v="4892795"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-8467" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31850566"/>
+    <nd ref="60793932"/>
+    <tag k="way-id" v="4892795"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-8468" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793932"/>
+    <nd ref="31850567"/>
+    <nd ref="31850568"/>
+    <tag k="way-id" v="4892795"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-8469" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31850568"/>
+    <nd ref="701270432"/>
+    <nd ref="31850640"/>
+    <nd ref="31850641"/>
+    <tag k="way-id" v="4892795"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-8470" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31850641"/>
+    <nd ref="683793"/>
+    <tag k="way-id" v="4892795"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-8818" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="30960059"/>
+    <nd ref="32437028"/>
+    <nd ref="32437029"/>
+    <tag k="way-id" v="4929787"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-8819" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="32437029"/>
+    <nd ref="352726993"/>
+    <tag k="way-id" v="4929787"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-8820" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="352726993"/>
+    <nd ref="32437030"/>
+    <tag k="way-id" v="4929787"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-8821" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="32437030"/>
+    <nd ref="32437031"/>
+    <nd ref="32437032"/>
+    <tag k="way-id" v="4929787"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-8822" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="32437032"/>
+    <nd ref="632420987"/>
+    <nd ref="31850565"/>
+    <tag k="way-id" v="4929787"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-8823" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="32437033"/>
+    <nd ref="243492452"/>
+    <nd ref="32437232"/>
+    <nd ref="32437233"/>
+    <tag k="way-id" v="4929797"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-8824" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="32437233"/>
+    <nd ref="32437234"/>
+    <nd ref="32437235"/>
+    <nd ref="32437236"/>
+    <nd ref="170373524"/>
+    <tag k="way-id" v="4929797"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-8825" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170373524"/>
+    <nd ref="32437238"/>
+    <nd ref="170373528"/>
+    <tag k="way-id" v="4929797"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11739" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="30960058"/>
+    <nd ref="60792297"/>
+    <nd ref="60792298"/>
+    <nd ref="32437029"/>
+    <tag k="way-id" v="8111154"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11742" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="32437030"/>
+    <nd ref="60792313"/>
+    <nd ref="60792312"/>
+    <nd ref="60792311"/>
+    <tag k="way-id" v="8111156"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11743" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60792311"/>
+    <nd ref="60792314"/>
+    <nd ref="60792315"/>
+    <nd ref="60792316"/>
+    <tag k="way-id" v="8111156"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11744" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60792311"/>
+    <nd ref="60792310"/>
+    <tag k="way-id" v="8111157"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11745" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60792310"/>
+    <nd ref="60792308"/>
+    <nd ref="60792307"/>
+    <nd ref="60792306"/>
+    <nd ref="32437029"/>
+    <tag k="way-id" v="8111157"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11746" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31850562"/>
+    <nd ref="331511472"/>
+    <nd ref="331511471"/>
+    <nd ref="331511470"/>
+    <nd ref="331511469"/>
+    <nd ref="331511468"/>
+    <nd ref="331511467"/>
+    <nd ref="331511466"/>
+    <nd ref="331511465"/>
+    <nd ref="60792318"/>
+    <tag k="way-id" v="8111158"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11747" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60792318"/>
+    <nd ref="60792319"/>
+    <nd ref="60792320"/>
+    <nd ref="60792325"/>
+    <nd ref="60792324"/>
+    <nd ref="60792323"/>
+    <nd ref="60792322"/>
+    <nd ref="60792321"/>
+    <nd ref="30960072"/>
+    <tag k="way-id" v="8111158"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11748" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60792318"/>
+    <nd ref="60792310"/>
+    <tag k="way-id" v="8111159"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11753" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793857"/>
+    <nd ref="60793858"/>
+    <nd ref="60793859"/>
+    <tag k="way-id" v="8111199"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11754" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793859"/>
+    <nd ref="60793873"/>
+    <nd ref="60793874"/>
+    <nd ref="60793875"/>
+    <nd ref="60793876"/>
+    <tag k="way-id" v="8111199"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11756" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793867"/>
+    <nd ref="60793866"/>
+    <nd ref="60793865"/>
+    <nd ref="60793864"/>
+    <nd ref="632393848"/>
+    <nd ref="60793863"/>
+    <nd ref="632393757"/>
+    <nd ref="60793862"/>
+    <nd ref="60793861"/>
+    <nd ref="60793860"/>
+    <tag k="way-id" v="8111200"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11757" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793860"/>
+    <nd ref="60793859"/>
+    <tag k="way-id" v="8111200"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11771" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793896"/>
+    <nd ref="60793897"/>
+    <tag k="way-id" v="8111205"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11772" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793935"/>
+    <nd ref="60793934"/>
+    <nd ref="60793903"/>
+    <tag k="way-id" v="8111206"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11773" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793903"/>
+    <tag k="way-id" v="8111207"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11774" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793903"/>
+    <nd ref="331510515"/>
+    <nd ref="331510512"/>
+    <nd ref="331510508"/>
+    <nd ref="331510503"/>
+    <nd ref="331510501"/>
+    <nd ref="331510498"/>
+    <tag k="way-id" v="8111207"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11775" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="683786"/>
+    <nd ref="632345540"/>
+    <nd ref="409083082"/>
+    <nd ref="60793954"/>
+    <tag k="way-id" v="8111208"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11776" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793954"/>
+    <nd ref="60793955"/>
+    <nd ref="60793958"/>
+    <tag k="way-id" v="8111208"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11777" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793958"/>
+    <nd ref="60793857"/>
+    <tag k="way-id" v="8111208"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11778" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793857"/>
+    <nd ref="60793856"/>
+    <tag k="way-id" v="8111208"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11782" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793933"/>
+    <nd ref="60793922"/>
+    <tag k="way-id" v="8111209"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11783" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793932"/>
+    <nd ref="60793931"/>
+    <nd ref="60793930"/>
+    <nd ref="60793929"/>
+    <nd ref="60793928"/>
+    <tag k="way-id" v="8111210"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11784" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793919"/>
+    <nd ref="60793920"/>
+    <nd ref="632393712"/>
+    <nd ref="331510452"/>
+    <nd ref="331510453"/>
+    <nd ref="331510456"/>
+    <tag k="way-id" v="8111211"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11788" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31850568"/>
+    <nd ref="297477813"/>
+    <nd ref="60793918"/>
+    <tag k="way-id" v="8111215"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11789" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793918"/>
+    <nd ref="60793919"/>
+    <tag k="way-id" v="8111215"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11790" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="683793"/>
+    <nd ref="60793952"/>
+    <tag k="way-id" v="8111216"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11791" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793952"/>
+    <nd ref="170381503"/>
+    <nd ref="683790"/>
+    <tag k="way-id" v="8111216"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11792" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="683790"/>
+    <nd ref="331510449"/>
+    <nd ref="683789"/>
+    <nd ref="60793951"/>
+    <nd ref="60793950"/>
+    <nd ref="331507352"/>
+    <nd ref="683788"/>
+    <tag k="way-id" v="8111216"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11793" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="683788"/>
+    <nd ref="683787"/>
+    <nd ref="683786"/>
+    <tag k="way-id" v="8111216"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11794" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="683786"/>
+    <nd ref="683785"/>
+    <nd ref="683784"/>
+    <nd ref="409085702"/>
+    <nd ref="331507426"/>
+    <nd ref="683783"/>
+    <nd ref="331507422"/>
+    <tag k="way-id" v="8111216"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11795" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331507422"/>
+    <nd ref="331507425"/>
+    <nd ref="683782"/>
+    <tag k="way-id" v="8111216"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11807" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793919"/>
+    <nd ref="60793957"/>
+    <nd ref="60793956"/>
+    <nd ref="683790"/>
+    <tag k="way-id" v="8111220"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11808" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31850566"/>
+    <nd ref="60793921"/>
+    <nd ref="60793922"/>
+    <tag k="way-id" v="8111221"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11809" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793922"/>
+    <nd ref="60793923"/>
+    <nd ref="632414789"/>
+    <nd ref="60793924"/>
+    <nd ref="60793925"/>
+    <nd ref="60793926"/>
+    <nd ref="60793927"/>
+    <nd ref="60793928"/>
+    <tag k="way-id" v="8111221"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11810" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793928"/>
+    <nd ref="60793914"/>
+    <nd ref="60793915"/>
+    <tag k="way-id" v="8111221"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11811" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793915"/>
+    <nd ref="60793916"/>
+    <nd ref="60793918"/>
+    <tag k="way-id" v="8111221"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11812" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793918"/>
+    <nd ref="60793952"/>
+    <tag k="way-id" v="8111221"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11823" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793978"/>
+    <nd ref="60793979"/>
+    <nd ref="60793980"/>
+    <tag k="way-id" v="8111226"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-11824" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793980"/>
+    <nd ref="60793981"/>
+    <nd ref="60793982"/>
+    <tag k="way-id" v="8111226"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-13935" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="21317952"/>
+    <nd ref="243492437"/>
+    <nd ref="331515018"/>
+    <tag k="way-id" v="9581187"/>
+    <tag k="speed" v="90"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-13936" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331515018"/>
+    <nd ref="21312448"/>
+    <nd ref="21317955"/>
+    <tag k="way-id" v="9581187"/>
+    <tag k="speed" v="90"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-14522" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="632603105"/>
+    <nd ref="95943107"/>
+    <nd ref="95943108"/>
+    <nd ref="95943109"/>
+    <nd ref="95943110"/>
+    <nd ref="632601941"/>
+    <nd ref="95943111"/>
+    <nd ref="95943112"/>
+    <nd ref="95943113"/>
+    <nd ref="60793980"/>
+    <tag k="way-id" v="10780008"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-14676" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="98112053"/>
+    <tag k="way-id" v="11015039"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-14677" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="95943726"/>
+    <nd ref="95943727"/>
+    <nd ref="95943728"/>
+    <nd ref="95943729"/>
+    <nd ref="95943730"/>
+    <nd ref="95943731"/>
+    <nd ref="95943733"/>
+    <nd ref="2197198"/>
+    <tag k="way-id" v="11015243"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-14685" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="95943707"/>
+    <nd ref="95943708"/>
+    <nd ref="336703722"/>
+    <tag k="way-id" v="11015336"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-14686" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="336703722"/>
+    <nd ref="95943709"/>
+    <tag k="way-id" v="11015336"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-14687" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="95943709"/>
+    <nd ref="95943710"/>
+    <nd ref="95943711"/>
+    <nd ref="95943712"/>
+    <nd ref="95943713"/>
+    <nd ref="95943714"/>
+    <nd ref="95943715"/>
+    <nd ref="95943716"/>
+    <nd ref="95943717"/>
+    <nd ref="95943719"/>
+    <nd ref="95943721"/>
+    <nd ref="632599461"/>
+    <nd ref="95943722"/>
+    <nd ref="95943723"/>
+    <nd ref="632599457"/>
+    <nd ref="95943724"/>
+    <nd ref="95943726"/>
+    <tag k="way-id" v="11015336"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16833" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170359583"/>
+    <nd ref="170359585"/>
+    <tag k="way-id" v="16499341"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16834" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170359585"/>
+    <tag k="way-id" v="16499470"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16835" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170359585"/>
+    <nd ref="170360688"/>
+    <tag k="way-id" v="16499470"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16836" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170360688"/>
+    <nd ref="170360689"/>
+    <tag k="way-id" v="16499470"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16837" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170361357"/>
+    <nd ref="170360688"/>
+    <tag k="way-id" v="16499536"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16840" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170364110"/>
+    <nd ref="170364111"/>
+    <nd ref="170364112"/>
+    <tag k="way-id" v="16499803"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16844" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170370950"/>
+    <nd ref="170370952"/>
+    <nd ref="170370954"/>
+    <nd ref="170370955"/>
+    <nd ref="170370956"/>
+    <nd ref="331534279"/>
+    <nd ref="170370957"/>
+    <tag k="way-id" v="16500370"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16845" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170370957"/>
+    <nd ref="170369962"/>
+    <nd ref="170369960"/>
+    <tag k="way-id" v="16500370"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16847" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170373525"/>
+    <nd ref="633415399"/>
+    <nd ref="331537112"/>
+    <nd ref="170373524"/>
+    <tag k="way-id" v="16500609"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16851" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170378549"/>
+    <nd ref="170378553"/>
+    <nd ref="170378554"/>
+    <tag k="way-id" v="16501048"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16852" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170378554"/>
+    <nd ref="170385715"/>
+    <tag k="way-id" v="16501048"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16853" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170385715"/>
+    <nd ref="170378556"/>
+    <tag k="way-id" v="16501048"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16854" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170378556"/>
+    <nd ref="170378557"/>
+    <nd ref="331515013"/>
+    <nd ref="170378559"/>
+    <nd ref="170378560"/>
+    <nd ref="170378563"/>
+    <tag k="way-id" v="16501048"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16855" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170378563"/>
+    <nd ref="31850641"/>
+    <tag k="way-id" v="16501048"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16856" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793952"/>
+    <nd ref="170380616"/>
+    <tag k="way-id" v="16501235"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16857" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170380616"/>
+    <nd ref="170386552"/>
+    <tag k="way-id" v="16501235"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16858" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170386552"/>
+    <nd ref="170380617"/>
+    <nd ref="170380618"/>
+    <nd ref="170380621"/>
+    <tag k="way-id" v="16501235"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16859" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170380621"/>
+    <nd ref="170377784"/>
+    <nd ref="170377785"/>
+    <nd ref="170377786"/>
+    <tag k="way-id" v="16501235"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16860" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170377786"/>
+    <nd ref="331515073"/>
+    <nd ref="331515074"/>
+    <tag k="way-id" v="16501235"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16863" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331515057"/>
+    <nd ref="331515056"/>
+    <nd ref="331515054"/>
+    <nd ref="331515053"/>
+    <nd ref="331515049"/>
+    <nd ref="331515017"/>
+    <nd ref="331515016"/>
+    <nd ref="170385711"/>
+    <nd ref="170385712"/>
+    <nd ref="331515015"/>
+    <nd ref="170385713"/>
+    <nd ref="331515014"/>
+    <nd ref="170385714"/>
+    <nd ref="170385715"/>
+    <tag k="way-id" v="16501720"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16864" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170378556"/>
+    <nd ref="170386552"/>
+    <tag k="way-id" v="16501792"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16865" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793954"/>
+    <nd ref="170389154"/>
+    <nd ref="331510427"/>
+    <tag k="way-id" v="16502009"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-16866" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331510427"/>
+    <nd ref="60793919"/>
+    <tag k="way-id" v="16502009"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-17866" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170377780"/>
+    <nd ref="170378549"/>
+    <tag k="way-id" v="20166075"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-17867" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170378549"/>
+    <nd ref="170377781"/>
+    <nd ref="331515070"/>
+    <nd ref="170377782"/>
+    <nd ref="170377783"/>
+    <nd ref="170380621"/>
+    <tag k="way-id" v="20166075"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-17868" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170377786"/>
+    <tag k="way-id" v="20166076"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-18146" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170375312"/>
+    <tag k="way-id" v="21944540"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-18147" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170375312"/>
+    <nd ref="170375316"/>
+    <tag k="way-id" v="21944540"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-27539" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="30960059"/>
+    <nd ref="632532985"/>
+    <nd ref="30960060"/>
+    <tag k="way-id" v="27112881"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-27541" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="30960070"/>
+    <nd ref="30960071"/>
+    <nd ref="30960072"/>
+    <tag k="way-id" v="27112882"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-27542" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="30960072"/>
+    <tag k="way-id" v="27112882"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-27543" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793897"/>
+    <nd ref="60793898"/>
+    <nd ref="60793899"/>
+    <nd ref="60793901"/>
+    <nd ref="60793900"/>
+    <tag k="way-id" v="27112917"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-27544" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793900"/>
+    <nd ref="60793911"/>
+    <nd ref="60793912"/>
+    <nd ref="60793913"/>
+    <nd ref="60793915"/>
+    <tag k="way-id" v="27112917"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31212" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793958"/>
+    <nd ref="331507326"/>
+    <tag k="way-id" v="30096928"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31213" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331507326"/>
+    <nd ref="331507340"/>
+    <tag k="way-id" v="30096928"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31214" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331507340"/>
+    <tag k="way-id" v="30096928"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31217" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331507310"/>
+    <nd ref="331507313"/>
+    <nd ref="331507315"/>
+    <nd ref="331507320"/>
+    <nd ref="331507324"/>
+    <nd ref="331507326"/>
+    <tag k="way-id" v="30096930"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31218" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331507328"/>
+    <nd ref="331507330"/>
+    <nd ref="331507332"/>
+    <nd ref="331507334"/>
+    <nd ref="331507336"/>
+    <nd ref="331507338"/>
+    <nd ref="331507340"/>
+    <tag k="way-id" v="30096931"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31220" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="683788"/>
+    <nd ref="331507355"/>
+    <nd ref="331507359"/>
+    <nd ref="331507362"/>
+    <nd ref="331507365"/>
+    <nd ref="331507369"/>
+    <nd ref="331507373"/>
+    <nd ref="331507374"/>
+    <nd ref="331507377"/>
+    <nd ref="331507409"/>
+    <nd ref="331507411"/>
+    <nd ref="331507413"/>
+    <nd ref="331507415"/>
+    <nd ref="331507417"/>
+    <nd ref="331507419"/>
+    <nd ref="331507422"/>
+    <tag k="way-id" v="30096933"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31221" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331510447"/>
+    <nd ref="331510444"/>
+    <nd ref="331510442"/>
+    <nd ref="331510439"/>
+    <nd ref="331510437"/>
+    <nd ref="331510435"/>
+    <nd ref="331510433"/>
+    <nd ref="331510430"/>
+    <nd ref="331510419"/>
+    <nd ref="331510447"/>
+    <tag k="way-id" v="30097077"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31222" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331510447"/>
+    <nd ref="331510421"/>
+    <nd ref="331510424"/>
+    <nd ref="331510427"/>
+    <tag k="way-id" v="30097077"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31223" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331510427"/>
+    <nd ref="60793860"/>
+    <tag k="way-id" v="30097077"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31224" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331510482"/>
+    <nd ref="331510485"/>
+    <nd ref="331510489"/>
+    <nd ref="331510491"/>
+    <nd ref="331510495"/>
+    <nd ref="331510498"/>
+    <tag k="way-id" v="30097081"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31225" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="60793900"/>
+    <nd ref="331510460"/>
+    <nd ref="331510462"/>
+    <nd ref="331510463"/>
+    <nd ref="331510466"/>
+    <nd ref="331510482"/>
+    <tag k="way-id" v="30097082"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31226" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331510482"/>
+    <nd ref="331510467"/>
+    <nd ref="331510471"/>
+    <nd ref="331510473"/>
+    <nd ref="331510477"/>
+    <tag k="way-id" v="30097082"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31227" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="2197198"/>
+    <nd ref="331512855"/>
+    <nd ref="331512856"/>
+    <nd ref="331512858"/>
+    <tag k="way-id" v="30097219"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31228" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331512861"/>
+    <nd ref="359220354"/>
+    <tag k="way-id" v="30097220"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31229" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331512868"/>
+    <nd ref="331512869"/>
+    <tag k="way-id" v="30097221"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31230" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331512871"/>
+    <nd ref="331512869"/>
+    <tag k="way-id" v="30097222"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31231" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331512869"/>
+    <nd ref="331512875"/>
+    <nd ref="331512877"/>
+    <nd ref="331512878"/>
+    <nd ref="354915045"/>
+    <nd ref="331512879"/>
+    <tag k="way-id" v="30097222"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31232" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331514970"/>
+    <nd ref="331514971"/>
+    <tag k="way-id" v="30097382"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31233" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331515018"/>
+    <nd ref="331515019"/>
+    <nd ref="331515020"/>
+    <nd ref="331515021"/>
+    <nd ref="331515022"/>
+    <nd ref="331515023"/>
+    <nd ref="331515024"/>
+    <nd ref="331515025"/>
+    <nd ref="331515026"/>
+    <nd ref="331515027"/>
+    <nd ref="331515028"/>
+    <nd ref="331515029"/>
+    <nd ref="331515030"/>
+    <nd ref="331515031"/>
+    <nd ref="331515032"/>
+    <nd ref="331515033"/>
+    <nd ref="331515034"/>
+    <nd ref="331515035"/>
+    <nd ref="331515036"/>
+    <nd ref="331515038"/>
+    <nd ref="331515039"/>
+    <nd ref="331515041"/>
+    <nd ref="331515042"/>
+    <nd ref="331515044"/>
+    <nd ref="331515046"/>
+    <nd ref="331515047"/>
+    <nd ref="331514982"/>
+    <tag k="way-id" v="30097383"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31237" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331515057"/>
+    <nd ref="331515059"/>
+    <nd ref="331515060"/>
+    <nd ref="331515062"/>
+    <nd ref="331515063"/>
+    <nd ref="331515065"/>
+    <nd ref="331515066"/>
+    <nd ref="331515067"/>
+    <nd ref="331515068"/>
+    <nd ref="331515069"/>
+    <nd ref="170378554"/>
+    <tag k="way-id" v="30097388"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31238" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331514971"/>
+    <nd ref="331514972"/>
+    <nd ref="331514973"/>
+    <nd ref="331514974"/>
+    <nd ref="331514976"/>
+    <nd ref="331514978"/>
+    <nd ref="331514980"/>
+    <nd ref="331514982"/>
+    <tag k="way-id" v="30097407"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31239" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331514982"/>
+    <nd ref="331514983"/>
+    <nd ref="331514985"/>
+    <nd ref="331514995"/>
+    <nd ref="331514996"/>
+    <nd ref="331514997"/>
+    <nd ref="331514998"/>
+    <nd ref="331515001"/>
+    <nd ref="331515002"/>
+    <nd ref="331515003"/>
+    <nd ref="331515004"/>
+    <nd ref="331515005"/>
+    <nd ref="331515006"/>
+    <nd ref="331515008"/>
+    <nd ref="170378563"/>
+    <tag k="way-id" v="30097407"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31240" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170378563"/>
+    <nd ref="331515010"/>
+    <nd ref="331515012"/>
+    <nd ref="170380616"/>
+    <tag k="way-id" v="30097407"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31245" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331519239"/>
+    <tag k="way-id" v="30097667"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31256" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170370957"/>
+    <nd ref="170369965"/>
+    <nd ref="331534278"/>
+    <tag k="way-id" v="30098746"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31258" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331535078"/>
+    <nd ref="331535076"/>
+    <nd ref="331535075"/>
+    <nd ref="331535074"/>
+    <nd ref="331535073"/>
+    <tag k="way-id" v="30098790"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31568" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170375312"/>
+    <nd ref="336703720"/>
+    <tag k="way-id" v="30505423"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31569" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="336703722"/>
+    <nd ref="336703727"/>
+    <tag k="way-id" v="30505424"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31570" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="336703727"/>
+    <nd ref="336703725"/>
+    <tag k="way-id" v="30505424"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31571" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="336703727"/>
+    <nd ref="170375316"/>
+    <tag k="way-id" v="30505425"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31572" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170375316"/>
+    <nd ref="336703752"/>
+    <nd ref="336703729"/>
+    <tag k="way-id" v="30505425"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31573" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="95943709"/>
+    <nd ref="336703731"/>
+    <nd ref="336703733"/>
+    <nd ref="336703736"/>
+    <tag k="way-id" v="30505426"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-31724" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31850421"/>
+    <nd ref="331512854"/>
+    <tag k="way-id" v="30746655"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-33710" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="352726985"/>
+    <nd ref="352726986"/>
+    <nd ref="352726988"/>
+    <tag k="way-id" v="31516200"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-33711" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="352726988"/>
+    <nd ref="352726989"/>
+    <nd ref="352726990"/>
+    <tag k="way-id" v="31516200"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-33712" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="352726993"/>
+    <nd ref="352726994"/>
+    <nd ref="352726997"/>
+    <nd ref="352727000"/>
+    <nd ref="352727005"/>
+    <nd ref="352726988"/>
+    <tag k="way-id" v="31516201"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-33713" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="352726988"/>
+    <nd ref="352727007"/>
+    <tag k="way-id" v="31516201"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-33714" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="352726990"/>
+    <tag k="way-id" v="31516209"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-33973" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170360689"/>
+    <nd ref="170360691"/>
+    <tag k="way-id" v="31721161"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-33974" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170360691"/>
+    <nd ref="354914915"/>
+    <tag k="way-id" v="31721161"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-36755" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="1324091"/>
+    <tag k="way-id" v="32941220"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-36756" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="1324091"/>
+    <nd ref="1324090"/>
+    <nd ref="1324088"/>
+    <tag k="way-id" v="32941220"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-36757" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="1324088"/>
+    <nd ref="25925604"/>
+    <tag k="way-id" v="32941220"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-36761" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="21317954"/>
+    <nd ref="170359583"/>
+    <tag k="way-id" v="32941223"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-36762" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="170359583"/>
+    <nd ref="21312470"/>
+    <tag k="way-id" v="32941223"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-36763" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="683802"/>
+    <nd ref="331512879"/>
+    <tag k="way-id" v="32941225"/>
+    <tag k="speed" v="90"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-36764" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331512879"/>
+    <nd ref="359220356"/>
+    <nd ref="701270476"/>
+    <nd ref="31850569"/>
+    <tag k="way-id" v="32941225"/>
+    <tag k="speed" v="90"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-36765" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31850569"/>
+    <nd ref="701270472"/>
+    <nd ref="31781493"/>
+    <nd ref="32437033"/>
+    <tag k="way-id" v="32941225"/>
+    <tag k="speed" v="90"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-36766" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="32437033"/>
+    <nd ref="21317948"/>
+    <nd ref="243492443"/>
+    <nd ref="331514970"/>
+    <tag k="way-id" v="32941225"/>
+    <tag k="speed" v="90"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-36767" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331514970"/>
+    <nd ref="21317950"/>
+    <nd ref="243492442"/>
+    <nd ref="31781494"/>
+    <nd ref="21317952"/>
+    <tag k="way-id" v="32941225"/>
+    <tag k="speed" v="90"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-36768" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31849675"/>
+    <tag k="way-id" v="32941226"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-36769" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31849675"/>
+    <nd ref="331512854"/>
+    <tag k="way-id" v="32941226"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-36770" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331512854"/>
+    <nd ref="31781514"/>
+    <nd ref="331512861"/>
+    <tag k="way-id" v="32941226"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-36771" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="331512861"/>
+    <nd ref="632532935"/>
+    <nd ref="21712168"/>
+    <tag k="way-id" v="32941226"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-36772" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="21712168"/>
+    <nd ref="683802"/>
+    <tag k="way-id" v="32941226"/>
+    <tag k="speed" v="70"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-36777" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31781518"/>
+    <tag k="way-id" v="32941228"/>
+    <tag k="speed" v="90"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-36778" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31781518"/>
+    <nd ref="31850390"/>
+    <tag k="way-id" v="32941228"/>
+    <tag k="speed" v="90"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-36779" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31850390"/>
+    <nd ref="331512859"/>
+    <nd ref="31850421"/>
+    <tag k="way-id" v="32941228"/>
+    <tag k="speed" v="90"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-36780" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31850421"/>
+    <nd ref="359220354"/>
+    <tag k="way-id" v="32941228"/>
+    <tag k="speed" v="90"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-36781" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="359220354"/>
+    <nd ref="359220355"/>
+    <nd ref="683802"/>
+    <tag k="way-id" v="32941228"/>
+    <tag k="speed" v="90"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="no"/>
+  </way>
+  <way id="-46311" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="32437032"/>
+    <nd ref="632421087"/>
+    <nd ref="632420947"/>
+    <nd ref="31850563"/>
+    <tag k="way-id" v="49774277"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-46312" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="32437030"/>
+    <nd ref="632421441"/>
+    <nd ref="632421300"/>
+    <tag k="way-id" v="49774300"/>
+    <tag k="speed" v="30"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-46317" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="632506880"/>
+    <nd ref="632506873"/>
+    <nd ref="632506874"/>
+    <nd ref="632506875"/>
+    <nd ref="632506884"/>
+    <nd ref="632506886"/>
+    <nd ref="632506887"/>
+    <nd ref="632506888"/>
+    <nd ref="632506881"/>
+    <nd ref="632506883"/>
+    <nd ref="632506880"/>
+    <tag k="way-id" v="49781838"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-46318" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="21712168"/>
+    <nd ref="632532933"/>
+    <nd ref="632532927"/>
+    <nd ref="632532930"/>
+    <nd ref="632532924"/>
+    <tag k="way-id" v="49784201"/>
+    <tag k="speed" v="30"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+  <way id="-46333" version="1" timestamp="2010-07-09T15:38:15Z">
+    <nd ref="31849675"/>
+    <nd ref="632506880"/>
+    <tag k="way-id" v="49824228"/>
+    <tag k="speed" v="50"/>
+    <tag k="accessible" v="yes"/>
+    <tag k="accessible-reverse" v="yes"/>
+  </way>
+</osm>

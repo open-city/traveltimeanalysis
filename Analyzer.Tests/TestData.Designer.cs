@@ -80,5 +80,19 @@ namespace Analyzer.Tests {
                 return ((byte[])(obj));
             }
         }
+        
+        internal static byte[] osm_real_traffic_signals {
+            get {
+                object obj = ResourceManager.GetObject("osm_real_traffic_signals", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        internal static byte[] osm_traffic_signals_map {
+            get {
+                object obj = ResourceManager.GetObject("osm_traffic_signals_map", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
