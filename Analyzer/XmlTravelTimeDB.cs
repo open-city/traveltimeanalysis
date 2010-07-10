@@ -83,9 +83,9 @@ namespace LK.Analyzer {
 			_xmlWriter.WriteAttributeString("start", tt.TimeStart.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'f"));
 			_xmlWriter.WriteAttributeString("end", tt.TimeEnd.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'f"));
 			
-			foreach (var point in tt.Points) {
-				WritePoint(point);
-			}
+			//foreach (var point in tt.Points) {
+			//  WritePoint(point);
+			//}
 
 			_xmlWriter.WriteEndElement();
 		}
@@ -245,7 +245,7 @@ namespace LK.Analyzer {
 
 			_xmlReader.Skip();
 
-			return new TravelTime(segment, start, end, points);
+			return new TravelTime(segment, start, end);
 		}
 
 		private GPXPoint ReadPoint() {

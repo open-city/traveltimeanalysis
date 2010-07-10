@@ -80,21 +80,6 @@ namespace Analyzer.Tests {
 			Assert.Equal(new DateTime(2010, 5, 21, 16, 49, 19), target[1].TimeEnd);
 		}
 
-		[Fact()]
-		public void FromMatchedTrackFindsIntrmeiatePoints() {
-			OSMDB track = new OSMDB();
-			track.Load(new MemoryStream(TestData.osm_2_segments_without_incolmpete_parts));
-
-			var target = TravelTime.FromMatchedTrack(track).ToList();
-
-			Assert.Equal(2, target.Count());
-
-			Assert.Equal(0, target[0].Points.Count);
-
-			Assert.Equal(2, target[1].Points.Count);
-			Assert.Equal(new DateTime(2010, 5, 21, 16, 48, 29), target[1].Points[0].Time);
-			Assert.Equal(new DateTime(2010, 5, 21, 16, 48, 59), target[1].Points[1].Time);
-		}
 
 		[Fact()]
 		public void FromMatchedTrackProcessesTrackWithManySegmentsSegments() {

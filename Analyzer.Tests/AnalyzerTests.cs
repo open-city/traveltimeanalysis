@@ -15,11 +15,11 @@ namespace Analyzer.Tests {
 		[Fact()]
 		public void AnalyzeEstimatesFreeFlowTimeFromFastestLogs() {
 			List<TravelTime> travelTimes = new List<TravelTime>();
-			travelTimes.Add(new TravelTime(new SegmentInfo(), new DateTime(2010, 7, 7, 10, 00, 00), new DateTime(2010, 7, 7, 10, 00, 34), new GPXPoint[] {} ));
-			travelTimes.Add(new TravelTime(new SegmentInfo(), new DateTime(2010, 7, 7, 10, 00, 00), new DateTime(2010, 7, 7, 10, 00, 32), new GPXPoint[] { }));
-			travelTimes.Add(new TravelTime(new SegmentInfo(), new DateTime(2010, 7, 7, 10, 00, 00), new DateTime(2010, 7, 7, 10, 00, 30), new GPXPoint[] { }));
-			travelTimes.Add(new TravelTime(new SegmentInfo(), new DateTime(2010, 7, 7, 10, 00, 00), new DateTime(2010, 7, 7, 10, 00, 44), new GPXPoint[] { }));
-			travelTimes.Add(new TravelTime(new SegmentInfo(), new DateTime(2010, 7, 7, 10, 00, 00), new DateTime(2010, 7, 7, 10, 00, 46), new GPXPoint[] { }));
+			travelTimes.Add(new TravelTime(new SegmentInfo(), new DateTime(2010, 7, 7, 10, 00, 00), new DateTime(2010, 7, 7, 10, 00, 34)));
+			travelTimes.Add(new TravelTime(new SegmentInfo(), new DateTime(2010, 7, 7, 10, 00, 00), new DateTime(2010, 7, 7, 10, 00, 32)));
+			travelTimes.Add(new TravelTime(new SegmentInfo(), new DateTime(2010, 7, 7, 10, 00, 00), new DateTime(2010, 7, 7, 10, 00, 30)));
+			travelTimes.Add(new TravelTime(new SegmentInfo(), new DateTime(2010, 7, 7, 10, 00, 00), new DateTime(2010, 7, 7, 10, 00, 44)));
+			travelTimes.Add(new TravelTime(new SegmentInfo(), new DateTime(2010, 7, 7, 10, 00, 00), new DateTime(2010, 7, 7, 10, 00, 46)));
 
 			OSMDB map = new OSMDB();
 			map.Nodes.Add(new OSMNode(1, 1, 1));
