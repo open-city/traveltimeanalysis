@@ -94,5 +94,12 @@ namespace Analyzer.Tests {
                 return ((byte[])(obj));
             }
         }
+        
+        internal static byte[] simulated_traffic_db_day {
+            get {
+                object obj = ResourceManager.GetObject("simulated_traffic_db_day", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
