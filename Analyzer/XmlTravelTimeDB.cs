@@ -13,6 +13,12 @@ namespace LK.Analyzer {
 		XmlReader _xmlReader;
 		XmlWriter _xmlWriter;
 
+		public IEnumerable<SegmentInfo> TravelTimesSegments {
+			get {
+				return _storage.Keys;
+			}
+		}
+
 		public IEnumerable<TravelTime> TravelTimes {
 			get {
 				return _storage.Values.SelectMany(segTravelTimes => segTravelTimes);
@@ -219,7 +225,7 @@ namespace LK.Analyzer {
 				throw new XmlException("Attribute 'end' is missing.");
 			DateTime end = DateTime.Parse(attEnd);
 
-			List<Stop> points = new List<Stop>();
+			List<Stop> stops = new List<Stop>();
 
 			if (false == _xmlReader.IsEmptyElement) {
 				_xmlReader.Read();
@@ -229,7 +235,7 @@ namespace LK.Analyzer {
 						case XmlNodeType.Element:
 							switch (_xmlReader.Name) {
 								case "stop":
-									points.Add(ReadStop());
+									stops.Add(ReadStop());
 									continue;
 								default:
 									_xmlReader.Skip();
@@ -244,7 +250,7 @@ namespace LK.Analyzer {
 
 			_xmlReader.Skip();
 
-			return new TravelTime(segment, start, end);
+			return new TravelTime(segment, start, end, stops);
 		}
 
 		private Stop ReadStop() {

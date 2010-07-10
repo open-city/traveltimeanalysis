@@ -85,6 +85,15 @@ namespace LK.Analyzer {
 			_stops = new List<Stop>();
 		}
 
+		public TravelTime(SegmentInfo segment, DateTime start, DateTime end, IEnumerable<Stop> stops) {
+			_segment = segment;
+			_timeStart = start;
+			_timeEnd = end;
+
+			_stops = new List<Stop>();
+			_stops.AddRange(stops);
+		}
+
 		static double GetLength(OSMWay way, OSMDB db) {
 			double result = 0;
 			for (int i = 0; i < way.Nodes.Count - 1; i++) {

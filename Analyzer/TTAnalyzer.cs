@@ -20,7 +20,6 @@ namespace LK.Analyzer {
 			result.Segment = travelTimes.First().Segment;
 
 			result.FreeFlowTravelTime = EstimateFreeFlowTime(travelTimes);
-
 			if (_map.Nodes[segment.NodeToID].Tags.ContainsTag("highway") && _map.Nodes[segment.NodeToID].Tags["highway"].Value == "traffic_signals") {
 				result.TrafficSignalsDelay = EstimateTafficSignalsDelay(travelTimes, segment);
 			}
@@ -41,11 +40,11 @@ namespace LK.Analyzer {
 		}
 
 		TrafficSignalsDelayInfo EstimateTafficSignalsDelay(IEnumerable<TravelTime> travelTimes, SegmentInfo segment) {
-			int totalStops = travelTimes.Sum(tt => tt.Stops.Count);
-			double totalStopsLength = travelTimes.Sum(tt => tt.Stops.Sum(s => s.Duration.TotalSeconds));
+			int totalStops = travelTimes.Where(tt => tt.Stops.Count > 0).Count();
+			double totalStopsLength = travelTimes.Where(tt => tt.Stops.Count > 0).Sum(tt => tt.Stops.Last().Duration.TotalSeconds);
 
 			if (totalStops > 0)
-				return new TrafficSignalsDelayInfo() { Probability = travelTimes.Count() / totalStops, Length = totalStopsLength / totalStops };
+				return new TrafficSignalsDelayInfo() { Probability = (double)totalStops / travelTimes.Count(), Length = totalStopsLength / totalStops };
 			else
 				return new TrafficSignalsDelayInfo() { Probability = 0, Length = 0 };
 		}

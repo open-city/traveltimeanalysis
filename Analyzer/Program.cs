@@ -17,12 +17,14 @@ namespace LK.Analyzer {
 			string outputPath = ".";
 			bool addTracks = false;
 			bool showHelp = false;
+			bool analyze = false;
 
 			OptionSet parameters = new OptionSet() {
 				{ "db=", "path to the travel times database",																									v => dbPath = v},
 				{ "add", "adds specified tracks to the DB",																										v => addTracks = v != null},
 				{ "track=",	"path to the matched GPS track to process or to the directory to process",				v => trackPath = v},
 				{ "map=", "path to the routable map",																													v => mapPath = v},
+				{ "a|analyze",																																								v => analyze = v != null},
 				{ "o|output=", "path to the output directory",																								v => outputPath = v},
 				{ "h|?|help",																																									v => showHelp = v != null},
 			};
@@ -61,11 +63,24 @@ namespace LK.Analyzer {
 						AddTrackToDB(db, file);
 					}
 				}
+
+				Console.Write("Saving travel times database ...");
+				db.Save(dbPath);
+				Console.WriteLine("\t\t\tDone.");
 			}
 
-			Console.Write("Saving travel times database ...");
-			db.Save(dbPath);
-			Console.WriteLine("\t\t\tDone.");
+			if (analyze) {
+				Console.Write("Loading routable map ...");
+				OSMDB map = new OSMDB();
+				map.Load(mapPath);
+
+				Console.WriteLine("\t\t\tDone.");
+
+				TTAnalyzer analyzer = new TTAnalyzer(map);
+				foreach (var segment in db.TravelTimesSegments) {
+					Model result = analyzer.Analyze(db.GetTravelTimes(segment), segment);
+				}
+			}
 		}
 
 		static void AddTrackToDB(ITravelTimesDB db, string path) {

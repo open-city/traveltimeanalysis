@@ -7,6 +7,7 @@ using System.IO;
 namespace LK.Analyzer {
 	public interface ITravelTimesDB {
 		IEnumerable<TravelTime> TravelTimes { get; }
+		IEnumerable<SegmentInfo> TravelTimesSegments { get; }
 		IEnumerable<TravelTime> GetTravelTimes(SegmentInfo segment);
 
 		void AddTravelTime(TravelTime toAdd);
