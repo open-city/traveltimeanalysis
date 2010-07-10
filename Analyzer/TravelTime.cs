@@ -166,7 +166,7 @@ namespace LK.Analyzer {
 
 			//Find start of the first segment
 			int index = 0;
-			while (track.Nodes[orderedWays[index].Nodes[0]].Tags.ContainsTag("crossroad") == false)
+			while (index < orderedWays.Count && track.Nodes[orderedWays[index].Nodes[0]].Tags.ContainsTag("crossroad") == false)
 				index++;
 
 			while (index < orderedWays.Count) {
@@ -218,6 +218,9 @@ namespace LK.Analyzer {
 								ii++;
 
 							stop.End = points[ii].Time;
+							if (stop.Start == stop.End) {
+								int a = 1;
+							}
 							tt.Stops.Add(stop);
 						}
 						ii++;

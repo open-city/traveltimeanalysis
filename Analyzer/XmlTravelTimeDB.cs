@@ -82,20 +82,19 @@ namespace LK.Analyzer {
 			_xmlWriter.WriteStartElement("travel-time");
 			_xmlWriter.WriteAttributeString("start", tt.TimeStart.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'f"));
 			_xmlWriter.WriteAttributeString("end", tt.TimeEnd.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'f"));
-			
-			//foreach (var point in tt.Points) {
-			//  WritePoint(point);
-			//}
+
+			foreach (var stop in tt.Stops) {
+				WriteStop(stop);
+			}
 
 			_xmlWriter.WriteEndElement();
 		}
 
-		void WritePoint(GPXPoint point) {
-			_xmlWriter.WriteStartElement("pt");
+		void WriteStop(Stop stop) {
+			_xmlWriter.WriteStartElement("stop");
 
-			_xmlWriter.WriteAttributeString("lat", point.Latitude.ToString(System.Globalization.CultureInfo.InvariantCulture));
-			_xmlWriter.WriteAttributeString("lon", point.Longitude.ToString(System.Globalization.CultureInfo.InvariantCulture));
-			_xmlWriter.WriteAttributeString("time", point.Time.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'f"));
+			_xmlWriter.WriteAttributeString("start", stop.Start.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'f"));
+			_xmlWriter.WriteAttributeString("end", stop.End.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'f"));
 
 			_xmlWriter.WriteEndElement();		
 		}
@@ -220,7 +219,7 @@ namespace LK.Analyzer {
 				throw new XmlException("Attribute 'end' is missing.");
 			DateTime end = DateTime.Parse(attEnd);
 
-			List<GPXPoint> points = new List<GPXPoint>();
+			List<Stop> points = new List<Stop>();
 
 			if (false == _xmlReader.IsEmptyElement) {
 				_xmlReader.Read();
@@ -229,8 +228,8 @@ namespace LK.Analyzer {
 					switch (_xmlReader.NodeType) {
 						case XmlNodeType.Element:
 							switch (_xmlReader.Name) {
-								case "pt":
-									points.Add(ReadPoint());
+								case "stop":
+									points.Add(ReadStop());
 									continue;
 								default:
 									_xmlReader.Skip();
@@ -248,29 +247,22 @@ namespace LK.Analyzer {
 			return new TravelTime(segment, start, end);
 		}
 
-		private GPXPoint ReadPoint() {
-			string lat = _xmlReader.GetAttribute("lat");
-			if (string.IsNullOrEmpty(lat)) {
-				throw new XmlException("Attribute 'lat' is missing.");
+		private Stop ReadStop() {
+			string startAtt = _xmlReader.GetAttribute("start");
+			if (string.IsNullOrEmpty(startAtt)) {
+				throw new XmlException("Attribute 'start' is missing.");
 			}
-			double pointLat = double.Parse(lat, System.Globalization.CultureInfo.InvariantCulture);
+			DateTime start = DateTime.Parse(startAtt);
 
-
-			string lon = _xmlReader.GetAttribute("lon");
-			if (string.IsNullOrEmpty(lon)) {
-				throw new XmlException("Attribute 'lon' is missing.");
+			string endAtt = _xmlReader.GetAttribute("end");
+			if (string.IsNullOrEmpty(endAtt)) {
+				throw new XmlException("Attribute 'end' is missing.");
 			}
-			double pointLon = double.Parse(lon, System.Globalization.CultureInfo.InvariantCulture);
-
-			string timeAtt = _xmlReader.GetAttribute("time");
-			if (string.IsNullOrEmpty(timeAtt)) {
-				throw new XmlException("Attribute 'lon' is missing.");
-			}
-			DateTime time = DateTime.Parse(timeAtt);
+			DateTime end = DateTime.Parse(endAtt);
 
 			_xmlReader.Skip();
 
-			return new GPXPoint(pointLat, pointLon, time);
+			return new Stop() { Start = start, End = end };
 		}
 	}
 }

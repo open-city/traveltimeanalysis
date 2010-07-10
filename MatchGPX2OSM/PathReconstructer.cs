@@ -286,8 +286,21 @@ namespace LK.MatchGPX2OSM {
 				else {
 					index++;
 				}
-
 			}
+
+			index = 0;
+			while (index < path.Count) {
+				if (path[index].Nodes.Count == 0)
+					path.RemoveAt(index);
+				else
+					index++;
+			}
+
+			while (path.Count > 0 && ((PointEx)path[0].Nodes[0]).Time == DateTime.MinValue)
+				path.RemoveAt(0);
+
+			while (path.Count > 0 && ((PointEx)path.Last().Nodes.Last()).Time == DateTime.MinValue)
+				path.RemoveAt(path.Count -1);
 		}
 
 		/// <summary>
