@@ -8,7 +8,7 @@ namespace LK.Analyzer {
 		public SegmentInfo Segment { get; set; }
 
 		public double FreeFlowTravelTime { get; set; }
-		public double DelayTraffic { get; set; }
+		public double TrafficDelay { get; set; }
 		public TrafficSignalsDelayInfo TrafficSignalsDelay { get; set; }
 	}
 

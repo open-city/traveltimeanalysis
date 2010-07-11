@@ -48,5 +48,18 @@ namespace Analyzer.Tests {
 			Assert.Equal(30, target.TrafficSignalsDelay.Length);
 			Assert.Equal(1.0, target.TrafficSignalsDelay.Probability);
 		}
+
+		[Fact()]
+		public void AnalyzeFindTravelTimePattersInOneDay_Simulated() {
+			XmlTravelTimeDB db = new XmlTravelTimeDB();
+			db.Load(new MemoryStream(TestData.simulated_traffic_db_day));
+
+			OSMDB map = new OSMDB();
+			map.Nodes.Add(new OSMNode(1, 1, 1));
+			map.Nodes.Add(new OSMNode(2, 1.1, 1.1));
+
+			TTAnalyzer analyzer = new TTAnalyzer(map);
+			Model target = analyzer.Analyze(db.TravelTimes, db.TravelTimesSegments.First());
+		}
 	}
 }
