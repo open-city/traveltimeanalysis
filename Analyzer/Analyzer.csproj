@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBScan.cs" />
+    <Compile Include="TimeResolution.cs" />
     <Compile Include="TTAnalyzer.cs" />
     <Compile Include="ITravelTimesDB.cs" />
     <Compile Include="Model.cs" />

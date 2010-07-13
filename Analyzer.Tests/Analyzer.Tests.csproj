@@ -50,6 +50,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TestData.resx</DependentUpon>
     </Compile>
+    <Compile Include="TimeResolutionTests.cs" />
     <Compile Include="TravelTimeTests.cs" />
   </ItemGroup>
   <ItemGroup>

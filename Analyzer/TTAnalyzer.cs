@@ -70,17 +70,15 @@ namespace LK.Analyzer {
 			}
 
 			DBScan<TravelTimeDelay> clusterAnalyzer = new DBScan<TravelTimeDelay>(new DBScan<TravelTimeDelay>.FindNeighbours(FindNeighbours));
-			var clusters = clusterAnalyzer.ClusterAnalysis(delays, 2);
+			var travelTimeClusters = clusterAnalyzer.ClusterAnalysis(delays, 2);
+			travelTimeClusters.ToList();
 		}
-
+		
 		List<TravelTimeDelay> FindNeighbours(TravelTimeDelay target, IList<TravelTimeDelay> items) {
-			double sigma = items.Sum(item => item.Delay * item.Delay) / items.Count -
-										Math.Pow(items.Sum(item => item.Delay) / items.Count, 2);
-			//double eps = 0.1 * items.Sum(item => item.Delay) / items.Count;
-			double eps = 0.3 * Math.Sqrt(sigma);
+			double eps = 0.15 * target.TravelTime.TotalTravelTime.TotalSeconds;
 			List<TravelTimeDelay> result = new List<TravelTimeDelay>();
 			for (int i = 0; i < items.Count; i++) {
-				if (items[i] != target && Math.Abs(target.Delay - items[i].Delay) < eps)
+				if (items[i] != target && Math.Abs(target.Delay - items[i].Delay) < eps && Math.Abs((target.TravelTime.TimeStart - items[i].TravelTime.TimeStart).TotalMinutes) < 120)
 					result.Add(items[i]);
 			}
 
