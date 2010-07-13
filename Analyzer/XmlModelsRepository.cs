@@ -9,6 +9,10 @@ namespace LK.Analyzer {
 	public class XmlModelsRepository : MemoryModelsRepository, IDisposable {
 		Stream _xmlStream;
 		XmlWriter _xmlWriter;
+		XmlReader _xmlReader;
+
+		public XmlModelsRepository() {
+		}
 
 		public XmlModelsRepository(Stream stream) {
 			_xmlStream = stream;
@@ -18,18 +22,15 @@ namespace LK.Analyzer {
 			_xmlStream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.ReadWrite);
 		}
 
-		protected void Load() {
-		}
-
-		protected void Save() {
+		public void Save(Stream stream) {
 			XmlWriterSettings writerSetting = new XmlWriterSettings();
 			writerSetting.Indent = true;
 
-			_xmlStream.Seek(0, 0);
-			_xmlStream.SetLength(0);
-			_xmlWriter = XmlTextWriter.Create(new StreamWriter(_xmlStream, new UTF8Encoding(false)), writerSetting);
+			stream.Seek(0, 0);
+			stream.SetLength(0);
+			_xmlWriter = XmlTextWriter.Create(new StreamWriter(stream, new UTF8Encoding(false)), writerSetting);
 
-			_xmlWriter.WriteStartElement("travel-time-db");
+			_xmlWriter.WriteStartElement("models-db");
 
 			foreach (var segment in _storage.Keys) {
 				WriteModel(segment);
@@ -37,6 +38,168 @@ namespace LK.Analyzer {
 
 			_xmlWriter.WriteEndElement();
 			_xmlWriter.Close();
+		}
+
+		public void Save(string filename) {
+			using (Stream stream = new FileStream(filename, FileMode.OpenOrCreate, FileAccess.ReadWrite)) {
+				Save(stream);
+			}
+		}
+
+		public void Load(string filename) {
+			using (Stream stream = new FileStream(filename, FileMode.Open, FileAccess.Read)) {
+				Load(stream);
+			}
+		}
+		
+		public void Load(Stream stream) {
+			XmlReaderSettings xmlReaderSettings = new XmlReaderSettings();
+			xmlReaderSettings.IgnoreComments = true;
+			xmlReaderSettings.IgnoreProcessingInstructions = true;
+			xmlReaderSettings.IgnoreWhitespace = true;
+
+			try {
+				_xmlReader = XmlTextReader.Create(stream, xmlReaderSettings);
+
+				_xmlReader.Read();
+				while (false == _xmlReader.EOF) {
+
+
+					switch (_xmlReader.NodeType) {
+						case XmlNodeType.XmlDeclaration:
+							_xmlReader.Read();
+							continue;
+
+						case XmlNodeType.Element:
+							if (_xmlReader.Name != "models-db")
+								throw new XmlException("Invalid xml root element. Expected <models-db>.");
+
+							if (_xmlReader.IsEmptyElement == false)
+								ReadRootTag();
+							return;
+
+						default:
+							throw new XmlException();
+					}
+				}
+			}
+			finally {
+				_xmlReader.Close();
+				_xmlReader = null;
+			}
+		}
+		
+		protected void Load() {
+			Load(_xmlStream);
+		}
+
+		private void ReadRootTag() {
+			_xmlReader.Read();
+
+			while (_xmlReader.NodeType != XmlNodeType.EndElement) {
+				switch (_xmlReader.Name) {
+					case "model":
+						ReadModel();
+						break;
+					default:
+						_xmlReader.Skip();
+						break;
+				}
+			}
+		}
+
+		private void ReadModel() {
+			SegmentInfo segment = new SegmentInfo();
+
+			string attFrom = _xmlReader.GetAttribute("node-from");
+			if (attFrom == null)
+				throw new XmlException("Attribute 'from' is missing.");
+			segment.NodeFromID = int.Parse(attFrom);
+
+			string attTo = _xmlReader.GetAttribute("node-to");
+			if (attTo == null)
+				throw new XmlException("Attribute 'to' is missing.");
+			segment.NodeToID = int.Parse(attTo);
+
+			string attWay = _xmlReader.GetAttribute("way");
+			if (attFrom == null)
+				throw new XmlException("Attribute 'way' is missing.");
+			segment.WayID = int.Parse(attWay);
+
+			Model model = new Model();
+			
+			string attFreeFlow = _xmlReader.GetAttribute("freeflow");
+			if(attFreeFlow == null)
+				throw new XmlException("Attribute 'freeflow' is missing.");
+			model.FreeFlowTravelTime = double.Parse(attFreeFlow, System.Globalization.CultureInfo.InvariantCulture);
+
+			string attAvgDelay = _xmlReader.GetAttribute("avg-delay");
+			if (attAvgDelay == null)
+				throw new XmlException("Attribute 'avg-delay' is missing.");
+			model.AvgDelay = double.Parse(attAvgDelay, System.Globalization.CultureInfo.InvariantCulture);
+
+			string attSignalsDelay = _xmlReader.GetAttribute("signals-delay");
+			string attSignalProbability = _xmlReader.GetAttribute("signals-prob");
+			if (attSignalsDelay != null && attSignalProbability != null)
+				model.TrafficSignalsDelay = new TrafficSignalsDelayInfo() {
+					Length = double.Parse(attSignalsDelay, System.Globalization.CultureInfo.InvariantCulture),
+					Probability = double.Parse(attSignalProbability, System.Globalization.CultureInfo.InvariantCulture)
+				  };
+			
+
+			if (false == _xmlReader.IsEmptyElement) {
+				_xmlReader.Read();
+
+				while (_xmlReader.NodeType != XmlNodeType.EndElement) {
+					switch (_xmlReader.NodeType) {
+						case XmlNodeType.Element:
+							switch (_xmlReader.Name) {
+								case "traffic-delay":
+									model.TrafficDelay.Add(ReadTrafficDelay());
+									continue;
+								default:
+									_xmlReader.Skip();
+									continue;
+							}
+						default:
+							_xmlReader.Skip();
+							break;
+					}
+				}
+			}
+
+			_storage.Add(segment, model);
+			_xmlReader.Skip();
+		}
+
+		private TrafficDelayInfo ReadTrafficDelay() {
+			string attFrom = _xmlReader.GetAttribute("from");
+			if (attFrom == null)
+				throw new XmlException("Attribute 'from' is missing.");
+			TimeSpan from = TimeSpan.Parse(attFrom);
+
+			string attTo = _xmlReader.GetAttribute("to");
+			if (attTo == null)
+				throw new XmlException("Attribute 'to' is missing.");
+			TimeSpan to = TimeSpan.Parse(attTo);
+
+			string attDay = _xmlReader.GetAttribute("day");
+			if (attDay == null)
+				throw new XmlException("Attribute 'day' is missing.");
+			DayOfWeek day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), attDay);
+
+			string attDelay = _xmlReader.GetAttribute("delay");
+			if (attDelay == null)
+				throw new XmlException("Attribute 'delay' is missing.");
+			double delay = double.Parse(attDelay, System.Globalization.CultureInfo.InvariantCulture);
+
+			_xmlReader.Skip();
+
+			return new TrafficDelayInfo() { From = from, To = to, Delay = delay, Day = day };
+		}
+
+		protected void Save() {
+			Save(_xmlStream);
 		}
 
 		void WriteModel(SegmentInfo segment) {
@@ -55,7 +218,7 @@ namespace LK.Analyzer {
 			
 			if (model.TrafficSignalsDelay.Probability > 0) {
 				_xmlWriter.WriteAttributeString("signals-delay", model.TrafficSignalsDelay.Length.ToString("F1", System.Globalization.CultureInfo.InvariantCulture));
-				_xmlWriter.WriteAttributeString("signals-probability", model.TrafficSignalsDelay.Probability.ToString("F2", System.Globalization.CultureInfo.InvariantCulture));
+				_xmlWriter.WriteAttributeString("signals-prob", model.TrafficSignalsDelay.Probability.ToString("F2", System.Globalization.CultureInfo.InvariantCulture));
 			}
 
 			foreach (var delay in model.TrafficDelay) {
