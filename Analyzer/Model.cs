@@ -53,9 +53,9 @@ namespace LK.Analyzer {
 	}
 
 	public struct TrafficDelayInfo {
-		DayOfWeek Day { get; set; }
-		DateTime From { get; set; }
-		DateTime To { get; set; }
-		double Delay { get; set; }
+		public DayOfWeek Day { get; set; }
+		public TimeSpan From { get; set; }
+		public TimeSpan To { get; set; }
+		public double Delay { get; set; }
 	}
 }

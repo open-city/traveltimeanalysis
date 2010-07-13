@@ -69,16 +69,56 @@ namespace LK.Analyzer {
 				delays.Add(new TravelTimeDelay() { TravelTime = traveltime, Delay = delay });
 			}
 
+			List<List<TravelTimeDelay>> travelTimeClusters = null;
 			DBScan<TravelTimeDelay> clusterAnalyzer = new DBScan<TravelTimeDelay>(new DBScan<TravelTimeDelay>.FindNeighbours(FindNeighbours));
-			var travelTimeClusters = clusterAnalyzer.ClusterAnalysis(delays, 2);
-			travelTimeClusters.ToList();
+			for (int i = 0; i < resolutions.Length; i++) {
+				resolutionIndex = i;
+				travelTimeClusters = clusterAnalyzer.ClusterAnalysis(delays, 2);
+
+				if (travelTimeClusters.Sum(cluster => cluster.Count) > 0.75 * delays.Count)
+					break;
+			}
+
+			foreach (var cluster in travelTimeClusters) {
+				TrafficDelayInfo delayInfo = new TrafficDelayInfo();
+				if(resolutions[resolutionIndex].Dates == DatesHandling.Any)
+					delayInfo.Day = DayOfWeek.Any;
+				else if(resolutions[resolutionIndex].Dates == DatesHandling.WeekendWorkdays)
+					delayInfo.Day = (DayOfWeek.Workday & DayOfWeekFactory.FromDate(cluster[0].TravelTime.TimeStart)) > 0 ? DayOfWeek.Workday : DayOfWeek.Weekend;
+				else
+					delayInfo.Day = DayOfWeekFactory.FromDate(cluster[0].TravelTime.TimeStart);
+
+				delayInfo.Delay = cluster.Sum(tt => tt.Delay) / cluster.Count;
+				delayInfo.From = cluster.Min(tt => tt.TravelTime.TimeStart.TimeOfDay);
+				delayInfo.To = cluster.Max(tt => tt.TravelTime.TimeStart.TimeOfDay);
+
+				model.TrafficDelay.Add(delayInfo);
+			}
 		}
-		
+
+		TimeResolution[] resolutions = new TimeResolution[] {
+			new TimeResolution() {Dates = DatesHandling.Days, EpsMinutes = 15},
+			new TimeResolution() {Dates = DatesHandling.Days, EpsMinutes = 30},
+			new TimeResolution() {Dates = DatesHandling.WeekendWorkdays, EpsMinutes = 30},
+			new TimeResolution() {Dates = DatesHandling.Days, EpsMinutes = 60},
+			new TimeResolution() {Dates = DatesHandling.WeekendWorkdays, EpsMinutes = 60},
+			new TimeResolution() {Dates = DatesHandling.Days, EpsMinutes = 120},
+			new TimeResolution() {Dates = DatesHandling.WeekendWorkdays, EpsMinutes = 120},
+			new TimeResolution() {Dates = DatesHandling.Days, EpsMinutes = 240},
+			new TimeResolution() {Dates = DatesHandling.WeekendWorkdays, EpsMinutes = 240},
+			new TimeResolution() {Dates = DatesHandling.Any, EpsMinutes = 30},
+			new TimeResolution() {Dates = DatesHandling.Any, EpsMinutes = 60},
+			new TimeResolution() {Dates = DatesHandling.Any, EpsMinutes = 120},
+			new TimeResolution() {Dates = DatesHandling.Any, EpsMinutes = 240},
+			new TimeResolution() {Dates = DatesHandling.Any, EpsMinutes = 480},
+		};
+		int resolutionIndex = 0;
+
 		List<TravelTimeDelay> FindNeighbours(TravelTimeDelay target, IList<TravelTimeDelay> items) {
 			double eps = 0.15 * target.TravelTime.TotalTravelTime.TotalSeconds;
 			List<TravelTimeDelay> result = new List<TravelTimeDelay>();
 			for (int i = 0; i < items.Count; i++) {
-				if (items[i] != target && Math.Abs(target.Delay - items[i].Delay) < eps && Math.Abs((target.TravelTime.TimeStart - items[i].TravelTime.TimeStart).TotalMinutes) < 120)
+				if (items[i] != target && Math.Abs(target.Delay - items[i].Delay) < eps && resolutions[resolutionIndex].AreClose(target.TravelTime.TimeStart, items[i].TravelTime.TimeStart))
 					result.Add(items[i]);
 			}
 
