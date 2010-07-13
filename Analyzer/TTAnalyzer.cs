@@ -38,7 +38,7 @@ namespace LK.Analyzer {
 
 			var toEstimate = travelTimes.OrderBy(tt => tt.TotalTravelTime).Take(count);
 
-			return toEstimate.Sum(tt => tt.TotalTravelTime.TotalSeconds) / count;
+			return toEstimate.Sum(tt => tt.TotalTravelTime.TotalSeconds - tt.Stops.Sum(stop => stop.Duration.TotalSeconds)) / count;
 		}
 
 		TrafficSignalsDelayInfo EstimateTafficSignalsDelay(IEnumerable<TravelTime> travelTimes, SegmentInfo segment) {
@@ -60,7 +60,7 @@ namespace LK.Analyzer {
 			List<TravelTimeDelay> delays = new List<TravelTimeDelay>();
 			foreach (var traveltime in travelTimes) {
 				double delay = 0;
-				if (traveltime.Stops.Count > 0)
+				if (model.TrafficSignalsDelay.Probability > 0 && traveltime.Stops.Count > 0)
 					delay = traveltime.TotalTravelTime.TotalSeconds - model.FreeFlowTravelTime - traveltime.Stops.Last().Duration.TotalSeconds;
 				else
 					delay = traveltime.TotalTravelTime.TotalSeconds - model.FreeFlowTravelTime;
@@ -90,7 +90,7 @@ namespace LK.Analyzer {
 
 				delayInfo.Delay = cluster.Sum(tt => tt.Delay) / cluster.Count;
 				delayInfo.From = cluster.Min(tt => tt.TravelTime.TimeStart.TimeOfDay);
-				delayInfo.To = cluster.Max(tt => tt.TravelTime.TimeStart.TimeOfDay);
+				delayInfo.To = cluster.Max(tt => tt.TravelTime.TimeEnd.TimeOfDay);
 
 				model.TrafficDelay.Add(delayInfo);
 			}
@@ -104,13 +104,9 @@ namespace LK.Analyzer {
 			new TimeResolution() {Dates = DatesHandling.WeekendWorkdays, EpsMinutes = 60},
 			new TimeResolution() {Dates = DatesHandling.Days, EpsMinutes = 120},
 			new TimeResolution() {Dates = DatesHandling.WeekendWorkdays, EpsMinutes = 120},
-			new TimeResolution() {Dates = DatesHandling.Days, EpsMinutes = 240},
-			new TimeResolution() {Dates = DatesHandling.WeekendWorkdays, EpsMinutes = 240},
 			new TimeResolution() {Dates = DatesHandling.Any, EpsMinutes = 30},
 			new TimeResolution() {Dates = DatesHandling.Any, EpsMinutes = 60},
 			new TimeResolution() {Dates = DatesHandling.Any, EpsMinutes = 120},
-			new TimeResolution() {Dates = DatesHandling.Any, EpsMinutes = 240},
-			new TimeResolution() {Dates = DatesHandling.Any, EpsMinutes = 480},
 		};
 		int resolutionIndex = 0;
 

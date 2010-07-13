@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBScan.cs" />
+    <Compile Include="IModelsRepository.cs" />
+    <Compile Include="MemoryModelsRepository.cs" />
     <Compile Include="TimeResolution.cs" />
     <Compile Include="TTAnalyzer.cs" />
     <Compile Include="ITravelTimesDB.cs" />
@@ -52,6 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SegmentInfo.cs" />
     <Compile Include="TravelTime.cs" />
+    <Compile Include="XmlModelsRepository.cs" />
     <Compile Include="XmlTravelTimeDB.cs" />
   </ItemGroup>
   <ItemGroup>

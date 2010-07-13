@@ -76,10 +76,15 @@ namespace LK.Analyzer {
 
 				Console.WriteLine("\t\t\tDone.");
 
+				IModelsRepository modelsRepository = new XmlModelsRepository(outputPath);
+
 				TTAnalyzer analyzer = new TTAnalyzer(map);
 				foreach (var segment in db.TravelTimesSegments) {
-					Model result = analyzer.Analyze(db.GetTravelTimes(segment), segment);
+					modelsRepository.AddModel(analyzer.Analyze(db.GetTravelTimes(segment), segment));
 				}
+
+				Console.Write("Saving models ...");
+				modelsRepository.Commit();
 			}
 		}
 
