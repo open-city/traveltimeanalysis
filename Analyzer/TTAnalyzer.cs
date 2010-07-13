@@ -68,6 +68,7 @@ namespace LK.Analyzer {
 				delay = Math.Max(0, delay);
 				delays.Add(new TravelTimeDelay() { TravelTime = traveltime, Delay = delay });
 			}
+			model.AvgDelay = delays.Sum(delay => delay.Delay) / delays.Count;
 
 			List<List<TravelTimeDelay>> travelTimeClusters = null;
 			DBScan<TravelTimeDelay> clusterAnalyzer = new DBScan<TravelTimeDelay>(new DBScan<TravelTimeDelay>.FindNeighbours(FindNeighbours));

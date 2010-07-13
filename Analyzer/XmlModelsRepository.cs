@@ -40,15 +40,23 @@ namespace LK.Analyzer {
 		}
 
 		void WriteModel(SegmentInfo segment) {
+			Model model = _storage[segment];
+
+			if (model.FreeFlowTravelTime == 0)
+				return;
+
 			_xmlWriter.WriteStartElement("model");
 			_xmlWriter.WriteAttributeString("node-from", segment.NodeFromID.ToString());
 			_xmlWriter.WriteAttributeString("node-to", segment.NodeToID.ToString());
 			_xmlWriter.WriteAttributeString("way", segment.WayID.ToString());
 
-			Model model = _storage[segment];
-			_xmlWriter.WriteAttributeString("freeflow", model.FreeFlowTravelTime.ToString(System.Globalization.CultureInfo.InvariantCulture));
-			_xmlWriter.WriteAttributeString("signals-delay", model.TrafficSignalsDelay.Length.ToString(System.Globalization.CultureInfo.InvariantCulture));
-			_xmlWriter.WriteAttributeString("signals-probability", model.TrafficSignalsDelay.Probability.ToString(System.Globalization.CultureInfo.InvariantCulture));
+			_xmlWriter.WriteAttributeString("freeflow", model.FreeFlowTravelTime.ToString("F1", System.Globalization.CultureInfo.InvariantCulture));
+			_xmlWriter.WriteAttributeString("avg-delay", model.AvgDelay.ToString("F1", System.Globalization.CultureInfo.InvariantCulture));
+			
+			if (model.TrafficSignalsDelay.Probability > 0) {
+				_xmlWriter.WriteAttributeString("signals-delay", model.TrafficSignalsDelay.Length.ToString("F1", System.Globalization.CultureInfo.InvariantCulture));
+				_xmlWriter.WriteAttributeString("signals-probability", model.TrafficSignalsDelay.Probability.ToString("F2", System.Globalization.CultureInfo.InvariantCulture));
+			}
 
 			foreach (var delay in model.TrafficDelay) {
 				WriteDelay(delay);
@@ -59,13 +67,19 @@ namespace LK.Analyzer {
 
 		void WriteDelay(TrafficDelayInfo delay) {
 			_xmlWriter.WriteStartElement("traffic-delay");
-			_xmlWriter.WriteAttributeString("from", delay.From.ToString());
-			_xmlWriter.WriteAttributeString("to", delay.To.ToString());
+			_xmlWriter.WriteAttributeString("from", FormatTimeSpan(delay.From));
+			_xmlWriter.WriteAttributeString("to", FormatTimeSpan(delay.To));
 			_xmlWriter.WriteAttributeString("day", delay.Day.ToString());
 
-			_xmlWriter.WriteAttributeString("delay", delay.Delay.ToString(System.Globalization.CultureInfo.InvariantCulture));
+			_xmlWriter.WriteAttributeString("delay", delay.Delay.ToString("F1", System.Globalization.CultureInfo.InvariantCulture));
 
 			_xmlWriter.WriteEndElement();
+		}
+
+		private static string FormatTimeSpan(TimeSpan span) {
+			return span.Hours.ToString("00") + ":" +
+						 span.Minutes.ToString("00") + ":" +
+						 span.Seconds.ToString("00");
 		}
 
 		public override void Commit() {

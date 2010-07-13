@@ -74,7 +74,7 @@ namespace LK.Analyzer {
 				OSMDB map = new OSMDB();
 				map.Load(mapPath);
 
-				Console.WriteLine("\t\t\tDone.");
+				Console.WriteLine("\t\t\t\tDone.");
 
 				IModelsRepository modelsRepository = new XmlModelsRepository(outputPath);
 
