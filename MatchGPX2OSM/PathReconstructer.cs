@@ -45,13 +45,30 @@ namespace LK.MatchGPX2OSM {
 		/// </summary>
 		/// <param name="point"></param>
 		/// <returns></returns>
-		PointEx GetOrCreatePointEx(IPointGeo point) {
+		PointEx GetOrCreatePointEx(IPointGeo point, DateTime time) {
 			if (_points.ContainsKey(point)) {
-				return _points[point];
+				if (_points[point].Time == DateTime.MinValue || _points[point].Time == time) {
+					_points[point].Time = time;
+					return _points[point];
+				}
+				else {
+					PointEx result = new PointEx() { Latitude = point.Latitude, Longitude = point.Longitude, Elevation = point.Elevation, Time = time };
+					_points[point] = result;
+
+					OSMNode pointOSM = point as OSMNode;
+					if (pointOSM != null) {
+						result.NodeID = pointOSM.ID;
+						if (pointOSM.Tags.ContainsTag("crossroad")) {
+							result.Crossroad = true;
+						}
+					}
+					return result;
+				}
 			}
 			else {
-				PointEx result = new PointEx() { Latitude = point.Latitude, Longitude = point.Longitude, Elevation = point.Elevation };
+				PointEx result = new PointEx() { Latitude = point.Latitude, Longitude = point.Longitude, Elevation = point.Elevation, Time = time};
 				_points.Add(point, result);
+
 				OSMNode pointOSM = point as OSMNode;
 				if (pointOSM != null) {
 					result.NodeID = pointOSM.ID;
@@ -86,17 +103,15 @@ namespace LK.MatchGPX2OSM {
 		Polyline<IPointGeo> CreateLine(IPointGeo from, IPointGeo to, DateTime fromTime, DateTime totime, ConnectionGeometry road) {
 			PolylineID line = new PolylineID() { WayID = road.WayID };
 
-			PointEx toAdd = GetOrCreatePointEx(from);
-			toAdd.Time = fromTime;
+			PointEx toAdd = GetOrCreatePointEx(from, fromTime);
 			line.Nodes.Add(toAdd);
 
 			var points = Topology.GetNodesBetweenPoints(from, to, road);
 			foreach (var point in points) {
-				line.Nodes.Add(GetOrCreatePointEx(point));
+				line.Nodes.Add(GetOrCreatePointEx(point, DateTime.MinValue));
 			}
 
-			toAdd = GetOrCreatePointEx(to);
-			toAdd.Time = totime;
+			toAdd = GetOrCreatePointEx(to, totime);
 			line.Nodes.Add(toAdd);
 
 			return line;
@@ -126,7 +141,10 @@ namespace LK.MatchGPX2OSM {
 					double lenght = double.PositiveInfinity;
 
 					// find path between matched[i] and matched[i+1]
-					var pathSegments = _pathfinder.FindPath(matched[i], matched[i + 1], ref lenght).ToList();
+					var pathSegments = _pathfinder.FindPath(matched[i], matched[i + 1], ref lenght);
+					if (pathSegments == null) {
+						throw new ArgumentException(string.Format("Can not find path between points {0} and {1}", matched[i].MapPoint, matched[i + 1].MapPoint));
+					}
 					if (pathSegments.Count > 1) {
 						result.Add(CreateLine(pathSegments[0].From.MapPoint, pathSegments[0].To.MapPoint, matched[i].Layer.TrackPoint.Time, DateTime.MinValue, pathSegments[0].Road));
 
