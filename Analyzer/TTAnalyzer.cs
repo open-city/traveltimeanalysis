@@ -16,15 +16,26 @@ namespace LK.Analyzer {
 		}
 
 		public Model Analyze(IEnumerable<TravelTime> travelTimes, SegmentInfo segment) {
-			Model result = new Model();
-			result.Segment = travelTimes.First().Segment;
 
-			result.FreeFlowTravelTime = EstimateFreeFlowTime(travelTimes);
-			if (_map.Nodes[segment.NodeToID].Tags.ContainsTag("highway") && _map.Nodes[segment.NodeToID].Tags["highway"].Value == "traffic_signals") {
-				result.TrafficSignalsDelay = EstimateTafficSignalsDelay(travelTimes, segment);
+			List<TravelTime> filteredTravelTimes = new List<TravelTime>();
+			foreach (var tt in travelTimes) {
+				if (tt.Stops.Where(stop => stop.Duration.TotalSeconds > 5 * 60).Count() > 0)
+					continue;
+
+				filteredTravelTimes.Add(tt);
 			}
 
-			AnalyzeTrafficDelay(travelTimes, result);
+			Model result = new Model();
+			result.Segment = segment;
+			if (filteredTravelTimes.Count == 0)
+				return result;
+
+			result.FreeFlowTravelTime = EstimateFreeFlowTime(filteredTravelTimes);
+			if (_map.Nodes[segment.NodeToID].Tags.ContainsTag("highway") && _map.Nodes[segment.NodeToID].Tags["highway"].Value == "traffic_signals") {
+				result.TrafficSignalsDelay = EstimateTafficSignalsDelay(filteredTravelTimes, segment);
+			}
+
+			AnalyzeTrafficDelay(filteredTravelTimes, result);
 
 			return result;
 		}
@@ -68,7 +79,10 @@ namespace LK.Analyzer {
 				delay = Math.Max(0, delay);
 				delays.Add(new TravelTimeDelay() { TravelTime = traveltime, Delay = delay });
 			}
-			model.AvgDelay = delays.Sum(delay => delay.Delay) / delays.Count;
+			delays.Sort(new Comparison<TravelTimeDelay>((TravelTimeDelay td1, TravelTimeDelay td2) => td1.Delay.CompareTo(td2.Delay)));
+
+			//model.AvgDelay = delays.Sum(delay => delay.Delay) / delays.Count;
+			model.AvgDelay = delays[delays.Count / 2].Delay;
 
 			List<List<TravelTimeDelay>> travelTimeClusters = null;
 			DBScan<TravelTimeDelay> clusterAnalyzer = new DBScan<TravelTimeDelay>(new DBScan<TravelTimeDelay>.FindNeighbours(FindNeighbours));
@@ -89,7 +103,10 @@ namespace LK.Analyzer {
 				else
 					delayInfo.Day = DayOfWeekFactory.FromDate(cluster[0].TravelTime.TimeStart);
 
+				cluster.Sort(new Comparison<TravelTimeDelay>((TravelTimeDelay td1, TravelTimeDelay td2) => td1.Delay.CompareTo(td2.Delay)));
+
 				delayInfo.Delay = cluster.Sum(tt => tt.Delay) / cluster.Count;
+				//delayInfo.Delay = cluster[cluster.Count / 2].Delay;
 				delayInfo.From = cluster.Min(tt => tt.TravelTime.TimeStart.TimeOfDay);
 				delayInfo.To = cluster.Max(tt => tt.TravelTime.TimeEnd.TimeOfDay);
 
@@ -112,7 +129,7 @@ namespace LK.Analyzer {
 		int resolutionIndex = 0;
 
 		List<TravelTimeDelay> FindNeighbours(TravelTimeDelay target, IList<TravelTimeDelay> items) {
-			double eps = 0.15 * target.TravelTime.TotalTravelTime.TotalSeconds;
+			double eps = 0.10 * target.TravelTime.TotalTravelTime.TotalSeconds;
 			List<TravelTimeDelay> result = new List<TravelTimeDelay>();
 			for (int i = 0; i < items.Count; i++) {
 				if (items[i] != target && Math.Abs(target.Delay - items[i].Delay) < eps && resolutions[resolutionIndex].AreClose(target.TravelTime.TimeStart, items[i].TravelTime.TimeStart))

@@ -133,7 +133,10 @@ namespace LK.Analyzer {
 			double miliseconds = (nextTime - lastTime).TotalMilliseconds;
 			double totalLength = lenghtBefore + GetLength(ways[segmentIndex], db) + lengthAfter;
 
-			return lastTime.AddMilliseconds(miliseconds * (lenghtBefore + GetLength(ways[segmentIndex], db)) / totalLength);
+			if (totalLength > 0)
+				return lastTime.AddMilliseconds(miliseconds * (lenghtBefore + GetLength(ways[segmentIndex], db)) / totalLength);
+			else
+				return lastTime.AddMilliseconds(miliseconds);
 		}
 
 		static DateTime InterpolateStartTime(OSMDB db, IList<OSMWay> ways, int segmentIndex) {
@@ -166,7 +169,10 @@ namespace LK.Analyzer {
 			double miliseconds = (nextTime - lastTime).TotalMilliseconds;
 			double totalLength = lenghtBefore + GetLength(ways[segmentIndex], db) + lengthAfter;
 
-			return lastTime.AddMilliseconds(miliseconds * lenghtBefore / totalLength);
+			if (totalLength > 0)
+				return lastTime.AddMilliseconds(miliseconds * lenghtBefore / totalLength);
+			else
+				return lastTime.AddMilliseconds(miliseconds);
 		}
 
 		public static IEnumerable<TravelTime> FromMatchedTrack(OSMDB track) {
@@ -180,7 +186,6 @@ namespace LK.Analyzer {
 
 			while (index < orderedWays.Count) {
 				int startNodeId = int.Parse(track.Nodes[orderedWays[index].Nodes[0]].Tags["node-id"].Value);
-
 				DateTime segmentStartTime = DateTime.MinValue;
 				if (track.Nodes[orderedWays[index].Nodes[0]].Tags.ContainsTag("time"))
 					segmentStartTime = DateTime.Parse(track.Nodes[orderedWays[index].Nodes[0]].Tags["time"].Value);
@@ -212,7 +217,6 @@ namespace LK.Analyzer {
 
 					int wayId = int.Parse(orderedWays[index].Tags["way-id"].Value);
 					SegmentInfo segment = new SegmentInfo() { NodeFromID = startNodeId, NodeToID = endNodeId, WayID = wayId };
-
 					List<double> avgSpeeds = new List<double>();
 					for (int i = 0; i < points.Count -1; i++) {
 						avgSpeeds.Add(Calculations.GetDistance2D(points[i], points[i + 1]) / (points[i + 1].Time - points[i].Time).TotalSeconds);
