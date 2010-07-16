@@ -53,6 +53,10 @@ namespace LK.Analyzer {
 		private int _resolution;
 		private double[,] _map;
 
+		/// <summary>
+		/// Creates a new instance of the TrafficDelayMap
+		/// </summary>
+		/// <param name="resolution">The resolution of the map in minutes</param>
 		public TrafficDelayMap(int resolution) {
 			if (24 * 60 % resolution != 0)
 				throw new ArgumentException("Time resolution must divide 24 * 60");
@@ -61,6 +65,13 @@ namespace LK.Analyzer {
 			_map = new double[7, 24 * 60 / resolution];
 		}
 
+		/// <summary>
+		/// Adds delay to the TrafficDelayMap
+		/// </summary>
+		/// <param name="from"></param>
+		/// <param name="to"></param>
+		/// <param name="day"></param>
+		/// <param name="delay"></param>
 		public void AddDelay(TimeSpan from, TimeSpan to, DayOfWeek day, double delay) {
 			for (int i = 0; i < DayOfWeekFactory.Days.Length; i++) {
 				if ((day & DayOfWeekFactory.Days[i]) > 0) {
@@ -74,6 +85,10 @@ namespace LK.Analyzer {
 			}
 		}
 
+		/// <summary>
+		/// Returns all delays from the TrafficDelayMap, the similar delays are joined together and algned to the resolution
+		/// </summary>
+		/// <returns></returns>
 		public IEnumerable<TrafficDelayInfo> GetDelays() {
 			List<TrafficDelayInfo> result = new List<TrafficDelayInfo>();
 
@@ -113,6 +128,12 @@ namespace LK.Analyzer {
 			return result;
 		}
 
+		/// <summary>
+		/// Checks whetre the map is empty and returns index of the first nonempty cell
+		/// </summary>
+		/// <param name="dayIndex"></param>
+		/// <param name="timeIndex"></param>
+		/// <returns></returns>
 		bool MapIsEmpty(ref int dayIndex, ref int timeIndex) {
 			for (int ti = 0; ti < 24 * 60 / _resolution; ti++) {
 				for (int di = 0; di < 7; di++) {
