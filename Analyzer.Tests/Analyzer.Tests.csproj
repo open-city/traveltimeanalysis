@@ -51,6 +51,7 @@
       <DependentUpon>TestData.resx</DependentUpon>
     </Compile>
     <Compile Include="TimeResolutionTests.cs" />
+    <Compile Include="TrafficDelayTests.cs" />
     <Compile Include="TravelTimeTests.cs" />
   </ItemGroup>
   <ItemGroup>

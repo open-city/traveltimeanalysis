@@ -10,12 +10,15 @@ using LK.OSMUtils.OSMDatabase;
 
 namespace LK.Analyzer {
 	public struct Stop {
-		public DateTime Start;
-		public DateTime End;
+		/// <summary>
+		/// The start of
+		/// </summary>
+		public DateTime From;
+		public DateTime To;
 
-		public TimeSpan Duration {
+		public TimeSpan Length {
 			get {
-				return End - Start;
+				return To - From;
 			}
 		}
 	}
@@ -63,7 +66,7 @@ namespace LK.Analyzer {
 
 		private List<Stop> _stops;
 		/// <summary>
-		/// Gets the list of points (with the time) on the associate segment
+		/// Gets the list of stops from the TravelTime
 		/// </summary>
 		public IList<Stop> Stops {
 			get {
@@ -85,6 +88,13 @@ namespace LK.Analyzer {
 			_stops = new List<Stop>();
 		}
 
+		/// <summary>
+		/// Creates a new instance ot the TravelTime object
+		/// </summary>
+		/// <param name="segment"></param>
+		/// <param name="start"></param>
+		/// <param name="end"></param>
+		/// <param name="stops"></param>
 		public TravelTime(SegmentInfo segment, DateTime start, DateTime end, IEnumerable<Stop> stops) {
 			_segment = segment;
 			_timeStart = start;
@@ -94,6 +104,12 @@ namespace LK.Analyzer {
 			_stops.AddRange(stops);
 		}
 
+		/// <summary>
+		/// Get length of the OSMWay in meters
+		/// </summary>
+		/// <param name="way"></param>
+		/// <param name="db"></param>
+		/// <returns></returns>
 		static double GetLength(OSMWay way, OSMDB db) {
 			double result = 0;
 			for (int i = 0; i < way.Nodes.Count - 1; i++) {
@@ -103,6 +119,13 @@ namespace LK.Analyzer {
 			return result;
 		}
 
+		/// <summary>
+		/// Estimates End of the travel time as an inerpolation between neighbour points
+		/// </summary>
+		/// <param name="db"></param>
+		/// <param name="ways"></param>
+		/// <param name="segmentIndex"></param>
+		/// <returns></returns>
 		static DateTime InterpolateEndTime(OSMDB db, IList<OSMWay> ways, int segmentIndex) {
 			double lenghtBefore = 0;
 			int i = segmentIndex;
@@ -139,6 +162,13 @@ namespace LK.Analyzer {
 				return lastTime.AddMilliseconds(miliseconds);
 		}
 
+		/// <summary>
+		/// Estimates Start of the travel time as an inerpolation between neighbour points
+		/// </summary>
+		/// <param name="db"></param>
+		/// <param name="ways"></param>
+		/// <param name="segmentIndex"></param>
+		/// <returns></returns>
 		static DateTime InterpolateStartTime(OSMDB db, IList<OSMWay> ways, int segmentIndex) {
 			double lenghtBefore = 0;
 			int i = segmentIndex;
@@ -175,6 +205,11 @@ namespace LK.Analyzer {
 				return lastTime.AddMilliseconds(miliseconds);
 		}
 
+		/// <summary>
+		/// Creates a list of travel times from the matched track
+		/// </summary>
+		/// <param name="track"></param>
+		/// <returns></returns>
 		public static IEnumerable<TravelTime> FromMatchedTrack(OSMDB track) {
 			List<TravelTime> result = new List<TravelTime>();
 			var orderedWays = track.Ways.OrderBy(way => int.Parse(way.Tags["order"].Value)).ToList();
@@ -226,14 +261,11 @@ namespace LK.Analyzer {
 					int ii = 0;
 					while (ii < avgSpeeds.Count) {
 						if (avgSpeeds[ii] < 1.0) {
-							Stop stop = new Stop() { Start = points[ii].Time };
+							Stop stop = new Stop() { From = points[ii].Time };
 							while (ii < avgSpeeds.Count && avgSpeeds[ii] < 1.0)
 								ii++;
 
-							stop.End = points[ii].Time;
-							if (stop.Start == stop.End) {
-								int a = 1;
-							}
+							stop.To = points[ii].Time;
 							tt.Stops.Add(stop);
 						}
 						ii++;

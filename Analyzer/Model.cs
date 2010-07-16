@@ -39,6 +39,7 @@ namespace LK.Analyzer {
 	}
 
 	public static class DayOfWeekFactory {
+		public static DayOfWeek[] Days = new DayOfWeek[] { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday, DayOfWeek.Sunday };
 		public static DayOfWeek FromDate(DateTime date) {
 			switch (date.DayOfWeek) {
 				case System.DayOfWeek.Monday: return DayOfWeek.Monday;
@@ -51,12 +52,5 @@ namespace LK.Analyzer {
 				default: return DayOfWeek.Any;
 			}
 		}
-	}
-
-	public struct TrafficDelayInfo {
-		public DayOfWeek Day { get; set; }
-		public TimeSpan From { get; set; }
-		public TimeSpan To { get; set; }
-		public double Delay { get; set; }
 	}
 }

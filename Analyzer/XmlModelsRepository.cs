@@ -195,7 +195,7 @@ namespace LK.Analyzer {
 
 			_xmlReader.Skip();
 
-			return new TrafficDelayInfo() { From = from, To = to, Delay = delay, Day = day };
+			return new TrafficDelayInfo() { From = from, To = to, Delay = delay, AppliesTo = day };
 		}
 
 		protected void Save() {
@@ -232,7 +232,7 @@ namespace LK.Analyzer {
 			_xmlWriter.WriteStartElement("traffic-delay");
 			_xmlWriter.WriteAttributeString("from", FormatTimeSpan(delay.From));
 			_xmlWriter.WriteAttributeString("to", FormatTimeSpan(delay.To));
-			_xmlWriter.WriteAttributeString("day", delay.Day.ToString());
+			_xmlWriter.WriteAttributeString("day", delay.AppliesTo.ToString());
 
 			_xmlWriter.WriteAttributeString("delay", delay.Delay.ToString("F1", System.Globalization.CultureInfo.InvariantCulture));
 

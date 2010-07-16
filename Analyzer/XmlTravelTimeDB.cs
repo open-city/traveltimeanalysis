@@ -99,8 +99,8 @@ namespace LK.Analyzer {
 		void WriteStop(Stop stop) {
 			_xmlWriter.WriteStartElement("stop");
 
-			_xmlWriter.WriteAttributeString("start", stop.Start.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'f"));
-			_xmlWriter.WriteAttributeString("end", stop.End.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'f"));
+			_xmlWriter.WriteAttributeString("start", stop.From.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'f"));
+			_xmlWriter.WriteAttributeString("end", stop.To.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'f"));
 
 			_xmlWriter.WriteEndElement();		
 		}
@@ -268,7 +268,7 @@ namespace LK.Analyzer {
 
 			_xmlReader.Skip();
 
-			return new Stop() { Start = start, End = end };
+			return new Stop() { From = start, To = end };
 		}
 	}
 }

@@ -19,7 +19,7 @@ namespace LK.Analyzer {
 
 			List<TravelTime> filteredTravelTimes = new List<TravelTime>();
 			foreach (var tt in travelTimes) {
-				if (tt.Stops.Where(stop => stop.Duration.TotalSeconds > 5 * 60).Count() > 0)
+				if (tt.Stops.Where(stop => stop.Length.TotalSeconds > 5 * 60).Count() > 0)
 					continue;
 
 				filteredTravelTimes.Add(tt);
@@ -49,12 +49,12 @@ namespace LK.Analyzer {
 
 			var toEstimate = travelTimes.OrderBy(tt => tt.TotalTravelTime).Take(count);
 
-			return toEstimate.Sum(tt => tt.TotalTravelTime.TotalSeconds - tt.Stops.Sum(stop => stop.Duration.TotalSeconds)) / count;
+			return toEstimate.Sum(tt => tt.TotalTravelTime.TotalSeconds - tt.Stops.Sum(stop => stop.Length.TotalSeconds)) / count;
 		}
 
 		TrafficSignalsDelayInfo EstimateTafficSignalsDelay(IEnumerable<TravelTime> travelTimes, SegmentInfo segment) {
 			int totalStops = travelTimes.Where(tt => tt.Stops.Count > 0).Count();
-			double totalStopsLength = travelTimes.Where(tt => tt.Stops.Count > 0).Sum(tt => tt.Stops.Last().Duration.TotalSeconds);
+			double totalStopsLength = travelTimes.Where(tt => tt.Stops.Count > 0).Sum(tt => tt.Stops.Last().Length.TotalSeconds);
 
 			if (totalStops > 0)
 				return new TrafficSignalsDelayInfo() { Probability = (double)totalStops / travelTimes.Count(), Length = totalStopsLength / totalStops };
@@ -72,7 +72,7 @@ namespace LK.Analyzer {
 			foreach (var traveltime in travelTimes) {
 				double delay = 0;
 				if (model.TrafficSignalsDelay.Probability > 0 && traveltime.Stops.Count > 0)
-					delay = traveltime.TotalTravelTime.TotalSeconds - model.FreeFlowTravelTime - traveltime.Stops.Last().Duration.TotalSeconds;
+					delay = traveltime.TotalTravelTime.TotalSeconds - model.FreeFlowTravelTime - traveltime.Stops.Last().Length.TotalSeconds;
 				else
 					delay = traveltime.TotalTravelTime.TotalSeconds - model.FreeFlowTravelTime;
 
@@ -97,11 +97,11 @@ namespace LK.Analyzer {
 			foreach (var cluster in travelTimeClusters) {
 				TrafficDelayInfo delayInfo = new TrafficDelayInfo();
 				if(resolutions[resolutionIndex].Dates == DatesHandling.Any)
-					delayInfo.Day = DayOfWeek.Any;
+					delayInfo.AppliesTo = DayOfWeek.Any;
 				else if(resolutions[resolutionIndex].Dates == DatesHandling.WeekendWorkdays)
-					delayInfo.Day = (DayOfWeek.Workday & DayOfWeekFactory.FromDate(cluster[0].TravelTime.TimeStart)) > 0 ? DayOfWeek.Workday : DayOfWeek.Weekend;
+					delayInfo.AppliesTo = (DayOfWeek.Workday & DayOfWeekFactory.FromDate(cluster[0].TravelTime.TimeStart)) > 0 ? DayOfWeek.Workday : DayOfWeek.Weekend;
 				else
-					delayInfo.Day = DayOfWeekFactory.FromDate(cluster[0].TravelTime.TimeStart);
+					delayInfo.AppliesTo = DayOfWeekFactory.FromDate(cluster[0].TravelTime.TimeStart);
 
 				cluster.Sort(new Comparison<TravelTimeDelay>((TravelTimeDelay td1, TravelTimeDelay td2) => td1.Delay.CompareTo(td2.Delay)));
 

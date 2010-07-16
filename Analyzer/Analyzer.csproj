@@ -45,6 +45,7 @@
     <Compile Include="DBScan.cs" />
     <Compile Include="IModelsRepository.cs" />
     <Compile Include="MemoryModelsRepository.cs" />
+    <Compile Include="TrafficDelay.cs" />
     <Compile Include="TimeResolution.cs" />
     <Compile Include="TTAnalyzer.cs" />
     <Compile Include="ITravelTimesDB.cs" />
