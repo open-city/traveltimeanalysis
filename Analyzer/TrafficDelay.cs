@@ -41,6 +41,8 @@ namespace LK.Analyzer {
 	/// Group and align multiple traffic delays
 	/// </summary>
 	public class TrafficDelayMap {
+		protected const int _minutesIdDay = 24 * 60;
+
 		private int _resolution;
 		private double[,] _map;
 
@@ -49,11 +51,11 @@ namespace LK.Analyzer {
 		/// </summary>
 		/// <param name="resolution">The resolution of the map in minutes</param>
 		public TrafficDelayMap(int resolution) {
-			if (24 * 60 % resolution != 0)
+			if (_minutesIdDay % resolution != 0)
 				throw new ArgumentException("Time resolution must divide 24 * 60");
 
 			_resolution = resolution;
-			_map = new double[7, 24 * 60 / resolution];
+			_map = new double[7, _minutesIdDay / resolution];
 		}
 
 		/// <summary>
@@ -70,7 +72,9 @@ namespace LK.Analyzer {
 					int indexTo = (int)to.TotalMinutes / _resolution;
 
 					for (int ii = indexFrom; ii <= indexTo; ii++) {
-						_map[i, ii] = delay;
+						if (_map[i, ii] == 0 || Math.Abs(_map[i, ii] - delay) / delay < Properties.Settings.Default.MinimalModelDelayDifference / 100) {
+							_map[i, ii] = delay;
+						}
 					}
 				}
 			}
@@ -92,12 +96,12 @@ namespace LK.Analyzer {
 				delay.From = new TimeSpan(0, timeIndex * _resolution, 0);
 
 				for (int i = 0; i < 7; i++) {
-					if (_map[i, timeIndex] == delay.Delay)
+					if (Math.Abs(_map[i, timeIndex] - delay.Delay) < 0.1)
 						delay.AppliesTo |= DayOfWeekHelper.Days[i];
 				}
 				DayOfWeek timeBinDays = delay.AppliesTo;
 
-				while (timeIndex < 24 * 60 / _resolution && timeBinDays == delay.AppliesTo) {
+				while (timeIndex < _minutesIdDay / _resolution && timeBinDays == delay.AppliesTo) {
 					for (int i = 0; i < 7; i++) {
 						if ((timeBinDays & DayOfWeekHelper.Days[i]) > 0)
 							_map[i, timeIndex] = 0;
@@ -106,9 +110,11 @@ namespace LK.Analyzer {
 					timeIndex++;
 
 					timeBinDays = 0;
-					for (int i = 0; i < 7; i++) {
-						if (_map[i, timeIndex] == delay.Delay)
-							timeBinDays |= DayOfWeekHelper.Days[i];
+					if (timeIndex < _minutesIdDay / _resolution) {
+						for (int i = 0; i < 7; i++) {
+							if (Math.Abs(_map[i, timeIndex] - delay.Delay) < 0.1)
+								timeBinDays |= DayOfWeekHelper.Days[i];
+						}
 					}
 				}
 
@@ -126,7 +132,7 @@ namespace LK.Analyzer {
 		/// <param name="timeIndex"></param>
 		/// <returns></returns>
 		bool MapIsEmpty(ref int dayIndex, ref int timeIndex) {
-			for (int ti = 0; ti < 24 * 60 / _resolution; ti++) {
+			for (int ti = 0; ti < _minutesIdDay / _resolution; ti++) {
 				for (int di = 0; di < 7; di++) {
 					if (_map[di, ti] > 0) {
 						dayIndex = di;

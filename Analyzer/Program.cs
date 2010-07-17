@@ -94,17 +94,17 @@ namespace LK.Analyzer {
 			Console.Write("Loading {0} ...", Path.GetFileName(path));
 			track.Load(path);
 
-			//try {
+			try {
 				var travelTimes = TravelTime.FromMatchedTrack(track);
 				foreach (var travelTime in travelTimes) {
 					db.AddTravelTime(travelTime);
 				}
 
 				Console.WriteLine(".");
-			//}
-			//catch (Exception e) {
-			//  Console.WriteLine("Error: " + e.Message);
-			//}
+			}
+			catch (Exception e) {
+				Console.WriteLine("Error: " + e.Message);
+			}
 		}
 		
 		/// <summary>

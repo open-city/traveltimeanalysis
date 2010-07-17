@@ -8,18 +8,30 @@ using LK.GeoUtils.Geometry;
 using LK.OSMUtils.OSMDatabase;
 
 namespace LK.Analyzer {
+	/// <summary>
+	/// Perform analysis of the travel-times
+	/// </summary>
 	public class TTAnalyzer {
 		OSMDB _map;
 
+		/// <summary>
+		/// Creates a new instance of the analyzer
+		/// </summary>
+		/// <param name="map"></param>
 		public TTAnalyzer(OSMDB map) {
 			_map = map;
 		}
 
+		/// <summary>
+		/// Performs analysis of the travel times on the specific segment and creates it's model
+		/// </summary>
+		/// <param name="travelTimes"></param>
+		/// <param name="segment"></param>
+		/// <returns></returns>
 		public Model Analyze(IEnumerable<TravelTime> travelTimes, SegmentInfo segment) {
-
 			List<TravelTime> filteredTravelTimes = new List<TravelTime>();
 			foreach (var tt in travelTimes) {
-				if (tt.Stops.Where(stop => stop.Length.TotalSeconds > 5 * 60).Count() > 0)
+				if (tt.Stops.Where(stop => stop.Length.TotalMinutes > Properties.Settings.Default.MaximalAllowedStopLength).Count() > 0)
 					continue;
 
 				filteredTravelTimes.Add(tt);
@@ -27,24 +39,30 @@ namespace LK.Analyzer {
 
 			Model result = new Model();
 			result.Segment = segment;
-			if (filteredTravelTimes.Count == 0)
+			if (filteredTravelTimes.Count < Properties.Settings.Default.FreeflowMinimalCount)
 				return result;
 
+			// Free-flow time
 			result.FreeFlowTravelTime = EstimateFreeFlowTime(filteredTravelTimes);
+
+			// traffic signals delay
 			if (_map.Nodes[segment.NodeToID].Tags.ContainsTag("highway") && _map.Nodes[segment.NodeToID].Tags["highway"].Value == "traffic_signals") {
 				result.TrafficSignalsDelay = EstimateTafficSignalsDelay(filteredTravelTimes, segment);
 			}
 
+			// traffic delay
 			AnalyzeTrafficDelay(filteredTravelTimes, result);
 
 			return result;
 		}
 
+		/// <summary>
+		/// Estimates free-flow travel time from the collection of travel times
+		/// </summary>
+		/// <param name="travelTimes"></param>
+		/// <returns></returns>
 		double EstimateFreeFlowTime(IEnumerable<TravelTime> travelTimes) {
-			double PercentageFastest = 10.0;
-			int MinimalCount = 3;
-
-			int desiredCount = (int)Math.Max(travelTimes.Count() * PercentageFastest / 100.0, MinimalCount);
+			int desiredCount = (int)Math.Max(travelTimes.Count() * Properties.Settings.Default.FreeflowPercentage / 100.0, Properties.Settings.Default.FreeflowMinimalCount);
 			int count = Math.Min(travelTimes.Count(), desiredCount);
 
 			var toEstimate = travelTimes.OrderBy(tt => tt.TotalTravelTime).Take(count);
@@ -52,6 +70,12 @@ namespace LK.Analyzer {
 			return toEstimate.Sum(tt => tt.TotalTravelTime.TotalSeconds - tt.Stops.Sum(stop => stop.Length.TotalSeconds)) / count;
 		}
 
+		/// <summary>
+		/// Estimates traffic signals delay from the collection of travel times
+		/// </summary>
+		/// <param name="travelTimes"></param>
+		/// <param name="segment"></param>
+		/// <returns></returns>
 		TrafficSignalsDelayInfo EstimateTafficSignalsDelay(IEnumerable<TravelTime> travelTimes, SegmentInfo segment) {
 			int totalStops = travelTimes.Where(tt => tt.Stops.Count > 0).Count();
 			double totalStopsLength = travelTimes.Where(tt => tt.Stops.Count > 0).Sum(tt => tt.Stops.Last().Length.TotalSeconds);
@@ -65,6 +89,10 @@ namespace LK.Analyzer {
 		class TravelTimeDelay {
 			public TravelTime TravelTime { get; set; }
 			public double Delay { get; set; }
+
+			public override string ToString() {
+				return Delay.ToString();
+			}
 		}
 
 		void AnalyzeTrafficDelay(IEnumerable<TravelTime> travelTimes, Model model) {
@@ -79,60 +107,61 @@ namespace LK.Analyzer {
 				delay = Math.Max(0, delay);
 				delays.Add(new TravelTimeDelay() { TravelTime = traveltime, Delay = delay });
 			}
-			delays.Sort(new Comparison<TravelTimeDelay>((TravelTimeDelay td1, TravelTimeDelay td2) => td1.Delay.CompareTo(td2.Delay)));
 
-			//model.AvgDelay = delays.Sum(delay => delay.Delay) / delays.Count;
+			// avg delay as median of delays
+			delays.Sort(new Comparison<TravelTimeDelay>((TravelTimeDelay td1, TravelTimeDelay td2) => td1.Delay.CompareTo(td2.Delay)));
 			model.AvgDelay = delays[delays.Count / 2].Delay;
+
+			TrafficDelayMap delaysMap = new TrafficDelayMap(Properties.Settings.Default.ModelResolution);
 
 			List<List<TravelTimeDelay>> travelTimeClusters = null;
 			DBScan<TravelTimeDelay> clusterAnalyzer = new DBScan<TravelTimeDelay>(new DBScan<TravelTimeDelay>.FindNeighbours(FindNeighbours));
-			for (int i = 0; i < resolutions.Length; i++) {
-				resolutionIndex = i;
-				travelTimeClusters = clusterAnalyzer.ClusterAnalysis(delays, 2);
+			for (int i = parameters.Length -1; i >= 0; i--) {
+				parametersIndex = i;
+				travelTimeClusters = clusterAnalyzer.ClusterAnalysis(delays, Properties.Settings.Default.MinimalClusterSize);
 
-				if (travelTimeClusters.Sum(cluster => cluster.Count) > 0.75 * delays.Count)
+				foreach (var cluster in travelTimeClusters) {
+					TrafficDelayInfo delayInfo = new TrafficDelayInfo();
+					if (parameters[parametersIndex].Dates == DatesHandling.Any)
+						delayInfo.AppliesTo = DayOfWeek.Any;
+					else if (parameters[parametersIndex].Dates == DatesHandling.WeekendWorkdays)
+						delayInfo.AppliesTo = (DayOfWeek.Workday & DayOfWeekHelper.FromDate(cluster[0].TravelTime.TimeStart)) > 0 ? DayOfWeek.Workday : DayOfWeek.Weekend;
+					else
+						delayInfo.AppliesTo = DayOfWeekHelper.FromDate(cluster[0].TravelTime.TimeStart);
+
+					cluster.Sort(new Comparison<TravelTimeDelay>((TravelTimeDelay td1, TravelTimeDelay td2) => td1.Delay.CompareTo(td2.Delay)));
+
+					delayInfo.Delay = cluster.Sum(tt => tt.Delay) / cluster.Count;
+					delayInfo.From = cluster.Min(tt => tt.TravelTime.TimeStart.TimeOfDay);
+					delayInfo.To = cluster.Max(tt => tt.TravelTime.TimeEnd.TimeOfDay);
+
+					delaysMap.AddDelay(delayInfo.From, delayInfo.To, delayInfo.AppliesTo, delayInfo.Delay);
+				}
+
+				if (travelTimeClusters.Sum(cluster => cluster.Count) > Properties.Settings.Default.ClusterAnalysisStopPercentage * delays.Count / 100)
 					break;
 			}
 
-			foreach (var cluster in travelTimeClusters) {
-				TrafficDelayInfo delayInfo = new TrafficDelayInfo();
-				if(resolutions[resolutionIndex].Dates == DatesHandling.Any)
-					delayInfo.AppliesTo = DayOfWeek.Any;
-				else if(resolutions[resolutionIndex].Dates == DatesHandling.WeekendWorkdays)
-					delayInfo.AppliesTo = (DayOfWeek.Workday & DayOfWeekHelper.FromDate(cluster[0].TravelTime.TimeStart)) > 0 ? DayOfWeek.Workday : DayOfWeek.Weekend;
-				else
-					delayInfo.AppliesTo = DayOfWeekHelper.FromDate(cluster[0].TravelTime.TimeStart);
-
-				cluster.Sort(new Comparison<TravelTimeDelay>((TravelTimeDelay td1, TravelTimeDelay td2) => td1.Delay.CompareTo(td2.Delay)));
-
-				delayInfo.Delay = cluster.Sum(tt => tt.Delay) / cluster.Count;
-				//delayInfo.Delay = cluster[cluster.Count / 2].Delay;
-				delayInfo.From = cluster.Min(tt => tt.TravelTime.TimeStart.TimeOfDay);
-				delayInfo.To = cluster.Max(tt => tt.TravelTime.TimeEnd.TimeOfDay);
-
-				model.TrafficDelay.Add(delayInfo);
-			}
+			model.TrafficDelay.AddRange(delaysMap.GetDelays());
 		}
 
-		TimeResolution[] resolutions = new TimeResolution[] {
-			new TimeResolution() {Dates = DatesHandling.Days, EpsMinutes = 15},
-			new TimeResolution() {Dates = DatesHandling.Days, EpsMinutes = 30},
-			new TimeResolution() {Dates = DatesHandling.WeekendWorkdays, EpsMinutes = 30},
-			new TimeResolution() {Dates = DatesHandling.Days, EpsMinutes = 60},
-			new TimeResolution() {Dates = DatesHandling.WeekendWorkdays, EpsMinutes = 60},
-			new TimeResolution() {Dates = DatesHandling.Days, EpsMinutes = 120},
-			new TimeResolution() {Dates = DatesHandling.WeekendWorkdays, EpsMinutes = 120},
-			new TimeResolution() {Dates = DatesHandling.Any, EpsMinutes = 30},
-			new TimeResolution() {Dates = DatesHandling.Any, EpsMinutes = 60},
-			new TimeResolution() {Dates = DatesHandling.Any, EpsMinutes = 120},
+		ClusterParameters[] parameters = new ClusterParameters[] {
+			new ClusterParameters() {DelayDifferencePercentage = 15, Dates = DatesHandling.Any, MembersTimeDifference = 480},
+			new ClusterParameters() {DelayDifferencePercentage = 15, Dates = DatesHandling.Any, MembersTimeDifference = 120},
+			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.WeekendWorkdays, MembersTimeDifference = 60},
+			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.WeekendWorkdays, MembersTimeDifference = 30},
+			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.Days, MembersTimeDifference = 60},
+			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.Days, MembersTimeDifference = 30},
+			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.Days, MembersTimeDifference = 15}
 		};
-		int resolutionIndex = 0;
+		int parametersIndex = 0;
 
 		List<TravelTimeDelay> FindNeighbours(TravelTimeDelay target, IList<TravelTimeDelay> items) {
-			double eps = 0.10 * target.TravelTime.TotalTravelTime.TotalSeconds;
+			double eps = parameters[parametersIndex].DelayDifferencePercentage * target.TravelTime.TotalTravelTime.TotalSeconds / 100;
+
 			List<TravelTimeDelay> result = new List<TravelTimeDelay>();
 			for (int i = 0; i < items.Count; i++) {
-				if (items[i] != target && Math.Abs(target.Delay - items[i].Delay) < eps && resolutions[resolutionIndex].AreClose(target.TravelTime.TimeStart, items[i].TravelTime.TimeStart))
+				if (items[i] != target && Math.Abs(target.Delay - items[i].Delay) < eps && parameters[parametersIndex].AreClose(target.TravelTime.TimeStart, items[i].TravelTime.TimeStart))
 					result.Add(items[i]);
 			}
 
