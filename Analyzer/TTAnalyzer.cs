@@ -51,7 +51,7 @@ namespace LK.Analyzer {
 			}
 
 			// traffic delay
-			AnalyzeTrafficDelay(filteredTravelTimes, result);
+			EstimateTrafficDelay(filteredTravelTimes, result);
 
 			return result;
 		}
@@ -95,7 +95,12 @@ namespace LK.Analyzer {
 			}
 		}
 
-		void AnalyzeTrafficDelay(IEnumerable<TravelTime> travelTimes, Model model) {
+		/// <summary>
+		/// Estimates traffic delay from the collection of travel times
+		/// </summary>
+		/// <param name="travelTimes"></param>
+		/// <param name="model"></param>
+		void EstimateTrafficDelay(IEnumerable<TravelTime> travelTimes, Model model) {
 			List<TravelTimeDelay> delays = new List<TravelTimeDelay>();
 			foreach (var traveltime in travelTimes) {
 				double delay = 0;
@@ -116,15 +121,15 @@ namespace LK.Analyzer {
 
 			List<List<TravelTimeDelay>> travelTimeClusters = null;
 			DBScan<TravelTimeDelay> clusterAnalyzer = new DBScan<TravelTimeDelay>(new DBScan<TravelTimeDelay>.FindNeighbours(FindNeighbours));
-			for (int i = parameters.Length -1; i >= 0; i--) {
-				parametersIndex = i;
+			for (int i = _parameters.Length -1; i >= 0; i--) {
+				_parametersIndex = i;
 				travelTimeClusters = clusterAnalyzer.ClusterAnalysis(delays, Properties.Settings.Default.MinimalClusterSize);
 
 				foreach (var cluster in travelTimeClusters) {
 					TrafficDelayInfo delayInfo = new TrafficDelayInfo();
-					if (parameters[parametersIndex].Dates == DatesHandling.Any)
+					if (_parameters[_parametersIndex].Dates == DatesHandling.Any)
 						delayInfo.AppliesTo = DayOfWeek.Any;
-					else if (parameters[parametersIndex].Dates == DatesHandling.WeekendWorkdays)
+					else if (_parameters[_parametersIndex].Dates == DatesHandling.WeekendWorkdays)
 						delayInfo.AppliesTo = (DayOfWeek.Workday & DayOfWeekHelper.FromDate(cluster[0].TravelTime.TimeStart)) > 0 ? DayOfWeek.Workday : DayOfWeek.Weekend;
 					else
 						delayInfo.AppliesTo = DayOfWeekHelper.FromDate(cluster[0].TravelTime.TimeStart);
@@ -145,7 +150,8 @@ namespace LK.Analyzer {
 			model.TrafficDelay.AddRange(delaysMap.GetDelays());
 		}
 
-		ClusterParameters[] parameters = new ClusterParameters[] {
+		int _parametersIndex = 0;
+		ClusterParameters[] _parameters = new ClusterParameters[] {
 			new ClusterParameters() {DelayDifferencePercentage = 15, Dates = DatesHandling.Any, MembersTimeDifference = 480},
 			new ClusterParameters() {DelayDifferencePercentage = 15, Dates = DatesHandling.Any, MembersTimeDifference = 120},
 			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.WeekendWorkdays, MembersTimeDifference = 60},
@@ -154,14 +160,19 @@ namespace LK.Analyzer {
 			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.Days, MembersTimeDifference = 30},
 			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.Days, MembersTimeDifference = 15}
 		};
-		int parametersIndex = 0;
 
+		/// <summary>
+		/// Callback function for the DBScan clustering algorithm
+		/// </summary>
+		/// <param name="target"></param>
+		/// <param name="items"></param>
+		/// <returns></returns>
 		List<TravelTimeDelay> FindNeighbours(TravelTimeDelay target, IList<TravelTimeDelay> items) {
-			double eps = parameters[parametersIndex].DelayDifferencePercentage * target.TravelTime.TotalTravelTime.TotalSeconds / 100;
+			double eps = _parameters[_parametersIndex].DelayDifferencePercentage * target.TravelTime.TotalTravelTime.TotalSeconds / 100;
 
 			List<TravelTimeDelay> result = new List<TravelTimeDelay>();
 			for (int i = 0; i < items.Count; i++) {
-				if (items[i] != target && Math.Abs(target.Delay - items[i].Delay) < eps && parameters[parametersIndex].AreClose(target.TravelTime.TimeStart, items[i].TravelTime.TimeStart))
+				if (items[i] != target && Math.Abs(target.Delay - items[i].Delay) < eps && _parameters[_parametersIndex].AreClose(target.TravelTime.TimeStart, items[i].TravelTime.TimeStart))
 					result.Add(items[i]);
 			}
 

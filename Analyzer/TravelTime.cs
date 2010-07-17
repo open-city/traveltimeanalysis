@@ -9,10 +9,10 @@ using LK.GeoUtils.Geometry;
 using LK.OSMUtils.OSMDatabase;
 
 namespace LK.Analyzer {
+	/// <summary>
+	/// Represents stop in the trave time
+	/// </summary>
 	public struct Stop {
-		/// <summary>
-		/// The start of
-		/// </summary>
 		public DateTime From;
 		public DateTime To;
 
