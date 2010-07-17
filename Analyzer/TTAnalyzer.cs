@@ -99,9 +99,9 @@ namespace LK.Analyzer {
 				if(resolutions[resolutionIndex].Dates == DatesHandling.Any)
 					delayInfo.AppliesTo = DayOfWeek.Any;
 				else if(resolutions[resolutionIndex].Dates == DatesHandling.WeekendWorkdays)
-					delayInfo.AppliesTo = (DayOfWeek.Workday & DayOfWeekFactory.FromDate(cluster[0].TravelTime.TimeStart)) > 0 ? DayOfWeek.Workday : DayOfWeek.Weekend;
+					delayInfo.AppliesTo = (DayOfWeek.Workday & DayOfWeekHelper.FromDate(cluster[0].TravelTime.TimeStart)) > 0 ? DayOfWeek.Workday : DayOfWeek.Weekend;
 				else
-					delayInfo.AppliesTo = DayOfWeekFactory.FromDate(cluster[0].TravelTime.TimeStart);
+					delayInfo.AppliesTo = DayOfWeekHelper.FromDate(cluster[0].TravelTime.TimeStart);
 
 				cluster.Sort(new Comparison<TravelTimeDelay>((TravelTimeDelay td1, TravelTimeDelay td2) => td1.Delay.CompareTo(td2.Delay)));
 

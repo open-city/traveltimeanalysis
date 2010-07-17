@@ -11,8 +11,8 @@ namespace LK.Analyzer {
 
 		public bool AreClose(DateTime item1, DateTime item2) {
 			double minutes = Math.Abs((item1.TimeOfDay - item2.TimeOfDay).TotalMinutes);
-			DayOfWeek item1Day = DayOfWeekFactory.FromDate(item1);
-			DayOfWeek item2Day = DayOfWeekFactory.FromDate(item2);
+			DayOfWeek item1Day = DayOfWeekHelper.FromDate(item1);
+			DayOfWeek item2Day = DayOfWeekHelper.FromDate(item2);
 
 			if (Dates == DatesHandling.Days) {
 				return (item1.DayOfWeek == item2.DayOfWeek) && (minutes < EpsMinutes);

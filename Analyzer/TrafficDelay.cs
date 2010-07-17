@@ -35,15 +35,6 @@ namespace LK.Analyzer {
 		public override string ToString() {
 			return string.Format("{0} {1}-{2} # {3}", AppliesTo, From, To, Delay);
 		}
-
-
-		public static IEnumerable<TrafficDelayInfo> Group(IEnumerable<TrafficDelayInfo> delays, int timeResolution) {
-
-
-			double[] map = new double[24 * 60 / timeResolution];
-			List<TrafficDelayInfo> result = new List<TrafficDelayInfo>();
-			return result;
-		}
 	}
 
 	/// <summary>
@@ -73,8 +64,8 @@ namespace LK.Analyzer {
 		/// <param name="day"></param>
 		/// <param name="delay"></param>
 		public void AddDelay(TimeSpan from, TimeSpan to, DayOfWeek day, double delay) {
-			for (int i = 0; i < DayOfWeekFactory.Days.Length; i++) {
-				if ((day & DayOfWeekFactory.Days[i]) > 0) {
+			for (int i = 0; i < DayOfWeekHelper.Days.Length; i++) {
+				if ((day & DayOfWeekHelper.Days[i]) > 0) {
 					int indexFrom = (int)from.TotalMinutes / _resolution;
 					int indexTo = (int)to.TotalMinutes / _resolution;
 
@@ -102,13 +93,13 @@ namespace LK.Analyzer {
 
 				for (int i = 0; i < 7; i++) {
 					if (_map[i, timeIndex] == delay.Delay)
-						delay.AppliesTo |= DayOfWeekFactory.Days[i];
+						delay.AppliesTo |= DayOfWeekHelper.Days[i];
 				}
 				DayOfWeek timeBinDays = delay.AppliesTo;
 
 				while (timeIndex < 24 * 60 / _resolution && timeBinDays == delay.AppliesTo) {
 					for (int i = 0; i < 7; i++) {
-						if ((timeBinDays & DayOfWeekFactory.Days[i]) > 0)
+						if ((timeBinDays & DayOfWeekHelper.Days[i]) > 0)
 							_map[i, timeIndex] = 0;
 					}
 					
@@ -117,7 +108,7 @@ namespace LK.Analyzer {
 					timeBinDays = 0;
 					for (int i = 0; i < 7; i++) {
 						if (_map[i, timeIndex] == delay.Delay)
-							timeBinDays |= DayOfWeekFactory.Days[i];
+							timeBinDays |= DayOfWeekHelper.Days[i];
 					}
 				}
 
