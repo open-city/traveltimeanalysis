@@ -8,27 +8,45 @@ using System.IO;
 using LK.GPXUtils;
 
 namespace LK.Analyzer {
+	/// <summary>
+	/// Implements ITravelTimesDB and stores data in XML file
+	/// </summary>
 	public class XmlTravelTimeDB : ITravelTimesDB {
 		Dictionary<SegmentInfo, List<TravelTime>> _storage;
 		XmlReader _xmlReader;
 		XmlWriter _xmlWriter;
 
+		/// <summary>
+		/// Gets collection of segments that are stored in the DB
+		/// </summary>
 		public IEnumerable<SegmentInfo> TravelTimesSegments {
 			get {
 				return _storage.Keys;
 			}
 		}
 
+		/// <summary>
+		/// Gets collection od all travel times
+		/// </summary>
 		public IEnumerable<TravelTime> TravelTimes {
 			get {
 				return _storage.Values.SelectMany(segTravelTimes => segTravelTimes);
 			}
 		}
 
+		/// <summary>
+		/// Returns collection of travel times for the specific segmnet
+		/// </summary>
+		/// <param name="segment"></param>
+		/// <returns></returns>
 		public IEnumerable<TravelTime> GetTravelTimes(SegmentInfo segment) {
 			return _storage[segment];
 		}
 
+		/// <summary>
+		/// Adds the travel time to the DB
+		/// </summary>
+		/// <param name="toAdd"></param>
 		public void AddTravelTime(TravelTime toAdd) {
 			if (_storage.ContainsKey(toAdd.Segment) == false) {
 				_storage.Add(toAdd.Segment, new List<TravelTime>());
@@ -37,6 +55,11 @@ namespace LK.Analyzer {
 			_storage[toAdd.Segment].Add(toAdd);
 		}
 
+		/// <summary>
+		/// Removes the travel time from the DB
+		/// </summary>
+		/// <param name="toRemove"></param>
+		/// <returns></returns>
 		public bool RemoveTravelTime(TravelTime toRemove) {
 			if (_storage.ContainsKey(toRemove.Segment)) {
 				return _storage[toRemove.Segment].Remove(toRemove);
@@ -45,16 +68,27 @@ namespace LK.Analyzer {
 			return false;
 		}
 
+		/// <summary>
+		/// Creates a new XMLTravelTime database
+		/// </summary>
 		public XmlTravelTimeDB() {
 			_storage = new Dictionary<SegmentInfo, List<TravelTime>>();
 		}
 
+		/// <summary>
+		/// Saves database to the file
+		/// </summary>
+		/// <param name="filename"></param>
 		public void Save(string filename) {
 			using (FileStream fs = new FileStream(filename, FileMode.Create)) {
 				Save(fs);
 			}
 		}
 
+		/// <summary>
+		/// Saves database to the stream
+		/// </summary>
+		/// <param name="stream"></param>
 		public void Save(Stream stream) {
 			XmlWriterSettings writerSetting = new XmlWriterSettings();
 			writerSetting.Indent = true;
@@ -105,12 +139,20 @@ namespace LK.Analyzer {
 			_xmlWriter.WriteEndElement();		
 		}
 		
+		/// <summary>
+		/// Loads database from the file
+		/// </summary>
+		/// <param name="filename"></param>
 		public void Load(string filename) {
 			using(FileStream fs = new FileStream(filename, FileMode.Open)) {
 				Load(fs);
 			}
 		}
 
+		/// <summary>
+		/// Loads database from the stream
+		/// </summary>
+		/// <param name="stream"></param>
 		public void Load(Stream stream) {
 			XmlReaderSettings xmlReaderSettings = new XmlReaderSettings();
 			xmlReaderSettings.IgnoreComments = true;
