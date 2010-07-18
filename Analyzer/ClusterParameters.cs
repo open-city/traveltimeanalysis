@@ -30,8 +30,6 @@ namespace LK.Analyzer {
 		/// <param name="item2"></param>
 		/// <returns></returns>
 		public bool AreClose(DateTime item1, DateTime item2) {
-			const int minutesInDay = 12 * 60;
-
 			double minutes = Math.Abs((item1.TimeOfDay - item2.TimeOfDay).TotalMinutes);
 			DayOfWeek item1Day = DayOfWeekHelper.FromDate(item1);
 			DayOfWeek item2Day = DayOfWeekHelper.FromDate(item2);
@@ -40,16 +38,10 @@ namespace LK.Analyzer {
 				return (item1.DayOfWeek == item2.DayOfWeek) && (minutes < MembersTimeDifference);
 			}
 			else if (Dates == DatesHandling.WeekendWorkdays) {
-				if (minutes > minutesInDay / 2)
-					minutes = minutesInDay - minutes;
-
 				return (minutes < MembersTimeDifference) &&
 							 (((DayOfWeek.Workday & item1Day) > 0 && ((DayOfWeek.Workday & item2Day) > 0)) || ((DayOfWeek.Weekend & item1Day) > 0 && ((DayOfWeek.Weekend & item2Day) > 0)));
 			}
 			else {
-				if (minutes > minutesInDay / 2)
-					minutes = minutesInDay - minutes;
-
 				return (minutes < MembersTimeDifference);
 			}
 		}

@@ -117,13 +117,16 @@ namespace LK.Analyzer {
 			delays.Sort(new Comparison<TravelTimeDelay>((TravelTimeDelay td1, TravelTimeDelay td2) => td1.Delay.CompareTo(td2.Delay)));
 			model.AvgDelay = delays[delays.Count / 2].Delay;
 
-			TrafficDelayMap delaysMap = new TrafficDelayMap(Properties.Settings.Default.ModelResolution);
+			TrafficDelayMap delaysMap = new TrafficDelayMap(Properties.Settings.Default.ModelResolution, model.FreeFlowTravelTime);
 
 			List<List<TravelTimeDelay>> travelTimeClusters = null;
 			DBScan<TravelTimeDelay> clusterAnalyzer = new DBScan<TravelTimeDelay>(new DBScan<TravelTimeDelay>.FindNeighbours(FindNeighbours));
 			for (int i = _parameters.Length -1; i >= 0; i--) {
 				_parametersIndex = i;
-				travelTimeClusters = clusterAnalyzer.ClusterAnalysis(delays, Properties.Settings.Default.MinimalClusterSize);
+
+				int desiredClusterSize = (int)Math.Max(Properties.Settings.Default.MinimalClusterSize, travelTimes.Count() * Properties.Settings.Default.ClusterSizePercentage / 100.0);
+				int clusterSize = Math.Min(travelTimes.Count(), desiredClusterSize);
+				travelTimeClusters = clusterAnalyzer.ClusterAnalysis(delays, clusterSize);
 
 				foreach (var cluster in travelTimeClusters) {
 					TrafficDelayInfo delayInfo = new TrafficDelayInfo();
@@ -137,9 +140,14 @@ namespace LK.Analyzer {
 					cluster.Sort(new Comparison<TravelTimeDelay>((TravelTimeDelay td1, TravelTimeDelay td2) => td1.Delay.CompareTo(td2.Delay)));
 
 					delayInfo.Delay = cluster.Sum(tt => tt.Delay) / cluster.Count;
-					delayInfo.From = cluster.Min(tt => tt.TravelTime.TimeStart.TimeOfDay);
-					delayInfo.To = cluster.Max(tt => tt.TravelTime.TimeEnd.TimeOfDay);
-
+					delayInfo.From = cluster.Min(tt => tt.TravelTime.TimeStart.TimeOfDay).Subtract(new TimeSpan(0, _parameters[_parametersIndex].MembersTimeDifference, 0));
+					if (delayInfo.From < new TimeSpan(0))
+						delayInfo.From = new TimeSpan(0);
+					
+					delayInfo.To = cluster.Max(tt => tt.TravelTime.TimeEnd.TimeOfDay).Add(new TimeSpan(0, _parameters[_parametersIndex].MembersTimeDifference, 0));
+					if (delayInfo.To > new TimeSpan(23, 59, 59)) {
+						delayInfo.To = new TimeSpan(23, 59, 59);
+					}
 					delaysMap.AddDelay(delayInfo.From, delayInfo.To, delayInfo.AppliesTo, delayInfo.Delay);
 				}
 
@@ -152,13 +160,13 @@ namespace LK.Analyzer {
 
 		int _parametersIndex = 0;
 		ClusterParameters[] _parameters = new ClusterParameters[] {
-			new ClusterParameters() {DelayDifferencePercentage = 15, Dates = DatesHandling.Any, MembersTimeDifference = 480},
+			//new ClusterParameters() {DelayDifferencePercentage = 15, Dates = DatesHandling.Any, MembersTimeDifference = 480},
 			new ClusterParameters() {DelayDifferencePercentage = 15, Dates = DatesHandling.Any, MembersTimeDifference = 120},
 			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.WeekendWorkdays, MembersTimeDifference = 60},
-			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.WeekendWorkdays, MembersTimeDifference = 30},
+			new ClusterParameters() {DelayDifferencePercentage = 5, Dates = DatesHandling.WeekendWorkdays, MembersTimeDifference = 30},
 			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.Days, MembersTimeDifference = 60},
 			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.Days, MembersTimeDifference = 30},
-			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.Days, MembersTimeDifference = 15}
+			new ClusterParameters() {DelayDifferencePercentage = 5, Dates = DatesHandling.Days, MembersTimeDifference = 20}
 		};
 
 		/// <summary>

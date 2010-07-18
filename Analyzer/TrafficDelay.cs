@@ -45,17 +45,19 @@ namespace LK.Analyzer {
 
 		private int _resolution;
 		private double[,] _map;
+		private double _freeflow;
 
 		/// <summary>
 		/// Creates a new instance of the TrafficDelayMap
 		/// </summary>
 		/// <param name="resolution">The resolution of the map in minutes</param>
-		public TrafficDelayMap(int resolution) {
+		public TrafficDelayMap(int resolution, double freeflow) {
 			if (_minutesIdDay % resolution != 0)
 				throw new ArgumentException("Time resolution must divide 24 * 60");
 
 			_resolution = resolution;
 			_map = new double[7, _minutesIdDay / resolution];
+			_freeflow = freeflow;
 		}
 
 		/// <summary>
@@ -72,7 +74,7 @@ namespace LK.Analyzer {
 					int indexTo = (int)to.TotalMinutes / _resolution;
 
 					for (int ii = indexFrom; ii <= indexTo; ii++) {
-						if (_map[i, ii] == 0 || Math.Abs(_map[i, ii] - delay) / delay < Properties.Settings.Default.MinimalModelDelayDifference / 100) {
+						if (_map[i, ii] == 0 ||Math.Abs(_map[i, ii] - delay) / delay < Properties.Settings.Default.MinimalModelDelayDifference / 100.0) {
 							_map[i, ii] = delay;
 						}
 					}
@@ -96,7 +98,7 @@ namespace LK.Analyzer {
 				delay.From = new TimeSpan(0, timeIndex * _resolution, 0);
 
 				for (int i = 0; i < 7; i++) {
-					if (Math.Abs(_map[i, timeIndex] - delay.Delay) < 0.1)
+					if (Math.Abs(_map[i, timeIndex] - delay.Delay) < 0.1 || Math.Abs(_map[i, timeIndex] - delay.Delay) / _freeflow < Properties.Settings.Default.MinimalModelDelayDifference / 100.0)
 						delay.AppliesTo |= DayOfWeekHelper.Days[i];
 				}
 				DayOfWeek timeBinDays = delay.AppliesTo;
@@ -112,7 +114,7 @@ namespace LK.Analyzer {
 					timeBinDays = 0;
 					if (timeIndex < _minutesIdDay / _resolution) {
 						for (int i = 0; i < 7; i++) {
-							if (Math.Abs(_map[i, timeIndex] - delay.Delay) < 0.1)
+							if (Math.Abs(_map[i, timeIndex] - delay.Delay) < 0.1  || Math.Abs(_map[i, timeIndex] - delay.Delay) / _freeflow < Properties.Settings.Default.MinimalModelDelayDifference / 100.0)
 								timeBinDays |= DayOfWeekHelper.Days[i];
 						}
 					}

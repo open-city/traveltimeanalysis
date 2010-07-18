@@ -37,7 +37,7 @@ namespace LK.Analyzer {
 					_itemsStates[item].Visited = true;
 
 					var neighbours = _findNeighboursCallback(item, items);
-					if (neighbours.Count >= _minClusterMembersCount) {
+					if (neighbours.Count >= _minClusterMembersCount -1) {
 						List<T> cluster = new List<T>();
 						clusters.Add(cluster);
 
@@ -57,7 +57,7 @@ namespace LK.Analyzer {
 					_itemsStates[neighbours[index]].Visited = true;
 
 					var neighbours_ = _findNeighboursCallback(neighbours[index], items);
-					if (neighbours_.Count >= _minClusterMembersCount) {
+					if (neighbours_.Count >= _minClusterMembersCount -1) {
 						foreach (var neighbour in neighbours_) {
 							if (neighbours.Contains(neighbour) == false) {
 								neighbours.Add(neighbour);
