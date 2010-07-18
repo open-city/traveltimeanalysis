@@ -57,6 +57,12 @@ namespace LK.Analyzer {
 
 			_resolution = resolution;
 			_map = new double[7, _minutesIdDay / resolution];
+			for (int i = 0; i < 7; i++) {
+				for (int ii = 0; ii < _minutesIdDay / resolution; ii++) {
+					_map[i, ii] = double.NegativeInfinity;
+				}
+			}
+
 			_freeflow = freeflow;
 		}
 
@@ -74,7 +80,7 @@ namespace LK.Analyzer {
 					int indexTo = (int)to.TotalMinutes / _resolution;
 
 					for (int ii = indexFrom; ii <= indexTo; ii++) {
-						if (_map[i, ii] == 0 ||Math.Abs(_map[i, ii] - delay) / delay < Properties.Settings.Default.MinimalModelDelayDifference / 100.0) {
+						if (_map[i, ii] == double.NegativeInfinity || Math.Abs(_map[i, ii] - delay) / delay < Properties.Settings.Default.MinimalModelDelayDifference / 100.0) {
 							_map[i, ii] = delay;
 						}
 					}
@@ -106,7 +112,7 @@ namespace LK.Analyzer {
 				while (timeIndex < _minutesIdDay / _resolution && timeBinDays == delay.AppliesTo) {
 					for (int i = 0; i < 7; i++) {
 						if ((timeBinDays & DayOfWeekHelper.Days[i]) > 0)
-							_map[i, timeIndex] = 0;
+							_map[i, timeIndex] = double.NegativeInfinity;
 					}
 					
 					timeIndex++;

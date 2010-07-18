@@ -70,7 +70,7 @@ namespace LK.Analyzer.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("80")]
+        [global::System.Configuration.DefaultSettingValueAttribute("75")]
         public double ClusterAnalysisStopPercentage {
             get {
                 return ((double)(this["ClusterAnalysisStopPercentage"]));
@@ -88,7 +88,7 @@ namespace LK.Analyzer.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public double ClusterSizePercentage {
             get {
                 return ((double)(this["ClusterSizePercentage"]));

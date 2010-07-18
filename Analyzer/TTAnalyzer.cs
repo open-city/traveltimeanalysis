@@ -160,8 +160,7 @@ namespace LK.Analyzer {
 
 		int _parametersIndex = 0;
 		ClusterParameters[] _parameters = new ClusterParameters[] {
-			//new ClusterParameters() {DelayDifferencePercentage = 15, Dates = DatesHandling.Any, MembersTimeDifference = 480},
-			new ClusterParameters() {DelayDifferencePercentage = 15, Dates = DatesHandling.Any, MembersTimeDifference = 120},
+			new ClusterParameters() {DelayDifferencePercentage = 15, Dates = DatesHandling.Any, MembersTimeDifference = 60},
 			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.WeekendWorkdays, MembersTimeDifference = 60},
 			new ClusterParameters() {DelayDifferencePercentage = 5, Dates = DatesHandling.WeekendWorkdays, MembersTimeDifference = 30},
 			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.Days, MembersTimeDifference = 60},
