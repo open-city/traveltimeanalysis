@@ -88,10 +88,10 @@ namespace LK.OSM2Routing {
 		/// </summary>
 		/// <param name="way">The way read form the OSM file</param>
 		void WayRead(OSMWay way) {
-			foreach (RoadType road in _acceptedRoads) {
-				if (road.Match(way) && _ways.ContainsKey(way.ID) == false) {
+			foreach (RoadType roadType in _acceptedRoads) {
+				if (roadType.Match(way) && _ways.ContainsKey(way.ID) == false) {
 					ExtractUsedNodes(way);
-					_storage.Ways.Add(new OSMRoad(way, road));
+					_storage.Ways.Add(new OSMRoad(way, roadType));
 					_ways.Add(way.ID, way.ID);
 				}
 			}
