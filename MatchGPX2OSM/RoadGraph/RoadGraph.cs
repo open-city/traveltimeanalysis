@@ -58,10 +58,20 @@ namespace LK.MatchGPX2OSM {
 
 			foreach (var segment in map.Ways) {
 				Node start = GetOrCreateNode(segment.Nodes[0], usedNodes);
-				start.MapPoint = map.Nodes[segment.Nodes[0]];
+				try {
+					start.MapPoint = map.Nodes[segment.Nodes[0]];
+				}
+				catch (ArgumentException) {
+					continue; // If the start node was not found in the database, skip this path completely
+				}
 
 				Node end = GetOrCreateNode(segment.Nodes[segment.Nodes.Count - 1], usedNodes);
-				end.MapPoint = map.Nodes[segment.Nodes[segment.Nodes.Count - 1]];
+				try {
+					end.MapPoint = map.Nodes[segment.Nodes[segment.Nodes.Count - 1]];
+				}
+				catch (ArgumentException) {
+					continue; // If the end node was not found in the database, skip this path completely
+				}
 
 				double speed = double.Parse(segment.Tags["speed"].Value, System.Globalization.CultureInfo.InvariantCulture);
 				int wayId = int.Parse(segment.Tags["way-id"].Value, System.Globalization.CultureInfo.InvariantCulture);
@@ -69,9 +79,14 @@ namespace LK.MatchGPX2OSM {
 				ConnectionGeometry geometry = new ConnectionGeometry();
 				geometry.WayID = wayId;
 				foreach (var n in segment.Nodes) {
-					OSMNode mapPoint = map.Nodes[n];
-					geometry.Nodes.Add(mapPoint);
-					//geometry.Nodes.Add(new PointGeo(mapPoint.Latitude, mapPoint.Longitude));
+					try {
+						OSMNode mapPoint = map.Nodes[n]; 
+						geometry.Nodes.Add(mapPoint);
+						//geometry.Nodes.Add(new PointGeo(mapPoint.Latitude, mapPoint.Longitude));
+					}
+					catch (ArgumentException) {
+					continue; // If an intermediate node was not found in the database, skip just that node
+					}
 				}
 				_connectionGeometries.Add(geometry);
 
