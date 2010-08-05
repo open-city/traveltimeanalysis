@@ -37,10 +37,11 @@ namespace LK.Analyzer {
 				filteredTravelTimes.Add(tt);
 			}
 
+			if (filteredTravelTimes.Count < Properties.Settings.Default.FreeflowMinimalCount)
+				return null;
+
 			Model result = new Model();
 			result.Segment = segment;
-			if (filteredTravelTimes.Count < Properties.Settings.Default.FreeflowMinimalCount)
-				return result;
 
 			// Free-flow time
 			result.FreeFlowTravelTime = EstimateFreeFlowTime(filteredTravelTimes);
@@ -140,11 +141,11 @@ namespace LK.Analyzer {
 					cluster.Sort(new Comparison<TravelTimeDelay>((TravelTimeDelay td1, TravelTimeDelay td2) => td1.Delay.CompareTo(td2.Delay)));
 
 					delayInfo.Delay = cluster.Sum(tt => tt.Delay) / cluster.Count;
-					delayInfo.From = cluster.Min(tt => tt.TravelTime.TimeStart.TimeOfDay).Subtract(new TimeSpan(0, _parameters[_parametersIndex].MembersTimeDifference, 0));
+					delayInfo.From = cluster.Min(tt => tt.TravelTime.TimeStart.TimeOfDay).Subtract(new TimeSpan(0, _parameters[_parametersIndex].MembersTimeDifference / 2, 0));
 					if (delayInfo.From < new TimeSpan(0))
 						delayInfo.From = new TimeSpan(0);
 					
-					delayInfo.To = cluster.Max(tt => tt.TravelTime.TimeEnd.TimeOfDay).Add(new TimeSpan(0, _parameters[_parametersIndex].MembersTimeDifference, 0));
+					delayInfo.To = cluster.Max(tt => tt.TravelTime.TimeEnd.TimeOfDay).Add(new TimeSpan(0, _parameters[_parametersIndex].MembersTimeDifference / 2, 0));
 					if (delayInfo.To > new TimeSpan(23, 59, 59)) {
 						delayInfo.To = new TimeSpan(23, 59, 59);
 					}
@@ -160,12 +161,13 @@ namespace LK.Analyzer {
 
 		int _parametersIndex = 0;
 		ClusterParameters[] _parameters = new ClusterParameters[] {
-			new ClusterParameters() {DelayDifferencePercentage = 15, Dates = DatesHandling.Any, MembersTimeDifference = 60},
+			new ClusterParameters() {DelayDifferencePercentage = 15, Dates = DatesHandling.Any, MembersTimeDifference = 120},
+			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.Any, MembersTimeDifference = 60},
+			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.WeekendWorkdays, MembersTimeDifference = 90},
 			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.WeekendWorkdays, MembersTimeDifference = 60},
-			new ClusterParameters() {DelayDifferencePercentage = 5, Dates = DatesHandling.WeekendWorkdays, MembersTimeDifference = 30},
+			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.WeekendWorkdays, MembersTimeDifference = 30},
 			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.Days, MembersTimeDifference = 60},
 			new ClusterParameters() {DelayDifferencePercentage = 10, Dates = DatesHandling.Days, MembersTimeDifference = 30},
-			new ClusterParameters() {DelayDifferencePercentage = 5, Dates = DatesHandling.Days, MembersTimeDifference = 20}
 		};
 
 		/// <summary>
@@ -175,7 +177,7 @@ namespace LK.Analyzer {
 		/// <param name="items"></param>
 		/// <returns></returns>
 		List<TravelTimeDelay> FindNeighbours(TravelTimeDelay target, IList<TravelTimeDelay> items) {
-			double eps = _parameters[_parametersIndex].DelayDifferencePercentage * target.TravelTime.TotalTravelTime.TotalSeconds / 100;
+			double eps = _parameters[_parametersIndex].DelayDifferencePercentage * target.TravelTime.TotalTravelTime.TotalSeconds / 100.0;
 
 			List<TravelTimeDelay> result = new List<TravelTimeDelay>();
 			for (int i = 0; i < items.Count; i++) {

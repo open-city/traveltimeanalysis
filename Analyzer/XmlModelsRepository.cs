@@ -127,7 +127,8 @@ namespace LK.Analyzer {
 			segment.WayID = int.Parse(attWay);
 
 			Model model = new Model();
-			
+			model.Segment = segment;
+
 			string attFreeFlow = _xmlReader.GetAttribute("freeflow");
 			if(attFreeFlow == null)
 				throw new XmlException("Attribute 'freeflow' is missing.");

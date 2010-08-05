@@ -80,7 +80,10 @@ namespace LK.Analyzer {
 
 				TTAnalyzer analyzer = new TTAnalyzer(map);
 				foreach (var segment in db.TravelTimesSegments) {
-					modelsRepository.AddModel(analyzer.Analyze(db.GetTravelTimes(segment), segment));
+					Model m = analyzer.Analyze(db.GetTravelTimes(segment), segment);
+					if (m != null) {
+						modelsRepository.AddModel(m);
+					}
 				}
 
 				Console.Write("Saving models ...");

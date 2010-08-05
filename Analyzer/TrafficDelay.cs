@@ -35,6 +35,13 @@ namespace LK.Analyzer {
 		public override string ToString() {
 			return string.Format("{0} {1}-{2} # {3}", AppliesTo, From, To, Delay);
 		}
+
+		public bool Contains(DateTime time) {
+			if ((AppliesTo & DayOfWeekHelper.FromDate(time)) == 0)
+				return false;
+
+			return (time.TimeOfDay >= From && time.TimeOfDay <= To);
+		}
 	}
 
 	/// <summary>
@@ -104,7 +111,7 @@ namespace LK.Analyzer {
 				delay.From = new TimeSpan(0, timeIndex * _resolution, 0);
 
 				for (int i = 0; i < 7; i++) {
-					if (Math.Abs(_map[i, timeIndex] - delay.Delay) < 0.1 || Math.Abs(_map[i, timeIndex] - delay.Delay) / _freeflow < Properties.Settings.Default.MinimalModelDelayDifference / 100.0)
+					if (Math.Abs(_map[i, timeIndex] - delay.Delay) < 0.2 || Math.Abs(_map[i, timeIndex] - delay.Delay) / _freeflow < Properties.Settings.Default.MinimalModelDelayDifference / 100.0)
 						delay.AppliesTo |= DayOfWeekHelper.Days[i];
 				}
 				DayOfWeek timeBinDays = delay.AppliesTo;
@@ -120,14 +127,16 @@ namespace LK.Analyzer {
 					timeBinDays = 0;
 					if (timeIndex < _minutesIdDay / _resolution) {
 						for (int i = 0; i < 7; i++) {
-							if (Math.Abs(_map[i, timeIndex] - delay.Delay) < 0.1  || Math.Abs(_map[i, timeIndex] - delay.Delay) / _freeflow < Properties.Settings.Default.MinimalModelDelayDifference / 100.0)
+							if (Math.Abs(_map[i, timeIndex] - delay.Delay) < 0.2  || Math.Abs(_map[i, timeIndex] - delay.Delay) / _freeflow < Properties.Settings.Default.MinimalModelDelayDifference / 100.0)
 								timeBinDays |= DayOfWeekHelper.Days[i];
 						}
 					}
 				}
 
 				delay.To = new TimeSpan(0, timeIndex * _resolution, 0);
-				result.Add(delay);
+				if (delay.Delay > 0.1) {
+					result.Add(delay);
+				}
 			}
 
 			return result;
