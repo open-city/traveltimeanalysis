@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Filters\FrequencyFilter.cs" />
-    <Compile Include="Filters\StopsDetector.cs" />
     <Compile Include="GPXDataSource\GPXXmlDataReader.cs" />
     <Compile Include="GPXDataSource\GPXXmlDataWriter.cs" />
     <Compile Include="GPXDataSource\IGPXDataReader.cs" />
